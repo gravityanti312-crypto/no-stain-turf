@@ -284,6 +284,75 @@
       overflow: hidden;
       background: #1c3a24;
     }
+
+    /* ─── DEEP CLEAN EXPLAINER + BEFORE/AFTER ─────────────────── */
+    #deepclean { padding: 96px 0; background: var(--white); }
+    .dc-grid {
+      display: grid; grid-template-columns: 1fr 380px;
+      gap: 72px; align-items: center; max-width: 1160px; margin: 0 auto;
+    }
+    .dc-title {
+      font-size: clamp(28px, 3.6vw, 44px); font-weight: 900; color: var(--dark);
+      line-height: 1.12; letter-spacing: -0.02em; margin-bottom: 18px;
+    }
+    .dc-lead { font-size: 17px; line-height: 1.7; color: var(--text-muted); max-width: 620px; }
+    .dc-lead a { color: var(--teal); font-weight: 600; text-decoration: none; }
+    .dc-lead a:hover { text-decoration: underline; }
+    .dc-benefits {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 28px; margin: 44px 0 40px;
+    }
+    .dc-benefit { text-align: center; }
+    .dc-benefit svg { display: block; margin: 0 auto 16px; }
+    .dc-benefit-text {
+      font-size: 15px; font-weight: 800; color: var(--dark);
+      line-height: 1.35; letter-spacing: -0.01em;
+    }
+    .dc-cta-row { text-align: center; }
+    .dc-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--teal); color: #fff; font-weight: 800; font-size: 15px;
+      padding: 15px 34px; border-radius: 50px; border: none; cursor: pointer;
+      font-family: inherit; transition: background .2s, transform .15s, box-shadow .2s;
+    }
+    .dc-cta:hover {
+      background: var(--teal-dark); transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(45,122,58,0.32);
+    }
+
+    /* vertical before / after card */
+    .ba-card {
+      position: relative; border-radius: 22px; overflow: hidden;
+      box-shadow: 0 18px 46px rgba(15,36,23,0.18); background: #14281a;
+    }
+    .ba-half { position: relative; display: block; }
+    .ba-half img { width: 100%; height: 320px; object-fit: cover; display: block; }
+    .ba-split { height: 6px; background: #facc15; }
+    .ba-label {
+      position: absolute; top: 16px; left: 50%; transform: translateX(-50%);
+      font-size: clamp(26px, 3vw, 38px); font-weight: 900; color: #fff;
+      letter-spacing: 0.02em; line-height: 1; white-space: nowrap;
+      -webkit-text-stroke: 3px #14281a; paint-order: stroke fill;
+    }
+    .ba-half--after .ba-label { top: 14px; }
+    .ba-arrow { position: absolute; width: 78px; height: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.35)); }
+    .ba-half--before .ba-arrow { top: 62px; left: 30px; }
+    .ba-half--after  .ba-arrow { top: 58px; left: 30px; }
+    .ba-caption {
+      text-align: center; font-size: 12px; font-weight: 700; color: var(--text-muted);
+      letter-spacing: 0.08em; text-transform: uppercase; margin-top: 14px;
+    }
+
+    @media (max-width: 980px) {
+      #deepclean { padding: 72px 0; }
+      .dc-grid { grid-template-columns: 1fr; gap: 44px; }
+      .ba-card { max-width: 380px; margin: 0 auto; }
+    }
+    @media (max-width: 560px) {
+      .dc-benefits { grid-template-columns: 1fr; gap: 24px; margin: 32px 0; }
+      .ba-half img { height: 260px; }
+    }
+
     .hero-bg {
       position: absolute; inset: 0;
       background-image: url('hero.jpg');
@@ -2190,6 +2259,77 @@
         </ul>
         <button class="svc-card-btn" onclick="event.stopPropagation(); openQuoteModal('restore')">BOOK NOW</button>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── DEEP CLEAN EXPLAINER + BEFORE / AFTER ─────────────────── -->
+<section id="deepclean">
+  <div class="container">
+    <div class="dc-grid">
+
+      <div class="dc-copy">
+        <div class="section-label">What We Do</div>
+        <h2 class="dc-title">Deep Turf Cleaning Across the Phoenix Valley</h2>
+        <p class="dc-lead">Artificial turf needs more than just a rinse &mdash; especially in high-traffic, pet-friendly, or sun-exposed areas. Without regular cleaning, bacteria, odors, and buildup can damage your turf and affect your home&rsquo;s appearance. We specialize in <a href="javascript:void(0)" onclick="openQuoteModal('deep')">deep cleaning</a> that not only removes grime but extends the life of your turf.</p>
+
+        <div class="dc-benefits">
+          <div class="dc-benefit">
+            <svg width="68" height="68" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <path d="M15 31c-3-6-2-12 2-15" stroke="#2d7a3a" stroke-width="6" stroke-linecap="round" fill="none"/>
+  <rect x="13" y="28" width="30" height="15" rx="7" fill="#2d7a3a"/>
+  <rect x="35" y="19" width="13" height="22" rx="6.5" fill="#2d7a3a"/>
+  <circle cx="45" cy="22" r="9.5" fill="#2d7a3a"/>
+  <rect x="49" y="19" width="12" height="8.5" rx="4.25" fill="#2d7a3a"/>
+  <path d="M38 14.5l7-5 2.5 9.5z" fill="#2d7a3a"/>
+  <rect x="16" y="41" width="6" height="13" rx="3" fill="#2d7a3a"/>
+  <rect x="26" y="41" width="6" height="13" rx="3" fill="#2d7a3a"/>
+  <rect x="37" y="41" width="6" height="13" rx="3" fill="#2d7a3a"/>
+  <circle cx="48" cy="20" r="1.9" fill="#ffffff"/>
+</svg>
+            <div class="dc-benefit-text">Eliminates pet odors,<br />bacteria, and debris</div>
+          </div>
+          <div class="dc-benefit">
+            <svg width="68" height="68" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <path d="M13 32a19 19 0 0130-15.5" stroke="#2d7a3a" stroke-width="7.5" stroke-linecap="round" fill="none"/>
+  <path d="M51 32a19 19 0 01-30 15.5" stroke="#2d7a3a" stroke-width="7.5" stroke-linecap="round" fill="none"/>
+  <path d="M32 8l12 8-12 8z" fill="#2d7a3a"/>
+  <path d="M32 56l-12-8 12-8z" fill="#2d7a3a"/>
+</svg>
+            <div class="dc-benefit-text">Restores your turf&rsquo;s<br />look and feel</div>
+          </div>
+          <div class="dc-benefit">
+            <svg width="68" height="68" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <path d="M32 9c13.8 0 25 8.8 25 19.6 0 10.9-11.2 19.7-25 19.7-2.8 0-5.4-.4-7.9-1.1L11 54l3.7-10.6C10.6 39.6 7 34.5 7 28.6 7 17.8 18.2 9 32 9z" fill="#2d7a3a"/>
+  <path d="M32 15.5v25" stroke="#ffffff" stroke-width="3.6" stroke-linecap="round"/>
+  <path d="M39 22.5c0-3.1-3.1-5.2-7-5.2s-7 2.1-7 5.2 3.1 5.2 7 5.2 7 2.1 7 5.2-3.1 5.2-7 5.2-7-2.1-7-5.2" stroke="#ffffff" stroke-width="3.6" stroke-linecap="round" fill="none"/>
+</svg>
+            <div class="dc-benefit-text">Helps extend the life of<br />your investment</div>
+          </div>
+        </div>
+
+        <div class="dc-cta-row">
+          <button type="button" class="dc-cta" onclick="openQuoteModal('deep')">Learn more</button>
+        </div>
+      </div>
+
+      <div class="dc-media">
+        <div class="ba-card">
+          <div class="ba-half ba-half--before">
+            <img src="ba-before.jpg" alt="Matted, discolored artificial turf before cleaning" loading="lazy" />
+            <span class="ba-label">BEFORE</span>
+            <svg class="ba-arrow" viewBox="0 0 88 96" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 10C6 40 22 64 56 76" stroke="#facc15" stroke-width="8" stroke-linecap="round" fill="none"/><path d="M38 74l20 4-9-18" stroke="#facc15" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </div>
+          <div class="ba-split"></div>
+          <div class="ba-half ba-half--after">
+            <img src="ba-after.jpg" alt="Clean, restored artificial turf after cleaning" loading="lazy" />
+            <span class="ba-label">AFTER</span>
+            <svg class="ba-arrow" viewBox="0 0 88 96" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 10C6 40 22 64 56 76" stroke="#facc15" stroke-width="8" stroke-linecap="round" fill="none"/><path d="M38 74l20 4-9-18" stroke="#facc15" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </div>
+        </div>
+        <div class="ba-caption">Real results, every visit</div>
+      </div>
+
     </div>
   </div>
 </section>
