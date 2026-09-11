@@ -40,7 +40,7 @@ module.exports = async (req, res) => {
         '<div style="background:#0f2417;padding:22px 24px;">' +
           '<div style="font:800 11px/1 sans-serif;letter-spacing:.14em;color:#8ea2c0;text-transform:uppercase;">New Referral</div>' +
           '<div style="font:900 23px/1.2 sans-serif;color:#fff;margin-top:6px;">' + esc(referrer) + ' referred ' + people.length + ' ' + (people.length === 1 ? 'person' : 'people') + '</div>' +
-          '<div style="font:600 14px/1.4 sans-serif;color:#c7d0dd;margin-top:6px;">Reward when booked: ' + esc(referrer) + ' gets $25 off · they get $25 off their first cleaning</div>' +
+          '<div style="font:600 14px/1.4 sans-serif;color:#c7d0dd;margin-top:6px;">Reward when booked: ' + esc(referrer) + ' gets $50 off · they get $50 off their first cleaning</div>' +
         '</div>' +
         '<div style="padding:20px 24px;">' +
           '<div style="font:600 12px/1 sans-serif;color:#64748b;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px;">Referred by</div>' +
@@ -50,7 +50,7 @@ module.exports = async (req, res) => {
           people.map(personCard).join('') +
         '</div>' +
         '<div style="padding:14px 24px;background:#f7faf7;border-top:1px solid #e0ece0;font:500 13px/1.5 sans-serif;color:#64748b;">' +
-          'Reach out to each person above. Once their first service is complete, credit ' + esc(referrer) + '’s $25-off reward.' +
+          'Reach out to each person above. Once their first service is complete, credit ' + esc(referrer) + '’s $50-off reward.' +
         '</div>' +
       '</div>' +
     '</div>';

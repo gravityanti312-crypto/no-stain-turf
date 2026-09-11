@@ -1291,7 +1291,7 @@
     .rm-success-title { font-size: 1.4rem; font-weight: 900; color: #0f2417; margin-bottom: 8px; }
     .rm-success p { font-size: 14px; color: #4a6b52; line-height: 1.55; margin: 0; }
 
-    /* Give $25 / Get $50 referral layout */
+    /* Give $50 / Get $50 referral layout */
     .rm-offer { text-align:center; color:#0f2417; font-size:clamp(2rem,5vw,2.8rem); font-weight:900; letter-spacing:-1px; line-height:1.05; margin:0 0 12px; }
     .rm-offer span { color:var(--teal); }
     .rm-rewards { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:22px 0 8px; }
@@ -2133,7 +2133,7 @@
       <a href="#why">Why Us</a>
       <a href="#footer">Service Areas</a>
       <a href="#footer">Contact</a>
-      <a href="javascript:void(0)" onclick="openReferralModal()">Refer &amp; Earn $25</a>
+      <a href="javascript:void(0)" onclick="openReferralModal()">Refer &amp; Earn $50</a>
     </div>
     <div class="nav-right">
       <a href="tel:6025589990" class="nav-ig-btn">
@@ -2160,7 +2160,7 @@
   <a href="#ig-showroom" onclick="closeMobile()">Instagram</a>
   <a href="#footer" onclick="closeMobile()">Service Areas</a>
   <a href="#footer" onclick="closeMobile()">Contact</a>
-  <a href="javascript:void(0)" onclick="closeMobile(); openReferralModal();">Refer &amp; Earn $25</a>
+  <a href="javascript:void(0)" onclick="closeMobile(); openReferralModal();">Refer &amp; Earn $50</a>
   <a href="javascript:void(0)" class="mobile-book" onclick="closeMobile(); openQuoteModal()">Get Your Instant Quote</a>
 </div>
 
@@ -2643,20 +2643,20 @@
 <section id="referral" class="referral-section">
   <div class="rm-wrap">
     <div class="rm-body">
-      <h2 id="rm-title" class="rm-offer">Give $25. <span>Get $25.</span></h2>
-      <p class="rm-lead" style="text-align:center;">Know a neighbor whose turf could use it? Send them our way &mdash; they get <strong>$25 off</strong> their first cleaning, and you get rewarded once they book.</p>
+      <h2 id="rm-title" class="rm-offer">Give $50. <span>Get $50.</span></h2>
+      <p class="rm-lead" style="text-align:center;">Know a neighbor whose turf could use it? Send them our way &mdash; they get <strong>$50 off</strong> their first cleaning, and you get rewarded once they book.</p>
 
       <div class="rm-rewards">
         <div class="rm-reward">
           <div class="rm-reward-icon">🎁</div>
           <div class="rm-reward-label">They get</div>
-          <div class="rm-reward-amt">$25 off</div>
+          <div class="rm-reward-amt">$50 off</div>
           <div class="rm-reward-sub">their first cleaning</div>
         </div>
         <div class="rm-reward">
           <div class="rm-reward-icon">🏷️</div>
           <div class="rm-reward-label">You get</div>
-          <div class="rm-reward-amt">$25 off</div>
+          <div class="rm-reward-amt">$50 off</div>
           <div class="rm-reward-sub">on your next cleaning</div>
         </div>
       </div>
@@ -2683,7 +2683,7 @@
         <div class="rm-success-title">Thanks, <span id="rm-success-name">friend</span>!</div>
         <p>Give them a heads-up with a one-tap text — it comes from you, so they'll actually open it. 👇</p>
         <div id="rm-text-buttons"></div>
-        <div class="rm-reward-note"><strong>Your reward:</strong> once their first service is complete, your $25 off unlocks — use it on your next cleaning.</div>
+        <div class="rm-reward-note"><strong>Your reward:</strong> once their first service is complete, your $50 off unlocks — use it on your next cleaning.</div>
         <button type="button" class="rm-again" onclick="rmReferAgain()">Refer someone else</button>
       </div>
     </div>
@@ -3443,7 +3443,7 @@
     function showRefSuccess() {
       document.getElementById('rm-success-name').textContent = (referrerName.split(' ')[0] || 'friend');
       // Build one-tap "Text them" buttons — opens the referrer's own Messages app,
-      // pre-addressed to each friend, with the $25-off message pre-written.
+      // pre-addressed to each friend, with the $50-off message pre-written.
       var btnWrap = document.getElementById('rm-text-buttons');
       btnWrap.innerHTML = '';
       people.forEach(function(p) {
@@ -3453,7 +3453,7 @@
                 : ((digits.length === 11 && digits.charAt(0) === '1') ? ('+' + digits) : digits);
         var first = p.first || 'there';
         var body = 'Hey ' + first + '! I use No Stain Turf and thought of you — '
-                 + "here's $25 off your first turf cleaning 👉 https://nostainturf.com";
+                 + "here's $50 off your first turf cleaning 👉 https://nostainturf.com";
         var a = document.createElement('a');
         a.className = 'rm-text-btn';
         a.href = 'sms:' + num + '?&body=' + encodeURIComponent(body);
