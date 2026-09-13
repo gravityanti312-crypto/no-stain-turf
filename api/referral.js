@@ -1,5 +1,5 @@
 // Vercel serverless function — emails a referral (referrer + the people they
-// referred) to No Stain Turf via Resend. No npm deps (built-in fetch). Returns 503
+// referred) to TurfGlow via Resend. No npm deps (built-in fetch). Returns 503
 // if RESEND_API_KEY is missing so the front-end falls back to formsubmit.co.
 
 module.exports = async (req, res) => {
@@ -56,7 +56,7 @@ module.exports = async (req, res) => {
     '</div>';
 
   const payload = {
-    from: 'No Stain Turf <onboarding@resend.dev>',
+    from: 'TurfGlow Cleaning <onboarding@resend.dev>',
     to: ['nostainturfcleaning@gmail.com'],
     subject: 'New Referral — ' + referrer + ' (' + people.length + ' ' + (people.length === 1 ? 'person' : 'people') + ')',
     html: html

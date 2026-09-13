@@ -1,4 +1,4 @@
-// Vercel serverless function — emails the full quote to No Stain Turf via Resend.
+// Vercel serverless function — emails the full quote to TurfGlow via Resend.
 // No npm dependencies (uses built-in fetch), so the site stays a zero-config
 // static deploy. If RESEND_API_KEY isn't set, returns 503 and the front-end
 // falls back to formsubmit.co so a lead is never lost.
@@ -62,7 +62,7 @@ module.exports = async (req, res) => {
     '</div>';
 
   const payload = {
-    from: 'No Stain Turf <onboarding@resend.dev>',
+    from: 'TurfGlow Cleaning <onboarding@resend.dev>',
     to: ['nostainturfcleaning@gmail.com'],
     subject: 'New Booking — ' + name + ' · ' + service + ' (' + total + ')',
     html: html
