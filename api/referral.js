@@ -57,7 +57,7 @@ module.exports = async (req, res) => {
 
   const payload = {
     from: 'TurfGlow Cleaning <onboarding@resend.dev>',
-    to: ['nostainturfcleaning@gmail.com'],
+    to: ['turfglowaz@gmail.com'],
     subject: 'New Referral — ' + referrer + ' (' + people.length + ' ' + (people.length === 1 ? 'person' : 'people') + ')',
     html: html
   };
