@@ -2985,7 +2985,13 @@
     };
   }
 
-  // No photos: try the Vercel/Resend function, fall back to formsubmit's AJAX endpoint (GitHub Pages).
+  // Vercel /api/quote creates the Housecall Pro lead (finished quotes) and emails via Resend when configured.
+  // If it isn't reachable (GitHub Pages) or didn't send the email, fall back to formsubmit.co.
+  function tqApi(data) {
+    return fetch('/api/quote', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(data) })
+      .then(function (r) { if (!r.ok) throw new Error('api ' + r.status); return r.json(); });
+  }
+
   function tqSend(stage) {
     if (document.getElementById('tq-honey').value) return Promise.resolve();
     var data = tqPayload(stage);
@@ -2997,8 +3003,8 @@
       return fetch('https://formsubmit.co/ajax/' + TQ_EMAIL, { method: 'POST', headers: { 'Accept': 'application/json' }, body: fd })
         .then(function (r) { if (!r.ok) throw new Error('relay ' + r.status); return r.json(); });
     };
-    return fetch('/api/quote', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(data) })
-      .then(function (r) { if (!r.ok) throw new Error('api ' + r.status); return r.json(); })
+    return tqApi(data)
+      .then(function (j) { if (!j || !j.email_sent) return viaRelay(); return j; })
       .catch(viaRelay);
   }
 
@@ -3037,7 +3043,10 @@
     if (!tq.picks.best_time) { tqErr(6, 'Pick the best time to reach you.'); return; }
     var btn = document.getElementById('tq-submit');
     btn.disabled = true; btn.textContent = tqPhotoCount() ? 'Sending your photos…' : 'Sending…';
-    (tqPhotoCount() ? tqSendWithPhotos() : tqSend('complete')).then(function () {
+    var sending = tqPhotoCount()
+      ? (function () { var d = tqPayload('complete'); d.skip_email = true; tqApi(d).catch(function () {}); return tqSendWithPhotos(); })()
+      : tqSend('complete');
+    sending.then(function () {
       document.getElementById('tq-done-title').textContent = 'You’re all set, ' + tq.contact.first_name + '!';
       document.getElementById('tq-done-msg').innerHTML = tqDoneMessage(tq.picks.best_time);
       document.getElementById('tq-done-photos').hidden = tqPhotoCount() > 0;
