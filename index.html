@@ -1329,147 +1329,156 @@
     }
     .tq-overlay { position: fixed; inset: 0; background: rgba(8,24,14,0.72); z-index: 1001; }
     .tq-wrap {
-      position: relative; z-index: 1002; width: min(940px, calc(100% - 32px));
-      margin: 28px auto; background: #ffffff; border-radius: 22px; overflow: hidden;
+      position: relative; z-index: 1002; width: min(1000px, calc(100% - 32px));
+      margin: 28px auto; background: #ffffff; border-radius: 24px; overflow: hidden;
       box-shadow: 0 24px 64px rgba(8,24,14,0.35);
     }
-    .tq-head { display: flex; align-items: center; gap: 12px; padding: 14px 22px; border-bottom: 1px solid var(--border); }
+    .tq-head { display: flex; align-items: center; gap: 12px; padding: 14px 24px; border-bottom: 1px solid var(--border); }
     .tq-logo { height: 38px; width: auto; }
-    .tq-google {
-      margin-left: auto; font-size: 13px; font-weight: 700; color: var(--dark);
-      background: var(--off-white); border: 1px solid var(--border); border-radius: 50px; padding: 6px 12px; white-space: nowrap;
-    }
+    .tq-google { margin-left: auto; font-size: 13px; font-weight: 700; color: var(--dark); background: var(--off-white); border: 1px solid var(--border); border-radius: 50px; padding: 6px 12px; white-space: nowrap; }
     .tq-google span { color: #f5b301; letter-spacing: 1px; }
     .tq-close { font-size: 28px; line-height: 1; color: var(--text-muted); padding: 2px 8px; border-radius: 8px; }
     .tq-close:hover { background: var(--off-white); color: var(--dark); }
     .tq-progress { height: 6px; background: var(--off-white); }
-    .tq-progress-fill { height: 100%; width: 16%; background: var(--teal); transition: width .3s ease; }
-    .tq-body { padding: 28px 32px 26px; }
+    .tq-progress-fill { height: 100%; width: 25%; background: var(--teal); transition: width .3s ease; }
+    .tq-body { padding: 26px 40px 34px; }
     .tq-step { display: none; }
     .tq-step.is-active { display: block; animation: tqIn .25s ease; }
     @keyframes tqIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
-    .tq-count { font-size: 12px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--teal); margin-bottom: 6px; }
-    .tq-title { font-size: clamp(22px, 3.4vw, 30px); font-weight: 900; color: var(--dark); line-height: 1.15; letter-spacing: -.01em; }
-    .tq-sub { font-size: 15.5px; color: var(--text-muted); margin: 6px 0 18px; line-height: 1.55; }
-    .tq-split { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 30px; align-items: stretch; }
-    .tq-panel {
-      position: relative; border-radius: 18px; overflow: hidden; min-height: 460px;
-      background: #14281a url('hero.jpg') 62% 55% / cover no-repeat;
+    .tq-backlink { display: inline-flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 700; color: #6b7c6b; padding: 4px 6px; border-radius: 8px; }
+    .tq-backlink:hover { color: var(--dark); }
+    .tq-backspace { height: 34px; }
+    .tq-h {
+      text-align: center; font-size: clamp(26px, 4.4vw, 44px); font-weight: 900; color: var(--dark);
+      text-transform: uppercase; letter-spacing: .02em; line-height: 1.1; margin: 10px 0 28px;
     }
-    .tq-panel::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(8,24,14,.92) 0%, rgba(8,24,14,.35) 55%, rgba(8,24,14,.05) 100%); }
-    .tq-panel-inner { position: absolute; left: 0; right: 0; bottom: 0; padding: 22px; color: #fff; }
-    .tq-panel-stars { color: #fbbf24; font-size: 16px; letter-spacing: 2px; margin-bottom: 10px; }
-    .tq-panel-stars span { color: #fff; letter-spacing: 0; font-weight: 800; font-size: 14px; margin-left: 4px; }
-    .tq-panel ul { list-style: none; display: grid; gap: 7px; }
-    .tq-panel li { font-size: 14px; font-weight: 600; display: flex; gap: 8px; }
-    .tq-panel li::before { content: '✓'; color: #85cc7e; font-weight: 900; }
-    .tq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .tq-sub { text-align: center; font-size: 15.5px; color: var(--text-muted); margin: -14px 0 24px; line-height: 1.55; }
+    .tq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 820px; margin: 0 auto; }
     .tq-grid .full { grid-column: 1 / -1; }
-    .tq-field label { display: block; font-size: 13px; font-weight: 700; color: var(--dark); margin-bottom: 5px; }
-    .tq-field label em { font-style: normal; font-weight: 500; color: var(--text-muted); }
-    .tq-field input, .tq-field select, .tq-field textarea {
-      width: 100%; font: inherit; font-size: 16px; color: var(--dark); background: #fff;
-      border: 1.5px solid var(--border); border-radius: 11px; padding: 12px 13px; outline: none;
-      transition: border-color .15s, box-shadow .15s;
+    .tq-field { position: relative; }
+    .tq-field .tq-ico { position: absolute; left: 18px; top: 50%; transform: translateY(-50%); width: 22px; height: 22px; color: #7a857a; pointer-events: none; }
+    .tq-field input, .tq-field select {
+      width: 100%; font: inherit; font-size: 17px; color: var(--dark); background: #fff;
+      border: 1.5px solid #cfd8cf; border-radius: 12px; padding: 17px 18px; outline: none;
+      box-shadow: 0 1px 3px rgba(15,42,27,0.06); transition: border-color .15s, box-shadow .15s;
     }
-    .tq-field textarea { resize: vertical; min-height: 76px; }
-    .tq-field input:focus, .tq-field select:focus, .tq-field textarea:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(35,128,75,0.15); }
+    .tq-field.has-ico input, .tq-field.has-ico select { padding-left: 54px; }
+    .tq-field select { appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%236b7c6b' stroke-width='2.5' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 18px center; padding-right: 46px; }
+    .tq-field select:invalid, .tq-field select.is-empty { color: #8a948a; }
+    .tq-field input::placeholder { color: #8a948a; }
+    .tq-field input:focus, .tq-field select:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(35,128,75,0.15); }
     .tq-field.is-invalid input { border-color: #dc2626; }
-    .tq-err { font-size: 14px; color: #dc2626; margin-top: 12px; font-weight: 600; }
+    .tq-consent { max-width: 820px; margin: 22px auto 0; }
+    .tq-check { display: flex; gap: 12px; align-items: flex-start; font-size: 16px; color: var(--dark); line-height: 1.45; cursor: pointer; }
+    .tq-check input { margin-top: 3px; accent-color: var(--teal); width: 20px; height: 20px; flex-shrink: 0; }
+    .tq-fine { font-size: 14px; font-style: italic; color: #3d5a45; line-height: 1.55; margin-top: 12px; }
+    .tq-fine a { color: var(--teal); font-weight: 600; font-style: normal; }
+    .tq-err { text-align: center; font-size: 15px; color: #dc2626; margin-top: 16px; font-weight: 600; }
     .tq-err:empty { display: none; }
-    .tq-check { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-top: 14px; cursor: pointer; }
-    .tq-check input { margin-top: 3px; accent-color: var(--teal); width: 16px; height: 16px; flex-shrink: 0; }
-    .tq-q { font-size: 16px; font-weight: 800; color: var(--dark); margin: 22px 0 10px; }
-    .tq-title + .tq-q, .tq-title + .tq-cards { margin-top: 16px; }
-    .tq-q-note { font-weight: 500; color: var(--text-muted); font-size: 14px; }
-
-    .tq-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
-    .tq-cards.c4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-    .tq-card {
-      position: relative; display: flex; flex-direction: column; text-align: center;
-      background: #fff; border: 2px solid var(--border); border-radius: 18px; padding: 10px 10px 13px;
-      transition: border-color .15s, transform .15s, box-shadow .15s, background .15s;
+    .tq-next-row { display: flex; justify-content: center; margin-top: 30px; }
+    .tq-next {
+      display: inline-flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 800; letter-spacing: .04em;
+      text-transform: uppercase; color: #85cc7e; background: var(--dark); border-radius: 50px; padding: 15px 34px;
+      box-shadow: 0 0 0 4px rgba(35,128,75,0.14); transition: transform .15s, background .2s;
     }
-    .tq-card:hover { border-color: var(--teal); transform: translateY(-2px); box-shadow: 0 10px 24px rgba(35,128,75,0.12); }
-    .tq-card.is-on { border-color: var(--teal); background: rgba(35,128,75,0.05); box-shadow: 0 0 0 1px var(--teal) inset; }
-    .tq-card.is-on::after {
-      content: '✓'; position: absolute; top: 8px; right: 8px; width: 26px; height: 26px; border-radius: 50%;
-      background: var(--teal); color: #fff; font-weight: 900; font-size: 14px; display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 2px 6px rgba(15,42,27,.25);
-    }
-    .tq-card-art { display: block; }
-    .tq-svg { display: block; width: 100%; height: auto; border-radius: 11px; }
-    .tq-card-title { font-size: 15px; font-weight: 800; color: var(--dark); margin-top: 9px; line-height: 1.25; }
-    .tq-card-sub { font-size: 12.5px; color: var(--text-muted); margin-top: 3px; line-height: 1.35; }
-
-    .tq-photos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
-    .tq-photo {
-      position: relative; aspect-ratio: 1 / 1; border: 2px dashed #b3d3b6; border-radius: 16px; background: #f6faf6;
-      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
-      cursor: pointer; overflow: hidden; text-align: center; padding: 10px; transition: border-color .15s, background .15s;
-    }
-    .tq-photo:hover { border-color: var(--teal); background: #eef6ef; }
-    .tq-photo input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; z-index: 1; }
-    .tq-photo-plus { width: 42px; height: 42px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; }
-    .tq-photo-label { font-size: 13px; font-weight: 700; color: var(--dark); line-height: 1.3; }
-    .tq-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-    .tq-photo.has-img { border-style: solid; border-color: var(--teal); }
-    .tq-photo-tag { position: absolute; left: 7px; right: 7px; bottom: 7px; z-index: 2; background: rgba(15,42,27,.82); color: #fff; font-size: 11.5px; font-weight: 700; padding: 3px 7px; border-radius: 7px; pointer-events: none; }
-    .tq-photo-x {
-      position: absolute; top: 7px; right: 7px; z-index: 3; width: 28px; height: 28px; border-radius: 50%;
-      background: rgba(15,42,27,.88); color: #fff; font-size: 18px; line-height: 1; display: none; align-items: center; justify-content: center;
-    }
-    .tq-photo.has-img .tq-photo-x { display: flex; }
-    .tq-photo.is-busy::after { content: 'Adding…'; position: absolute; inset: 0; z-index: 2; background: rgba(255,255,255,.85); display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--teal); font-size: 13px; }
-    .tq-photo-help { font-size: 13px; color: var(--text-muted); margin-top: 8px; }
-    .tq-photo-help.is-error { color: #dc2626; font-weight: 600; }
-
-    .tq-rec { display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 20px; align-items: center; border: 2px solid var(--teal); background: rgba(35,128,75,0.05); border-radius: 18px; padding: 14px; margin-top: 16px; }
-    .tq-rec img { width: 100%; height: 170px; object-fit: cover; border-radius: 12px; display: block; }
-    .tq-rec-eyebrow { font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); }
-    .tq-rec-name { font-size: 26px; font-weight: 900; color: var(--dark); margin: 2px 0 4px; }
-    .tq-rec-why { font-size: 14px; color: var(--text-muted); margin-bottom: 10px; }
-    .tq-rec ul { list-style: none; display: grid; gap: 5px; }
-    .tq-rec li { font-size: 14.5px; color: var(--dark); display: flex; gap: 8px; }
-    .tq-rec li::before { content: '✓'; color: var(--teal); font-weight: 900; }
-
-    .tq-actions { display: flex; gap: 12px; margin-top: 24px; }
-    .tq-back { flex: 0 0 auto; font-size: 15px; font-weight: 700; color: var(--text-muted); border: 1.5px solid var(--border); border-radius: 12px; padding: 14px 20px; }
-    .tq-back:hover { color: var(--dark); border-color: var(--dark); }
-    .tq-next { flex: 1; font-size: 17px; font-weight: 800; color: #fff; background: var(--teal); border-radius: 12px; padding: 15px 18px; transition: background .2s; }
-    .tq-next:hover { background: var(--teal-dark); }
+    .tq-next:hover { background: #163a25; transform: translateY(-1px); }
     .tq-next[disabled] { opacity: .65; cursor: wait; }
-    .tq-fine { font-size: 12px; color: var(--text-muted); line-height: 1.5; margin-top: 12px; text-align: center; }
-    .tq-done { text-align: center; max-width: 560px; margin: 0 auto; padding: 10px 4px 2px; }
-    .tq-done-icon { width: 66px; height: 66px; border-radius: 50%; background: rgba(35,128,75,0.12); color: var(--teal); font-size: 34px; font-weight: 900; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; }
-    .tq-done .tq-sub { margin-bottom: 16px; }
+
+    .tq-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; max-width: 900px; margin: 0 auto; }
+    .tq-card {
+      position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; text-align: center;
+      background: #fff; border: 5px solid #d6d6d6; border-radius: 26px; padding: 26px 14px; min-height: 230px;
+      transition: border-color .15s, transform .15s, box-shadow .15s;
+    }
+    .tq-card:hover { border-color: #b9c9bb; transform: translateY(-2px); }
+    .tq-card.is-on { border-color: var(--dark); box-shadow: 0 10px 26px rgba(15,42,27,0.14); }
+    .tq-card-ico { width: 74px; height: 74px; color: var(--teal); }
+    .tq-card-title { font-size: 17px; font-weight: 900; color: var(--dark); text-transform: uppercase; letter-spacing: .03em; line-height: 1.25; }
+    .tq-card-sub { font-size: 13.5px; color: var(--text-muted); line-height: 1.4; margin-top: -8px; }
+    .tq-card-tag { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; background: rgba(35,128,75,0.1); color: var(--teal); padding: 4px 10px; border-radius: 50px; white-space: nowrap; }
+    .tq-group-label { max-width: 900px; margin: 30px auto 12px; font-size: 13px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--teal); }
+    .tq-group-label:first-child { margin-top: 0; }
+    .tq-group-label span { font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--text-muted); font-size: 14px; }
+    .tq-cards.addons .tq-card { min-height: 170px; padding: 20px 12px; gap: 12px; }
+    .tq-cards.addons .tq-card-ico { width: 54px; height: 54px; }
+    .tq-cards.addons .tq-card-title { font-size: 14.5px; }
+
+    .tq-freq .tq-card { min-height: 0; justify-content: flex-start; padding: 30px 20px 26px; gap: 10px; }
+    .tq-freq .tq-card-ico { width: 52px; height: 52px; margin-bottom: 4px; }
+    .tq-freq .tq-card-title { font-size: 18px; }
+    .tq-freq-amt { font-size: clamp(34px, 4vw, 44px); font-weight: 900; color: var(--dark); line-height: 1; }
+    .tq-freq-per { font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--dark); }
+    .tq-perks { display: grid; gap: 10px; margin-top: 14px; text-align: left; }
+    .tq-perk { display: flex; gap: 10px; font-size: 14.5px; color: #4f5f52; line-height: 1.35; }
+    .tq-perk::before { content: '✓'; color: var(--teal); font-weight: 900; }
+    .tq-onetime {
+      display: flex; align-items: center; justify-content: space-between; gap: 14px; width: 100%; max-width: 900px; margin: 18px auto 0;
+      text-align: left; background: #fff; border: 3px solid #e2e2e2; border-radius: 18px; padding: 16px 22px; transition: border-color .15s;
+    }
+    .tq-onetime:hover { border-color: #b9c9bb; }
+    .tq-onetime.is-on { border-color: var(--dark); }
+    .tq-onetime strong { font-size: 16px; color: var(--dark); display: block; }
+    .tq-onetime span { font-size: 13.5px; color: var(--text-muted); }
+    .tq-freq-note { max-width: 900px; margin: -8px auto 20px; background: rgba(35,128,75,0.07); border: 1px solid rgba(35,128,75,0.25); border-radius: 14px; padding: 12px 16px; font-size: 14.5px; color: var(--dark); text-align: center; }
+    .tq-freq-fine { max-width: 900px; margin: 14px auto 0; text-align: center; font-size: 12.5px; color: var(--text-muted); }
+
+    .tq-stack { max-width: 900px; margin: 0 auto; display: grid; gap: 18px; }
+    .tq-done { text-align: center; max-width: 620px; margin: 0 auto; }
+    .tq-done-icon { width: 70px; height: 70px; border-radius: 50%; background: rgba(35,128,75,0.12); color: var(--teal); font-size: 36px; font-weight: 900; display: flex; align-items: center; justify-content: center; margin: 4px auto 12px; }
+    .tq-done .tq-h { margin-bottom: 10px; }
+    .tq-done-msg { font-size: 17px; color: var(--dark); line-height: 1.55; margin-bottom: 18px; }
     .tq-callout { background: var(--off-white); border: 1px solid var(--border); border-radius: 14px; padding: 14px 16px; text-align: left; font-size: 14.5px; color: var(--dark); line-height: 1.55; margin-top: 10px; }
     .tq-callout a { color: var(--teal); font-weight: 800; }
+    .tq-photo-box { background: #fff; border: 1px solid var(--border); border-radius: 18px; padding: 16px; margin-top: 16px; text-align: left; }
+    .tq-photo-box h3 { font-size: 16px; font-weight: 900; color: var(--dark); margin-bottom: 4px; }
+    .tq-photo-box p { font-size: 13.5px; color: var(--text-muted); margin-bottom: 12px; }
+    .tq-photos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+    .tq-photo { position: relative; aspect-ratio: 1 / 1; border: 2px dashed #b3d3b6; border-radius: 14px; background: #f6faf6; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; cursor: pointer; overflow: hidden; text-align: center; padding: 8px; }
+    .tq-photo:hover { border-color: var(--teal); background: #eef6ef; }
+    .tq-photo input { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; z-index: 1; }
+    .tq-photo-plus { width: 34px; height: 34px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; }
+    .tq-photo-label { font-size: 12px; font-weight: 700; color: var(--dark); line-height: 1.25; }
+    .tq-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .tq-photo.has-img { border-style: solid; border-color: var(--teal); }
+    .tq-photo-tag { position: absolute; left: 5px; right: 5px; bottom: 5px; z-index: 2; background: rgba(15,42,27,.82); color: #fff; font-size: 10.5px; font-weight: 700; padding: 2px 6px; border-radius: 6px; pointer-events: none; }
+    .tq-photo-x { position: absolute; top: 5px; right: 5px; z-index: 3; width: 26px; height: 26px; border-radius: 50%; background: rgba(15,42,27,.88); color: #fff; font-size: 17px; line-height: 1; display: none; align-items: center; justify-content: center; }
+    .tq-photo.has-img .tq-photo-x { display: flex; }
+    .tq-photo.is-busy::after { content: 'Adding…'; position: absolute; inset: 0; z-index: 2; background: rgba(255,255,255,.85); display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--teal); font-size: 12px; }
+    .tq-photo-help { font-size: 13px; color: var(--text-muted); margin-top: 8px; }
+    .tq-photo-help.is-error { color: #dc2626; font-weight: 600; }
+    .tq-photo-send { margin-top: 12px; width: 100%; font-size: 15px; font-weight: 800; color: #fff; background: var(--teal); border-radius: 12px; padding: 12px; }
+    .tq-photo-send[disabled] { opacity: .6; cursor: default; }
+    .tq-done-btn { margin-top: 18px; }
     .tq-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
     @media (max-width: 860px) {
-      .tq-split { grid-template-columns: 1fr; }
-      .tq-panel { display: none; }
-      .tq-cards.c4, .tq-photos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .tq-body { padding: 22px 22px 30px; }
+      .tq-cards { gap: 14px; }
+      .tq-card { min-height: 190px; border-width: 4px; border-radius: 22px; }
+      .tq-card-ico { width: 60px; height: 60px; }
     }
-    @media (max-width: 600px) {
+    @media (max-width: 640px) {
       .tq-wrap { margin: 0; width: 100%; min-height: 100%; border-radius: 0; }
       .tq-head { padding: 12px 16px; }
-      .tq-body { padding: 20px 16px 28px; }
-      .tq-grid { grid-template-columns: 1fr; }
+      .tq-body { padding: 16px 16px 30px; }
       .tq-google { display: none; }
       .tq-close { margin-left: auto; }
       #quote-modal::-webkit-scrollbar { width: 0; }
-      .tq-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-      .tq-cards.c3-tight { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
-      .tq-cards.c3-tight .tq-card { padding: 6px 6px 9px; border-radius: 14px; }
-      .tq-cards.c3-tight .tq-card-title { font-size: 13px; }
-      .tq-card { padding: 7px 7px 10px; border-radius: 15px; }
-      .tq-card-title { font-size: 14px; }
+      .tq-h { margin: 6px 0 20px; }
+      .tq-grid { grid-template-columns: 1fr; gap: 12px; }
+      .tq-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+      .tq-card { min-height: 160px; padding: 16px 8px; gap: 10px; border-width: 3px; border-radius: 18px; }
+      .tq-card-ico { width: 48px; height: 48px; }
+      .tq-card-title { font-size: 13.5px; }
       .tq-card-sub { font-size: 12px; }
-      .tq-photos { gap: 10px; }
-      .tq-rec { grid-template-columns: 1fr; }
-      .tq-rec img { height: 150px; }
+      .tq-cards.addons .tq-card { min-height: 130px; }
+      .tq-cards.addons .tq-card-ico { width: 40px; height: 40px; }
+      .tq-cards.addons .tq-card-title { font-size: 12.5px; }
+      .tq-freq { grid-template-columns: 1fr; }
+      .tq-freq .tq-card { padding: 22px 18px; }
+      .tq-photos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .tq-next { font-size: 16px; padding: 14px 30px; }
+      .tq-card-tag { position: static; transform: none; margin-bottom: -4px; font-size: 10px; }
     }
 
     /* ─── SERVICE TIER COMPARISON + FAQ ─────────────────────── */
@@ -1740,7 +1749,7 @@
     .glass-mc { background:white; border-radius:24px; padding:2.5rem 2rem; border:2px solid transparent; box-shadow:0 4px 24px rgba(35,128,75,0.08); transition:transform 0.25s,box-shadow 0.25s; position:relative; display:flex; flex-direction:column; }
     .glass-mc:hover { transform:translateY(-6px); box-shadow:0 16px 48px rgba(35,128,75,0.15); }
     .glass-mc.featured { border-color:var(--teal); box-shadow:0 8px 40px rgba(35,128,75,0.2); }
-    .glass-mc.featured::before { content:'MOST POPULAR'; position:absolute; top:-14px; left:50%; transform:translateX(-50%); background:linear-gradient(90deg,var(--teal-dark),var(--teal)); color:white; font-size:0.7rem; font-weight:900; letter-spacing:1.5px; padding:4px 16px; border-radius:50px; white-space:nowrap; }
+    .glass-mc.featured::before { content:'RECOMMENDED'; position:absolute; top:-14px; left:50%; transform:translateX(-50%); background:linear-gradient(90deg,var(--teal-dark),var(--teal)); color:white; font-size:0.7rem; font-weight:900; letter-spacing:1.5px; padding:4px 16px; border-radius:50px; white-space:nowrap; }
     .glass-mc-tier { font-size:0.75rem; font-weight:900; letter-spacing:2px; text-transform:uppercase; color:var(--teal); margin-bottom:0.75rem; }
     .glass-mc-save { font-size:0.72rem; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; color:#16a34a; margin-bottom:0.15rem; }
     .glass-mc-discount { font-size:3rem; font-weight:900; color:#16a34a; line-height:1; margin-bottom:0.15rem; }
@@ -2183,51 +2192,54 @@
   <div class="container">
     <div style="text-align:center;margin-bottom:2rem;">
       <div class="section-label" style="color:var(--teal);">Turf Club Plans</div>
-      <div class="glass-save-big">SAVE BIG</div>
+      <div class="glass-save-big">SAVE UP TO $150</div>
       <div class="glass-save-sub">On Every Cleaning With A TurfGlow Plan</div>
     </div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;">
       <div class="glass-mc">
-        <div class="glass-mc-tier">Bi-Annual</div>
+        <div class="glass-mc-tier">Monthly</div>
         <div class="glass-mc-save">Save</div>
-        <div class="glass-mc-discount">$50</div>
-        <div class="glass-mc-label">Every Cleaning</div>
+        <div class="glass-mc-discount">$150 OFF</div>
+        <div class="glass-mc-label">Per Cleaning</div>
         <hr class="glass-mc-divider" />
         <ul class="glass-mc-features">
-          <li class="glass-mc-feature"><span class="glass-mc-check yes">&#10003;</span>2 Cleanings Per Year</li>
-          <li class="glass-mc-feature"><span class="glass-mc-check yes">&#10003;</span>Refresh, Deep Clean, or Full Restore</li>
-          <li class="glass-mc-tagline">Great For Yards Without Pets</li>
+          <li class="glass-mc-feature"><span class="glass-mc-check yes">&#10003;</span>12 Cleanings Per Year</li>
+          <li class="glass-mc-feature"><span class="glass-mc-check yes">&#10003;</span>Auto-Scheduled &mdash; No Calling To Book</li>
+          <li class="glass-mc-feature"><span class="glass-mc-check yes">&#10003;</span>Price Locked For 12 Months</li>
+          <li class="glass-mc-tagline">Best Results &amp; Best Value</li>
         </ul>
         <button class="glass-mc-btn" onclick="openQuoteModal()">GET A FREE QUOTE</button>
       </div>
       <div class="glass-mc featured">
-        <div class="glass-mc-tier">Quarterly</div>
+        <div class="glass-mc-tier">Every Other Month</div>
         <div class="glass-mc-save">Save</div>
-        <div class="glass-mc-discount">$100</div>
-        <div class="glass-mc-label">Every Cleaning</div>
+        <div class="glass-mc-discount">$100 OFF</div>
+        <div class="glass-mc-label">Per Cleaning</div>
         <hr class="glass-mc-divider" />
         <ul class="glass-mc-features">
-          <li class="glass-mc-feature"><span class="glass-mc-check yes">&#10003;</span>4 Cleanings Per Year</li>
-          <li class="glass-mc-feature"><span class="glass-mc-check yes">&#10003;</span>Refresh, Deep Clean, or Full Restore</li>
-          <li class="glass-mc-tagline">Best For Homes With Dogs</li>
+          <li class="glass-mc-feature"><span class="glass-mc-check yes">&#10003;</span>6 Cleanings Per Year</li>
+          <li class="glass-mc-feature"><span class="glass-mc-check yes">&#10003;</span>Auto-Scheduled &mdash; No Calling To Book</li>
+          <li class="glass-mc-feature"><span class="glass-mc-check yes">&#10003;</span>Price Locked For 12 Months</li>
+          <li class="glass-mc-tagline">Recommended For Pet Homes</li>
         </ul>
         <button class="glass-mc-btn" onclick="openQuoteModal()">GET A FREE QUOTE</button>
       </div>
       <div class="glass-mc">
-        <div class="glass-mc-tier">Monthly</div>
+        <div class="glass-mc-tier">Quarterly</div>
         <div class="glass-mc-save">Save</div>
-        <div class="glass-mc-discount">$150</div>
-        <div class="glass-mc-label">Every Cleaning</div>
+        <div class="glass-mc-discount">$50 OFF</div>
+        <div class="glass-mc-label">Per Cleaning</div>
         <hr class="glass-mc-divider" />
         <ul class="glass-mc-features">
-          <li class="glass-mc-feature"><span class="glass-mc-check yes">&#10003;</span>12 Cleanings Per Year</li>
-          <li class="glass-mc-feature"><span class="glass-mc-check yes">&#10003;</span>Deep Clean Plan</li>
-          <li class="glass-mc-tagline">For Multi-Dog Homes &amp; Heavy Use</li>
+          <li class="glass-mc-feature"><span class="glass-mc-check yes">&#10003;</span>4 Cleanings Per Year</li>
+          <li class="glass-mc-feature"><span class="glass-mc-check yes">&#10003;</span>Auto-Scheduled &mdash; No Calling To Book</li>
+          <li class="glass-mc-feature"><span class="glass-mc-check yes">&#10003;</span>Price Locked For 12 Months</li>
+          <li class="glass-mc-tagline">Light Maintenance</li>
         </ul>
         <button class="glass-mc-btn" onclick="openQuoteModal()">GET A FREE QUOTE</button>
       </div>
     </div>
-    <p style="text-align:center;margin-top:2rem;color:var(--text-muted);font-size:15px;">Ask about plans on your free quote call &mdash; we&rsquo;ll give you your exact price per cleaning.</p>
+    <p style="text-align:center;margin-top:2rem;color:var(--text-muted);font-size:15px;">Prefer a one-time cleaning? That&rsquo;s available too. Plan savings start after your first cleaning; minimum $129 per visit. Your exact price is given on your free quote call.</p>
   </div>
 </section>
 
@@ -2316,7 +2328,7 @@
       </details>
       <details class="faq-item">
         <summary>How do Turf Club plans work?</summary>
-        <p>Pick bi-annual, quarterly, or monthly cleanings and save $50, $100, or $150 on every cleaning. Monthly plans are for Deep Clean. We&rsquo;ll walk you through the options on your quote call.</p>
+        <p>Pick monthly, every-other-month, or quarterly cleanings and save $150, $100, or $50 on every cleaning. Plans are auto-scheduled and your price is locked for 12 months. Savings start after your first cleaning, with a $129 minimum per visit. One-time cleanings are always available too.</p>
       </details>
       <details class="faq-item">
         <summary>Is it safe for my pets and kids?</summary>
@@ -2590,7 +2602,7 @@
   @media (max-width:760px){ .qb-plans-mc { grid-template-columns:1fr; max-width:420px; } }
 </style>
 
-<div id="quote-modal" role="dialog" aria-modal="true" aria-labelledby="tq-title-1">
+<div id="quote-modal" role="dialog" aria-modal="true" aria-labelledby="tq-h-1">
   <div class="tq-overlay" onclick="closeQuoteModal()"></div>
   <div class="tq-wrap">
     <div class="tq-head">
@@ -2603,126 +2615,109 @@
     <form class="tq-body" id="tq-form" novalidate onsubmit="return false;">
       <div class="tq-hp" aria-hidden="true"><label>Leave this empty <input type="text" name="_honey" id="tq-honey" tabindex="-1" autocomplete="off" /></label></div>
 
-      <!-- Step 1: contact info (a "call now" lead email is sent as soon as this is valid) -->
+      <!-- Step 1: Let's get to know you (a "call now" email goes out as soon as this is valid) -->
       <div class="tq-step is-active" data-step="1">
-        <div class="tq-split">
-          <div class="tq-panel">
-            <div class="tq-panel-inner">
-              <div class="tq-panel-stars">★★★★★ <span>5.0 on Google</span></div>
-              <ul>
-                <li>Pet &amp; kid safe products</li>
-                <li>Serving the whole Phoenix Valley</li>
-                <li>TurfGlow Guarantee</li>
-              </ul>
-            </div>
-          </div>
-          <div>
-            <div class="tq-count">Step 1 of 6</div>
-            <h2 class="tq-title" id="tq-title-1">Get your free turf quote</h2>
-            <p class="tq-sub">Takes about 30 seconds. We&rsquo;ll call you with your exact price in minutes.</p>
-            <div class="tq-grid">
-              <div class="tq-field"><label for="tq-first">First name</label><input id="tq-first" autocomplete="given-name" /></div>
-              <div class="tq-field"><label for="tq-last">Last name</label><input id="tq-last" autocomplete="family-name" /></div>
-              <div class="tq-field"><label for="tq-phone">Mobile phone</label><input id="tq-phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(480) 555-0123" /></div>
-              <div class="tq-field"><label for="tq-email">Email <em>(optional)</em></label><input id="tq-email" type="email" autocomplete="email" placeholder="you@email.com" /></div>
-              <div class="tq-field full"><label for="tq-address">Street address</label><input id="tq-address" autocomplete="street-address" placeholder="1234 E Main St" /></div>
-              <div class="tq-field"><label for="tq-city">City</label><input id="tq-city" autocomplete="address-level2" placeholder="Gilbert" /></div>
-              <div class="tq-field"><label for="tq-zip">ZIP</label><input id="tq-zip" inputmode="numeric" autocomplete="postal-code" maxlength="5" placeholder="85234" /></div>
-            </div>
-            <label class="tq-check"><input type="checkbox" id="tq-texts" checked /> <span>Text me about my quote and appointment. Msg &amp; data rates may apply. Reply STOP to opt out.</span></label>
-            <div class="tq-err" id="tq-err-1" role="alert"></div>
-            <div class="tq-actions"><button type="button" class="tq-next" onclick="tqNext1()">Continue &rarr;</button></div>
-            <p class="tq-fine">By continuing, you agree TurfGlow may call or text you at this number about your quote.</p>
-          </div>
+        <div class="tq-backspace"></div>
+        <h2 class="tq-h" id="tq-h-1">Let&rsquo;s get to know you!</h2>
+        <div class="tq-grid">
+          <div class="tq-field has-ico"><svg class="tq-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="7.5" r="4.5"/><path d="M3 21c0-5 4-8 9-8s9 3 9 8z"/></svg><input id="tq-first" type="text" placeholder="First name" aria-label="First name" autocomplete="given-name"/></div>
+          <div class="tq-field has-ico"><svg class="tq-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="7.5" r="4.5"/><path d="M3 21c0-5 4-8 9-8s9 3 9 8z"/></svg><input id="tq-last" type="text" placeholder="Last name" aria-label="Last name" autocomplete="family-name"/></div>
+          <div class="tq-field has-ico full"><svg class="tq-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 5h20v14H2z"/><path d="M2 5l10 8 10-8" fill="none" stroke="#fff" stroke-width="2"/></svg><input id="tq-email" type="email" placeholder="Email" aria-label="Email" autocomplete="email"/></div>
+          <div class="tq-field has-ico full"><svg class="tq-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.6a1 1 0 0 1-.25 1z"/></svg><input id="tq-phone" type="tel" placeholder="Mobile phone" aria-label="Mobile phone" inputmode="tel" autocomplete="tel"/></div>
+          <div class="tq-field has-ico full"><svg class="tq-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 10v4a1 1 0 0 0 1 1h2l5 4V5L6 9H4a1 1 0 0 0-1 1zM14 8.5v7a4 4 0 0 0 0-7zM17 4.5v2a6 6 0 0 1 0 11v2a8 8 0 0 0 0-15z"/></svg><select id="tq-hear" class="is-empty" aria-label="How you heard about us" onchange="this.classList.toggle('is-empty', !this.value)">
+            <option value="">How you heard about us</option><option>Google search</option><option>Google Maps / reviews</option><option>Instagram</option><option>Facebook</option><option>Nextdoor</option><option>Friend or neighbor</option><option>Saw the truck</option><option>Returning customer</option><option>Other</option>
+          </select></div>
+          <div class="tq-field has-ico full"><svg class="tq-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 7a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-3a2 2 0 0 0 0-4z"/><rect x="7" y="9" width="10" height="6" rx="1" fill="#fff"/></svg><input id="tq-code" type="text" placeholder="Promo or referral code (optional)" aria-label="Promo or referral code (optional)" autocomplete="off"/></div>
         </div>
+        <div class="tq-consent">
+          <label class="tq-check"><input type="checkbox" id="tq-texts" /> <span>I agree to receive marketing text messages from TurfGlow Cleaning about promotions, seasonal offers, and special deals.</span></label>
+          <p class="tq-fine">By checking this box, you agree to receive marketing texts from TurfGlow Cleaning at the number provided (about 2&ndash;4 per month). Not required to book. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. By tapping Next, you agree TurfGlow may call or text you about your quote.</p>
+        </div>
+        <div class="tq-err" id="tq-err-1" role="alert"></div>
+        <div class="tq-next-row"><button type="button" class="tq-next" onclick="tqNext1()">Next &rarr;</button></div>
       </div>
 
-      <!-- Step 2: turf size -->
+      <!-- Step 2: What services? -->
       <div class="tq-step" data-step="2">
-        <div class="tq-count">Step 2 of 6</div>
-        <h2 class="tq-title">How much turf do you have?</h2>
-        <p class="tq-sub">Pick the picture closest to your yard &mdash; we check it on satellite before we call.</p>
-        <div class="tq-cards " data-group="turf_size"><button type="button" class="tq-card" data-value="Small patch — up to 300 sq ft" onclick="tqPick(this,true)"><span class="tq-card-art"><svg class="tq-svg" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect width="160" height="100" rx="12" fill="#eef6ef"/><rect x="10" y="8" width="140" height="84" rx="8" fill="#efe6d2"/><rect x="92" y="66" width="16" height="26" fill="#ddd5c4"/><rect x="16" y="14" width="26" height="22" rx="3" fill="#85cc7e" stroke="#23804b" stroke-width="1.5"/><rect x="20.0" y="15.5" width="4.0" height="19" fill="#9ad993"/><rect x="28.0" y="15.5" width="4.0" height="19" fill="#9ad993"/><rect x="36.0" y="15.5" width="4.0" height="19" fill="#9ad993"/><rect x="48" y="40" width="64" height="26" rx="2" fill="#bcc6c0"/><line x1="52" y1="53" x2="108" y2="53" stroke="#9aa89f" stroke-width="2"/></svg></span><span class="tq-card-title">Small patch</span><span class="tq-card-sub">Dog run or side yard &middot; about a 1-car garage</span></button><button type="button" class="tq-card" data-value="Small backyard — 300–500 sq ft" onclick="tqPick(this,true)"><span class="tq-card-art"><svg class="tq-svg" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect width="160" height="100" rx="12" fill="#eef6ef"/><rect x="10" y="8" width="140" height="84" rx="8" fill="#efe6d2"/><rect x="92" y="66" width="16" height="26" fill="#ddd5c4"/><rect x="16" y="14" width="58" height="22" rx="3" fill="#85cc7e" stroke="#23804b" stroke-width="1.5"/><rect x="24.3" y="15.5" width="8.3" height="19" fill="#9ad993"/><rect x="40.9" y="15.5" width="8.3" height="19" fill="#9ad993"/><rect x="57.4" y="15.5" width="8.3" height="19" fill="#9ad993"/><rect x="48" y="40" width="64" height="26" rx="2" fill="#bcc6c0"/><line x1="52" y1="53" x2="108" y2="53" stroke="#9aa89f" stroke-width="2"/></svg></span><span class="tq-card-title">Small backyard</span><span class="tq-card-sub">About a 2-car garage</span></button><button type="button" class="tq-card" data-value="Typical backyard — 500–1,000 sq ft" onclick="tqPick(this,true)"><span class="tq-card-art"><svg class="tq-svg" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect width="160" height="100" rx="12" fill="#eef6ef"/><rect x="10" y="8" width="140" height="84" rx="8" fill="#efe6d2"/><rect x="92" y="66" width="16" height="26" fill="#ddd5c4"/><rect x="16" y="12" width="128" height="25" rx="3" fill="#85cc7e" stroke="#23804b" stroke-width="1.5"/><rect x="34.3" y="13.5" width="18.3" height="22" fill="#9ad993"/><rect x="70.9" y="13.5" width="18.3" height="22" fill="#9ad993"/><rect x="107.4" y="13.5" width="18.3" height="22" fill="#9ad993"/><rect x="48" y="40" width="64" height="26" rx="2" fill="#bcc6c0"/><line x1="52" y1="53" x2="108" y2="53" stroke="#9aa89f" stroke-width="2"/></svg></span><span class="tq-card-title">Typical backyard</span><span class="tq-card-sub">About two 2-car garages</span></button><button type="button" class="tq-card" data-value="Big yard or front + back — 1,000–2,000 sq ft" onclick="tqPick(this,true)"><span class="tq-card-art"><svg class="tq-svg" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect width="160" height="100" rx="12" fill="#eef6ef"/><rect x="10" y="8" width="140" height="84" rx="8" fill="#efe6d2"/><rect x="92" y="66" width="16" height="26" fill="#ddd5c4"/><rect x="16" y="12" width="128" height="25" rx="3" fill="#85cc7e" stroke="#23804b" stroke-width="1.5"/><rect x="34.3" y="13.5" width="18.3" height="22" fill="#9ad993"/><rect x="70.9" y="13.5" width="18.3" height="22" fill="#9ad993"/><rect x="107.4" y="13.5" width="18.3" height="22" fill="#9ad993"/><rect x="16" y="68" width="70" height="20" rx="3" fill="#85cc7e" stroke="#23804b" stroke-width="1.5"/><rect x="26.0" y="69.5" width="10.0" height="17" fill="#9ad993"/><rect x="46.0" y="69.5" width="10.0" height="17" fill="#9ad993"/><rect x="66.0" y="69.5" width="10.0" height="17" fill="#9ad993"/><rect x="48" y="40" width="64" height="26" rx="2" fill="#bcc6c0"/><line x1="52" y1="53" x2="108" y2="53" stroke="#9aa89f" stroke-width="2"/></svg></span><span class="tq-card-title">Big yard or front + back</span><span class="tq-card-sub">1,000&ndash;2,000 sq ft</span></button><button type="button" class="tq-card" data-value="Large property — 2,000+ sq ft" onclick="tqPick(this,true)"><span class="tq-card-art"><svg class="tq-svg" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect width="160" height="100" rx="12" fill="#eef6ef"/><rect x="10" y="8" width="140" height="84" rx="8" fill="#efe6d2"/><rect x="92" y="66" width="16" height="26" fill="#ddd5c4"/><rect x="13" y="10" width="134" height="28" rx="3" fill="#85cc7e" stroke="#23804b" stroke-width="1.5"/><rect x="32.1" y="11.5" width="19.1" height="25" fill="#9ad993"/><rect x="70.4" y="11.5" width="19.1" height="25" fill="#9ad993"/><rect x="108.7" y="11.5" width="19.1" height="25" fill="#9ad993"/><rect x="13" y="68" width="75" height="22" rx="3" fill="#85cc7e" stroke="#23804b" stroke-width="1.5"/><rect x="23.7" y="69.5" width="10.7" height="19" fill="#9ad993"/><rect x="45.1" y="69.5" width="10.7" height="19" fill="#9ad993"/><rect x="66.6" y="69.5" width="10.7" height="19" fill="#9ad993"/><rect x="13" y="40" width="31" height="26" rx="3" fill="#85cc7e" stroke="#23804b" stroke-width="1.5"/><rect x="17.4" y="41.5" width="4.4" height="23" fill="#9ad993"/><rect x="26.3" y="41.5" width="4.4" height="23" fill="#9ad993"/><rect x="35.1" y="41.5" width="4.4" height="23" fill="#9ad993"/><rect x="116" y="40" width="31" height="26" rx="3" fill="#85cc7e" stroke="#23804b" stroke-width="1.5"/><rect x="120.4" y="41.5" width="4.4" height="23" fill="#9ad993"/><rect x="129.3" y="41.5" width="4.4" height="23" fill="#9ad993"/><rect x="138.1" y="41.5" width="4.4" height="23" fill="#9ad993"/><rect x="48" y="40" width="64" height="26" rx="2" fill="#bcc6c0"/><line x1="52" y1="53" x2="108" y2="53" stroke="#9aa89f" stroke-width="2"/></svg></span><span class="tq-card-title">Large property</span><span class="tq-card-sub">2,000+ sq ft &middot; we&rsquo;ll measure it</span></button><button type="button" class="tq-card" data-value="Not sure — measure it for me" onclick="tqPick(this,true)"><span class="tq-card-art"><svg class="tq-svg" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect width="160" height="100" rx="12" fill="#eef6ef"/><rect x="10" y="8" width="140" height="84" rx="8" fill="#efe6d2"/><rect x="92" y="66" width="16" height="26" fill="#ddd5c4"/><rect x="48" y="40" width="64" height="26" rx="2" fill="#bcc6c0"/><line x1="52" y1="53" x2="108" y2="53" stroke="#9aa89f" stroke-width="2"/><rect x="16" y="12" width="128" height="24" rx="3" fill="none" stroke="#23804b" stroke-width="2" stroke-dasharray="5 4"/><circle cx="128" cy="26" r="15" fill="#fff" stroke="#23804b" stroke-width="3"/><text x="128" y="33" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-weight="900" font-size="20" fill="#23804b">?</text></svg></span><span class="tq-card-title">Not sure</span><span class="tq-card-sub">We&rsquo;ll measure it for you</span></button></div>
+        <button type="button" class="tq-backlink" onclick="tqGo(1)">&larr; Back</button>
+        <h2 class="tq-h">What services?</h2>
+        <div class="tq-group-label">Pick your cleaning</div>
+        <div class="tq-cards">
+          <button type="button" class="tq-card" data-group="service" data-value="Refresh Clean" onclick="tqPick(this)"><svg class="tq-card-ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M44 6 30 34"/><rect x="12" y="34" width="34" height="9" rx="2.5"/><path d="M16 43v12M22 43v12M28 43v12M34 43v12M40 43v12"/><path d="M52 16v8M48 20h8"/></svg><span class="tq-card-title">Refresh clean</span><span class="tq-card-sub">Debris &amp; pet hair removal, rinse, power broom</span></button>
+          <button type="button" class="tq-card" data-group="service" data-value="Deep Clean" onclick="tqPick(this)"><span class="tq-card-tag">Most popular</span><svg class="tq-card-ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 28h16v26a4 4 0 0 1-4 4H26a4 4 0 0 1-4-4z"/><path d="M25 28v-7h9v7"/><path d="M34 21h9l-3 6"/><path d="M48 15l6-3M49 21h7M48 27l6 3"/><path d="M26 40c2-3 6-3 8 0M26 47c2-3 6-3 8 0"/></svg><span class="tq-card-title">Deep clean</span><span class="tq-card-sub">Sanitize + odor treatment &mdash; best for pet homes</span></button>
+          <button type="button" class="tq-card" data-group="service" data-value="Full Restore" onclick="tqPick(this)"><svg class="tq-card-ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 56h48"/><path d="M12 56l3-20 3 20M20 56l3-26 3 26M28 56l3-18 3 18"/><path d="M47 46V14M39 22l8-8 8 8"/></svg><span class="tq-card-title">Full restore</span><span class="tq-card-sub">One-time reset for flat, matted, or neglected turf</span></button>
+        </div>
+        <div class="tq-group-label">Add-ons <span>(optional &mdash; pick any)</span></div>
+        <div class="tq-cards addons">
+          <button type="button" class="tq-card" data-group="addons" data-value="Pet odor treatment" onclick="tqPick(this)"><svg class="tq-card-ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="24" cy="44" rx="10" ry="8"/><circle cx="12" cy="31" r="4"/><circle cx="19" cy="23" r="4"/><circle cx="29" cy="23" r="4"/><circle cx="36" cy="31" r="4"/><path d="M47 50q5-6 0-12t0-12M55 50q5-6 0-12t0-12"/></svg><span class="tq-card-title">Pet odor treatment</span></button>
+          <button type="button" class="tq-card" data-group="addons" data-value="Pet waste pickup" onclick="tqPick(this)"><svg class="tq-card-ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 26h24l-3 30H23z"/><path d="M27 26l5-9 5 9"/><path d="M28 17h8"/><circle cx="29" cy="42" r="2.5"/><circle cx="35" cy="42" r="2.5"/><circle cx="32" cy="48" r="3.5"/></svg><span class="tq-card-title">Pet waste pickup</span></button>
+          <button type="button" class="tq-card" data-group="addons" data-value="Extra infill top-up" onclick="tqPick(this)"><svg class="tq-card-ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 24q16-7 32 0l-3 30H17z"/><path d="M22 19q10-4 16 0"/><path d="M20 34h20"/><path d="M40 58q7-10 16 0z"/><circle cx="47" cy="52" r=".8"/><circle cx="51" cy="54" r=".8"/></svg><span class="tq-card-title">Extra infill top-up</span></button>
+        </div>
         <div class="tq-err" id="tq-err-2" role="alert"></div>
-        <div class="tq-actions"><button type="button" class="tq-back" onclick="tqGo(1)">&larr; Back</button></div>
+        <div class="tq-next-row"><button type="button" class="tq-next" onclick="tqNext2()">Next &rarr;</button></div>
       </div>
 
-      <!-- Step 3: pets + smell -->
+      <!-- Step 3: Pick your frequency -->
       <div class="tq-step" data-step="3">
-        <div class="tq-count">Step 3 of 6</div>
-        <h2 class="tq-title">Pets and smell</h2>
-        <div class="tq-q">Pets that use the turf?</div>
-        <div class="tq-cards c3-tight" data-group="pets"><button type="button" class="tq-card" data-value="No pets" onclick="tqPick(this)"><span class="tq-card-art"><svg class="tq-svg" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect width="160" height="100" rx="12" fill="#eef6ef"/><rect x="10" y="72" width="140" height="20" rx="6" fill="#85cc7e"/><rect x="10" y="72" width="140" height="5" rx="2" fill="#23804b" opacity=".35"/><path d="M60 29Q62.6 39.4 73 42Q62.6 44.6 60 55Q57.4 44.6 47 42Q57.4 39.4 60 29Z" fill="#fde50a"/><path d="M96 24Q97.6 30.4 104 32Q97.6 33.6 96 40Q94.4 33.6 88 32Q94.4 30.4 96 24Z" fill="#fde50a"/><path d="M108 48Q109.2 52.8 114 54Q109.2 55.2 108 60Q106.8 55.2 102 54Q106.8 52.8 108 48Z" fill="#85cc7e"/></svg></span><span class="tq-card-title">No pets</span></button><button type="button" class="tq-card" data-value="1 dog" onclick="tqPick(this)"><span class="tq-card-art"><svg class="tq-svg" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect width="160" height="100" rx="12" fill="#eef6ef"/><rect x="10" y="72" width="140" height="20" rx="6" fill="#85cc7e"/><rect x="10" y="72" width="140" height="5" rx="2" fill="#23804b" opacity=".35"/><g transform="translate(40 18) scale(1.1)"><path d="M15 31c-3-6-2-12 2-15" stroke="#23804b" stroke-width="6" stroke-linecap="round" fill="none"/><rect x="13" y="28" width="30" height="15" rx="7" fill="#23804b"/><rect x="35" y="19" width="13" height="22" rx="6.5" fill="#23804b"/><circle cx="45" cy="22" r="9.5" fill="#23804b"/><rect x="49" y="19" width="12" height="8.5" rx="4.25" fill="#23804b"/><path d="M38 14.5l7-5 2.5 9.5z" fill="#23804b"/><rect x="16" y="41" width="6" height="13" rx="3" fill="#23804b"/><rect x="26" y="41" width="6" height="13" rx="3" fill="#23804b"/><rect x="37" y="41" width="6" height="13" rx="3" fill="#23804b"/><circle cx="48" cy="20" r="1.9" fill="#fff"/></g></svg></span><span class="tq-card-title">1 dog</span></button><button type="button" class="tq-card" data-value="2+ dogs" onclick="tqPick(this)"><span class="tq-card-art"><svg class="tq-svg" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect width="160" height="100" rx="12" fill="#eef6ef"/><rect x="10" y="72" width="140" height="20" rx="6" fill="#85cc7e"/><rect x="10" y="72" width="140" height="5" rx="2" fill="#23804b" opacity=".35"/><g transform="translate(16 27) scale(0.9)"><path d="M15 31c-3-6-2-12 2-15" stroke="#23804b" stroke-width="6" stroke-linecap="round" fill="none"/><rect x="13" y="28" width="30" height="15" rx="7" fill="#23804b"/><rect x="35" y="19" width="13" height="22" rx="6.5" fill="#23804b"/><circle cx="45" cy="22" r="9.5" fill="#23804b"/><rect x="49" y="19" width="12" height="8.5" rx="4.25" fill="#23804b"/><path d="M38 14.5l7-5 2.5 9.5z" fill="#23804b"/><rect x="16" y="41" width="6" height="13" rx="3" fill="#23804b"/><rect x="26" y="41" width="6" height="13" rx="3" fill="#23804b"/><rect x="37" y="41" width="6" height="13" rx="3" fill="#23804b"/><circle cx="48" cy="20" r="1.9" fill="#fff"/></g><g transform="translate(78 27) scale(0.9)"><path d="M15 31c-3-6-2-12 2-15" stroke="#195c36" stroke-width="6" stroke-linecap="round" fill="none"/><rect x="13" y="28" width="30" height="15" rx="7" fill="#195c36"/><rect x="35" y="19" width="13" height="22" rx="6.5" fill="#195c36"/><circle cx="45" cy="22" r="9.5" fill="#195c36"/><rect x="49" y="19" width="12" height="8.5" rx="4.25" fill="#195c36"/><path d="M38 14.5l7-5 2.5 9.5z" fill="#195c36"/><rect x="16" y="41" width="6" height="13" rx="3" fill="#195c36"/><rect x="26" y="41" width="6" height="13" rx="3" fill="#195c36"/><rect x="37" y="41" width="6" height="13" rx="3" fill="#195c36"/><circle cx="48" cy="20" r="1.9" fill="#fff"/></g></svg></span><span class="tq-card-title">2+ dogs</span></button></div>
-        <div class="tq-q">Any smell?</div>
-        <div class="tq-cards c3-tight" data-group="smell"><button type="button" class="tq-card" data-value="No smell" onclick="tqPick(this)"><span class="tq-card-art"><svg class="tq-svg" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect width="160" height="100" rx="12" fill="#eef6ef"/><rect x="10" y="72" width="140" height="20" rx="6" fill="#85cc7e"/><rect x="10" y="72" width="140" height="5" rx="2" fill="#23804b" opacity=".35"/><path d="M64 30Q66.4 39.6 76 42Q66.4 44.4 64 54Q61.6 44.4 52 42Q61.6 39.6 64 30Z" fill="#85cc7e"/><path d="M94 25Q95.8 32.2 103 34Q95.8 35.8 94 43Q92.2 35.8 85 34Q92.2 32.2 94 25Z" fill="#fde50a"/><path d="M102 51Q103.0 55.0 107 56Q103.0 57.0 102 61Q101.0 57.0 97 56Q101.0 55.0 102 51Z" fill="#85cc7e"/></svg></span><span class="tq-card-title">No smell</span></button><button type="button" class="tq-card" data-value="Some smell" onclick="tqPick(this)"><span class="tq-card-art"><svg class="tq-svg" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect width="160" height="100" rx="12" fill="#eef6ef"/><rect x="10" y="72" width="140" height="20" rx="6" fill="#85cc7e"/><rect x="10" y="72" width="140" height="5" rx="2" fill="#23804b" opacity=".35"/><path d="M68 68q-7-11.5 0-23.0q7-11.5 0-23.0" stroke="#a3ada6" stroke-width="4" stroke-linecap="round" fill="none"/><path d="M92 68q-7-9.5 0-19.0q7-9.5 0-19.0" stroke="#a3ada6" stroke-width="4" stroke-linecap="round" fill="none"/></svg></span><span class="tq-card-title">Some smell</span></button><button type="button" class="tq-card" data-value="Strong smell" onclick="tqPick(this)"><span class="tq-card-art"><svg class="tq-svg" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect width="160" height="100" rx="12" fill="#eef6ef"/><rect x="10" y="72" width="140" height="20" rx="6" fill="#85cc7e"/><rect x="10" y="72" width="140" height="5" rx="2" fill="#23804b" opacity=".35"/><path d="M52 68q-7-11.5 0-23.0q7-11.5 0-23.0" stroke="#8a7550" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M80 68q-7-12.5 0-25.0q7-12.5 0-25.0" stroke="#8a7550" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M108 68q-7-10.5 0-21.0q7-10.5 0-21.0" stroke="#8a7550" stroke-width="5" stroke-linecap="round" fill="none"/><circle cx="124" cy="30" r="2.5" fill="#3b3b3b"/><circle cx="36" cy="38" r="2.5" fill="#3b3b3b"/></svg></span><span class="tq-card-title">Strong smell</span></button></div>
+        <button type="button" class="tq-backlink" onclick="tqGo(2)">&larr; Back</button>
+        <h2 class="tq-h">Pick your frequency</h2>
+        <div class="tq-freq-note" id="tq-freq-note" hidden>Full Restore is a one-time reset. Pick how often we&rsquo;ll keep it looking new with Deep Cleans afterward.</div>
+        <div class="tq-cards tq-freq">
+          <button type="button" class="tq-card" data-group="frequency" data-value="Monthly" onclick="tqPick(this)"><span class="tq-card-tag">Best value</span><svg class="tq-card-ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="10" y="14" width="44" height="42" rx="6"/><path d="M10 26h44"/><path d="M21 8v10M43 8v10"/><text x="32" y="47" text-anchor="middle" font-size="15" font-weight="800" fill="currentColor" stroke="none" font-family="Inter,Arial,sans-serif">1 mo</text></svg><span class="tq-card-title">Monthly</span><span class="tq-freq-amt">$150 off</span><span class="tq-freq-per">Per cleaning</span><span class="tq-perks"><span class="tq-perk">12 cleanings a year</span><span class="tq-perk">Auto-scheduled &mdash; no calling to book</span><span class="tq-perk">Price locked for 12 months</span></span></button>
+          <button type="button" class="tq-card" data-group="frequency" data-value="Every other month" onclick="tqPick(this)"><span class="tq-card-tag">Recommended</span><svg class="tq-card-ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="10" y="14" width="44" height="42" rx="6"/><path d="M10 26h44"/><path d="M21 8v10M43 8v10"/><text x="32" y="47" text-anchor="middle" font-size="15" font-weight="800" fill="currentColor" stroke="none" font-family="Inter,Arial,sans-serif">2 mo</text></svg><span class="tq-card-title">Every other month</span><span class="tq-freq-amt">$100 off</span><span class="tq-freq-per">Per cleaning</span><span class="tq-perks"><span class="tq-perk">6 cleanings a year</span><span class="tq-perk">Auto-scheduled &mdash; no calling to book</span><span class="tq-perk">Price locked for 12 months</span></span></button>
+          <button type="button" class="tq-card" data-group="frequency" data-value="Quarterly" onclick="tqPick(this)"><svg class="tq-card-ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="10" y="14" width="44" height="42" rx="6"/><path d="M10 26h44"/><path d="M21 8v10M43 8v10"/><text x="32" y="47" text-anchor="middle" font-size="15" font-weight="800" fill="currentColor" stroke="none" font-family="Inter,Arial,sans-serif">3 mo</text></svg><span class="tq-card-title">Quarterly</span><span class="tq-freq-amt">$50 off</span><span class="tq-freq-per">Per cleaning</span><span class="tq-perks"><span class="tq-perk">4 cleanings a year</span><span class="tq-perk">Auto-scheduled &mdash; no calling to book</span><span class="tq-perk">Price locked for 12 months</span></span></button>
+        </div>
+        <button type="button" class="tq-onetime" data-group="frequency" data-value="One-time" onclick="tqPick(this)">
+          <span><strong>Just a one-time cleaning</strong><span>No plan &mdash; book a single cleaning.</span></span><span aria-hidden="true">&rsaquo;</span>
+        </button>
+        <p class="tq-freq-fine">Plan savings start after your first cleaning. Minimum $129 per visit. Exact price confirmed on your call.</p>
         <div class="tq-err" id="tq-err-3" role="alert"></div>
-        <div class="tq-actions"><button type="button" class="tq-back" onclick="tqGo(2)">&larr; Back</button><button type="button" class="tq-next" onclick="tqNext3()">Continue &rarr;</button></div>
+        <div class="tq-next-row"><button type="button" class="tq-next" onclick="tqNext3()">Next &rarr;</button></div>
       </div>
 
-      <!-- Step 4: condition, location, photos -->
+      <!-- Step 4: You're almost there! -->
       <div class="tq-step" data-step="4">
-        <div class="tq-count">Step 4 of 6</div>
-        <h2 class="tq-title">How does your turf look?</h2>
-        <div class="tq-cards " data-group="condition"><button type="button" class="tq-card" data-value="Looks okay" onclick="tqPick(this)"><span class="tq-card-art"><svg class="tq-svg" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect width="160" height="100" rx="12" fill="#eef6ef"/><rect x="10" y="78" width="140" height="14" rx="5" fill="#6aa86a"/><path d="M16 80 L18 46" stroke="#4fa45a" stroke-width="5" stroke-linecap="round"/><path d="M25 80 L27 50" stroke="#23804b" stroke-width="5" stroke-linecap="round"/><path d="M34 80 L36 50" stroke="#4fa45a" stroke-width="5" stroke-linecap="round"/><path d="M43 80 L45 46" stroke="#23804b" stroke-width="5" stroke-linecap="round"/><path d="M52 80 L54 50" stroke="#4fa45a" stroke-width="5" stroke-linecap="round"/><path d="M61 80 L63 50" stroke="#23804b" stroke-width="5" stroke-linecap="round"/><path d="M70 80 L72 46" stroke="#4fa45a" stroke-width="5" stroke-linecap="round"/><path d="M79 80 L81 50" stroke="#23804b" stroke-width="5" stroke-linecap="round"/><path d="M88 80 L90 50" stroke="#4fa45a" stroke-width="5" stroke-linecap="round"/><path d="M97 80 L99 46" stroke="#23804b" stroke-width="5" stroke-linecap="round"/><path d="M106 80 L108 50" stroke="#4fa45a" stroke-width="5" stroke-linecap="round"/><path d="M115 80 L117 50" stroke="#23804b" stroke-width="5" stroke-linecap="round"/><path d="M124 80 L126 46" stroke="#4fa45a" stroke-width="5" stroke-linecap="round"/><path d="M133 80 L135 50" stroke="#23804b" stroke-width="5" stroke-linecap="round"/><path d="M142 80 L144 50" stroke="#4fa45a" stroke-width="5" stroke-linecap="round"/><path d="M132 15Q133.8 22.2 141 24Q133.8 25.8 132 33Q130.2 25.8 123 24Q130.2 22.2 132 15Z" fill="#fde50a"/></svg></span><span class="tq-card-title">Looks okay</span><span class="tq-card-sub">Just needs a clean</span></button><button type="button" class="tq-card" data-value="Dirty or stained" onclick="tqPick(this)"><span class="tq-card-art"><svg class="tq-svg" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect width="160" height="100" rx="12" fill="#eef6ef"/><rect x="10" y="78" width="140" height="14" rx="5" fill="#6aa86a"/><path d="M16 80 L18 46" stroke="#4fa45a" stroke-width="5" stroke-linecap="round"/><path d="M25 80 L27 50" stroke="#23804b" stroke-width="5" stroke-linecap="round"/><path d="M34 80 L36 50" stroke="#4fa45a" stroke-width="5" stroke-linecap="round"/><path d="M43 80 L45 46" stroke="#23804b" stroke-width="5" stroke-linecap="round"/><path d="M52 80 L54 50" stroke="#4fa45a" stroke-width="5" stroke-linecap="round"/><path d="M61 80 L63 50" stroke="#23804b" stroke-width="5" stroke-linecap="round"/><path d="M70 80 L72 46" stroke="#4fa45a" stroke-width="5" stroke-linecap="round"/><path d="M79 80 L81 50" stroke="#23804b" stroke-width="5" stroke-linecap="round"/><path d="M88 80 L90 50" stroke="#4fa45a" stroke-width="5" stroke-linecap="round"/><path d="M97 80 L99 46" stroke="#23804b" stroke-width="5" stroke-linecap="round"/><path d="M106 80 L108 50" stroke="#4fa45a" stroke-width="5" stroke-linecap="round"/><path d="M115 80 L117 50" stroke="#23804b" stroke-width="5" stroke-linecap="round"/><path d="M124 80 L126 46" stroke="#4fa45a" stroke-width="5" stroke-linecap="round"/><path d="M133 80 L135 50" stroke="#23804b" stroke-width="5" stroke-linecap="round"/><path d="M142 80 L144 50" stroke="#4fa45a" stroke-width="5" stroke-linecap="round"/><ellipse cx="52" cy="70" rx="15" ry="8" fill="#9b7a4a" opacity=".85"/><ellipse cx="110" cy="64" rx="11" ry="6" fill="#9b7a4a" opacity=".8"/><circle cx="80" cy="56" r="3" fill="#9b7a4a"/><circle cx="92" cy="74" r="2.5" fill="#9b7a4a"/></svg></span><span class="tq-card-title">Dirty or stained</span><span class="tq-card-sub">Spots, stains, or debris</span></button><button type="button" class="tq-card" data-value="Flat, matted, or never cleaned" onclick="tqPick(this)"><span class="tq-card-art"><svg class="tq-svg" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect width="160" height="100" rx="12" fill="#eef6ef"/><rect x="10" y="78" width="140" height="14" rx="5" fill="#6aa86a"/><path d="M16 80 L33 70" stroke="#a4c49f" stroke-width="5" stroke-linecap="round"/><path d="M25 80 L42 70" stroke="#8fb58b" stroke-width="5" stroke-linecap="round"/><path d="M34 80 L51 70" stroke="#a4c49f" stroke-width="5" stroke-linecap="round"/><path d="M43 80 L60 70" stroke="#8fb58b" stroke-width="5" stroke-linecap="round"/><path d="M52 80 L69 70" stroke="#a4c49f" stroke-width="5" stroke-linecap="round"/><path d="M61 80 L78 70" stroke="#8fb58b" stroke-width="5" stroke-linecap="round"/><path d="M70 80 L87 70" stroke="#a4c49f" stroke-width="5" stroke-linecap="round"/><path d="M79 80 L96 70" stroke="#8fb58b" stroke-width="5" stroke-linecap="round"/><path d="M88 80 L105 70" stroke="#a4c49f" stroke-width="5" stroke-linecap="round"/><path d="M97 80 L114 70" stroke="#8fb58b" stroke-width="5" stroke-linecap="round"/><path d="M106 80 L123 70" stroke="#a4c49f" stroke-width="5" stroke-linecap="round"/><path d="M115 80 L132 70" stroke="#8fb58b" stroke-width="5" stroke-linecap="round"/><path d="M124 80 L141 70" stroke="#a4c49f" stroke-width="5" stroke-linecap="round"/><path d="M133 80 L150 70" stroke="#8fb58b" stroke-width="5" stroke-linecap="round"/><ellipse cx="80" cy="74" rx="52" ry="5" fill="#8fb58b" opacity=".5"/></svg></span><span class="tq-card-title">Flat or matted</span><span class="tq-card-sub">Or never been cleaned</span></button></div>
-        <div class="tq-q">Where is it? <span class="tq-q-note">(pick any)</span></div>
-        <div class="tq-cards c4" data-group="turf_location" data-multi="1"><button type="button" class="tq-card" data-value="Backyard" onclick="tqPick(this)"><span class="tq-card-art"><svg class="tq-svg" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect width="160" height="100" rx="12" fill="#eef6ef"/><rect x="10" y="8" width="140" height="84" rx="8" fill="#efe6d2"/><rect x="92" y="66" width="16" height="26" fill="#ddd5c4"/><rect x="16" y="12" width="128" height="25" rx="3" fill="#85cc7e" stroke="#23804b" stroke-width="1.5"/><rect x="34.3" y="13.5" width="18.3" height="22" fill="#9ad993"/><rect x="70.9" y="13.5" width="18.3" height="22" fill="#9ad993"/><rect x="107.4" y="13.5" width="18.3" height="22" fill="#9ad993"/><rect x="48" y="40" width="64" height="26" rx="2" fill="#bcc6c0"/><line x1="52" y1="53" x2="108" y2="53" stroke="#9aa89f" stroke-width="2"/></svg></span><span class="tq-card-title">Backyard</span></button><button type="button" class="tq-card" data-value="Front yard" onclick="tqPick(this)"><span class="tq-card-art"><svg class="tq-svg" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect width="160" height="100" rx="12" fill="#eef6ef"/><rect x="10" y="8" width="140" height="84" rx="8" fill="#efe6d2"/><rect x="92" y="66" width="16" height="26" fill="#ddd5c4"/><rect x="16" y="68" width="70" height="20" rx="3" fill="#85cc7e" stroke="#23804b" stroke-width="1.5"/><rect x="26.0" y="69.5" width="10.0" height="17" fill="#9ad993"/><rect x="46.0" y="69.5" width="10.0" height="17" fill="#9ad993"/><rect x="66.0" y="69.5" width="10.0" height="17" fill="#9ad993"/><rect x="48" y="40" width="64" height="26" rx="2" fill="#bcc6c0"/><line x1="52" y1="53" x2="108" y2="53" stroke="#9aa89f" stroke-width="2"/></svg></span><span class="tq-card-title">Front yard</span></button><button type="button" class="tq-card" data-value="Side yard / dog run" onclick="tqPick(this)"><span class="tq-card-art"><svg class="tq-svg" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect width="160" height="100" rx="12" fill="#eef6ef"/><rect x="10" y="8" width="140" height="84" rx="8" fill="#efe6d2"/><rect x="92" y="66" width="16" height="26" fill="#ddd5c4"/><rect x="13" y="40" width="31" height="26" rx="3" fill="#85cc7e" stroke="#23804b" stroke-width="1.5"/><rect x="17.4" y="41.5" width="4.4" height="23" fill="#9ad993"/><rect x="26.3" y="41.5" width="4.4" height="23" fill="#9ad993"/><rect x="35.1" y="41.5" width="4.4" height="23" fill="#9ad993"/><rect x="116" y="40" width="31" height="26" rx="3" fill="#85cc7e" stroke="#23804b" stroke-width="1.5"/><rect x="120.4" y="41.5" width="4.4" height="23" fill="#9ad993"/><rect x="129.3" y="41.5" width="4.4" height="23" fill="#9ad993"/><rect x="138.1" y="41.5" width="4.4" height="23" fill="#9ad993"/><rect x="48" y="40" width="64" height="26" rx="2" fill="#bcc6c0"/><line x1="52" y1="53" x2="108" y2="53" stroke="#9aa89f" stroke-width="2"/></svg></span><span class="tq-card-title">Side yard / dog run</span></button><button type="button" class="tq-card" data-value="Putting green" onclick="tqPick(this)"><span class="tq-card-art"><svg class="tq-svg" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect width="160" height="100" rx="12" fill="#eef6ef"/><rect x="10" y="8" width="140" height="84" rx="8" fill="#efe6d2"/><ellipse cx="80" cy="56" rx="56" ry="28" fill="#85cc7e" stroke="#23804b" stroke-width="1.5"/><ellipse cx="95" cy="62" rx="5" ry="3" fill="#0f2a1b"/><line x1="95" y1="62" x2="95" y2="22" stroke="#6b7c6b" stroke-width="2.5"/><path d="M95 22 L117 29 L95 36 Z" fill="#dc2626"/><circle cx="60" cy="52" r="3.5" fill="#fff" stroke="#cfd8d3"/></svg></span><span class="tq-card-title">Putting green</span></button></div>
-        <div class="tq-q">Add photos <span class="tq-q-note">(optional &mdash; helps us price it faster)</span></div>
-        <div class="tq-photos"><label class="tq-photo" data-slot="0"><input type="file" accept="image/*" onchange="tqPhoto(this,0)" aria-label="Add photo: Whole turf area" /><span class="tq-photo-plus"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg></span><span class="tq-photo-label">Whole turf area</span><img alt="" hidden /><span class="tq-photo-tag" hidden>Whole turf area</span><button type="button" class="tq-photo-x" onclick="tqPhotoRemove(event,0)" aria-label="Remove photo">&#215;</button></label><label class="tq-photo" data-slot="1"><input type="file" accept="image/*" onchange="tqPhoto(this,1)" aria-label="Add photo: Close-up of the turf" /><span class="tq-photo-plus"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg></span><span class="tq-photo-label">Close-up of the turf</span><img alt="" hidden /><span class="tq-photo-tag" hidden>Close-up of the turf</span><button type="button" class="tq-photo-x" onclick="tqPhotoRemove(event,1)" aria-label="Remove photo">&#215;</button></label><label class="tq-photo" data-slot="2"><input type="file" accept="image/*" onchange="tqPhoto(this,2)" aria-label="Add photo: Stains or pet spots" /><span class="tq-photo-plus"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg></span><span class="tq-photo-label">Stains or pet spots</span><img alt="" hidden /><span class="tq-photo-tag" hidden>Stains or pet spots</span><button type="button" class="tq-photo-x" onclick="tqPhotoRemove(event,2)" aria-label="Remove photo">&#215;</button></label><label class="tq-photo" data-slot="3"><input type="file" accept="image/*" onchange="tqPhoto(this,3)" aria-label="Add photo: Anything else" /><span class="tq-photo-plus"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg></span><span class="tq-photo-label">Anything else</span><img alt="" hidden /><span class="tq-photo-tag" hidden>Anything else</span><button type="button" class="tq-photo-x" onclick="tqPhotoRemove(event,3)" aria-label="Remove photo">&#215;</button></label></div>
-        <div class="tq-photo-help" id="tq-photo-help">Tap a box to take a photo or choose one from your phone.</div>
-        <div class="tq-field" style="margin-top:16px;"><label for="tq-notes">Anything else? <em>(optional)</em></label><textarea id="tq-notes" placeholder="Gate code, problem spots, dogs on site&hellip;"></textarea></div>
+        <button type="button" class="tq-backlink" onclick="tqGo(3)">&larr; Back</button>
+        <h2 class="tq-h">You&rsquo;re almost there!</h2>
+        <div class="tq-stack">
+          <div class="tq-field has-ico"><svg class="tq-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><input id="tq-address" type="text" placeholder="Street address" aria-label="Street address" autocomplete="street-address"/></div>
+          <div class="tq-field"><input id="tq-city" type="text" placeholder="City" aria-label="City" autocomplete="address-level2"/></div>
+          <div class="tq-field"><select id="tq-state" aria-label="State"><option value="AZ" selected>AZ</option></select></div>
+          <div class="tq-field"><input id="tq-zip" type="text" placeholder="Zip code" aria-label="Zip code" inputmode="numeric" autocomplete="postal-code" maxlength="5"/></div>
+          <div class="tq-field"><select id="tq-size" class="is-empty" aria-label="About how much turf (optional)" onchange="this.classList.toggle('is-empty', !this.value)">
+            <option value="">About how much turf? (optional)</option>
+            <option>Small patch &mdash; up to 300 sq ft</option>
+            <option>Small backyard &mdash; 300&ndash;500 sq ft</option>
+            <option>Typical backyard &mdash; 500&ndash;1,000 sq ft</option>
+            <option>Big yard or front + back &mdash; 1,000&ndash;2,000 sq ft</option>
+            <option>Large property &mdash; 2,000+ sq ft</option>
+            <option>Not sure &mdash; measure it for me</option>
+          </select></div>
+        </div>
         <div class="tq-err" id="tq-err-4" role="alert"></div>
-        <div class="tq-actions"><button type="button" class="tq-back" onclick="tqGo(3)">&larr; Back</button><button type="button" class="tq-next" onclick="tqNext4()">Continue &rarr;</button></div>
-      </div>
-
-      <!-- Step 5: recommendation (no price) + plan interest -->
-      <div class="tq-step" data-step="5">
-        <div class="tq-count">Step 5 of 6</div>
-        <h2 class="tq-title">Here&rsquo;s what we&rsquo;d recommend</h2>
-        <div class="tq-rec">
-          <img id="tq-rec-img" src="svc-petodor.jpg" alt="" />
-          <div>
-            <div class="tq-rec-eyebrow">Based on your answers</div>
-            <div class="tq-rec-name" id="tq-rec-name">Deep Clean</div>
-            <div class="tq-rec-why" id="tq-rec-why"></div>
-            <ul id="tq-rec-list"></ul>
-          </div>
-        </div>
-        <div class="tq-q">Want to save on every cleaning with a Turf Club plan?</div>
-        <div class="tq-cards " data-group="plan_interest"><button type="button" class="tq-card" data-value="Yes — tell me about plans" onclick="tqPick(this)"><span class="tq-card-art"><svg class="tq-svg" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect width="160" height="100" rx="12" fill="#eef6ef"/><path d="M40 34h54l24 16-24 16H40a6 6 0 0 1-6-6V40a6 6 0 0 1 6-6z" fill="#23804b"/><circle cx="100" cy="50" r="4.5" fill="#eef6ef"/><text x="66" y="60" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-weight="900" font-size="30" fill="#fff">$</text></svg></span><span class="tq-card-title">Yes, tell me about plans</span><span class="tq-card-sub">Save $50, $100, or $150 every cleaning</span></button><button type="button" class="tq-card" data-value="Maybe" onclick="tqPick(this)"><span class="tq-card-art"><svg class="tq-svg" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect width="160" height="100" rx="12" fill="#eef6ef"/><rect x="44" y="22" width="72" height="46" rx="14" fill="#fff" stroke="#23804b" stroke-width="3"/><path d="M62 66 l-6 14 l18 -12z" fill="#fff" stroke="#23804b" stroke-width="3" stroke-linejoin="round"/><rect x="60" y="62" width="18" height="5" fill="#fff"/><text x="80" y="56" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-weight="900" font-size="30" fill="#23804b">?</text></svg></span><span class="tq-card-title">Maybe</span><span class="tq-card-sub">I&rsquo;d like to hear the options</span></button><button type="button" class="tq-card" data-value="Just a one-time cleaning" onclick="tqPick(this)"><span class="tq-card-art"><svg class="tq-svg" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect width="160" height="100" rx="12" fill="#eef6ef"/><rect x="52" y="22" width="56" height="56" rx="9" fill="#fff" stroke="#23804b" stroke-width="3"/><path d="M52 31a9 9 0 0 1 9-9h38a9 9 0 0 1 9 9v7H52z" fill="#23804b"/><line x1="66" y1="16" x2="66" y2="28" stroke="#0f2a1b" stroke-width="4" stroke-linecap="round"/><line x1="94" y1="16" x2="94" y2="28" stroke="#0f2a1b" stroke-width="4" stroke-linecap="round"/><text x="80" y="71" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-weight="900" font-size="28" fill="#23804b">1</text></svg></span><span class="tq-card-title">Just one time</span><span class="tq-card-sub">A single cleaning for now</span></button></div>
-        <div class="tq-err" id="tq-err-5" role="alert"></div>
-        <div class="tq-actions"><button type="button" class="tq-back" onclick="tqGo(4)">&larr; Back</button><button type="button" class="tq-next" onclick="tqNext5()">Continue &rarr;</button></div>
-      </div>
-
-      <!-- Step 6: best time to call -->
-      <div class="tq-step" data-step="6">
-        <div class="tq-count">Step 6 of 6</div>
-        <h2 class="tq-title">When should we call with your price?</h2>
-        <p class="tq-sub">We&rsquo;ll have your exact price ready when we call.</p>
-        <div class="tq-cards c4" data-group="best_time"><button type="button" class="tq-card" data-value="Now" onclick="tqPick(this)"><span class="tq-card-art"><svg class="tq-svg" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect width="160" height="100" rx="12" fill="#eef6ef"/><rect x="62" y="20" width="36" height="62" rx="8" fill="#23804b"/><rect x="67" y="29" width="26" height="42" rx="3" fill="#eef6ef"/><circle cx="80" cy="76" r="2.5" fill="#eef6ef"/><path d="M106 36q9 14 0 28" stroke="#23804b" stroke-width="4" stroke-linecap="round" fill="none"/><path d="M116 28q15 22 0 44" stroke="#85cc7e" stroke-width="4" stroke-linecap="round" fill="none"/><path d="M54 36q-9 14 0 28" stroke="#23804b" stroke-width="4" stroke-linecap="round" fill="none"/><path d="M44 28q-15 22 0 44" stroke="#85cc7e" stroke-width="4" stroke-linecap="round" fill="none"/></svg></span><span class="tq-card-title">Call me now</span></button><button type="button" class="tq-card" data-value="Later today" onclick="tqPick(this)"><span class="tq-card-art"><svg class="tq-svg" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect width="160" height="100" rx="12" fill="#eef6ef"/><circle cx="80" cy="58" r="18" fill="#fde50a"/><line x1="80" y1="58" x2="110.0" y2="58.0" stroke="#e8c300" stroke-width="4" stroke-linecap="round" stroke-dasharray="0 23 9"/><line x1="80" y1="58" x2="106.0" y2="43.0" stroke="#e8c300" stroke-width="4" stroke-linecap="round" stroke-dasharray="0 23 9"/><line x1="80" y1="58" x2="95.0" y2="32.0" stroke="#e8c300" stroke-width="4" stroke-linecap="round" stroke-dasharray="0 23 9"/><line x1="80" y1="58" x2="80.0" y2="28.0" stroke="#e8c300" stroke-width="4" stroke-linecap="round" stroke-dasharray="0 23 9"/><line x1="80" y1="58" x2="65.0" y2="32.0" stroke="#e8c300" stroke-width="4" stroke-linecap="round" stroke-dasharray="0 23 9"/><line x1="80" y1="58" x2="54.0" y2="43.0" stroke="#e8c300" stroke-width="4" stroke-linecap="round" stroke-dasharray="0 23 9"/><line x1="80" y1="58" x2="50.0" y2="58.0" stroke="#e8c300" stroke-width="4" stroke-linecap="round" stroke-dasharray="0 23 9"/><rect x="10" y="66" width="140" height="26" rx="6" fill="#85cc7e"/></svg></span><span class="tq-card-title">Later today</span></button><button type="button" class="tq-card" data-value="Tomorrow" onclick="tqPick(this)"><span class="tq-card-art"><svg class="tq-svg" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect width="160" height="100" rx="12" fill="#eef6ef"/><rect x="52" y="22" width="56" height="56" rx="9" fill="#fff" stroke="#23804b" stroke-width="3"/><path d="M52 31a9 9 0 0 1 9-9h38a9 9 0 0 1 9 9v7H52z" fill="#23804b"/><line x1="66" y1="16" x2="66" y2="28" stroke="#0f2a1b" stroke-width="4" stroke-linecap="round"/><line x1="94" y1="16" x2="94" y2="28" stroke="#0f2a1b" stroke-width="4" stroke-linecap="round"/><path d="M68 60 l8 8 l16 -16" stroke="#23804b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span><span class="tq-card-title">Tomorrow</span></button><button type="button" class="tq-card" data-value="Text me instead" onclick="tqPick(this)"><span class="tq-card-art"><svg class="tq-svg" viewBox="0 0 160 100" aria-hidden="true" focusable="false"><rect width="160" height="100" rx="12" fill="#eef6ef"/><rect x="40" y="24" width="80" height="46" rx="14" fill="#23804b"/><path d="M58 68 l-4 14 l16 -12z" fill="#23804b"/><circle cx="64" cy="47" r="5" fill="#fff"/><circle cx="80" cy="47" r="5" fill="#fff"/><circle cx="96" cy="47" r="5" fill="#fff"/></svg></span><span class="tq-card-title">Text me instead</span></button></div>
-        <div class="tq-grid" style="margin-top:16px;">
-          <div class="tq-field"><label for="tq-code">Referral or promo code <em>(optional)</em></label><input id="tq-code" autocomplete="off" /></div>
-          <div class="tq-field"><label for="tq-hear">How did you hear about us? <em>(optional)</em></label>
-            <select id="tq-hear"><option value="">Choose one</option><option>Google search</option><option>Google Maps / reviews</option><option>Instagram</option><option>Facebook</option><option>Friend or neighbor</option><option>Saw the truck</option><option>Returning customer</option><option>Other</option></select>
-          </div>
-        </div>
-        <div class="tq-err" id="tq-err-6" role="alert"></div>
-        <div class="tq-actions"><button type="button" class="tq-back" onclick="tqGo(5)">&larr; Back</button><button type="button" class="tq-next" id="tq-submit" onclick="tqSubmit()">Get my free quote</button></div>
+        <div class="tq-next-row"><button type="button" class="tq-next" id="tq-submit" onclick="tqSubmit()"><span id="tq-submit-label">Submit</span> &rarr;</button></div>
       </div>
 
       <!-- Done -->
-      <div class="tq-step" data-step="7">
+      <div class="tq-step" data-step="5">
         <div class="tq-done">
           <div class="tq-done-icon">&#10003;</div>
-          <h2 class="tq-title" id="tq-done-title">You&rsquo;re all set!</h2>
-          <p class="tq-sub" id="tq-done-msg">We&rsquo;re building your custom quote now.</p>
+          <h2 class="tq-h" id="tq-done-title">You&rsquo;re all set!</h2>
+          <p class="tq-done-msg" id="tq-done-msg">We&rsquo;re building your custom quote now.</p>
           <div class="tq-callout">&#128222; Save our number so you know it&rsquo;s us: <a href="tel:4802941408">(480) 294-1408</a></div>
-          <div class="tq-callout" id="tq-done-photos">&#128247; Want to speed it up? <a href="sms:4802941408">Text us a few photos</a> of your turf.</div>
+          <div class="tq-photo-box">
+            <h3>Want a faster, more exact price?</h3>
+            <p>Add a few photos of your turf (optional).</p>
+            <div class="tq-photos"><label class="tq-photo" data-slot="0"><input type="file" accept="image/*" onchange="tqPhoto(this,0)" aria-label="Add photo: Whole turf area" /><span class="tq-photo-plus"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg></span><span class="tq-photo-label">Whole turf area</span><img alt="" hidden /><span class="tq-photo-tag" hidden>Whole turf area</span><button type="button" class="tq-photo-x" onclick="tqPhotoRemove(event,0)" aria-label="Remove photo">&#215;</button></label><label class="tq-photo" data-slot="1"><input type="file" accept="image/*" onchange="tqPhoto(this,1)" aria-label="Add photo: Close-up of the turf" /><span class="tq-photo-plus"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg></span><span class="tq-photo-label">Close-up of the turf</span><img alt="" hidden /><span class="tq-photo-tag" hidden>Close-up of the turf</span><button type="button" class="tq-photo-x" onclick="tqPhotoRemove(event,1)" aria-label="Remove photo">&#215;</button></label><label class="tq-photo" data-slot="2"><input type="file" accept="image/*" onchange="tqPhoto(this,2)" aria-label="Add photo: Stains or pet spots" /><span class="tq-photo-plus"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg></span><span class="tq-photo-label">Stains or pet spots</span><img alt="" hidden /><span class="tq-photo-tag" hidden>Stains or pet spots</span><button type="button" class="tq-photo-x" onclick="tqPhotoRemove(event,2)" aria-label="Remove photo">&#215;</button></label><label class="tq-photo" data-slot="3"><input type="file" accept="image/*" onchange="tqPhoto(this,3)" aria-label="Add photo: Anything else" /><span class="tq-photo-plus"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg></span><span class="tq-photo-label">Anything else</span><img alt="" hidden /><span class="tq-photo-tag" hidden>Anything else</span><button type="button" class="tq-photo-x" onclick="tqPhotoRemove(event,3)" aria-label="Remove photo">&#215;</button></label></div>
+            <div class="tq-photo-help" id="tq-photo-help">Tap a box to take a photo or choose one from your phone.</div>
+            <button type="button" class="tq-photo-send" id="tq-photo-send" onclick="tqSendPhotos()" hidden>Send my photos</button>
+          </div>
           <div class="tq-callout">&#11088; See why neighbors rate us 5.0 &mdash; <a href="https://maps.google.com/?cid=3468386511023497696" target="_blank" rel="noopener">read our Google reviews</a></div>
-          <div class="tq-actions"><button type="button" class="tq-next" onclick="closeQuoteModal()">Done</button></div>
+          <div class="tq-next-row tq-done-btn"><button type="button" class="tq-next" onclick="closeQuoteModal()">Done</button></div>
         </div>
       </div>
     </form>
-    <iframe name="tq-sink" id="tq-sink" title="Quote upload" tabindex="-1" aria-hidden="true" style="display:none;"></iframe>
+    <iframe name="tq-sink" id="tq-sink" title="Photo upload" tabindex="-1" aria-hidden="true" style="display:none;"></iframe>
   </div>
 </div>
 
@@ -2738,30 +2733,26 @@
     document.body.style.overflow = '';
   }
 
-  /* ── Quote Builder (no prices online — TurfGlow calls every lead with the price) ── */
+  /* ── Quote Builder: know you → services → frequency → address. No prices online; TurfGlow calls every lead. ── */
   var TQ_EMAIL = 'turfglowaz@gmail.com';
   var TQ_PHONE = '(480) 294-1408';
-  var TQ_STEPS = 6, TQ_DONE = 7;
+  var TQ_STEPS = 4, TQ_DONE = 5;
+  var TQ_SAVINGS = { 'Monthly': '$150 off per cleaning', 'Every other month': '$100 off per cleaning', 'Quarterly': '$50 off per cleaning', 'One-time': 'One-time cleaning (no plan)' };
   var TQ_PHOTO_LABELS = ['Whole turf area', 'Close-up of the turf', 'Stains or pet spots', 'Anything else'];
-  var tq = { step: 1, picks: {}, contact: null, startSentFor: '', interested: '', photos: [null, null, null, null] };
-
-  var TQ_TIERS = {
-    refresh: { name: 'Refresh Clean', img: 'svc-deepclean.jpg', why: 'Great for turf with light use and no pets.',
-      items: ['Debris & pet hair removal', 'Full turf rinse', 'Power broom so the fibers stand back up'] },
-    deep: { name: 'Deep Clean', img: 'svc-petodor.jpg', why: 'Our most popular cleaning for pet homes and odor.',
-      items: ['Everything in Refresh Clean', 'Deep removal of trapped dirt & buildup', 'Sanitizing treatment', 'Odor & deodorizer treatment'] },
-    restore: { name: 'Full Restore', img: 'svc-restore.jpg', why: 'Brings flat, matted, or never-cleaned turf back to life.',
-      items: ['Everything in Deep Clean', 'Detailed edges & finishing', 'Infill replenishment', 'Groomed so it looks refreshed'] }
-  };
+  var tq = { step: 1, picks: { addons: [] }, contact: null, startSentFor: '', photos: [null, null, null, null], photosSent: false };
 
   function openQuoteModal(mode) {
     if (mode === true || mode === 'odor') mode = 'deep';
-    tq.interested = TQ_TIERS[mode] ? TQ_TIERS[mode].name : '';
     if (tq.step === TQ_DONE) tqReset();
+    var names = { refresh: 'Refresh Clean', deep: 'Deep Clean', restore: 'Full Restore' };
+    if (names[mode] && !tq.picks.service) {
+      var b = document.querySelector('#tq-form .tq-card[data-group="service"][data-value="' + names[mode] + '"]');
+      if (b) tqPick(b, true);
+    }
     document.getElementById('quote-modal').classList.add('open');
     document.body.style.overflow = 'hidden';
     tqGo(tq.step);
-    if (tq.step === 1) setTimeout(function () { var f = document.getElementById('tq-first'); if (f && window.innerWidth > 600) f.focus(); }, 60);
+    if (tq.step === 1) setTimeout(function () { var f = document.getElementById('tq-first'); if (f && window.innerWidth > 640) f.focus(); }, 60);
   }
 
   function closeQuoteModal() {
@@ -2774,14 +2765,16 @@
 
   function tqReset() {
     tq.photos.forEach(function (p, i) { if (p) tqPhotoRemove(null, i); });
-    tq.step = 1; tq.picks = {}; tq.contact = null; tq.startSentFor = '';
+    tq.step = 1; tq.picks = { addons: [] }; tq.contact = null; tq.startSentFor = ''; tq.photosSent = false;
     var form = document.getElementById('tq-form');
     form.reset();
-    document.getElementById('tq-texts').checked = true;
     form.querySelectorAll('.is-on').forEach(function (b) { b.classList.remove('is-on'); });
     form.querySelectorAll('.is-invalid').forEach(function (f) { f.classList.remove('is-invalid'); });
+    ['tq-hear', 'tq-size'].forEach(function (id) { document.getElementById(id).classList.add('is-empty'); });
     for (var i = 1; i <= TQ_STEPS; i++) tqErr(i, '');
-    var btn = document.getElementById('tq-submit'); btn.disabled = false; btn.textContent = 'Get my free quote';
+    var btn = document.getElementById('tq-submit'); btn.disabled = false; document.getElementById('tq-submit-label').textContent = 'Submit';
+    var ps = document.getElementById('tq-photo-send'); ps.hidden = true; ps.disabled = false; ps.textContent = 'Send my photos';
+    tqPhotoHelp();
   }
 
   function tqGo(n) {
@@ -2790,93 +2783,157 @@
       s.classList.toggle('is-active', +s.getAttribute('data-step') === n);
     });
     document.getElementById('tq-progress').style.width = (Math.min(n, TQ_STEPS) / TQ_STEPS * 100) + '%';
+    if (n === 3) document.getElementById('tq-freq-note').hidden = tq.picks.service !== 'Full Restore';
     var m = document.getElementById('quote-modal'); if (m) m.scrollTop = 0;
   }
 
   function tqErr(step, msg) { var e = document.getElementById('tq-err-' + step); if (e) e.textContent = msg; }
 
-  function tqPick(btn, advance) {
-    var group = btn.parentNode, key = group.getAttribute('data-group');
-    if (group.getAttribute('data-multi')) {
+  function tqPick(btn, quiet) {
+    var group = btn.getAttribute('data-group'), value = btn.getAttribute('data-value');
+    var all = document.querySelectorAll('#tq-form [data-group="' + group + '"]');
+    if (group === 'addons') {
       btn.classList.toggle('is-on');
-      tq.picks[key] = Array.prototype.map.call(group.querySelectorAll('.is-on'), function (b) { return b.getAttribute('data-value'); }).join(', ');
+      tq.picks.addons = Array.prototype.filter.call(all, function (b) { return b.classList.contains('is-on'); })
+        .map(function (b) { return b.getAttribute('data-value'); });
     } else {
-      group.querySelectorAll('.is-on').forEach(function (b) { b.classList.remove('is-on'); });
-      btn.classList.add('is-on');
-      tq.picks[key] = btn.getAttribute('data-value');
+      all.forEach(function (b) { b.classList.toggle('is-on', b === btn); });
+      tq.picks[group] = value;
     }
-    tqErr(tq.step, '');
-    if (advance) setTimeout(function () { tqGo(tq.step + 1); }, 260);
+    if (!quiet) tqErr(tq.step, '');
   }
 
   function tqVal(id) { return (document.getElementById(id).value || '').trim(); }
   function tqDigits(s) { var d = String(s).replace(/\D/g, ''); return (d.length === 11 && d.charAt(0) === '1') ? d.slice(1) : d; }
   function tqFmtPhone(d) { return '(' + d.slice(0, 3) + ') ' + d.slice(3, 6) + '-' + d.slice(6); }
-
-  function tqNext1() {
-    var checks = [
-      ['tq-first', function (v) { return v.length > 0; }, 'Enter your first name.'],
-      ['tq-last', function (v) { return v.length > 0; }, 'Enter your last name.'],
-      ['tq-phone', function (v) { return tqDigits(v).length === 10; }, 'Enter a 10-digit mobile number.'],
-      ['tq-email', function (v) { return !v || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }, 'That email doesn’t look right — fix it or leave it blank.'],
-      ['tq-address', function (v) { return v.length > 3; }, 'Enter the street address for the turf.'],
-      ['tq-city', function (v) { return v.length > 1; }, 'Enter your city.'],
-      ['tq-zip', function (v) { return /^\d{5}$/.test(v); }, 'Enter a 5-digit ZIP code.']
-    ];
-    var firstBad = null;
-    checks.forEach(function (c) {
+  function tqCheck(list, step) {
+    var bad = null;
+    list.forEach(function (c) {
       var ok = c[1](tqVal(c[0]));
       document.getElementById(c[0]).parentNode.classList.toggle('is-invalid', !ok);
-      if (!ok && !firstBad) firstBad = c;
+      if (!ok && !bad) bad = c;
     });
-    if (firstBad) { tqErr(1, firstBad[2]); document.getElementById(firstBad[0]).focus(); return; }
-    tqErr(1, '');
+    if (bad) { tqErr(step, bad[2]); document.getElementById(bad[0]).focus(); return false; }
+    tqErr(step, ''); return true;
+  }
+
+  function tqNext1() {
+    if (!tqCheck([
+      ['tq-first', function (v) { return v.length > 0; }, 'Enter your first name.'],
+      ['tq-last', function (v) { return v.length > 0; }, 'Enter your last name.'],
+      ['tq-email', function (v) { return !v || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }, 'That email doesn’t look right — fix it or leave it blank.'],
+      ['tq-phone', function (v) { return tqDigits(v).length === 10; }, 'Enter a 10-digit mobile number.']
+    ], 1)) return;
     var d = tqDigits(tqVal('tq-phone'));
-    tq.contact = {
-      first_name: tqVal('tq-first'), last_name: tqVal('tq-last'), phone: tqFmtPhone(d),
-      address: tqVal('tq-address'), city: tqVal('tq-city'), zip: tqVal('tq-zip'), email: tqVal('tq-email'),
-      texts_ok: document.getElementById('tq-texts').checked ? 'Yes' : 'No'
-    };
-    var sig = d + '|' + tq.contact.address.toLowerCase();
-    if (tq.startSentFor !== sig) { tq.startSentFor = sig; tqSend('started').catch(function () {}); }
+    tq.contact = { first_name: tqVal('tq-first'), last_name: tqVal('tq-last'), phone: tqFmtPhone(d), email: tqVal('tq-email'),
+                   texts_ok: document.getElementById('tq-texts').checked ? 'Yes' : 'No' };
+    if (tq.startSentFor !== d) { tq.startSentFor = d; tqSend('started').catch(function () {}); }
     tqGo(2);
   }
 
-  function tqRecommend() {
-    var p = tq.picks;
-    if (p.condition === 'Flat, matted, or never cleaned') return 'restore';
-    if (p.pets !== 'No pets' || p.smell !== 'No smell' || p.condition === 'Dirty or stained') return 'deep';
-    return 'refresh';
+  function tqNext2() {
+    if (!tq.picks.service) { tqErr(2, 'Pick the cleaning you need — add-ons are optional.'); return; }
+    tqGo(3);
   }
 
   function tqNext3() {
-    if (!tq.picks.pets || !tq.picks.smell) { tqErr(3, 'Pick an answer for pets and smell to continue.'); return; }
+    if (!tq.picks.frequency) { tqErr(3, 'Pick a plan, or choose a one-time cleaning.'); return; }
     tqGo(4);
   }
 
-  function tqNext4() {
-    if (!tq.picks.condition) { tqErr(4, 'Pick the picture that looks most like your turf.'); return; }
-    if (tq.photos.some(function (p) { return p && p.busy; })) { tqErr(4, 'Hang on — your photo is still being added.'); return; }
-    var t = TQ_TIERS[tqRecommend()];
-    var img = document.getElementById('tq-rec-img'); img.src = t.img; img.alt = t.name;
-    document.getElementById('tq-rec-name').textContent = t.name;
-    document.getElementById('tq-rec-why').textContent = t.why + ' We’ll confirm the best fit on your call.';
-    document.getElementById('tq-rec-list').innerHTML = t.items.map(function (i) {
-      return '<li>' + i.replace(/&/g, '&amp;') + '</li>';
-    }).join('');
-    tqGo(5);
+  // Phoenix time (no daylight saving). Hours match the footer: Mon–Sat 8am–7pm.
+  function tqPhoenixNow() {
+    var parts = {};
+    new Intl.DateTimeFormat('en-US', { timeZone: 'America/Phoenix', weekday: 'short', hour: 'numeric', hourCycle: 'h23' })
+      .formatToParts(new Date()).forEach(function (x) { parts[x.type] = x.value; });
+    return { day: parts.weekday, hour: parseInt(parts.hour, 10) };
   }
 
-  function tqNext5() {
-    if (!tq.picks.plan_interest) { tqErr(5, 'Pick one to continue.'); return; }
-    tqGo(6);
+  function tqDoneMessage() {
+    var now = tqPhoenixNow(), day = now.day, h = now.hour;
+    var open = day !== 'Sun' && h >= 8 && h < 19;
+    var nextMorning = (day === 'Sat' && h >= 19) || day === 'Sun' ? 'Monday morning' : (h < 8 ? 'this morning after 8am' : 'first thing tomorrow morning');
+    if (open) return 'We’re building your custom quote now. <strong>Expect a call from ' + TQ_PHONE + ' in the next few minutes.</strong>';
+    return 'We’re closed right now, so we’ll call you from <strong>' + TQ_PHONE + '</strong> ' + nextMorning + ' with your exact price.';
   }
 
-  /* ── Photos: shrink on the phone (max 1600px JPEG, strips location data) so all 4 fit the 10MB email limit ── */
+  function tqAddress() {
+    return [tqVal('tq-address'), tqVal('tq-city'), tqVal('tq-state') || 'AZ', tqVal('tq-zip')].filter(Boolean).join(', ');
+  }
+
+  function tqPayload(stage) {
+    var c = tq.contact || {}, p = tq.picks, done = stage === 'complete';
+    var name = (c.first_name + ' ' + c.last_name).trim();
+    var full = done ? tqAddress() : '';
+    var city = done ? tqVal('tq-city') : '';
+    var subject = !done
+      ? '🔥 NEW LEAD — call now: ' + name + ' · ' + c.phone
+      : '✅ QUOTE DETAILS: ' + name + ' · ' + city + ' · ' + (p.service || '') + ' · ' + (p.frequency || '') + (p.frequency && p.frequency !== 'One-time' ? ' (' + TQ_SAVINGS[p.frequency].replace(' per cleaning', '') + ')' : '');
+    return {
+      _subject: subject,
+      lead_status: done ? 'Finished the quote' : 'Started the quote (details to follow)',
+      name: name, phone: c.phone, email: c.email || '', address: full,
+      google_earth: full ? 'https://earth.google.com/web/search/' + encodeURIComponent(full) : '',
+      service: p.service || '', add_ons: (p.addons || []).join(', ') || (done ? 'None' : ''),
+      frequency: p.frequency ? p.frequency + ' — ' + TQ_SAVINGS[p.frequency] : '',
+      turf_size: done ? (tqVal('tq-size') || 'Not given') : '',
+      referral_or_promo_code: tqVal('tq-code'), heard_about_us: tqVal('tq-hear'), texts_ok: c.texts_ok || '',
+      submitted: new Date().toLocaleString('en-US', { timeZone: 'America/Phoenix' }) + ' (Phoenix)'
+    };
+  }
+
+  // Vercel /api/quote creates the Housecall Pro lead (finished quotes) and emails via Resend when configured.
+  // If it isn't reachable (GitHub Pages) or didn't send the email, fall back to formsubmit.co.
+  function tqApi(data) {
+    return fetch('/api/quote', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(data) })
+      .then(function (r) { if (!r.ok) throw new Error('api ' + r.status); return r.json(); });
+  }
+
+  function tqSend(stage) {
+    if (document.getElementById('tq-honey').value) return Promise.resolve();
+    var data = tqPayload(stage);
+    var viaRelay = function () {
+      var fd = new FormData();
+      Object.keys(data).forEach(function (k) { if (data[k] !== '') fd.append(k, data[k]); });
+      fd.append('_template', 'table');
+      fd.append('_captcha', 'false');
+      return fetch('https://formsubmit.co/ajax/' + TQ_EMAIL, { method: 'POST', headers: { 'Accept': 'application/json' }, body: fd })
+        .then(function (r) { if (!r.ok) throw new Error('relay ' + r.status); return r.json(); });
+    };
+    return tqApi(data)
+      .then(function (j) { if (!j || !j.email_sent) return viaRelay(); return j; })
+      .catch(viaRelay);
+  }
+
+  function tqSubmit() {
+    if (!tqCheck([
+      ['tq-address', function (v) { return v.length > 3; }, 'Enter the street address for the turf.'],
+      ['tq-city', function (v) { return v.length > 1; }, 'Enter your city.'],
+      ['tq-zip', function (v) { return /^\d{5}$/.test(v); }, 'Enter a 5-digit zip code.']
+    ], 4)) return;
+    var btn = document.getElementById('tq-submit'), label = document.getElementById('tq-submit-label');
+    btn.disabled = true; label.textContent = 'Sending…';
+    tqSend('complete').then(function () {
+      document.getElementById('tq-done-title').textContent = 'You’re all set, ' + tq.contact.first_name + '!';
+      document.getElementById('tq-done-msg').innerHTML = tqDoneMessage();
+      tqGo(TQ_DONE);
+    }).catch(function () {
+      btn.disabled = false; label.textContent = 'Submit';
+      tqErr(4, 'We couldn’t send your request. Please call or text us at ' + TQ_PHONE + '.');
+    });
+  }
+
+  /* ── Optional photos on the confirmation screen: shrunk on the phone (max 1600px JPEG, strips location data) ── */
   function tqPhotoHelp(msg, isError) {
     var h = document.getElementById('tq-photo-help');
     h.textContent = msg || 'Tap a box to take a photo or choose one from your phone.';
     h.classList.toggle('is-error', !!isError);
+  }
+  function tqPhotoCount() { return tq.photos.filter(function (p) { return p && p.blob; }).length; }
+  function tqPhotoButton() {
+    var b = document.getElementById('tq-photo-send'), n = tqPhotoCount();
+    b.hidden = n === 0 || tq.photosSent;
+    b.textContent = 'Send my ' + (n === 1 ? 'photo' : n + ' photos');
   }
 
   function tqShrink(file) {
@@ -2899,13 +2956,13 @@
     input.value = '';
     if (!file) return;
     if (!/^image\//.test(file.type) && !/\.(heic|heif|jpe?g|png|webp)$/i.test(file.name)) { tqPhotoHelp('That file isn’t a photo — try a picture from your camera roll.', true); return; }
+    if (tq.photosSent) { tq.photosSent = false; }
     var box = document.querySelector('.tq-photo[data-slot="' + i + '"]');
     box.classList.add('is-busy'); tq.photos[i] = { busy: true };
     tqShrink(file).catch(function () {
       if (file.size <= 3 * 1024 * 1024) return file;
       throw new Error('unreadable');
     }).then(function (blob) {
-      if (tq.photos[i] && tq.photos[i].url) URL.revokeObjectURL(tq.photos[i].url);
       var url = URL.createObjectURL(blob);
       tq.photos[i] = { blob: blob, url: url, name: 'turf-photo-' + (i + 1) + '.jpg' };
       var total = tq.photos.reduce(function (s, p) { return s + (p && p.blob ? p.blob.size : 0); }, 0);
@@ -2913,11 +2970,11 @@
       var im = box.querySelector('img'); im.src = url; im.hidden = false;
       box.querySelector('.tq-photo-tag').hidden = false;
       box.classList.add('has-img');
-      tqPhotoHelp('Photo added. Tap a photo to replace it.');
+      tqPhotoHelp('Photo added. Add more, or tap Send.');
     }).catch(function () {
       tq.photos[i] = null;
       tqPhotoHelp('We couldn’t read that photo — try a different one.', true);
-    }).then(function () { box.classList.remove('is-busy'); });
+    }).then(function () { box.classList.remove('is-busy'); tqPhotoButton(); });
   }
 
   function tqPhotoRemove(e, i) {
@@ -2925,136 +2982,58 @@
     var p = tq.photos[i]; if (p && p.url) URL.revokeObjectURL(p.url);
     tq.photos[i] = null;
     var box = document.querySelector('.tq-photo[data-slot="' + i + '"]');
-    if (!box) return;
-    var im = box.querySelector('img'); im.hidden = true; im.removeAttribute('src');
-    box.querySelector('.tq-photo-tag').hidden = true;
-    box.classList.remove('has-img');
+    if (box) {
+      var im = box.querySelector('img'); im.hidden = true; im.removeAttribute('src');
+      box.querySelector('.tq-photo-tag').hidden = true;
+      box.classList.remove('has-img');
+    }
     if (e) tqPhotoHelp();
+    tqPhotoButton();
   }
 
-  // Phoenix time (no daylight saving). Hours match the footer: Mon–Sat 8am–7pm.
-  function tqPhoenixNow() {
-    var parts = {};
-    new Intl.DateTimeFormat('en-US', { timeZone: 'America/Phoenix', weekday: 'short', hour: 'numeric', hourCycle: 'h23' })
-      .formatToParts(new Date()).forEach(function (x) { parts[x.type] = x.value; });
-    return { day: parts.weekday, hour: parseInt(parts.hour, 10) };
-  }
-
-  function tqDoneMessage(when) {
-    var now = tqPhoenixNow(), day = now.day, h = now.hour;
-    var open = day !== 'Sun' && h >= 8 && h < 19;
-    var nextMorning = (day === 'Sat' && h >= 19) || day === 'Sun' ? 'Monday morning'
-                    : (h < 8 ? 'this morning after 8am' : 'first thing tomorrow morning');
-    var num = '<strong>' + TQ_PHONE + '</strong>';
-    if (when === 'Text me instead') {
-      return open ? 'We’re building your custom quote now. Expect a text from ' + num + ' in the next few minutes.'
-                  : 'We’ll text your quote from ' + num + ' ' + nextMorning + '.';
-    }
-    if (when === 'Tomorrow') {
-      return 'We’ll call you from ' + num + ' ' + (day === 'Sat' || day === 'Sun' ? 'Monday morning' : 'tomorrow') + ' with your exact price.';
-    }
-    if (when === 'Later today' && open && h < 17) {
-      return 'We’ll call you from ' + num + ' later today with your exact price.';
-    }
-    if (open) return 'We’re building your custom quote now. <strong>Expect a call from ' + TQ_PHONE + ' in the next few minutes.</strong>';
-    return 'We’re closed right now, so we’ll call you from ' + num + ' ' + nextMorning + ' with your exact price.';
-  }
-
-  function tqPhotoCount() { return tq.photos.filter(function (p) { return p && p.blob; }).length; }
-
-  function tqPayload(stage) {
-    var c = tq.contact || {}, p = tq.picks, n = tqPhotoCount();
-    var full = [c.address, c.city, 'AZ', c.zip].filter(Boolean).join(', ');
-    var name = (c.first_name + ' ' + c.last_name).trim();
-    var done = stage === 'complete';
-    var subject = !done
-      ? '🔥 NEW LEAD — call now: ' + name + ' · ' + c.city + ' · ' + c.phone
-      : '✅ QUOTE DETAILS: ' + name + ' · ' + c.city + ' · ' + (p.turf_size || '') + ' · ' + (p.pets || '') + ', ' + (p.smell || '').toLowerCase() + (n ? ' · ' + n + ' photo' + (n > 1 ? 's' : '') : '') + ' · call: ' + (p.best_time || '');
-    return {
-      _subject: subject,
-      lead_status: done ? 'Finished the quote' : 'Started the quote (details to follow)',
-      name: name, phone: c.phone, email: c.email || '', address: full,
-      google_earth: 'https://earth.google.com/web/search/' + encodeURIComponent(full),
-      turf_size: p.turf_size || '', pets: p.pets || '', smell: p.smell || '', condition: p.condition || '',
-      turf_location: p.turf_location || '', notes: tqVal('tq-notes'),
-      photos: done ? (n ? n + ' attached (' + tq.photos.map(function (ph, i) { return ph && ph.blob ? TQ_PHOTO_LABELS[i] : null; }).filter(Boolean).join(', ') + ')' : 'None') : '',
-      recommended_service: done ? TQ_TIERS[tqRecommend()].name : '', clicked_service: tq.interested || '',
-      plan_interest: p.plan_interest || '', best_time_to_call: p.best_time || '',
-      referral_or_promo_code: tqVal('tq-code'), heard_about_us: tqVal('tq-hear'), texts_ok: c.texts_ok || '',
-      submitted: new Date().toLocaleString('en-US', { timeZone: 'America/Phoenix' }) + ' (Phoenix)'
+  // formsubmit only accepts attachments on a normal multipart POST, so post into a hidden iframe.
+  function tqSendPhotos() {
+    if (!tqPhotoCount() || !tq.contact) return;
+    var btn = document.getElementById('tq-photo-send');
+    btn.disabled = true; btn.textContent = 'Sending…';
+    var c = tq.contact;
+    var data = {
+      _subject: '📷 PHOTOS: ' + (c.first_name + ' ' + c.last_name).trim() + ' · ' + tqVal('tq-city') + ' · ' + c.phone,
+      name: (c.first_name + ' ' + c.last_name).trim(), phone: c.phone, address: tqAddress(),
+      photos: tq.photos.map(function (ph, i) { return ph && ph.blob ? TQ_PHOTO_LABELS[i] : null; }).filter(Boolean).join(', ')
     };
-  }
-
-  // Vercel /api/quote creates the Housecall Pro lead (finished quotes) and emails via Resend when configured.
-  // If it isn't reachable (GitHub Pages) or didn't send the email, fall back to formsubmit.co.
-  function tqApi(data) {
-    return fetch('/api/quote', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(data) })
-      .then(function (r) { if (!r.ok) throw new Error('api ' + r.status); return r.json(); });
-  }
-
-  function tqSend(stage) {
-    if (document.getElementById('tq-honey').value) return Promise.resolve();
-    var data = tqPayload(stage);
-    var viaRelay = function () {
-      var fd = new FormData();
-      Object.keys(data).forEach(function (k) { fd.append(k, data[k]); });
-      fd.append('_template', 'table');
-      fd.append('_captcha', 'false');
-      return fetch('https://formsubmit.co/ajax/' + TQ_EMAIL, { method: 'POST', headers: { 'Accept': 'application/json' }, body: fd })
-        .then(function (r) { if (!r.ok) throw new Error('relay ' + r.status); return r.json(); });
+    var f = document.createElement('form');
+    f.method = 'POST'; f.enctype = 'multipart/form-data'; f.target = 'tq-sink';
+    f.action = 'https://formsubmit.co/' + TQ_EMAIL; f.style.display = 'none';
+    var add = function (k, v) { var inp = document.createElement('input'); inp.type = 'hidden'; inp.name = k; inp.value = v; f.appendChild(inp); };
+    Object.keys(data).forEach(function (k) { add(k, data[k]); });
+    add('_template', 'table'); add('_captcha', 'false');
+    var attached = 0;
+    tq.photos.forEach(function (p, idx) {
+      if (!p || !p.blob) return;
+      try {
+        var dt = new DataTransfer();
+        dt.items.add(new File([p.blob], p.name, { type: 'image/jpeg' }));
+        var fi = document.createElement('input'); fi.type = 'file'; fi.name = 'attachment_' + (idx + 1); fi.files = dt.files;
+        f.appendChild(fi); attached++;
+      } catch (err) {}
+    });
+    if (!attached) {
+      btn.disabled = false; btn.textContent = 'Send my photos';
+      tqPhotoHelp('Your browser couldn’t attach photos here — please text them to ' + TQ_PHONE + '.', true);
+      return;
+    }
+    var sink = document.getElementById('tq-sink'), finished = false;
+    var finish = function () {
+      if (finished) return; finished = true;
+      setTimeout(function () { f.remove(); }, 1000);
+      tq.photosSent = true; tqPhotoButton();
+      tqPhotoHelp('Thanks! Your photos were sent.');
     };
-    return tqApi(data)
-      .then(function (j) { if (!j || !j.email_sent) return viaRelay(); return j; })
-      .catch(viaRelay);
-  }
-
-  // With photos: formsubmit only accepts attachments on a normal multipart POST, so post into a hidden iframe.
-  function tqSendWithPhotos() {
-    if (document.getElementById('tq-honey').value) return Promise.resolve();
-    var data = tqPayload('complete');
-    return new Promise(function (resolve) {
-      var f = document.createElement('form');
-      f.method = 'POST'; f.enctype = 'multipart/form-data'; f.target = 'tq-sink';
-      f.action = 'https://formsubmit.co/' + TQ_EMAIL; f.style.display = 'none';
-      var add = function (k, v) { var i = document.createElement('input'); i.type = 'hidden'; i.name = k; i.value = v; f.appendChild(i); };
-      Object.keys(data).forEach(function (k) { add(k, data[k]); });
-      add('_template', 'table'); add('_captcha', 'false');
-      var attached = 0;
-      tq.photos.forEach(function (p, idx) {
-        if (!p || !p.blob) return;
-        try {
-          var dt = new DataTransfer();
-          dt.items.add(new File([p.blob], p.name, { type: 'image/jpeg' }));
-          var fi = document.createElement('input'); fi.type = 'file'; fi.name = 'attachment_' + (idx + 1); fi.files = dt.files;
-          f.appendChild(fi); attached++;
-        } catch (err) {}
-      });
-      if (!attached) { f.querySelector('[name="photos"]').value = 'Customer added photos, but this browser could not attach them — ask them to text photos.'; }
-      var sink = document.getElementById('tq-sink'), finished = false;
-      var finish = function () { if (finished) return; finished = true; setTimeout(function () { f.remove(); }, 1000); resolve(); };
-      sink.onload = finish;
-      setTimeout(finish, 20000);
-      document.body.appendChild(f);
-      f.submit();
-    });
-  }
-
-  function tqSubmit() {
-    if (!tq.picks.best_time) { tqErr(6, 'Pick the best time to reach you.'); return; }
-    var btn = document.getElementById('tq-submit');
-    btn.disabled = true; btn.textContent = tqPhotoCount() ? 'Sending your photos…' : 'Sending…';
-    var sending = tqPhotoCount()
-      ? (function () { var d = tqPayload('complete'); d.skip_email = true; tqApi(d).catch(function () {}); return tqSendWithPhotos(); })()
-      : tqSend('complete');
-    sending.then(function () {
-      document.getElementById('tq-done-title').textContent = 'You’re all set, ' + tq.contact.first_name + '!';
-      document.getElementById('tq-done-msg').innerHTML = tqDoneMessage(tq.picks.best_time);
-      document.getElementById('tq-done-photos').hidden = tqPhotoCount() > 0;
-      tqGo(TQ_DONE);
-    }).catch(function () {
-      btn.disabled = false; btn.textContent = 'Get my free quote';
-      tqErr(6, 'We couldn’t send your request. Please call or text us at ' + TQ_PHONE + '.');
-    });
+    sink.onload = finish;
+    setTimeout(finish, 20000);
+    document.body.appendChild(f);
+    f.submit();
   }
 
   function rmPersonHtml() {

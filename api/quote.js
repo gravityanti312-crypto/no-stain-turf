@@ -30,20 +30,13 @@ function leadNote(d) {
   const lines = [
     'Online quote from the TurfGlow website',
     '',
-    'Turf size: ' + (d.turf_size || '—'),
-    'Pets: ' + (d.pets || '—'),
-    'Smell: ' + (d.smell || '—'),
-    'Condition: ' + (d.condition || '—'),
-    'Where: ' + (d.turf_location || '—'),
-    'Recommended: ' + (d.recommended_service || '—'),
-    'Clicked on site: ' + (d.clicked_service || '—'),
-    'Plan interest: ' + (d.plan_interest || '—'),
-    'Best time to call: ' + (d.best_time_to_call || '—'),
-    'Photos: ' + (d.photos || 'None') + (d.photos && !/^none/i.test(d.photos) ? ' (see the TurfGlowAZ email)' : ''),
+    'Service: ' + (d.service || '—'),
+    'Add-ons: ' + (d.add_ons || 'None'),
+    'Plan: ' + (d.frequency || '—'),
+    'Turf size (customer guess): ' + (d.turf_size || '—'),
     'Referral/promo code: ' + (d.referral_or_promo_code || '—'),
     'Heard about us: ' + (d.heard_about_us || '—'),
-    'OK to text: ' + (d.texts_ok || '—'),
-    'Notes: ' + (d.notes || '—'),
+    'OK to send marketing texts: ' + (d.texts_ok || '—'),
     '',
     'Measure the yard: ' + (d.google_earth || '—'),
     'Submitted: ' + (d.submitted || '—')
@@ -59,7 +52,8 @@ async function createHcpLead(d, key) {
   const addr = parseAddress(d.address);
   const note = leadNote(d);
   const tags = ['Website quote'];
-  if (d.recommended_service) tags.push(String(d.recommended_service));
+  if (d.service) tags.push(String(d.service));
+  if (d.frequency) tags.push(String(d.frequency).split(' — ')[0]);
 
   const customer = { first_name: first, last_name: last, mobile_number: digits, lead_source: 'Website', tags: tags };
   if (d.email) customer.email = String(d.email).trim();
@@ -113,13 +107,11 @@ async function sendEmail(d, key) {
     '<div style="background:#eef0f3;padding:24px;font-family:-apple-system,Segoe UI,Roboto,sans-serif;"><div style="max-width:580px;margin:0 auto;background:#fff;border-radius:16px;overflow:hidden;border:1px solid #e0ece0;">' +
     '<div style="background:#0f2a1b;padding:22px 24px;"><div style="font:800 11px/1 -apple-system,Segoe UI,Roboto,sans-serif;letter-spacing:.14em;color:#85cc7e;text-transform:uppercase;">' + (started ? 'New lead — call now' : 'Quote details') + '</div>' +
     '<div style="font:900 24px/1.2 -apple-system,Segoe UI,Roboto,sans-serif;color:#fff;margin-top:6px;">' + esc(name) + '</div>' +
-    '<div style="font:600 15px/1.4 -apple-system,Segoe UI,Roboto,sans-serif;color:#cfdccf;margin-top:4px;">' + esc(d.turf_size || 'Size not picked yet') + '</div></div>' +
+    '<div style="font:600 15px/1.4 -apple-system,Segoe UI,Roboto,sans-serif;color:#cfdccf;margin-top:4px;">' + esc([d.service, d.frequency].filter(Boolean).join(' · ') || 'Details to follow') + '</div></div>' +
     '<table style="width:100%;border-collapse:collapse;">' +
     row('Phone', phoneCell) + row('Address', val(d.address)) + row('Measure', earthCell) + row('Email', val(d.email)) +
-    row('Turf size', val(d.turf_size)) + row('Pets', val(d.pets)) + row('Smell', val(d.smell)) + row('Condition', val(d.condition)) +
-    row('Where', val(d.turf_location)) + row('Photos', val(d.photos)) + row('Recommend', val(d.recommended_service)) + row('Clicked', val(d.clicked_service)) +
-    row('Plan interest', val(d.plan_interest)) + row('Best time', val(d.best_time_to_call)) + row('Code', val(d.referral_or_promo_code)) +
-    row('Heard via', val(d.heard_about_us)) + row('Texts OK?', val(d.texts_ok)) + row('Notes', val(d.notes)) + row('Submitted', val(d.submitted)) +
+    row('Service', val(d.service)) + row('Add-ons', val(d.add_ons)) + row('Plan', val(d.frequency)) + row('Turf size', val(d.turf_size)) +
+    row('Code', val(d.referral_or_promo_code)) + row('Heard via', val(d.heard_about_us)) + row('Marketing texts', val(d.texts_ok)) + row('Submitted', val(d.submitted)) +
     '</table></div></div>';
   const payload = {
     from: 'TurfGlow Cleaning <onboarding@resend.dev>',
