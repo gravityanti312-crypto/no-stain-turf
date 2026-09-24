@@ -1765,6 +1765,30 @@
     .glass-mc-btn:hover { opacity:0.88; transform:translateY(-1px); }
 
   </style>
+<style>
+  /* Reviews + Why TurfGlow share one photo background; cards are frosted so the photo shows through */
+  .proof-bg {
+    position: relative;
+    background: url('reviews-bg.jpg') center 12% / cover no-repeat;
+  }
+  .proof-bg::before {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(15,42,27,0.45) 0%, rgba(15,42,27,0.3) 50%, rgba(15,42,27,0.55) 100%);
+  }
+  .proof-bg > #reviews, .proof-bg > #why { position: relative; background: transparent !important; }
+  .proof-bg #reviews { padding: 3rem 0 2rem !important; }
+  .proof-bg #why { padding: 2rem 0 5rem !important; }
+  .proof-bg #why h2 { color: #ffffff !important; text-shadow: 0 2px 12px rgba(0,0,0,0.35); }
+  .proof-bg .reviews-excellent,
+  .proof-bg .grev-card,
+  .proof-bg .why-4up > div {
+    background: rgba(255,255,255,0.72) !important;
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.5) !important;
+  }
+  .proof-bg .why-4up p { color: #3f4f43 !important; }
+  .proof-bg .reviews-progress { background: rgba(255,255,255,0.4); }
+</style>
 </head>
 <body>
 
@@ -1859,6 +1883,8 @@
   </div>
 </div>
 
+<!-- REVIEWS + WHY TURFGLOW over a customer photo -->
+<div class="proof-bg">
 <!-- REVIEWS -->
 <section id="reviews">
   <div class="container">
@@ -2043,6 +2069,70 @@
   updateProgress();
 })();
 </script>
+
+<!-- ─── WHY TURFGLOW ──────────────────────────────────── -->
+<section id="why">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:3rem;">
+      <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:900;color:#0f2a1b;letter-spacing:-0.02em;">Why Choose TurfGlow?</h2>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;" class="why-4up">
+
+      <div style="background:white;border-radius:16px;padding:2.5rem 2rem;text-align:center;box-shadow:0 2px 16px rgba(35,128,75,0.1);border:1px solid #f0f8f1;">
+        <div style="margin-bottom:1.25rem;display:flex;justify-content:center;"><svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="64" height="64" rx="16" fill="#e8f0e8"/>
+  <ellipse cx="24" cy="24" rx="4.5" ry="6" fill="#23804b"/>
+  <ellipse cx="34" cy="21" rx="4.5" ry="6.5" fill="#23804b"/>
+  <ellipse cx="44" cy="26" rx="4.5" ry="6" fill="#23804b"/>
+  <ellipse cx="19" cy="35" rx="4" ry="5" fill="#23804b"/>
+  <path d="M33 33c6 0 11 4.5 11 9.5S39 51 33 51s-11-3.5-11-8.5S27 33 33 33Z" fill="#0f2a1b" opacity="0.25"/>
+  <path d="M33 33c6 0 11 4.5 11 9.5S39 51 33 51s-11-3.5-11-8.5S27 33 33 33Z" stroke="#0f2a1b" stroke-width="2.5" fill="none"/>
+</svg></div>
+        <div style="font-size:1rem;font-weight:800;color:#0f2a1b;margin-bottom:0.75rem;">Pet &amp; Kid Safe</div>
+        <p style="font-size:0.88rem;color:#6b7c6b;line-height:1.65;">Every product we use is non-toxic and pet-safe. Your dogs and kids can be back on the turf as soon as it dries.</p>
+      </div>
+
+      <div style="background:white;border-radius:16px;padding:2.5rem 2rem;text-align:center;box-shadow:0 2px 16px rgba(35,128,75,0.1);border:1px solid #f0f8f1;">
+        <div style="margin-bottom:1.25rem;display:flex;justify-content:center;"><svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="64" height="64" rx="16" fill="#e8f0e8"/>
+  <rect x="14" y="30" width="26" height="12" rx="3" fill="#0f2a1b" opacity="0.25"/>
+  <rect x="14" y="30" width="26" height="12" rx="3" stroke="#0f2a1b" stroke-width="2.5" fill="none"/>
+  <path d="M40 34h6l4-12" stroke="#0f2a1b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="20" cy="46" r="4" fill="#0f2a1b"/><circle cx="20" cy="46" r="1.8" fill="white"/>
+  <circle cx="34" cy="46" r="4" fill="#0f2a1b"/><circle cx="34" cy="46" r="1.8" fill="white"/>
+  <path d="M18 26v-6M24 26v-9M30 26v-6M36 26v-8" stroke="#23804b" stroke-width="2.5" stroke-linecap="round"/>
+</svg></div>
+        <div style="font-size:1rem;font-weight:800;color:#0f2a1b;margin-bottom:0.75rem;">Pro-Grade Equipment</div>
+        <p style="font-size:0.88rem;color:#6b7c6b;line-height:1.65;">Commercial power brooms, industrial vacuums and hot-water pressure systems &mdash; not a hose and a leaf blower.</p>
+      </div>
+
+      <div style="background:white;border-radius:16px;padding:2.5rem 2rem;text-align:center;box-shadow:0 2px 16px rgba(35,128,75,0.1);border:1px solid #f0f8f1;">
+        <div style="margin-bottom:1.25rem;display:flex;justify-content:center;"><svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="64" height="64" rx="16" fill="#e8f0e8"/>
+  <circle cx="32" cy="33" r="18" fill="#0f2a1b" opacity="0.2"/>
+  <circle cx="32" cy="33" r="18" stroke="#0f2a1b" stroke-width="2.5" fill="none"/>
+  <path d="M32 22v11l8 5" stroke="#0f2a1b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M46 13l5 5" stroke="#23804b" stroke-width="3" stroke-linecap="round"/>
+</svg></div>
+        <div style="font-size:1rem;font-weight:800;color:#0f2a1b;margin-bottom:0.75rem;">Free Quote In 30 Seconds</div>
+        <p style="font-size:0.88rem;color:#6b7c6b;line-height:1.65;">Tell us about your yard online or give us a call &mdash; we&rsquo;ll call you back with your exact price. Same-day appointments are often available across the Valley.</p>
+      </div>
+
+      <div style="background:white;border-radius:16px;padding:2.5rem 2rem;text-align:center;box-shadow:0 2px 16px rgba(35,128,75,0.1);border:1px solid #f0f8f1;">
+        <div style="margin-bottom:1.25rem;display:flex;justify-content:center;"><svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="64" height="64" rx="16" fill="#e8f0e8"/>
+  <path d="M32 12L14 20V34C14 43 22 50 32 52C42 50 50 43 50 34V20L32 12Z" fill="#0f2a1b" opacity="0.2"/>
+  <path d="M32 12L14 20V34C14 43 22 50 32 52C42 50 50 43 50 34V20L32 12Z" stroke="#0f2a1b" stroke-width="2.5" stroke-linejoin="round" fill="none"/>
+  <path d="M23 32L29 38L41 26" stroke="#23804b" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></div>
+        <div style="font-size:1rem;font-weight:800;color:#0f2a1b;margin-bottom:0.75rem;">TurfGlow Guarantee</div>
+        <p style="font-size:0.88rem;color:#6b7c6b;line-height:1.65;">If the odor or staining isn&#39;t gone, we come back and re-treat it free. That&#39;s the TurfGlow promise.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+</div>
 
 <!-- ─── DEEP CLEAN EXPLAINER + BEFORE / AFTER ─────────────────── -->
 <section id="deepclean">
@@ -2243,69 +2333,6 @@
   </div>
 </section>
 
-
-<!-- ─── WHY TURFGLOW ──────────────────────────────────── -->
-<section id="why" style="background:#ffffff;padding:5rem 0;">
-  <div class="container">
-    <div style="text-align:center;margin-bottom:3rem;">
-      <h2 style="font-size:clamp(2rem,4vw,3rem);font-weight:900;color:#0f2a1b;letter-spacing:-0.02em;">Why Choose TurfGlow?</h2>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;" class="why-4up">
-
-      <div style="background:white;border-radius:16px;padding:2.5rem 2rem;text-align:center;box-shadow:0 2px 16px rgba(35,128,75,0.1);border:1px solid #f0f8f1;">
-        <div style="margin-bottom:1.25rem;display:flex;justify-content:center;"><svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="64" height="64" rx="16" fill="#e8f0e8"/>
-  <ellipse cx="24" cy="24" rx="4.5" ry="6" fill="#23804b"/>
-  <ellipse cx="34" cy="21" rx="4.5" ry="6.5" fill="#23804b"/>
-  <ellipse cx="44" cy="26" rx="4.5" ry="6" fill="#23804b"/>
-  <ellipse cx="19" cy="35" rx="4" ry="5" fill="#23804b"/>
-  <path d="M33 33c6 0 11 4.5 11 9.5S39 51 33 51s-11-3.5-11-8.5S27 33 33 33Z" fill="#0f2a1b" opacity="0.25"/>
-  <path d="M33 33c6 0 11 4.5 11 9.5S39 51 33 51s-11-3.5-11-8.5S27 33 33 33Z" stroke="#0f2a1b" stroke-width="2.5" fill="none"/>
-</svg></div>
-        <div style="font-size:1rem;font-weight:800;color:#0f2a1b;margin-bottom:0.75rem;">Pet &amp; Kid Safe</div>
-        <p style="font-size:0.88rem;color:#6b7c6b;line-height:1.65;">Every product we use is non-toxic and pet-safe. Your dogs and kids can be back on the turf as soon as it dries.</p>
-      </div>
-
-      <div style="background:white;border-radius:16px;padding:2.5rem 2rem;text-align:center;box-shadow:0 2px 16px rgba(35,128,75,0.1);border:1px solid #f0f8f1;">
-        <div style="margin-bottom:1.25rem;display:flex;justify-content:center;"><svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="64" height="64" rx="16" fill="#e8f0e8"/>
-  <rect x="14" y="30" width="26" height="12" rx="3" fill="#0f2a1b" opacity="0.25"/>
-  <rect x="14" y="30" width="26" height="12" rx="3" stroke="#0f2a1b" stroke-width="2.5" fill="none"/>
-  <path d="M40 34h6l4-12" stroke="#0f2a1b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="20" cy="46" r="4" fill="#0f2a1b"/><circle cx="20" cy="46" r="1.8" fill="white"/>
-  <circle cx="34" cy="46" r="4" fill="#0f2a1b"/><circle cx="34" cy="46" r="1.8" fill="white"/>
-  <path d="M18 26v-6M24 26v-9M30 26v-6M36 26v-8" stroke="#23804b" stroke-width="2.5" stroke-linecap="round"/>
-</svg></div>
-        <div style="font-size:1rem;font-weight:800;color:#0f2a1b;margin-bottom:0.75rem;">Pro-Grade Equipment</div>
-        <p style="font-size:0.88rem;color:#6b7c6b;line-height:1.65;">Commercial power brooms, industrial vacuums and hot-water pressure systems &mdash; not a hose and a leaf blower.</p>
-      </div>
-
-      <div style="background:white;border-radius:16px;padding:2.5rem 2rem;text-align:center;box-shadow:0 2px 16px rgba(35,128,75,0.1);border:1px solid #f0f8f1;">
-        <div style="margin-bottom:1.25rem;display:flex;justify-content:center;"><svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="64" height="64" rx="16" fill="#e8f0e8"/>
-  <circle cx="32" cy="33" r="18" fill="#0f2a1b" opacity="0.2"/>
-  <circle cx="32" cy="33" r="18" stroke="#0f2a1b" stroke-width="2.5" fill="none"/>
-  <path d="M32 22v11l8 5" stroke="#0f2a1b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M46 13l5 5" stroke="#23804b" stroke-width="3" stroke-linecap="round"/>
-</svg></div>
-        <div style="font-size:1rem;font-weight:800;color:#0f2a1b;margin-bottom:0.75rem;">Free Quote In 30 Seconds</div>
-        <p style="font-size:0.88rem;color:#6b7c6b;line-height:1.65;">Tell us about your yard online or give us a call &mdash; we&rsquo;ll call you back with your exact price. Same-day appointments are often available across the Valley.</p>
-      </div>
-
-      <div style="background:white;border-radius:16px;padding:2.5rem 2rem;text-align:center;box-shadow:0 2px 16px rgba(35,128,75,0.1);border:1px solid #f0f8f1;">
-        <div style="margin-bottom:1.25rem;display:flex;justify-content:center;"><svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="64" height="64" rx="16" fill="#e8f0e8"/>
-  <path d="M32 12L14 20V34C14 43 22 50 32 52C42 50 50 43 50 34V20L32 12Z" fill="#0f2a1b" opacity="0.2"/>
-  <path d="M32 12L14 20V34C14 43 22 50 32 52C42 50 50 43 50 34V20L32 12Z" stroke="#0f2a1b" stroke-width="2.5" stroke-linejoin="round" fill="none"/>
-  <path d="M23 32L29 38L41 26" stroke="#23804b" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-</svg></div>
-        <div style="font-size:1rem;font-weight:800;color:#0f2a1b;margin-bottom:0.75rem;">TurfGlow Guarantee</div>
-        <p style="font-size:0.88rem;color:#6b7c6b;line-height:1.65;">If the odor or staining isn&#39;t gone, we come back and re-treat it free. That&#39;s the TurfGlow promise.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
 
 <!-- ─── FAQ ───────────────────────────────────────────────────── -->
 <section id="faq">
