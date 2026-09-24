@@ -1790,6 +1790,22 @@
   }
   .proof-bg .why-4up p { color: #3f4f43 !important; }
   .proof-bg .reviews-progress { background: rgba(255,255,255,0.4); }
+  /* Hero: content centered and sitting low so faces in the photo stay clear */
+  #hero { align-items: flex-end; }
+  #hero .container { width: 100%; padding-left: 24px; padding-right: 24px; padding-bottom: 3.5rem; }
+  #hero .hero-content { margin: 0 auto; text-align: center; }
+  #hero .hero-sub { margin-left: auto; margin-right: auto; max-width: 620px; }
+  #hero .hero-buttons, #hero .hero-stats { justify-content: center; }
+  @media (min-width: 769px) {
+    #hero .container { padding-bottom: 1.75rem; }
+    #hero .hero-eyebrow { margin-bottom: 1rem; }
+    #hero .hero-h1 { margin-bottom: 0.9rem; }
+    #hero .hero-sub { margin-bottom: 1.5rem; line-height: 1.6; }
+    #hero .hero-buttons { margin-bottom: 1.6rem; }
+  }
+  #hero .hero-overlay {
+    background: linear-gradient(to top, rgba(8,24,14,0.88) 0%, rgba(8,24,14,0.6) 38%, rgba(8,24,14,0.15) 68%, rgba(8,24,14,0) 100%);
+  }
 </style>
 </head>
 <body>
