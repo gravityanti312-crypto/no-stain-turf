@@ -1793,8 +1793,11 @@
   /* Hero: content centered and sitting low so faces in the photo stay clear */
   #hero { align-items: flex-end; }
   #hero .container { width: 100%; padding-left: 24px; padding-right: 24px; padding-bottom: 3.5rem; }
-  #hero .hero-content { margin: 0 auto; text-align: center; }
-  #hero .hero-sub { margin-left: auto; margin-right: auto; max-width: 620px; }
+  #hero .hero-content { margin: 0 auto; text-align: center; max-width: 1280px; }
+  @media (min-width: 769px) {
+    #hero .hero-h1 { font-size: clamp(3.8rem, 8vw, 7.6rem); letter-spacing: 0.01em; line-height: 0.98; }
+  }
+  #hero .hero-sub { margin-left: auto; margin-right: auto; max-width: 860px; }
   #hero .hero-buttons, #hero .hero-stats { justify-content: center; }
   @media (min-width: 769px) {
     #hero .container { padding-bottom: 1.75rem; }
