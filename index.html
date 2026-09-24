@@ -1768,28 +1768,66 @@
 
   </style>
 <style>
-  /* Reviews + Why TurfGlow share one photo background; cards are frosted so the photo shows through */
-  .proof-bg {
-    position: relative;
-    background: url('reviews-bg.jpg') center 12% / cover no-repeat;
+  /* Reviews + Why TurfGlow: soft green band, clean white review cards */
+  .proof-bg { background: linear-gradient(180deg, #eef7f0 0%, #f7fbf8 55%, #ffffff 100%); }
+  .proof-bg > #reviews, .proof-bg > #why { background: transparent !important; }
+  .proof-bg #reviews { padding: 4.5rem 0 2.5rem !important; }
+  .proof-bg #why { padding: 2.5rem 0 5rem !important; }
+  .reviews-head { text-align: center; margin-bottom: 2.5rem; }
+  .reviews-head h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; color: #0f2a1b; letter-spacing: -0.02em; margin-top: 0.6rem; }
+  .reviews-head p { color: #5d6f61; font-size: 1.05rem; margin-top: 0.5rem; }
+  .proof-bg .reviews-google-wrap { grid-template-columns: 250px 1fr; gap: 1.5rem; align-items: stretch; }
+
+  /* Rating card: solid brand green */
+  .proof-bg a.reviews-excellent {
+    background: linear-gradient(160deg, #195c36 0%, #23804b 100%);
+    border-radius: 22px; padding: 2rem 1.5rem;
+    box-shadow: 0 14px 34px rgba(25,92,54,0.28);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
   }
-  .proof-bg::before {
-    content: ""; position: absolute; inset: 0;
-    background: linear-gradient(180deg, rgba(15,42,27,0.45) 0%, rgba(15,42,27,0.3) 50%, rgba(15,42,27,0.55) 100%);
+  .proof-bg .reviews-excellent-label { color: #ffffff; letter-spacing: 0.14em; font-size: 0.9rem; }
+  .proof-bg .reviews-excellent-label::after {
+    content: "5.0"; display: block; font-size: 3.4rem; letter-spacing: -0.02em; line-height: 1; margin-top: 0.5rem;
   }
-  .proof-bg > #reviews, .proof-bg > #why { position: relative; background: transparent !important; }
-  .proof-bg #reviews { padding: 3rem 0 2rem !important; }
-  .proof-bg #why { padding: 2rem 0 5rem !important; }
-  .proof-bg #why h2 { color: #ffffff !important; text-shadow: 0 2px 12px rgba(0,0,0,0.35); }
-  .proof-bg .reviews-excellent,
-  .proof-bg .grev-card,
-  .proof-bg .why-4up > div {
-    background: rgba(255,255,255,0.72) !important;
-    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.5) !important;
+  .proof-bg .reviews-stars-row { color: #fde50a; font-size: 1.6rem; }
+  .proof-bg .reviews-count { color: rgba(255,255,255,0.85); font-size: 0.85rem; }
+  .proof-bg .reviews-count strong { color: #ffffff; }
+  .proof-bg .reviews-google-logo { background: #ffffff; border-radius: 50px; padding: 0.3rem 1.1rem; }
+  .proof-bg .reviews-cta { background: #ffffff; color: #195c36; }
+  .proof-bg a.reviews-excellent:hover .reviews-cta { background: #fde50a; color: #0f2a1b; }
+
+  /* Review cards */
+  .proof-bg .reviews-cards-viewport { padding: 10px 4px 18px; margin: -10px -4px 0; }
+  .proof-bg .grev-card {
+    position: relative; overflow: hidden;
+    background: #ffffff; border-radius: 22px; padding: 1.75rem 1.6rem 1.6rem;
+    border: 1px solid #e2efe5;
+    box-shadow: 0 10px 30px rgba(15,42,27,0.07);
+    gap: 0.85rem;
+    transition: transform 0.2s, box-shadow 0.2s;
   }
-  .proof-bg .why-4up p { color: #3f4f43 !important; }
-  .proof-bg .reviews-progress { background: rgba(255,255,255,0.4); }
+  .proof-bg .grev-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(15,42,27,0.12); }
+  .proof-bg .grev-card::before {
+    content: ""; position: absolute; left: 0; right: 0; top: 0; height: 4px;
+    background: linear-gradient(90deg, #23804b, #85cc7e);
+  }
+  .proof-bg .grev-card::after {
+    content: "\201D"; position: absolute; right: 18px; bottom: -34px;
+    font-family: Georgia, serif; font-size: 9rem; line-height: 1; color: #23804b; opacity: 0.08;
+    pointer-events: none;
+  }
+  .proof-bg .grev-avatar { width: 46px; height: 46px; font-size: 0.9rem; }
+  .proof-bg .grev-name { font-size: 1rem; }
+  .proof-bg .grev-date { font-size: 0.78rem; }
+  .proof-bg .grev-stars { font-size: 1.15rem; letter-spacing: 1px; }
+  .proof-bg .grev-text { font-size: 0.95rem; color: #24372b; line-height: 1.65; }
+  .proof-bg .reviews-progress { background: #cfe3d4; }
+  .proof-bg .reviews-progress-thumb { background: #23804b; }
+  @media (max-width: 900px) {
+    .proof-bg .reviews-google-wrap { grid-template-columns: 1fr; }
+    .proof-bg a.reviews-excellent { padding: 1.5rem; }
+    .proof-bg .reviews-excellent-label::after { font-size: 2.6rem; }
+  }
   /* Hero: content centered and sitting low so faces in the photo stay clear */
   #hero { align-items: flex-end; }
   #hero .container { width: 100%; padding-left: 24px; padding-right: 24px; padding-bottom: 3.5rem; }
@@ -1904,11 +1942,16 @@
   </div>
 </div>
 
-<!-- REVIEWS + WHY TURFGLOW over a customer photo -->
+<!-- REVIEWS + WHY TURFGLOW -->
 <div class="proof-bg">
 <!-- REVIEWS -->
 <section id="reviews">
   <div class="container">
+    <div class="reviews-head">
+      <div class="section-label">Reviews</div>
+      <h2>Phoenix Homeowners Love TurfGlow</h2>
+      <p>Real reviews from real yards across the Valley.</p>
+    </div>
     <div class="reviews-google-wrap">
       <a href="https://maps.google.com/?cid=3468386511023497696" target="_blank" rel="noopener" class="reviews-excellent">
        <div class="reviews-excellent-label">EXCELLENT</div>
