@@ -1773,60 +1773,74 @@
   .proof-bg > #reviews, .proof-bg > #why { background: transparent !important; }
   .proof-bg #reviews { padding: 4.5rem 0 2.5rem !important; }
   .proof-bg #why { padding: 2.5rem 0 5rem !important; }
-  .reviews-head { text-align: center; margin-bottom: 2.5rem; }
+  .reviews-head { text-align: center; margin-bottom: 2rem; }
   .reviews-head h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; color: #0f2a1b; letter-spacing: -0.02em; margin-top: 0.6rem; }
-  .reviews-head p { color: #5d6f61; font-size: 1.05rem; margin-top: 0.5rem; }
-  .proof-bg .reviews-google-wrap { grid-template-columns: 250px 1fr; gap: 1.5rem; align-items: stretch; }
 
-  /* Rating card: solid brand green */
-  .proof-bg a.reviews-excellent {
-    background: linear-gradient(160deg, #195c36 0%, #23804b 100%);
-    border-radius: 22px; padding: 2rem 1.5rem;
-    box-shadow: 0 14px 34px rgba(25,92,54,0.28);
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
+  /* Compact Google rating pill */
+  .rw-rating {
+    display: inline-flex; align-items: center; gap: 0.55rem; margin-top: 1.1rem;
+    background: #ffffff; border: 1px solid #dcebdf; border-radius: 50px;
+    padding: 0.55rem 1.1rem 0.55rem 0.8rem; text-decoration: none; color: #0f2a1b;
+    box-shadow: 0 6px 18px rgba(15,42,27,0.07); transition: transform 0.2s, box-shadow 0.2s;
   }
-  .proof-bg .reviews-excellent-label { color: #ffffff; letter-spacing: 0.14em; font-size: 0.9rem; }
-  .proof-bg .reviews-excellent-label::after {
-    content: "5.0"; display: block; font-size: 3.4rem; letter-spacing: -0.02em; line-height: 1; margin-top: 0.5rem;
-  }
-  .proof-bg .reviews-stars-row { color: #fde50a; font-size: 1.6rem; }
-  .proof-bg .reviews-count { color: rgba(255,255,255,0.85); font-size: 0.85rem; }
-  .proof-bg .reviews-count strong { color: #ffffff; }
-  .proof-bg .reviews-google-logo { background: #ffffff; border-radius: 50px; padding: 0.3rem 1.1rem; }
-  .proof-bg .reviews-cta { background: #ffffff; color: #195c36; }
-  .proof-bg a.reviews-excellent:hover .reviews-cta { background: #fde50a; color: #0f2a1b; }
+  .rw-rating:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(15,42,27,0.12); }
+  .rw-rating strong { font-size: 1.05rem; font-weight: 800; }
+  .rw-rating-stars { color: #f5b400; letter-spacing: 1px; font-size: 1rem; }
+  .rw-rating-sep { width: 1px; height: 18px; background: #dcebdf; }
+  .rw-rating-link { font-size: 0.88rem; font-weight: 700; color: #23804b; }
+  .rw-g { display: inline-block; width: 22px; height: 22px; flex: 0 0 22px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%23FFC107' d='M43.6 20.1H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 8 3l5.7-5.7C34 6.1 29.3 4 24 4 13 4 4 13 4 24s9 20 20 20 20-9 20-20c0-1.3-.1-2.6-.4-3.9z'/%3E%3Cpath fill='%23FF3D00' d='M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 8 3l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z'/%3E%3Cpath fill='%234CAF50' d='M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2c-2 1.5-4.5 2.4-7.2 2.4-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z'/%3E%3Cpath fill='%231976D2' d='M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.6-.4-3.9z'/%3E%3C/svg%3E") center/contain no-repeat; }
 
-  /* Review cards */
-  .proof-bg .reviews-cards-viewport { padding: 10px 4px 18px; margin: -10px -4px 0; }
-  .proof-bg .grev-card {
-    position: relative; overflow: hidden;
-    background: #ffffff; border-radius: 22px; padding: 1.75rem 1.6rem 1.6rem;
-    border: 1px solid #e2efe5;
-    box-shadow: 0 10px 30px rgba(15,42,27,0.07);
-    gap: 0.85rem;
-    transition: transform 0.2s, box-shadow 0.2s;
+  /* Review wall on a soft brand-color backdrop */
+  .rw-stage {
+    position: relative; border-radius: 28px; overflow: hidden; padding: 0 1.25rem;
+    background:
+      radial-gradient(38% 45% at 12% 18%, rgba(133,204,126,0.55), transparent 70%),
+      radial-gradient(35% 40% at 88% 22%, rgba(35,128,75,0.30), transparent 70%),
+      radial-gradient(40% 45% at 50% 60%, rgba(253,229,10,0.22), transparent 70%),
+      radial-gradient(40% 45% at 15% 90%, rgba(35,128,75,0.25), transparent 70%),
+      radial-gradient(40% 45% at 90% 88%, rgba(133,204,126,0.50), transparent 70%),
+      #e9f5ec;
   }
-  .proof-bg .grev-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(15,42,27,0.12); }
-  .proof-bg .grev-card::before {
-    content: ""; position: absolute; left: 0; right: 0; top: 0; height: 4px;
-    background: linear-gradient(90deg, #23804b, #85cc7e);
+  .rw-wall { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; padding: 1.25rem 0; }
+  .rw-wall.rw-ready {
+    display: flex; gap: 1.25rem; height: 640px; padding: 0; overflow: hidden;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 12%, #000 88%, transparent 100%);
+            mask-image: linear-gradient(180deg, transparent 0, #000 12%, #000 88%, transparent 100%);
   }
-  .proof-bg .grev-card::after {
-    content: "\201D"; position: absolute; right: 18px; bottom: -34px;
-    font-family: Georgia, serif; font-size: 9rem; line-height: 1; color: #23804b; opacity: 0.08;
-    pointer-events: none;
+  .rw-col { flex: 1 1 0; min-width: 0; }
+  .rw-track { display: flex; flex-direction: column; gap: 1.25rem; padding-bottom: 1.25rem; animation: rw-up var(--rw-speed, 50s) linear infinite; }
+  .rw-col-down .rw-track { animation-name: rw-down; }
+  .rw-wall:hover .rw-track { animation-play-state: paused; }
+  @keyframes rw-up { from { transform: translateY(0); } to { transform: translateY(-50%); } }
+  @keyframes rw-down { from { transform: translateY(-50%); } to { transform: translateY(0); } }
+
+  .rw-card {
+    background: #ffffff; border-radius: 20px; padding: 1.5rem 1.5rem 1.35rem;
+    box-shadow: 0 8px 28px rgba(15,42,27,0.08); border: 1px solid rgba(35,128,75,0.08);
   }
-  .proof-bg .grev-avatar { width: 46px; height: 46px; font-size: 0.9rem; }
-  .proof-bg .grev-name { font-size: 1rem; }
-  .proof-bg .grev-date { font-size: 0.78rem; }
-  .proof-bg .grev-stars { font-size: 1.15rem; letter-spacing: 1px; }
-  .proof-bg .grev-text { font-size: 0.95rem; color: #24372b; line-height: 1.65; }
-  .proof-bg .reviews-progress { background: #cfe3d4; }
-  .proof-bg .reviews-progress-thumb { background: #23804b; }
-  @media (max-width: 900px) {
-    .proof-bg .reviews-google-wrap { grid-template-columns: 1fr; }
-    .proof-bg a.reviews-excellent { padding: 1.5rem; }
-    .proof-bg .reviews-excellent-label::after { font-size: 2.6rem; }
+  .rw-card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.8rem; }
+  .rw-stars { color: #f5b400; font-size: 1.25rem; letter-spacing: 3px; line-height: 1; }
+  .rw-card .rw-g { width: 26px; height: 26px; flex-basis: 26px; }
+  .rw-title { font-size: 1.12rem; font-weight: 800; color: #0f2a1b; letter-spacing: -0.01em; margin: 0 0 0.45rem; }
+  .rw-text { font-size: 0.93rem; line-height: 1.65; color: #3d5245; margin: 0 0 1.1rem; }
+  .rw-author { display: flex; align-items: center; gap: 0.7rem; }
+  .rw-avatar {
+    width: 40px; height: 40px; border-radius: 50%; flex: 0 0 40px;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #195c36, #23804b); color: #ffffff; font-weight: 800; font-size: 0.8rem;
+  }
+  .rw-name { font-size: 0.92rem; font-weight: 700; color: #0f2a1b; }
+  .rw-date { font-size: 0.78rem; color: #7d8f82; }
+
+  @media (max-width: 640px) {
+    .rw-stage { padding: 0 0.9rem; border-radius: 22px; }
+    .rw-wall.rw-ready { height: 540px; }
+    .rw-rating-sep, .rw-rating-link { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .rw-track { animation: none; }
+    .rw-wall.rw-ready { height: auto; -webkit-mask-image: none; mask-image: none; padding: 1.25rem 0; }
+    .rw-clone { display: none; }
   }
   /* Hero: content centered and sitting low so faces in the photo stay clear */
   #hero { align-items: flex-end; }
@@ -1950,187 +1964,110 @@
     <div class="reviews-head">
       <div class="section-label">Reviews</div>
       <h2>Phoenix Homeowners Love TurfGlow</h2>
-      <p>Real reviews from real yards across the Valley.</p>
-    </div>
-    <div class="reviews-google-wrap">
-      <a href="https://maps.google.com/?cid=3468386511023497696" target="_blank" rel="noopener" class="reviews-excellent">
-       <div class="reviews-excellent-label">EXCELLENT</div>
-        <div class="reviews-stars-row">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <div class="reviews-count">Rated <strong>5.0 on Google</strong></div>
-        <div class="reviews-google-logo"><span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span></div>
-        <div class="reviews-cta">Read Our Reviews &rarr;</div>
+      <a class="rw-rating" href="https://maps.google.com/?cid=3468386511023497696" target="_blank" rel="noopener">
+        <span class="rw-g" aria-hidden="true"></span>
+        <strong>5.0</strong>
+        <span class="rw-rating-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <span class="rw-rating-sep"></span>
+        <span class="rw-rating-link">Read our Google reviews &rarr;</span>
       </a>
-      <div class="reviews-cards-viewport">
-      <div class="reviews-cards-track" id="reviews-track">
-        <div class="grev-card">
-          <div class="grev-top">
-            <div class="grev-author">
-              <div class="grev-avatar">JM</div>
-              <div>
-                <div class="grev-name">Jennifer M.</div>
-                <div class="grev-date">August 2026</div>
-              </div>
-            </div>
-            <div class="grev-g" style="color:#4285F4;">G</div>
-          </div>
-          <div class="grev-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span class="grev-check">&#10003;</span></div>
-          <div class="grev-text">I have two large dogs and the smell in my backyard was unbearable. TurfGlow came out and the dog smell is completely gone &mdash; I mean completely. Worth every single penny.</div>
-        </div>
-        <div class="grev-card">
-          <div class="grev-top">
-            <div class="grev-author">
-              <div class="grev-avatar">TR</div>
-              <div>
-                <div class="grev-name">Tyler R.</div>
-                <div class="grev-date">July 2026</div>
-              </div>
-            </div>
-            <div class="grev-g" style="color:#4285F4;">G</div>
-          </div>
-          <div class="grev-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span class="grev-check">&#10003;</span></div>
-          <div class="grev-text">800 square feet done in under 2 hours and it looks absolutely brand new. Professional, on time, explained everything. I&#39;ve already booked them for quarterly maintenance.</div>
-        </div>
-        <div class="grev-card">
-          <div class="grev-top">
-            <div class="grev-author">
-              <div class="grev-avatar">LK</div>
-              <div>
-                <div class="grev-name">Lisa K.</div>
-                <div class="grev-date">July 2026</div>
-              </div>
-            </div>
-            <div class="grev-g" style="color:#4285F4;">G</div>
-          </div>
-          <div class="grev-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span class="grev-check">&#10003;</span></div>
-          <div class="grev-text">3 kids and 2 dogs &mdash; our turf needed serious help. After TurfGlow it looks better than when it was first installed. My kids play on it every day. This company is the real deal.</div>
-        </div>
-        <div class="grev-card">
-          <div class="grev-top">
-            <div class="grev-author">
-              <div class="grev-avatar">MS</div>
-              <div>
-                <div class="grev-name">Maria S.</div>
-                <div class="grev-date">June 2026</div>
-              </div>
-            </div>
-            <div class="grev-g" style="color:#4285F4;">G</div>
-          </div>
-          <div class="grev-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span class="grev-check">&#10003;</span></div>
-          <div class="grev-text">My turf looks incredible. They sanitized everything and used pet-safe products. I feel totally comfortable letting my kids play on it now. Will absolutely be using them again.</div>
-        </div>
-        <div class="grev-card">
-          <div class="grev-top">
-            <div class="grev-author">
-              <div class="grev-avatar">DK</div>
-              <div>
-                <div class="grev-name">David K.</div>
-                <div class="grev-date">June 2026</div>
-              </div>
-            </div>
-            <div class="grev-g" style="color:#4285F4;">G</div>
-          </div>
-          <div class="grev-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span class="grev-check">&#10003;</span></div>
-          <div class="grev-text">Fast, professional, and the results speak for themselves. Our turf had stains from years of use and they removed every single one. TurfGlow is by far the best.</div>
-        </div>
-        <div class="grev-card">
-          <div class="grev-top">
-            <div class="grev-author">
-              <div class="grev-avatar">AR</div>
-              <div>
-                <div class="grev-name">Ashley R.</div>
-                <div class="grev-date">May 2026</div>
-              </div>
-            </div>
-            <div class="grev-g" style="color:#4285F4;">G</div>
-          </div>
-          <div class="grev-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span class="grev-check">&#10003;</span></div>
-          <div class="grev-text">Outstanding work. They completely transformed our turf. The infill renewal made it feel brand new. We&#39;re on the monthly plan now and couldn&#39;t be happier.</div>
-        </div>
-        <div class="grev-card">
-          <div class="grev-top">
-            <div class="grev-author">
-              <div class="grev-avatar">BC</div>
-              <div>
-                <div class="grev-name">Brian C.</div>
-                <div class="grev-date">May 2026</div>
-              </div>
-            </div>
-            <div class="grev-g" style="color:#4285F4;">G</div>
-          </div>
-          <div class="grev-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span class="grev-check">&#10003;</span></div>
-          <div class="grev-text">Booked online in about a minute and they were out two days later. The enzyme treatment knocked out the ammonia smell by the dog run. No complaints at all.</div>
-        </div>
-        <div class="grev-card">
-          <div class="grev-top">
-            <div class="grev-author">
-              <div class="grev-avatar">NP</div>
-              <div>
-                <div class="grev-name">Nicole P.</div>
-                <div class="grev-date">April 2026</div>
-              </div>
-            </div>
-            <div class="grev-g" style="color:#4285F4;">G</div>
-          </div>
-          <div class="grev-stars">&#9733;&#9733;&#9733;&#9733;&#9733; <span class="grev-check">&#10003;</span></div>
-          <div class="grev-text">We host a lot in the backyard and the turf was looking flat and dingy. The power broom and grooming brought the blades right back up. Looks like new turf.</div>
-        </div>
-      </div>
-      <div class="reviews-progress" id="reviews-progress" aria-hidden="true">
-        <div class="reviews-progress-thumb" id="reviews-progress-thumb"></div>
-      </div>
+    </div>
+    <div class="rw-stage">
+    <div class="rw-wall" id="rw-wall">
+      <article class="rw-card">
+        <div class="rw-card-top"><div class="rw-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><span class="rw-g" aria-label="Google review"></span></div>
+        <h3 class="rw-title">Dog smell completely gone</h3>
+        <p class="rw-text">I have two large dogs and the smell in my backyard was unbearable. TurfGlow came out and the dog smell is completely gone &mdash; I mean completely. Worth every single penny.</p>
+        <div class="rw-author"><div class="rw-avatar">JM</div><div><div class="rw-name">Jennifer M.</div><div class="rw-date">August 2026</div></div></div>
+      </article>
+      <article class="rw-card">
+        <div class="rw-card-top"><div class="rw-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><span class="rw-g" aria-label="Google review"></span></div>
+        <h3 class="rw-title">Looks brand new</h3>
+        <p class="rw-text">800 square feet done in under 2 hours and it looks absolutely brand new. Professional, on time, explained everything. I&#39;ve already booked them for quarterly maintenance.</p>
+        <div class="rw-author"><div class="rw-avatar">TR</div><div><div class="rw-name">Tyler R.</div><div class="rw-date">July 2026</div></div></div>
+      </article>
+      <article class="rw-card">
+        <div class="rw-card-top"><div class="rw-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><span class="rw-g" aria-label="Google review"></span></div>
+        <h3 class="rw-title">Better than the day it was installed</h3>
+        <p class="rw-text">3 kids and 2 dogs &mdash; our turf needed serious help. After TurfGlow it looks better than when it was first installed. My kids play on it every day. This company is the real deal.</p>
+        <div class="rw-author"><div class="rw-avatar">LK</div><div><div class="rw-name">Lisa K.</div><div class="rw-date">July 2026</div></div></div>
+      </article>
+      <article class="rw-card">
+        <div class="rw-card-top"><div class="rw-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><span class="rw-g" aria-label="Google review"></span></div>
+        <h3 class="rw-title">Safe for the kids again</h3>
+        <p class="rw-text">My turf looks incredible. They sanitized everything and used pet-safe products. I feel totally comfortable letting my kids play on it now. Will absolutely be using them again.</p>
+        <div class="rw-author"><div class="rw-avatar">MS</div><div><div class="rw-name">Maria S.</div><div class="rw-date">June 2026</div></div></div>
+      </article>
+      <article class="rw-card">
+        <div class="rw-card-top"><div class="rw-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><span class="rw-g" aria-label="Google review"></span></div>
+        <h3 class="rw-title">Every stain removed</h3>
+        <p class="rw-text">Fast, professional, and the results speak for themselves. Our turf had stains from years of use and they removed every single one. TurfGlow is by far the best.</p>
+        <div class="rw-author"><div class="rw-avatar">DK</div><div><div class="rw-name">David K.</div><div class="rw-date">June 2026</div></div></div>
+      </article>
+      <article class="rw-card">
+        <div class="rw-card-top"><div class="rw-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><span class="rw-g" aria-label="Google review"></span></div>
+        <h3 class="rw-title">Totally transformed</h3>
+        <p class="rw-text">Outstanding work. They completely transformed our turf. The infill renewal made it feel brand new. We&#39;re on the monthly plan now and couldn&#39;t be happier.</p>
+        <div class="rw-author"><div class="rw-avatar">AR</div><div><div class="rw-name">Ashley R.</div><div class="rw-date">May 2026</div></div></div>
+      </article>
+      <article class="rw-card">
+        <div class="rw-card-top"><div class="rw-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><span class="rw-g" aria-label="Google review"></span></div>
+        <h3 class="rw-title">Quick, easy, no complaints</h3>
+        <p class="rw-text">Booked online in about a minute and they were out two days later. The enzyme treatment knocked out the ammonia smell by the dog run. No complaints at all.</p>
+        <div class="rw-author"><div class="rw-avatar">BC</div><div><div class="rw-name">Brian C.</div><div class="rw-date">May 2026</div></div></div>
+      </article>
+      <article class="rw-card">
+        <div class="rw-card-top"><div class="rw-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><span class="rw-g" aria-label="Google review"></span></div>
+        <h3 class="rw-title">Blades standing tall again</h3>
+        <p class="rw-text">We host a lot in the backyard and the turf was looking flat and dingy. The power broom and grooming brought the blades right back up. Looks like new turf.</p>
+        <div class="rw-author"><div class="rw-avatar">NP</div><div><div class="rw-name">Nicole P.</div><div class="rw-date">April 2026</div></div></div>
+      </article>
+    </div>
     </div>
   </div>
 </section>
 <script>
 (function(){
-  var track = document.getElementById('reviews-track');
-  if (!track) return;
-  var viewport = track.parentElement;
-  var thumb = document.getElementById('reviews-progress-thumb');
-  var idx = 0;
-  var paused = false;
-  function visiblePerView(){
+  var wall = document.getElementById('rw-wall');
+  if (!wall) return;
+  var cards = Array.prototype.slice.call(wall.children);
+  var built = 0;
+  function colCount(){
     var w = window.innerWidth;
-    if (w <= 560) return 1;
-    if (w <= 900) return 2;
-    return 3;
+    return w <= 640 ? 1 : (w <= 980 ? 2 : 3);
   }
-  function updateProgress(){
-    if (!thumb) return;
-    var total = track.children.length;
-    if (!total) return;
-    var perView = visiblePerView();
-    // total scrollable width = scrollWidth - clientWidth; ratio of scrollLeft maps thumb position
-    var maxScroll = viewport.scrollWidth - viewport.clientWidth;
-    var ratio = maxScroll > 0 ? Math.min(1, Math.max(0, viewport.scrollLeft / maxScroll)) : 0;
-    var widthPct = Math.min(100, (perView / total) * 100);
-    var leftPct = (100 - widthPct) * ratio;
-    thumb.style.width = widthPct + '%';
-    thumb.style.left = leftPct + '%';
+  function build(){
+    var n = colCount();
+    if (n === built) return;
+    built = n;
+    wall.innerHTML = '';
+    var cols = [];
+    for (var i = 0; i < n; i++) {
+      var col = document.createElement('div');
+      col.className = 'rw-col';
+      col.style.setProperty('--rw-speed', (46 + i * 9) + 's');
+      if (i % 2 === 1) col.classList.add('rw-col-down');
+      var track = document.createElement('div');
+      track.className = 'rw-track';
+      col.appendChild(track);
+      wall.appendChild(col);
+      cols.push(track);
+    }
+    cards.forEach(function(c, i){ cols[i % n].appendChild(c); });
+    // Duplicate each column's cards so the loop is seamless
+    cols.forEach(function(track){
+      Array.prototype.slice.call(track.children).forEach(function(c){
+        var clone = c.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        clone.classList.add('rw-clone');
+        track.appendChild(clone);
+      });
+    });
+    wall.classList.add('rw-ready');
   }
-  function tick(){
-    if (paused) return;
-    var cards = track.children;
-    var perView = visiblePerView();
-    var total = cards.length;
-    if (total <= perView) return;
-    idx = (idx + 1) % (total - perView + 1);
-    var card = cards[0];
-    var step = card.getBoundingClientRect().width + 16; // gap = 1rem
-    viewport.scrollTo({ left: step * idx, behavior: 'smooth' });
-  }
-  setInterval(tick, 5000);
-  // Pause auto-cycle once the user swipes/scrolls so it doesn't fight them.
-  ['touchstart','wheel','pointerdown'].forEach(function(ev){
-    viewport.addEventListener(ev, function(){ paused = true; }, { passive: true });
-  });
-  viewport.addEventListener('scroll', updateProgress, { passive: true });
-  window.addEventListener('resize', function(){
-    idx = 0;
-    viewport.scrollTo({ left: 0 });
-    updateProgress();
-  });
-  updateProgress();
+  build();
+  var t;
+  window.addEventListener('resize', function(){ clearTimeout(t); t = setTimeout(build, 150); });
 })();
 </script>
 
