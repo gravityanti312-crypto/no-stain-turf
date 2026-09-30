@@ -2121,6 +2121,150 @@
     .wb-promise .wb-photo { flex: none; margin: 10px 10px 0; min-height: 0; aspect-ratio: 16 / 10; }
   }
 </style>
+<style>
+  /* ── Turf Club: one clear winner (Monthly) + expectation-setting ── */
+  #membership {
+    position: relative; padding: 6rem 0 5.5rem;
+    background:
+      radial-gradient(38% 45% at 8% 0%, rgba(253,229,10,0.20), transparent 70%),
+      radial-gradient(45% 55% at 96% 18%, rgba(133,204,126,0.35), transparent 70%),
+      linear-gradient(180deg, #f3faf4 0%, #e9f5eb 100%);
+  }
+  .tc-head { text-align: center; max-width: 760px; margin: 0 auto; }
+  .tc-title { font-size: clamp(2.6rem, 6.5vw, 4.4rem); font-weight: 900; color: #0f2a1b; letter-spacing: -0.03em; line-height: 1; }
+  .tc-hl { position: relative; z-index: 0; color: #23804b; white-space: nowrap; }
+  .tc-hl::after { content: ""; position: absolute; z-index: -1; left: -0.06em; right: -0.06em; bottom: 0.04em; height: 0.3em; background: #fde50a; border-radius: 6px; transform: rotate(-1.2deg); }
+  .tc-sub { font-size: clamp(1.1rem, 2vw, 1.35rem); font-weight: 800; color: #195c36; margin-top: 0.7rem; }
+  .tc-founding {
+    display: inline-flex; align-items: center; gap: 0.65rem; margin-top: 1.4rem; text-align: left;
+    background: #0f2a1b; color: rgba(255,255,255,0.88); border-radius: 50px; padding: 0.65rem 1.25rem 0.65rem 0.7rem;
+    font-size: 0.95rem; line-height: 1.35; box-shadow: 0 10px 26px rgba(15,42,27,0.2);
+  }
+  .tc-founding strong { color: #fde50a; }
+  .tc-founding-star { flex: 0 0 30px; width: 30px; height: 30px; border-radius: 50%; background: #fde50a; color: #0f2a1b; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; }
+
+  .tc-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 1.5rem; max-width: 1120px; margin: 3rem auto 0; align-items: stretch; }
+  .tc-hero {
+    position: relative; border-radius: 30px; padding: 2.4rem 2.2rem 2rem; color: #ffffff;
+    background: radial-gradient(90% 60% at 0% 0%, rgba(133,204,126,0.28), transparent 60%), linear-gradient(160deg, #1d6b3f 0%, #133f27 55%, #0c2416 100%);
+    border: 2px solid rgba(253,229,10,0.6);
+    box-shadow: 0 0 0 6px rgba(253,229,10,0.12), 0 30px 70px rgba(15,42,27,0.35);
+  }
+  .tc-ribbon {
+    display: inline-block; background: linear-gradient(135deg, #fde50a, #f5c518); color: #0f2a1b; font-weight: 900; font-size: 0.74rem;
+    letter-spacing: 0.1em; text-transform: uppercase; padding: 0.45rem 0.9rem; border-radius: 50px; margin-bottom: 1.1rem;
+  }
+  .tc-member-card {
+    position: absolute; top: -40px; right: 22px; width: 152px; height: 96px; border-radius: 12px; padding: 10px 12px;
+    display: flex; flex-direction: column; justify-content: space-between; color: #0f2a1b; transform: rotate(8deg);
+    background: linear-gradient(135deg, #fff7b8 0%, #fde50a 38%, #f2b705 100%); box-shadow: 0 16px 32px rgba(0,0,0,0.35);
+  }
+  .tc-mc-top { display: flex; justify-content: space-between; align-items: center; font-weight: 900; font-size: 13px; }
+  .tc-mc-chip { width: 24px; height: 17px; border-radius: 4px; background: linear-gradient(135deg, #f3e39a, #b8952b); box-shadow: inset 0 0 0 1px rgba(0,0,0,0.18); }
+  .tc-mc-name { font-weight: 900; font-size: 15px; letter-spacing: 0.1em; }
+  .tc-mc-sub { font-size: 8.5px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.75; }
+  .tc-plan-name { font-size: 1.5rem; font-weight: 900; letter-spacing: -0.01em; }
+  .tc-plan-tag { color: rgba(255,255,255,0.75); font-size: 1rem; margin-top: 0.15rem; }
+  .tc-amount { display: flex; flex-direction: column; margin: 1.1rem 0 1.25rem; }
+  .tc-save { font-size: 0.8rem; font-weight: 900; letter-spacing: 0.16em; text-transform: uppercase; color: #85cc7e; }
+  .tc-dollars { font-size: clamp(3.2rem, 6vw, 4.5rem); font-weight: 900; color: #fde50a; line-height: 1; letter-spacing: -0.02em; }
+  .tc-per { font-size: 0.8rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.75); margin-top: 0.3rem; }
+  .tc-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.6rem; }
+  .tc-list li { display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.98rem; line-height: 1.4; color: #24372b; }
+  .tc-check { flex: 0 0 22px; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #e3f3e5; color: #23804b; margin-top: -1px; }
+  .tc-list--light li { color: rgba(255,255,255,0.92); }
+  .tc-list--light .tc-check { background: rgba(133,204,126,0.22); color: #a8e0a2; }
+  .tc-bonus-head { display: flex; align-items: center; gap: 0.8rem; margin: 1.5rem 0 0.9rem; }
+  .tc-bonus-head span { font-size: 0.8rem; font-weight: 900; letter-spacing: 0.16em; text-transform: uppercase; color: #fde50a; white-space: nowrap; }
+  .tc-bonus-head::after { content: ""; flex: 1; height: 1px; background: rgba(253,229,10,0.35); }
+  .tc-bonuses { display: grid; gap: 0.7rem; }
+  .tc-bonus { display: flex; gap: 0.85rem; align-items: flex-start; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 0.85rem 1rem; }
+  .tc-bonus-ico { flex: 0 0 40px; width: 40px; height: 40px; border-radius: 12px; background: #fde50a; color: #0f2a1b; display: flex; align-items: center; justify-content: center; }
+  .tc-bonus div strong { display: block; font-size: 1rem; color: #ffffff; }
+  .tc-bonus div span { display: block; font-size: 0.88rem; line-height: 1.45; color: rgba(255,255,255,0.75); margin-top: 0.1rem; }
+  .tc-btn { display: block; width: 100%; border: 0; cursor: pointer; font-family: inherit; font-weight: 900; border-radius: 50px; transition: transform 0.2s, box-shadow 0.2s, background 0.2s; }
+  .tc-btn--gold {
+    position: relative; overflow: hidden; margin-top: 1.5rem; padding: 1.1rem 1.5rem; font-size: 1.1rem; color: #0f2a1b;
+    background: linear-gradient(135deg, #fde50a 0%, #f5c518 100%); box-shadow: 0 12px 28px rgba(253,229,10,0.3);
+  }
+  .tc-btn--gold:hover { transform: translateY(-2px); box-shadow: 0 16px 34px rgba(253,229,10,0.42); }
+  .tc-btn--gold::after {
+    content: ""; position: absolute; top: 0; bottom: 0; left: -60%; width: 40%; transform: skewX(-20deg);
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.65), transparent); animation: tc-shine 4.5s ease-in-out infinite;
+  }
+  @keyframes tc-shine { 0%, 65% { left: -60%; } 100% { left: 130%; } }
+  .tc-micro { text-align: center; font-size: 0.82rem; color: rgba(255,255,255,0.65); margin-top: 0.7rem; }
+
+  .tc-side { display: grid; gap: 1.5rem; }
+  .tc-plan { background: #ffffff; border: 1px solid #dcebdf; border-radius: 26px; padding: 1.6rem 1.6rem 1.5rem; box-shadow: 0 10px 30px rgba(15,42,27,0.06); display: flex; flex-direction: column; }
+  .tc-plan .tc-plan-name { font-size: 1.3rem; color: #0f2a1b; }
+  .tc-plan-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; }
+  .tc-best { font-size: 0.85rem; font-weight: 700; color: #23804b; margin-top: 0.15rem; }
+  .tc-amount-sm { text-align: right; display: flex; flex-direction: column; flex: 0 0 auto; }
+  .tc-dollars-sm { font-size: 2rem; font-weight: 900; color: #23804b; line-height: 1; letter-spacing: -0.02em; }
+  .tc-amount-sm .tc-per { color: #6b7c6b; font-size: 0.7rem; }
+  .tc-plan .tc-list li { font-size: 0.93rem; }
+  .tc-nobonus { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 1rem 0 1.2rem; padding-top: 0.9rem; border-top: 1px dashed #dcebdf; }
+  .tc-nobonus-label { font-size: 0.72rem; font-weight: 900; letter-spacing: 0.12em; text-transform: uppercase; color: #9aa89c; margin-right: 0.2rem; }
+  .tc-x { font-size: 0.8rem; color: #9aa89c; text-decoration: line-through; background: #f3f5f3; border-radius: 50px; padding: 0.2rem 0.6rem; }
+  .tc-btn--ghost { margin-top: auto; padding: 0.85rem 1.2rem; font-size: 0.95rem; color: #195c36; background: #ffffff; border: 2px solid #23804b; }
+  .tc-btn--ghost:hover { background: #23804b; color: #ffffff; }
+
+  .tc-onetime {
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem; max-width: 1120px; margin: 1.5rem auto 0;
+    border: 2px dashed #c9dfcd; border-radius: 20px; padding: 1rem 1.4rem; color: #4a5f50; font-size: 0.97rem; background: rgba(255,255,255,0.6);
+  }
+  .tc-onetime strong { color: #0f2a1b; }
+  .tc-onetime-btn { flex: 0 0 auto; background: none; border: 0; cursor: pointer; font-family: inherit; font-weight: 800; color: #23804b; font-size: 0.95rem; }
+  .tc-onetime-btn:hover { text-decoration: underline; }
+
+  .tc-how { max-width: 1120px; margin: 3.5rem auto 0; background: #ffffff; border-radius: 28px; padding: 2.4rem 2.2rem; box-shadow: 0 14px 40px rgba(15,42,27,0.07); border: 1px solid #e2efe5; }
+  .tc-how-title { text-align: center; font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 900; color: #0f2a1b; letter-spacing: -0.02em; }
+  .tc-how-sub { text-align: center; color: #4a5f50; margin: 0.4rem 0 1.8rem; }
+  .tc-how-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem 1.8rem; }
+  .tc-how-item { display: flex; gap: 0.9rem; align-items: flex-start; }
+  .tc-how-num { flex: 0 0 38px; width: 38px; height: 38px; border-radius: 12px; background: #0f2a1b; color: #fde50a; font-weight: 900; display: flex; align-items: center; justify-content: center; }
+  .tc-how-item div strong { display: block; color: #0f2a1b; font-size: 1.02rem; margin-bottom: 0.2rem; }
+  .tc-how-item div span { display: block; color: #4a5f50; font-size: 0.92rem; line-height: 1.55; }
+  .tc-fine { text-align: center; color: #6b7c6b; font-size: 0.88rem; margin-top: 1.5rem; }
+
+  /* Quote form: gold tag + bonus lines on Monthly */
+  .tq-card-tag--gold { background: #fde50a; color: #0f2a1b; }
+  .tq-perk--bonus { color: #195c36; font-weight: 700; }
+  .tq-perk--bonus::before { content: '+'; color: #b58f00; }
+
+  /* Top-of-page stat + bottom CTA */
+  a.hero-stat--link { text-decoration: none; color: inherit; }
+  a.hero-stat--link .hero-stat-num { color: #fde50a; }
+  a.hero-stat--link:hover .hero-stat-label { color: #ffffff; }
+  .footer-cta-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
+  .footer-cta-btn--gold { background: #fde50a; color: #0f2a1b; }
+  .footer-cta-btn--gold:hover { background: #ffffff; color: #0f2a1b; }
+
+  @media (max-width: 980px) {
+    .tc-grid { grid-template-columns: 1fr; max-width: 620px; }
+    .tc-side { grid-template-columns: 1fr 1fr; }
+    .tc-how-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    .footer-cta-actions { width: 100%; flex-direction: column; }
+  }
+  @media (max-width: 640px) {
+    #membership { padding: 4rem 0; }
+    .tc-founding { font-size: 0.86rem; border-radius: 18px; }
+    .tc-hero { padding: 2rem 1.3rem 1.6rem; border-radius: 24px; }
+    .tc-member-card { width: 112px; height: 72px; top: -22px; right: 14px; padding: 7px 9px; border-radius: 9px; }
+    .tc-mc-top { font-size: 10px; } .tc-mc-chip { width: 18px; height: 13px; }
+    .tc-mc-name { font-size: 11px; } .tc-mc-sub { font-size: 6.5px; }
+    .tc-ribbon { font-size: 0.66rem; margin-top: 0.4rem; }
+    .tc-side { grid-template-columns: 1fr; }
+    .tc-plan { padding: 1.35rem 1.2rem; }
+    .tc-onetime { flex-direction: column; align-items: flex-start; }
+    .tc-how { padding: 1.8rem 1.2rem; border-radius: 22px; }
+    .tc-how-grid { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) { .tc-btn--gold::after { animation: none; display: none; } }
+</style>
 </head>
 <body>
 
@@ -2185,10 +2329,10 @@
         <a href="tel:4802941408" class="btn-ghost">&#128222; (480) 294-1408</a>
       </div>
       <div class="hero-stats">
-        <div class="hero-stat">
-          <span class="hero-stat-num">2,000+</span>
-          <span class="hero-stat-label">Lawns Cleaned</span>
-        </div>
+        <a href="#membership" class="hero-stat hero-stat--link">
+          <span class="hero-stat-num">$150 OFF</span>
+          <span class="hero-stat-label">Every Turf Club Cleaning &rarr;</span>
+        </a>
         <div class="hero-stat-divider"></div>
         <div class="hero-stat">
           <span class="hero-stat-num">5.0&#9733;</span>
@@ -2227,7 +2371,7 @@
         <div class="media-frame" data-type="video" data-src="" data-sound="1"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Main video goes here</span><span class="media-slot-note">Wordless TurfGlow video &mdash; logo, crew, the work, the finished yard. 30&ndash;60 sec, filmed on your phone.</span></div></div>
         <div class="watch-badge">
           <span class="watch-badge-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span>
-          <span><strong>TurfGlow Guarantee</strong><br />Odor back? We re-treat free.</span>
+          <span><strong>TurfGlow Guarantee</strong><br />Smell not gone? We re-treat free.</span>
         </div>
       </div>
     </div>
@@ -2645,58 +2789,82 @@
   </div>
 </section>
 
-<section id="membership" style="background:linear-gradient(160deg,#f0faf2 0%,#f4f9f4 100%);padding:6rem 0;">
+<section id="membership">
   <div class="container">
-    <div style="text-align:center;margin-bottom:2rem;">
-      <div class="section-label" style="color:var(--teal);">Turf Club Plans</div>
-      <div class="glass-save-big">SAVE UP TO $150</div>
-      <div class="glass-save-sub">On Every Cleaning With A TurfGlow Plan</div>
+    <div class="tc-head">
+      <div class="section-label">Turf Club Plans</div>
+      <h2 class="tc-title">SAVE UP TO <span class="tc-hl">$150</span></h2>
+      <p class="tc-sub">On Every Cleaning With A TurfGlow Plan</p>
+      <div class="tc-founding"><span class="tc-founding-star" aria-hidden="true">&#9733;</span><span><strong>Founding Members:</strong> the first 50 members keep their member price for as long as they stay.</span></div>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;">
-      <div class="glass-mc">
-        <div class="glass-mc-tier">Monthly</div>
-        <div class="glass-mc-save">Save</div>
-        <div class="glass-mc-discount">$150 OFF</div>
-        <div class="glass-mc-label">Per Cleaning</div>
-        <hr class="glass-mc-divider" />
-        <ul class="glass-mc-features">
-          <li class="glass-mc-feature"><span class="glass-mc-check yes">&#10003;</span>12 Cleanings Per Year</li>
-          <li class="glass-mc-feature"><span class="glass-mc-check yes">&#10003;</span>Auto-Scheduled &mdash; No Calling To Book</li>
-          <li class="glass-mc-feature"><span class="glass-mc-check yes">&#10003;</span>Price Locked For 12 Months</li>
-          <li class="glass-mc-tagline">Best Results &amp; Best Value</li>
+
+    <div class="tc-grid">
+      <article class="tc-hero">
+        <div class="tc-member-card" aria-hidden="true">
+          <div class="tc-mc-top"><span>TurfGlow</span><span class="tc-mc-chip"></span></div>
+          <div><div class="tc-mc-name">TURF CLUB</div><div class="tc-mc-sub">Founding Member</div></div>
+        </div>
+        <div class="tc-ribbon">&#9733; Recommended for dog homes</div>
+        <div class="tc-plan-name">Monthly</div>
+        <div class="tc-plan-tag">Always fresh. Always party-ready.</div>
+        <div class="tc-amount"><span class="tc-save">Save</span><span class="tc-dollars">$150 OFF</span><span class="tc-per">Every cleaning</span></div>
+        <ul class="tc-list tc-list--light">
+          <li><span class="tc-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>12 cleanings a year</li>
+          <li><span class="tc-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Your own TurfGlow day &mdash; auto-scheduled</li>
+          <li><span class="tc-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Reminder texts 2 weeks &amp; 2 days before</li>
+          <li><span class="tc-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Price locked for 12 months</li>
         </ul>
-        <button class="glass-mc-btn" onclick="openQuoteModal()">GET A FREE QUOTE</button>
-      </div>
-      <div class="glass-mc featured">
-        <div class="glass-mc-tier">Every Other Month</div>
-        <div class="glass-mc-save">Save</div>
-        <div class="glass-mc-discount">$100 OFF</div>
-        <div class="glass-mc-label">Per Cleaning</div>
-        <hr class="glass-mc-divider" />
-        <ul class="glass-mc-features">
-          <li class="glass-mc-feature"><span class="glass-mc-check yes">&#10003;</span>6 Cleanings Per Year</li>
-          <li class="glass-mc-feature"><span class="glass-mc-check yes">&#10003;</span>Auto-Scheduled &mdash; No Calling To Book</li>
-          <li class="glass-mc-feature"><span class="glass-mc-check yes">&#10003;</span>Price Locked For 12 Months</li>
-          <li class="glass-mc-tagline">Recommended For Pet Homes</li>
-        </ul>
-        <button class="glass-mc-btn" onclick="openQuoteModal()">GET A FREE QUOTE</button>
-      </div>
-      <div class="glass-mc">
-        <div class="glass-mc-tier">Quarterly</div>
-        <div class="glass-mc-save">Save</div>
-        <div class="glass-mc-discount">$50 OFF</div>
-        <div class="glass-mc-label">Per Cleaning</div>
-        <hr class="glass-mc-divider" />
-        <ul class="glass-mc-features">
-          <li class="glass-mc-feature"><span class="glass-mc-check yes">&#10003;</span>4 Cleanings Per Year</li>
-          <li class="glass-mc-feature"><span class="glass-mc-check yes">&#10003;</span>Auto-Scheduled &mdash; No Calling To Book</li>
-          <li class="glass-mc-feature"><span class="glass-mc-check yes">&#10003;</span>Price Locked For 12 Months</li>
-          <li class="glass-mc-tagline">Light Maintenance</li>
-        </ul>
-        <button class="glass-mc-btn" onclick="openQuoteModal()">GET A FREE QUOTE</button>
+        <div class="tc-bonus-head"><span>+ 3 Free Bonuses</span></div>
+        <div class="tc-bonuses">
+          <div class="tc-bonus"><span class="tc-bonus-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><div><strong>Photo Report</strong><span>Before &amp; after photos texted after every visit &mdash; know it&rsquo;s done, even when you&rsquo;re not home.</span></div></div>
+          <div class="tc-bonus"><span class="tc-bonus-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><div><strong>7-Day Fresh Guarantee</strong><span>Dog accident, monsoon or dust storm? If it smells or looks off within 7 days of your clean, we come back free.</span></div></div>
+          <div class="tc-bonus"><span class="tc-bonus-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><ellipse cx="7.5" cy="8" rx="1.9" ry="2.5"/><ellipse cx="12" cy="6" rx="1.9" ry="2.6"/><ellipse cx="16.5" cy="8" rx="1.9" ry="2.5"/><ellipse cx="5" cy="12.8" rx="1.7" ry="2.1"/><path d="M12 11.2c2.9 0 5.3 2.5 5.3 5 0 2-1.6 3-3.2 3-1 0-1.5-.5-2.1-.5s-1.1.5-2.1.5c-1.6 0-3.2-1-3.2-3 0-2.5 2.4-5 5.3-5z"/></svg></span><div><strong>Free Pet Waste Pickup</strong><span>Every visit &mdash; normally from $50.</span></div></div>
+        </div>
+        <button type="button" class="tc-btn tc-btn--gold" onclick="openQuoteModal('monthly')">Join Monthly &rarr;</button>
+        <div class="tc-micro">12-month plan &middot; No cancellation fees</div>
+      </article>
+
+      <div class="tc-side">
+        <article class="tc-plan">
+          <div class="tc-plan-row">
+            <div><div class="tc-plan-name">Every Other Month</div><div class="tc-best">Best for light pet use</div></div>
+            <div class="tc-amount-sm"><span class="tc-dollars-sm">$100 OFF</span><span class="tc-per">Every cleaning</span></div>
+          </div>
+          <ul class="tc-list">
+            <li><span class="tc-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>6 cleanings a year</li>
+            <li><span class="tc-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Auto-scheduled + reminder texts</li>
+            <li><span class="tc-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Price locked for 12 months</li>
+          </ul>
+          <div class="tc-nobonus"><span class="tc-nobonus-label">No bonuses</span><span class="tc-x">Photo Report</span><span class="tc-x">7-Day Fresh Guarantee</span><span class="tc-x">Free Pet Waste Pickup</span></div>
+          <button type="button" class="tc-btn tc-btn--ghost" onclick="openQuoteModal('eom')">Choose Every Other Month</button>
+        </article>
+        <article class="tc-plan">
+          <div class="tc-plan-row">
+            <div><div class="tc-plan-name">Quarterly</div><div class="tc-best">Best for yards without pets</div></div>
+            <div class="tc-amount-sm"><span class="tc-dollars-sm">$50 OFF</span><span class="tc-per">Every cleaning</span></div>
+          </div>
+          <ul class="tc-list">
+            <li><span class="tc-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>4 cleanings a year</li>
+            <li><span class="tc-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Auto-scheduled + reminder texts</li>
+            <li><span class="tc-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Price locked for 12 months</li>
+          </ul>
+          <div class="tc-nobonus"><span class="tc-nobonus-label">No bonuses</span><span class="tc-x">Photo Report</span><span class="tc-x">7-Day Fresh Guarantee</span><span class="tc-x">Free Pet Waste Pickup</span></div>
+          <button type="button" class="tc-btn tc-btn--ghost" onclick="openQuoteModal('quarterly')">Choose Quarterly</button>
+        </article>
       </div>
     </div>
-    <p style="text-align:center;margin-top:2rem;color:var(--text-muted);font-size:15px;">Prefer a one-time cleaning? That&rsquo;s available too. Plan savings start after your first cleaning; minimum $100 per visit. Your exact price is given on your free quote call.</p>
+
+    <div class="tc-onetime">
+      <div><strong>Just need one clean?</strong> One-time cleanings are full price &mdash; no discount and no bonuses.</div>
+      <button type="button" class="tc-onetime-btn" onclick="openQuoteModal('onetime')">Book a one-time clean &rsaquo;</button>
+    </div>
+
+    <div class="tc-how">
+      <h3 class="tc-how-title">How the Turf Club Works</h3>
+      <p class="tc-how-sub">No surprises &mdash; here&rsquo;s exactly what you&rsquo;re signing up for.</p>
+      <div class="tc-how-grid"><div class="tc-how-item"><span class="tc-how-num">1</span><div><strong>We reset your turf</strong><span>Your first clean brings it back to fresh, and member savings start with your next visit. Already had a one-time clean with us? Join within 7 days and it counts as your first visit.</span></div></div><div class="tc-how-item"><span class="tc-how-num">2</span><div><strong>You get your own TurfGlow day</strong><span>We auto-schedule every visit and text you 2 weeks and 2 days before. Date doesn&rsquo;t work? Just text us.</span></div></div><div class="tc-how-item"><span class="tc-how-num">3</span><div><strong>Easy, automatic billing</strong><span>Card on file. Your first clean is charged after it&rsquo;s done, then on the 1st of each month you have a visit.</span></div></div><div class="tc-how-item"><span class="tc-how-num">4</span><div><strong>Price locked for 12 months</strong><span>After that, your plan simply keeps going until you cancel &mdash; nothing to renew.</span></div></div><div class="tc-how-item"><span class="tc-how-num">5</span><div><strong>No cancellation fees</strong><span>Cancel before your 12 months are up and we just ask you to pay back one visit&rsquo;s discount. Moving out of the Valley? Cancel free.</span></div></div><div class="tc-how-item"><span class="tc-how-num">6</span><div><strong>Away for the summer?</strong><span>Your visits keep going while you travel, so you come home to fresh turf.</span></div></div></div>
+    </div>
+    <p class="tc-fine">Minimum $100 per visit. Your exact price is given on your free quote call.</p>
   </div>
 </section>
 
@@ -2836,7 +3004,19 @@
       </details>
       <details class="faq-item">
         <summary>How do Turf Club plans work?</summary>
-        <p>Pick monthly, every-other-month, or quarterly cleanings and save $150, $100, or $50 on every cleaning. Plans are auto-scheduled and your price is locked for 12 months. Savings start after your first cleaning, with a $100 minimum per visit. One-time cleanings are always available too.</p>
+        <p>Pick Monthly, Every Other Month, or Quarterly and save $150, $100, or $50 on every cleaning. Monthly also comes with three free bonuses: a photo report after every visit, our 7-Day Fresh Guarantee, and free pet waste pickup. Every plan is auto-scheduled with reminder texts, and your price is locked for 12 months. Savings start after your first cleaning, with a $100 minimum per visit. One-time cleanings are always available too.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Is there a contract? Can I cancel?</summary>
+        <p>Plans are a simple 12-month agreement so we can hold your spot on our schedule and lock in your price. There are no cancellation fees &mdash; if you cancel before your 12 months are up, we just ask you to pay back one visit&rsquo;s discount. Moving out of the Valley? You can cancel free. After 12 months, your plan keeps going until you cancel.</p>
+      </details>
+      <details class="faq-item">
+        <summary>When will I be charged?</summary>
+        <p>We keep a card on file so you never have to deal with invoices. Your first cleaning is charged after it&rsquo;s done. After that, you&rsquo;re charged on the 1st of each month you have a visit, and we text you 2 weeks and 2 days before every visit.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Do I need to be home?</summary>
+        <p>No &mdash; as long as we can get into your backyard. Monthly members get before-and-after photos texted when we&rsquo;re done, so you know it&rsquo;s taken care of.</p>
       </details>
       <details class="faq-item">
         <summary>Is it safe for my pets and kids?</summary>
@@ -3028,7 +3208,10 @@
         <div class="footer-cta-title">READY FOR TURF THAT LOOKS AND SMELLS BRAND NEW?</div>
         <div class="footer-cta-guarantee"><span class="footer-cta-check">✓</span> 100% TurfGlow Guarantee</div>
       </div>
-      <a href="javascript:void(0)" onclick="openQuoteModal()" class="footer-cta-btn">GET A FREE QUOTE</a>
+      <div class="footer-cta-actions">
+        <a href="javascript:void(0)" onclick="openQuoteModal('monthly')" class="footer-cta-btn footer-cta-btn--gold">JOIN THE TURF CLUB</a>
+        <a href="javascript:void(0)" onclick="openQuoteModal()" class="footer-cta-btn">GET A FREE QUOTE</a>
+      </div>
     </div>
   </div>
   <div class="container">
@@ -3171,14 +3354,14 @@
         <h2 class="tq-h">Pick your frequency</h2>
         <div class="tq-freq-note" id="tq-freq-note" hidden>Full Restore is a one-time reset. Pick how often we&rsquo;ll keep it looking new with Deep Cleans afterward.</div>
         <div class="tq-cards tq-freq">
-          <button type="button" class="tq-card" data-group="frequency" data-value="Monthly" onclick="tqPick(this)"><span class="tq-card-tag">Best value</span><svg class="tq-card-ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="10" y="14" width="44" height="42" rx="6"/><path d="M10 26h44"/><path d="M21 8v10M43 8v10"/><text x="32" y="47" text-anchor="middle" font-size="15" font-weight="800" fill="currentColor" stroke="none" font-family="Inter,Arial,sans-serif">1 mo</text></svg><span class="tq-card-title">Monthly</span><span class="tq-freq-amt">$150 off</span><span class="tq-freq-per">Per cleaning</span><span class="tq-perks"><span class="tq-perk">12 cleanings a year</span><span class="tq-perk">Auto-scheduled &mdash; no calling to book</span><span class="tq-perk">Price locked for 12 months</span></span></button>
-          <button type="button" class="tq-card" data-group="frequency" data-value="Every other month" onclick="tqPick(this)"><span class="tq-card-tag">Recommended</span><svg class="tq-card-ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="10" y="14" width="44" height="42" rx="6"/><path d="M10 26h44"/><path d="M21 8v10M43 8v10"/><text x="32" y="47" text-anchor="middle" font-size="15" font-weight="800" fill="currentColor" stroke="none" font-family="Inter,Arial,sans-serif">2 mo</text></svg><span class="tq-card-title">Every other month</span><span class="tq-freq-amt">$100 off</span><span class="tq-freq-per">Per cleaning</span><span class="tq-perks"><span class="tq-perk">6 cleanings a year</span><span class="tq-perk">Auto-scheduled &mdash; no calling to book</span><span class="tq-perk">Price locked for 12 months</span></span></button>
-          <button type="button" class="tq-card" data-group="frequency" data-value="Quarterly" onclick="tqPick(this)"><svg class="tq-card-ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="10" y="14" width="44" height="42" rx="6"/><path d="M10 26h44"/><path d="M21 8v10M43 8v10"/><text x="32" y="47" text-anchor="middle" font-size="15" font-weight="800" fill="currentColor" stroke="none" font-family="Inter,Arial,sans-serif">3 mo</text></svg><span class="tq-card-title">Quarterly</span><span class="tq-freq-amt">$50 off</span><span class="tq-freq-per">Per cleaning</span><span class="tq-perks"><span class="tq-perk">4 cleanings a year</span><span class="tq-perk">Auto-scheduled &mdash; no calling to book</span><span class="tq-perk">Price locked for 12 months</span></span></button>
+          <button type="button" class="tq-card" data-group="frequency" data-value="Monthly" onclick="tqPick(this)"><span class="tq-card-tag tq-card-tag--gold">Recommended</span><svg class="tq-card-ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="10" y="14" width="44" height="42" rx="6"/><path d="M10 26h44"/><path d="M21 8v10M43 8v10"/><text x="32" y="47" text-anchor="middle" font-size="15" font-weight="800" fill="currentColor" stroke="none" font-family="Inter,Arial,sans-serif">1 mo</text></svg><span class="tq-card-title">Monthly</span><span class="tq-freq-amt">$150 off</span><span class="tq-freq-per">Per cleaning</span><span class="tq-perks"><span class="tq-perk">12 cleanings a year</span><span class="tq-perk">Auto-scheduled + reminder texts</span><span class="tq-perk">Price locked for 12 months</span><span class="tq-perk tq-perk--bonus">Photo report after every visit</span><span class="tq-perk tq-perk--bonus">7-Day Fresh Guarantee</span><span class="tq-perk tq-perk--bonus">Free pet waste pickup</span></span></button>
+          <button type="button" class="tq-card" data-group="frequency" data-value="Every other month" onclick="tqPick(this)"><span class="tq-card-tag">Light pet use</span><svg class="tq-card-ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="10" y="14" width="44" height="42" rx="6"/><path d="M10 26h44"/><path d="M21 8v10M43 8v10"/><text x="32" y="47" text-anchor="middle" font-size="15" font-weight="800" fill="currentColor" stroke="none" font-family="Inter,Arial,sans-serif">2 mo</text></svg><span class="tq-card-title">Every other month</span><span class="tq-freq-amt">$100 off</span><span class="tq-freq-per">Per cleaning</span><span class="tq-perks"><span class="tq-perk">6 cleanings a year</span><span class="tq-perk">Auto-scheduled + reminder texts</span><span class="tq-perk">Price locked for 12 months</span></span></button>
+          <button type="button" class="tq-card" data-group="frequency" data-value="Quarterly" onclick="tqPick(this)"><span class="tq-card-tag">No pets</span><svg class="tq-card-ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="10" y="14" width="44" height="42" rx="6"/><path d="M10 26h44"/><path d="M21 8v10M43 8v10"/><text x="32" y="47" text-anchor="middle" font-size="15" font-weight="800" fill="currentColor" stroke="none" font-family="Inter,Arial,sans-serif">3 mo</text></svg><span class="tq-card-title">Quarterly</span><span class="tq-freq-amt">$50 off</span><span class="tq-freq-per">Per cleaning</span><span class="tq-perks"><span class="tq-perk">4 cleanings a year</span><span class="tq-perk">Auto-scheduled + reminder texts</span><span class="tq-perk">Price locked for 12 months</span></span></button>
         </div>
         <button type="button" class="tq-onetime" data-group="frequency" data-value="One-time" onclick="tqPick(this)">
-          <span><strong>Just a one-time cleaning</strong><span>No plan &mdash; book a single cleaning.</span></span><span aria-hidden="true">&rsaquo;</span>
+          <span><strong>Just a one-time cleaning</strong><span>Full price &mdash; no discount or bonuses.</span></span><span aria-hidden="true">&rsaquo;</span>
         </button>
-        <p class="tq-freq-fine">Plan savings start after your first cleaning. Minimum $100 per visit. Exact price confirmed on your call.</p>
+        <p class="tq-freq-fine">Plans are 12 months, auto-scheduled, with a card on file &mdash; no cancellation fees. Plan savings start after your first cleaning. Minimum $100 per visit. Exact price confirmed on your call.</p>
         <div class="tq-err" id="tq-err-3" role="alert"></div>
         <div class="tq-next-row"><button type="button" class="tq-next" onclick="tqNext3()">Next &rarr;</button></div>
       </div>
@@ -3256,6 +3439,11 @@
     if (names[mode] && !tq.picks.service) {
       var b = document.querySelector('#tq-form .tq-card[data-group="service"][data-value="' + names[mode] + '"]');
       if (b) tqPick(b, true);
+    }
+    var plans = { monthly: 'Monthly', eom: 'Every other month', quarterly: 'Quarterly', onetime: 'One-time' };
+    if (plans[mode]) {
+      var pb = document.querySelector('#tq-form [data-group="frequency"][data-value="' + plans[mode] + '"]');
+      if (pb) tqPick(pb, true);
     }
     document.getElementById('quote-modal').classList.add('open');
     document.body.style.overflow = 'hidden';
