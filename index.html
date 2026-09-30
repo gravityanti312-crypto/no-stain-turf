@@ -1886,6 +1886,150 @@
     background: linear-gradient(to top, rgba(8,24,14,0.88) 0%, rgba(8,24,14,0.6) 38%, rgba(8,24,14,0.15) 68%, rgba(8,24,14,0) 100%);
   }
 </style>
+<style>
+  /* ── Photo / video slots (placeholders until real media is added) ── */
+  .media-frame { position: relative; overflow: hidden; border-radius: inherit; width: 100%; height: 100%; }
+  .media-el { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .media-frame.has-media .media-slot { display: none; }
+  .media-slot {
+    position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 8px; padding: 20px; text-align: center; border-radius: inherit;
+    background: repeating-linear-gradient(135deg, #eef7f0 0 14px, #e2f0e5 14px 28px);
+    border: 2px dashed rgba(35,128,75,0.5); color: #195c36;
+  }
+  .media-slot-icon {
+    width: 54px; height: 54px; border-radius: 50%; background: #23804b; color: #ffffff;
+    display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 16px rgba(35,128,75,0.3);
+  }
+  .media-slot-title { font-weight: 900; font-size: 0.92rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .media-slot-note { font-size: 0.8rem; line-height: 1.45; color: #4a6b52; max-width: 260px; }
+  .media-slot--before { background: repeating-linear-gradient(135deg, #f6efe2 0 14px, #ede1ca 14px 28px); border-color: rgba(138,106,46,0.5); color: #6b4f1d; }
+  .media-slot--before .media-slot-icon { background: #8a6a2e; box-shadow: 0 6px 16px rgba(138,106,46,0.3); }
+  .media-slot--before .media-slot-note { color: #7a6030; }
+  .media-sound {
+    position: absolute; right: 14px; bottom: 14px; z-index: 3; width: 42px; height: 42px; border-radius: 50%;
+    background: rgba(15,42,27,0.72); color: #ffffff; border: 0; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px);
+  }
+  .media-sound .ms-on { display: none; }
+  .sound-on .media-sound .ms-on { display: inline; }
+  .sound-on .media-sound .ms-off { display: none; }
+
+  /* Before/after slider: each placeholder sits in its own half */
+  .ba-slider .media-frame { position: absolute; inset: 0; border-radius: 0; }
+  .ba-slider .media-slot { border: 0; gap: 6px; }
+  .ba-slider .media-slot--before { padding-right: 52%; }
+  .ba-slider .media-slot--after { padding-left: 52%; }
+  .ba-slider .media-slot-note { font-size: 0.74rem; }
+  .ba-slider .media-el { pointer-events: none; }
+
+  /* ── Main video ── */
+  #watch { background: linear-gradient(180deg, #f4faf5 0%, #eef7f0 100%); padding: 5rem 0 0; }
+  .watch-grid {
+    display: grid; grid-template-columns: 1fr 480px; column-gap: 64px; max-width: 1160px;
+    grid-template-areas: "head media" "body media"; align-items: center;
+  }
+  .watch-head { grid-area: head; align-self: end; }
+  .watch-body { grid-area: body; align-self: start; }
+  .watch-media { grid-area: media; }
+  .watch-head h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; color: #0f2a1b; letter-spacing: -0.02em; line-height: 1.1; }
+  .watch-body p { color: #4a5f50; font-size: 1.05rem; line-height: 1.7; margin: 1rem 0 1.25rem; max-width: 520px; }
+  .watch-points { list-style: none; padding: 0; margin: 0 0 1.75rem; display: grid; gap: 0.6rem; }
+  .watch-points li { position: relative; padding-left: 2rem; font-weight: 700; color: #0f2a1b; }
+  .watch-points li::before {
+    content: "\2713"; position: absolute; left: 0; top: 0; width: 1.35rem; height: 1.35rem; border-radius: 50%;
+    background: #23804b; color: #ffffff; font-size: 0.75rem; display: flex; align-items: center; justify-content: center;
+  }
+  .watch-card {
+    position: relative; aspect-ratio: 4 / 5; border-radius: 26px; padding: 10px;
+    background: #dff0e2; box-shadow: 0 24px 60px rgba(15,42,27,0.18);
+  }
+  .watch-card > .media-frame { border-radius: 18px; }
+  .watch-badge {
+    position: absolute; top: -14px; right: -14px; z-index: 2; display: flex; align-items: center; gap: 10px;
+    background: #ffffff; border-radius: 50px; padding: 10px 18px 10px 10px; font-size: 0.85rem; line-height: 1.3;
+    color: #4a5f50; box-shadow: 0 10px 28px rgba(15,42,27,0.16);
+  }
+  .watch-badge strong { color: #0f2a1b; }
+  .watch-badge-icon { width: 40px; height: 40px; border-radius: 50%; background: #e6f4e8; color: #23804b; display: flex; align-items: center; justify-content: center; flex: 0 0 40px; }
+  .watch-steps { margin-top: 4.5rem; background: linear-gradient(135deg, #0f2a1b 0%, #195c36 100%); border-top: 4px solid #85cc7e; }
+  .watch-steps-inner { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; padding-top: 1.6rem; padding-bottom: 1.6rem; }
+  .watch-step { display: flex; align-items: center; gap: 0.9rem; color: rgba(255,255,255,0.82); font-size: 1.02rem; }
+  .watch-step strong { color: #ffffff; }
+  .watch-step-num {
+    width: 38px; height: 38px; flex: 0 0 38px; border-radius: 50%; background: #85cc7e; color: #0f2a1b;
+    font-weight: 900; display: flex; align-items: center; justify-content: center;
+  }
+  @media (max-width: 980px) {
+    #watch { padding-top: 3.5rem; }
+    .watch-grid { grid-template-columns: 1fr; grid-template-areas: "head" "media" "body"; row-gap: 1.75rem; }
+    .watch-head { text-align: center; }
+    .watch-media { max-width: 520px; width: 100%; margin: 0 auto; }
+    .watch-card { aspect-ratio: 1 / 1; }
+    .watch-body { max-width: 520px; margin: 0 auto; }
+    .watch-steps { margin-top: 3rem; }
+    .watch-steps-inner { grid-template-columns: 1fr; gap: 1rem; }
+  }
+  @media (max-width: 560px) {
+    .watch-card { padding: 7px; border-radius: 22px; }
+    .watch-card > .media-frame { border-radius: 16px; }
+    .watch-badge { top: 14px; right: 14px; padding: 7px 14px 7px 7px; font-size: 0.78rem; }
+    .watch-badge-icon { width: 34px; height: 34px; flex-basis: 34px; }
+  }
+
+  /* ── Our process (step videos) ── */
+  #how-we-clean { padding: 6rem 0; background: linear-gradient(160deg, #0f2a1b 0%, #173f28 60%, #195c36 100%); }
+  .hwc-head { text-align: center; max-width: 680px; margin: 0 auto 3rem; }
+  .hwc-head .section-label { background: rgba(133,204,126,0.14); border-color: rgba(133,204,126,0.35); color: #a8e0a2; }
+  .hwc-head h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; color: #ffffff; letter-spacing: -0.02em; line-height: 1.1; }
+  .hwc-head p { color: rgba(255,255,255,0.75); font-size: 1.05rem; line-height: 1.6; margin-top: 0.8rem; }
+  .hwc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+  .hwc-card { background: #ffffff; border-radius: 24px; padding: 8px; display: flex; flex-direction: column; box-shadow: 0 18px 40px rgba(0,0,0,0.25); }
+  .hwc-media { position: relative; aspect-ratio: 3 / 4; border-radius: 18px; }
+  .hwc-tag {
+    position: absolute; left: 12px; bottom: 12px; z-index: 2; background: #ffffff; color: #0f2a1b;
+    font-weight: 900; font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 7px 14px; border-radius: 50px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  .hwc-body { padding: 1.1rem 0.9rem 1rem; }
+  .hwc-num { font-size: 0.72rem; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #23804b; }
+  .hwc-body h3 { font-size: 1.2rem; font-weight: 900; color: #0f2a1b; margin: 0.25rem 0 0.4rem; }
+  .hwc-body p { font-size: 0.92rem; line-height: 1.6; color: #4a5f50; }
+  @media (max-width: 1100px) { .hwc-grid { grid-template-columns: repeat(2, 1fr); } .hwc-media { aspect-ratio: 4 / 3; } }
+  @media (max-width: 640px) {
+    #how-we-clean { padding: 4rem 0; }
+    .hwc-grid { grid-template-columns: 1fr; }
+    .hwc-media { aspect-ratio: 16 / 11; }
+  }
+
+  /* ── Beyond cleaning ── */
+  #beyond { padding: 6rem 0; background: #f4faf5; }
+  .bc-head { text-align: center; max-width: 680px; margin: 0 auto 3rem; }
+  .bc-head h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; color: #0f2a1b; letter-spacing: -0.02em; line-height: 1.1; }
+  .bc-head p { color: #4a5f50; font-size: 1.05rem; line-height: 1.6; margin-top: 0.8rem; }
+  .bc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1160px; margin: 0 auto; }
+  .bc-card {
+    background: #ffffff; border: 1px solid #dcebdf; border-radius: 24px; overflow: hidden;
+    box-shadow: 0 10px 30px rgba(15,42,27,0.06); transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .bc-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(15,42,27,0.12); }
+  .bc-media { position: relative; aspect-ratio: 16 / 10; }
+  .bc-media .media-frame { border-radius: 0; }
+  .bc-media .media-slot { border-width: 0 0 2px 0; }
+  .bc-body { position: relative; padding: 2.2rem 1.6rem 1.6rem; }
+  .bc-icon {
+    position: absolute; top: -28px; left: 1.6rem; width: 56px; height: 56px; border-radius: 16px;
+    background: #e6f4e8; color: #23804b; display: flex; align-items: center; justify-content: center;
+    border: 4px solid #ffffff; box-shadow: 0 6px 16px rgba(15,42,27,0.1);
+  }
+  .bc-body h3 { font-size: 1.3rem; font-weight: 900; color: #0f2a1b; margin-bottom: 0.45rem; }
+  .bc-body p { font-size: 0.97rem; line-height: 1.6; color: #4a5f50; }
+  .bc-cta { display: flex; align-items: center; justify-content: center; gap: 1.25rem; flex-wrap: wrap; margin-top: 2.5rem; }
+  .bc-call { color: #23804b; font-weight: 800; text-decoration: none; }
+  .bc-call:hover { text-decoration: underline; }
+  @media (max-width: 980px) { .bc-grid { grid-template-columns: 1fr; max-width: 520px; } }
+  @media (max-width: 640px) { #beyond { padding: 4rem 0; } }
+</style>
 </head>
 <body>
 
@@ -1979,6 +2123,41 @@
     <div class="trust-item"><span class="trust-dot"></span> Same-Day Available</div>
   </div>
 </div>
+
+<!-- ─── MAIN VIDEO: wordless TurfGlow process video ─────────────── -->
+<section id="watch">
+  <div class="container watch-grid">
+    <div class="watch-head">
+      <div class="section-label">See It In Action</div>
+      <h2>Here&rsquo;s What Happens When We Show Up</h2>
+    </div>
+    <div class="watch-media">
+      <div class="watch-card">
+        <div class="media-frame" data-type="video" data-src="" data-sound="1"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Main video goes here</span><span class="media-slot-note">Wordless TurfGlow video &mdash; logo, crew, the work, the finished yard. 30&ndash;60 sec, filmed on your phone.</span></div></div>
+        <div class="watch-badge">
+          <span class="watch-badge-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span>
+          <span><strong>TurfGlow Guarantee</strong><br />Odor back? We re-treat free.</span>
+        </div>
+      </div>
+    </div>
+    <div class="watch-body">
+      <p>No garden hose, no leaf blower. Watch our crew take a real Phoenix yard from matted and smelly to fresh, fluffy, and safe for the kids and dogs.</p>
+      <ul class="watch-points">
+        <li>Commercial power broom &amp; industrial vacuum</li>
+        <li>Hot-water rinse that flushes out urine &amp; bacteria</li>
+        <li>Pet-safe, eco-friendly enzyme deodorizer</li>
+      </ul>
+      <button type="button" class="dc-cta" onclick="openQuoteModal()">Get My Free Quote &rarr;</button>
+    </div>
+  </div>
+  <div class="watch-steps">
+    <div class="container watch-steps-inner">
+      <div class="watch-step"><span class="watch-step-num">1</span><span><strong>Free quote</strong> in 30 seconds</span></div>
+      <div class="watch-step"><span class="watch-step-num">2</span><span><strong>We call you</strong> with your exact price</span></div>
+      <div class="watch-step"><span class="watch-step-num">3</span><span><strong>Fresh, clean turf</strong> &mdash; same-day often available</span></div>
+    </div>
+  </div>
+</section>
 
 <!-- REVIEWS + WHY TURFGLOW -->
 <div class="proof-bg">
@@ -2211,9 +2390,9 @@
 
       <div class="dc-media">
         <div class="ba-slider" id="ba-slider" style="--pos:50%;">
-          <img class="ba-img" src="ba-after.jpg" alt="Clean, restored artificial turf after a TurfGlow cleaning" loading="lazy" draggable="false" />
+          <div class="media-frame" data-type="image" data-src="" data-alt="Clean, restored artificial turf after a TurfGlow cleaning"><div class="media-slot media-slot--after"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="media-slot-title">After photo</span><span class="media-slot-note">Same spot &amp; angle, after the clean</span></div></div>
           <div class="ba-before-layer">
-            <img class="ba-img" src="ba-before.jpg" alt="Matted, discolored artificial turf before cleaning" loading="lazy" draggable="false" />
+            <div class="media-frame" data-type="image" data-src="" data-alt="Matted, dirty artificial turf before cleaning"><div class="media-slot media-slot--before"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="media-slot-title">Before photo</span><span class="media-slot-note">Your dirtiest, most matted turf</span></div></div>
           </div>
           <span class="ba-tag ba-tag--before">Before</span>
           <span class="ba-tag ba-tag--after">After</span>
@@ -2231,21 +2410,21 @@
 <!-- MEMBERSHIP -->
 <script>
 (function(){
-  var el = document.getElementById('ba-slider');
-  if (!el) return;
-  var range = el.querySelector('.ba-range');
-  function set(v){ el.style.setProperty('--pos', v + '%'); }
-  range.addEventListener('input', function(){ set(range.value); el.classList.add('was-used'); });
-  range.addEventListener('pointerdown', function(){ el.classList.add('is-dragging'); });
-  window.addEventListener('pointerup', function(){ el.classList.remove('is-dragging'); });
-  // Clicking/tapping anywhere jumps the divider there (input range only moves from the thumb on some browsers)
-  el.addEventListener('pointerdown', function(e){
-    var r = el.getBoundingClientRect();
-    var v = Math.max(0, Math.min(100, (e.clientX - r.left) / r.width * 100));
-    range.value = v; set(v);
-  });
-  // One gentle nudge the first time it scrolls into view so people know it moves
-  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  Array.prototype.forEach.call(document.querySelectorAll('.ba-slider'), function(el){
+    var range = el.querySelector('.ba-range');
+    function set(v){ el.style.setProperty('--pos', v + '%'); }
+    range.addEventListener('input', function(){ set(range.value); el.classList.add('was-used'); });
+    range.addEventListener('pointerdown', function(){ el.classList.add('is-dragging'); });
+    window.addEventListener('pointerup', function(){ el.classList.remove('is-dragging'); });
+    // Tapping anywhere jumps the divider there
+    el.addEventListener('pointerdown', function(e){
+      var r = el.getBoundingClientRect();
+      var v = Math.max(0, Math.min(100, (e.clientX - r.left) / r.width * 100));
+      range.value = v; set(v);
+    });
+    // One gentle nudge the first time it scrolls into view so people know it moves
+    if (!('IntersectionObserver' in window) || reduce) return;
     var io = new IntersectionObserver(function(entries){
       if (!entries[0].isIntersecting) return;
       io.disconnect();
@@ -2261,9 +2440,66 @@
       requestAnimationFrame(step);
     }, { threshold: 0.6 });
     io.observe(el);
-  }
+  });
 })();
 </script>
+
+<!-- ─── OUR PROCESS: one looping video per step ───────────────── -->
+<section id="how-we-clean">
+  <div class="container">
+    <div class="hwc-head">
+      <div class="section-label">Our Process</div>
+      <h2>4 Steps. Every Yard. Every Visit.</h2>
+      <p>The same pro-grade clean on every job &mdash; here&rsquo;s exactly what our crew does in your backyard.</p>
+    </div>
+    <div class="hwc-grid">
+      <div class="hwc-card">
+        <div class="hwc-media">
+          <div class="media-frame" data-type="video" data-src=""><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Step 1 video</span><span class="media-slot-note">Tech spraying the turf &middot; 5&ndash;10 sec</span></div></div>
+          <span class="hwc-tag">Pre-Spray</span>
+        </div>
+        <div class="hwc-body">
+          <div class="hwc-num">Step 1</div>
+          <h3>Pre-Spray</h3>
+          <p>A pet-safe enzyme pre-treatment soaks in and starts breaking down urine, odor, and bacteria.</p>
+        </div>
+      </div>
+      <div class="hwc-card">
+        <div class="hwc-media">
+          <div class="media-frame" data-type="video" data-src=""><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Step 2 video</span><span class="media-slot-note">Power broom running &middot; 5&ndash;10 sec</span></div></div>
+          <span class="hwc-tag">Power Broom</span>
+        </div>
+        <div class="hwc-body">
+          <div class="hwc-num">Step 2</div>
+          <h3>Power Broom</h3>
+          <p>Our commercial power broom lifts matted blades and pulls up dirt, hair, and debris buried in the infill.</p>
+        </div>
+      </div>
+      <div class="hwc-card">
+        <div class="hwc-media">
+          <div class="media-frame" data-type="video" data-src=""><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Step 3 video</span><span class="media-slot-note">Vacuum pass &middot; 5&ndash;10 sec</span></div></div>
+          <span class="hwc-tag">Vacuum</span>
+        </div>
+        <div class="hwc-body">
+          <div class="hwc-num">Step 3</div>
+          <h3>Vacuum</h3>
+          <p>An industrial vacuum pulls out everything the broom kicked loose &mdash; leaves, pet hair, and grime.</p>
+        </div>
+      </div>
+      <div class="hwc-card">
+        <div class="hwc-media">
+          <div class="media-frame" data-type="video" data-src=""><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Step 4 video</span><span class="media-slot-note">Pressure washer / rinse &middot; 5&ndash;10 sec</span></div></div>
+          <span class="hwc-tag">Hot-Water Rinse</span>
+        </div>
+        <div class="hwc-body">
+          <div class="hwc-num">Step 4</div>
+          <h3>Hot-Water Rinse</h3>
+          <p>A hot-water pressure rinse flushes the blades and backing so your turf is fresh, clean, and safe to play on.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <section id="membership" style="background:linear-gradient(160deg,#f0faf2 0%,#f4f9f4 100%);padding:6rem 0;">
   <div class="container">
@@ -2392,6 +2628,47 @@
   </div>
 </section>
 
+
+<!-- ─── BEYOND CLEANING ───────────────────────────────────────── -->
+<section id="beyond">
+  <div class="container">
+    <div class="bc-head">
+      <div class="section-label">Beyond Cleaning</div>
+      <h2>More Than Just Clean Turf</h2>
+      <p>Repairs, new installs, and hardscape cleaning &mdash; one trusted crew for your whole backyard.</p>
+    </div>
+    <div class="bc-grid">
+      <div class="bc-card">
+        <div class="bc-media"><div class="media-frame" data-type="image" data-src=""><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="media-slot-title">Turf Repair photo</span><span class="media-slot-note">Photo of a repair you&rsquo;ve done</span></div></div></div>
+        <div class="bc-body">
+          <span class="bc-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></span>
+          <h3>Turf Repair</h3>
+          <p>Torn seams, pet dig spots, burn marks, and worn traffic paths fixed so they blend right in.</p>
+        </div>
+      </div>
+      <div class="bc-card">
+        <div class="bc-media"><div class="media-frame" data-type="image" data-src=""><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="media-slot-title">Turf Installation photo</span><span class="media-slot-note">Photo of a finished install</span></div></div></div>
+        <div class="bc-body">
+          <span class="bc-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 12l-8.4 8.4a2.1 2.1 0 01-3-3L12 9"/><path d="M17.6 6.4L14 3 9 3.5l1.9 1.7A6 6 0 0112 8.4V10l2 2h1.2a2 2 0 011.4.6l1.9 1.9 3.5-3.5-1.9-1.9A2 2 0 0119 7.7V7z"/></svg></span>
+          <h3>Turf Installation</h3>
+          <p>New turf installed right &mdash; compacted base, real drainage, and tight, hidden seams built to last.</p>
+        </div>
+      </div>
+      <div class="bc-card">
+        <div class="bc-media"><div class="media-frame" data-type="image" data-src=""><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="media-slot-title">Hardscape Cleaning photo</span><span class="media-slot-note">Photo of clean pavers or a pool deck</span></div></div></div>
+        <div class="bc-body">
+          <span class="bc-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="1.2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.2"/></svg></span>
+          <h3>Hardscape Cleaning</h3>
+          <p>Pavers, patios, pool decks, and walkways pressure-washed back to like-new &mdash; same visit as your turf clean.</p>
+        </div>
+      </div>
+    </div>
+    <div class="bc-cta">
+      <button type="button" class="dc-cta" onclick="openQuoteModal()">Get a Free Quote &rarr;</button>
+      <a href="tel:4802941408" class="bc-call">or call (480) 294-1408</a>
+    </div>
+  </div>
+</section>
 
 <!-- ─── FAQ ───────────────────────────────────────────────────── -->
 <section id="faq">
@@ -3836,5 +4113,54 @@
 }
 </style>
 
+<script>
+/* Photo/video slots: set data-src="file.mp4" (or .jpg) on a .media-frame and it replaces the placeholder. */
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var videos = [];
+  Array.prototype.forEach.call(document.querySelectorAll('.media-frame[data-src]'), function(f){
+    var src = f.getAttribute('data-src');
+    if (!src) return;
+    var el;
+    if (f.getAttribute('data-type') === 'video') {
+      el = document.createElement('video');
+      el.muted = true; el.loop = true; el.playsInline = true;
+      el.setAttribute('muted', ''); el.setAttribute('playsinline', '');
+      el.preload = 'metadata';
+      if (f.getAttribute('data-poster')) el.poster = f.getAttribute('data-poster');
+      if (reduce) el.controls = true; else videos.push(el);
+      el.src = src;
+      if (f.getAttribute('data-sound')) {
+        var btn = document.createElement('button');
+        btn.type = 'button'; btn.className = 'media-sound'; btn.setAttribute('aria-label', 'Turn sound on');
+        btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4z"/><path class="ms-off" d="M22 9l-6 6M16 9l6 6"/><path class="ms-on" d="M15.5 8.5a5 5 0 010 7M19 5a10 10 0 010 14"/></svg>';
+        btn.addEventListener('click', function(){
+          el.muted = !el.muted;
+          f.classList.toggle('sound-on', !el.muted);
+          btn.setAttribute('aria-label', el.muted ? 'Turn sound on' : 'Turn sound off');
+          if (el.paused) el.play();
+        });
+        f.appendChild(btn);
+      }
+    } else {
+      el = document.createElement('img');
+      el.src = src; el.alt = f.getAttribute('data-alt') || ''; el.loading = 'lazy'; el.draggable = false;
+    }
+    el.className = 'media-el';
+    f.insertBefore(el, f.firstChild);
+    f.classList.add('has-media');
+  });
+  // Only play videos while they are on screen (saves phone data + battery)
+  if (!videos.length) return;
+  if (!('IntersectionObserver' in window)) { videos.forEach(function(v){ v.autoplay = true; v.play(); }); return; }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting) { var pr = e.target.play(); if (pr && pr.catch) pr.catch(function(){}); }
+      else e.target.pause();
+    });
+  }, { threshold: 0.25 });
+  videos.forEach(function(v){ io.observe(v); });
+})();
+</script>
 </body>
 </html>
