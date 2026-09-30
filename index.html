@@ -1825,6 +1825,7 @@
       radial-gradient(40% 45% at 90% 88%, rgba(133,204,126,0.50), transparent 70%),
       #e9f5ec;
   }
+  .rw-outer { padding: 0 16px; }
   .rw-wall { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem; padding: 1.25rem 0; }
   .rw-wall.rw-ready {
     display: flex; gap: 1.25rem; height: 640px; padding: 0; overflow: hidden;
@@ -1857,6 +1858,7 @@
   .rw-date { font-size: 0.78rem; color: #7d8f82; }
 
   @media (max-width: 640px) {
+    .rw-outer { padding: 0 10px; }
     .rw-stage { border-radius: 22px; }
     .rw-wall.rw-ready { height: 540px; }
     .rw-rating-sep, .rw-rating-link { display: none; }
@@ -2175,6 +2177,8 @@
         <span class="rw-rating-link">Read our Google reviews &rarr;</span>
       </a>
     </div>
+  </div>
+  <div class="rw-outer">
     <div class="rw-stage">
     <div class="rw-wall" id="rw-wall">
       <article class="rw-card">
@@ -2237,7 +2241,7 @@
   var built = 0;
   function colCount(){
     var w = window.innerWidth;
-    return w <= 640 ? 1 : (w <= 980 ? 2 : 3);
+    return w <= 640 ? 1 : (w <= 980 ? 2 : (w < 1400 ? 3 : 4));
   }
   function build(){
     var n = colCount();
@@ -2257,14 +2261,30 @@
       cols.push(track);
     }
     cards.forEach(function(c, i){ cols[i % n].appendChild(c); });
-    // Duplicate each column's cards so the loop is seamless
-    cols.forEach(function(track){
-      Array.prototype.slice.call(track.children).forEach(function(c){
+    wall.classList.add('rw-ready');
+    var wallH = wall.clientHeight;
+    cols.forEach(function(track, i){
+      var originals = Array.prototype.slice.call(track.children);
+      function copy(){
+        originals.forEach(function(c){
+          var clone = c.cloneNode(true);
+          clone.setAttribute('aria-hidden', 'true');
+          clone.classList.add('rw-clone');
+          track.appendChild(clone);
+        });
+      }
+      // Repeat the column's cards until one set is taller than the wall, then double it so the loop is seamless
+      var guard = 0;
+      while (track.scrollHeight < wallH && guard++ < 6) copy();
+      var unit = track.children.length;
+      Array.prototype.slice.call(track.children, 0, unit).forEach(function(c){
         var clone = c.cloneNode(true);
         clone.setAttribute('aria-hidden', 'true');
         clone.classList.add('rw-clone');
         track.appendChild(clone);
       });
+      // Same scroll speed (px/sec) no matter how long the column is
+      track.parentNode.style.setProperty('--rw-speed', Math.round(track.scrollHeight / 2 / (24 + (i % 3) * 3)) + 's');
     });
     wall.classList.add('rw-ready');
   }
