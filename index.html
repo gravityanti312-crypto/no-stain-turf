@@ -288,8 +288,8 @@
     /* ─── DEEP CLEAN EXPLAINER + BEFORE/AFTER ─────────────────── */
     #deepclean { padding: 96px 0; background: var(--white); }
     .dc-grid {
-      display: grid; grid-template-columns: 1fr 380px;
-      gap: 72px; align-items: center; max-width: 1160px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 460px;
+      gap: 64px; align-items: center; max-width: 1160px; margin: 0 auto;
     }
     .dc-title {
       font-size: clamp(28px, 3.6vw, 44px); font-weight: 900; color: var(--dark);
@@ -320,24 +320,47 @@
       box-shadow: 0 10px 28px rgba(35,128,75,0.32);
     }
 
-    /* vertical before / after card */
-    .ba-card {
-      position: relative; border-radius: 22px; overflow: hidden;
-      box-shadow: 0 18px 46px rgba(15,42,27,0.18); background: #122c1e;
+    /* before / after drag slider */
+    .ba-slider {
+      position: relative; aspect-ratio: 640 / 560; border-radius: 24px; overflow: hidden;
+      background: #122c1e; box-shadow: 0 18px 46px rgba(15,42,27,0.18);
+      outline: 8px solid #e6f4e8; outline-offset: 0; user-select: none; -webkit-user-select: none;
+      touch-action: pan-y;
     }
-    .ba-half { position: relative; display: block; }
-    .ba-half img { width: 100%; height: 320px; object-fit: cover; display: block; }
-    .ba-split { height: 6px; background: #fde50a; }
-    .ba-label {
-      position: absolute; top: 16px; left: 50%; transform: translateX(-50%);
-      font-size: clamp(26px, 3vw, 38px); font-weight: 900; color: #fff;
-      letter-spacing: 0.02em; line-height: 1; white-space: nowrap;
-      -webkit-text-stroke: 3px #122c1e; paint-order: stroke fill;
+    .ba-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
+    .ba-before-layer { position: absolute; inset: 0; clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
+    .ba-tag {
+      position: absolute; top: 16px; padding: 6px 14px; border-radius: 8px;
+      background: rgba(255,255,255,0.88); color: #0f2a1b; font-weight: 800; font-size: 15px;
+      backdrop-filter: blur(4px); pointer-events: none;
     }
-    .ba-half--after .ba-label { top: 14px; }
-    .ba-arrow { position: absolute; width: 78px; height: auto; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.35)); }
-    .ba-half--before .ba-arrow { top: 62px; left: 30px; }
-    .ba-half--after  .ba-arrow { top: 58px; left: 30px; }
+    .ba-tag--before { left: 16px; }
+    .ba-tag--after { right: 16px; }
+    .ba-line {
+      position: absolute; top: 0; bottom: 0; left: var(--pos); width: 4px; margin-left: -2px;
+      background: #ffffff; box-shadow: 0 0 10px rgba(0,0,0,0.25); pointer-events: none;
+    }
+    .ba-knob {
+      position: absolute; top: 50%; left: 50%; width: 58px; height: 58px; margin: -29px 0 0 -29px;
+      border-radius: 50%; background: #23804b; border: 4px solid #ffffff;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.3); transition: transform 0.15s;
+    }
+    .ba-slider.is-dragging .ba-knob { transform: scale(1.08); }
+    .ba-hint {
+      position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%);
+      background: #ffffff; color: #195c36; font-weight: 800; font-size: 12px; letter-spacing: 0.14em;
+      text-transform: uppercase; padding: 9px 18px; border-radius: 50px; white-space: nowrap;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15); pointer-events: none; transition: opacity 0.3s;
+    }
+    .ba-slider.was-used .ba-hint { opacity: 0; }
+    .ba-range {
+      position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0;
+      cursor: ew-resize; -webkit-appearance: none; appearance: none; background: transparent;
+    }
+    .ba-range::-webkit-slider-thumb { -webkit-appearance: none; width: 58px; height: 100vh; }
+    .ba-range::-moz-range-thumb { width: 58px; height: 100vh; border: 0; }
+    .ba-range:focus-visible ~ .ba-line .ba-knob, .ba-slider:focus-within .ba-knob { box-shadow: 0 0 0 4px #fde50a, 0 6px 18px rgba(0,0,0,0.3); }
     .ba-caption {
       text-align: center; font-size: 12px; font-weight: 700; color: var(--text-muted);
       letter-spacing: 0.08em; text-transform: uppercase; margin-top: 14px;
@@ -346,11 +369,12 @@
     @media (max-width: 980px) {
       #deepclean { padding: 72px 0; }
       .dc-grid { grid-template-columns: 1fr; gap: 44px; }
-      .ba-card { max-width: 380px; margin: 0 auto; }
+      .ba-slider { max-width: 520px; margin: 0 auto; }
     }
     @media (max-width: 560px) {
       .dc-benefits { grid-template-columns: 1fr; gap: 24px; margin: 32px 0; }
-      .ba-half img { height: 260px; }
+      .ba-slider { outline-width: 6px; border-radius: 20px; }
+      .ba-knob { width: 50px; height: 50px; margin: -25px 0 0 -25px; }
     }
 
     .hero-bg {
@@ -2186,18 +2210,16 @@
       </div>
 
       <div class="dc-media">
-        <div class="ba-card">
-          <div class="ba-half ba-half--before">
-            <img src="ba-before.jpg" alt="Matted, discolored artificial turf before cleaning" loading="lazy" />
-            <span class="ba-label">BEFORE</span>
-            <svg class="ba-arrow" viewBox="0 0 88 96" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 10C6 40 22 64 56 76" stroke="#fde50a" stroke-width="8" stroke-linecap="round" fill="none"/><path d="M38 74l20 4-9-18" stroke="#fde50a" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+        <div class="ba-slider" id="ba-slider" style="--pos:50%;">
+          <img class="ba-img" src="ba-after.jpg" alt="Clean, restored artificial turf after a TurfGlow cleaning" loading="lazy" draggable="false" />
+          <div class="ba-before-layer">
+            <img class="ba-img" src="ba-before.jpg" alt="Matted, discolored artificial turf before cleaning" loading="lazy" draggable="false" />
           </div>
-          <div class="ba-split"></div>
-          <div class="ba-half ba-half--after">
-            <img src="ba-after.jpg" alt="Clean, restored artificial turf after cleaning" loading="lazy" />
-            <span class="ba-label">AFTER</span>
-            <svg class="ba-arrow" viewBox="0 0 88 96" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M8 10C6 40 22 64 56 76" stroke="#fde50a" stroke-width="8" stroke-linecap="round" fill="none"/><path d="M38 74l20 4-9-18" stroke="#fde50a" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
-          </div>
+          <span class="ba-tag ba-tag--before">Before</span>
+          <span class="ba-tag ba-tag--after">After</span>
+          <div class="ba-line" aria-hidden="true"><span class="ba-knob"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></span></div>
+          <span class="ba-hint" aria-hidden="true">&harr; Drag to reveal</span>
+          <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Drag to compare before and after" />
         </div>
         <div class="ba-caption">Real results, every visit</div>
       </div>
@@ -2207,6 +2229,42 @@
 </section>
 
 <!-- MEMBERSHIP -->
+<script>
+(function(){
+  var el = document.getElementById('ba-slider');
+  if (!el) return;
+  var range = el.querySelector('.ba-range');
+  function set(v){ el.style.setProperty('--pos', v + '%'); }
+  range.addEventListener('input', function(){ set(range.value); el.classList.add('was-used'); });
+  range.addEventListener('pointerdown', function(){ el.classList.add('is-dragging'); });
+  window.addEventListener('pointerup', function(){ el.classList.remove('is-dragging'); });
+  // Clicking/tapping anywhere jumps the divider there (input range only moves from the thumb on some browsers)
+  el.addEventListener('pointerdown', function(e){
+    var r = el.getBoundingClientRect();
+    var v = Math.max(0, Math.min(100, (e.clientX - r.left) / r.width * 100));
+    range.value = v; set(v);
+  });
+  // One gentle nudge the first time it scrolls into view so people know it moves
+  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var io = new IntersectionObserver(function(entries){
+      if (!entries[0].isIntersecting) return;
+      io.disconnect();
+      var start = null, dur = 1600;
+      function step(t){
+        if (el.classList.contains('was-used')) return;
+        if (!start) start = t;
+        var k = Math.min(1, (t - start) / dur);
+        var v = 50 + Math.sin(k * Math.PI * 2) * 18;
+        set(v); range.value = v;
+        if (k < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }, { threshold: 0.6 });
+    io.observe(el);
+  }
+})();
+</script>
+
 <section id="membership" style="background:linear-gradient(160deg,#f0faf2 0%,#f4f9f4 100%);padding:6rem 0;">
   <div class="container">
     <div style="text-align:center;margin-bottom:2rem;">
