@@ -3571,7 +3571,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
     var d = tqDigits(tqVal('tq-phone'));
     tq.contact = { first_name: tqVal('tq-first'), last_name: tqVal('tq-last'), phone: tqFmtPhone(d), email: tqVal('tq-email'),
                    texts_ok: document.getElementById('tq-texts').checked ? 'Yes' : 'No' };
-    if (tq.startSentFor !== d) { tq.startSentFor = d; tqSend('started').catch(function () {}); }
+    if (tq.startSentFor !== d) { tq.startSentFor = d; tqSend('started').catch(function () {}); if (window.fbq) { fbq('track', 'Lead', { content_name: 'Turf quote started' }); } }
     tqGo(2);
   }
 
@@ -3658,6 +3658,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
     var btn = document.getElementById('tq-submit'), label = document.getElementById('tq-submit-label');
     btn.disabled = true; label.textContent = 'Sending…';
     tqSend('complete').then(function () {
+      if (window.fbq) { fbq('trackCustom', 'QuoteCompleted', { service: (tq.picks && tq.picks.service) || '', frequency: (tq.picks && tq.picks.frequency) || '' }); }
       document.getElementById('tq-done-title').textContent = 'You’re all set, ' + tq.contact.first_name + '!';
       document.getElementById('tq-done-msg').innerHTML = tqDoneMessage();
       tqGo(TQ_DONE);
@@ -3929,6 +3930,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
     })
     .then(function(res) { return res.json(); })
     .then(function() {
+      if (window.fbq) { fbq('track', 'Lead', { content_name: 'Contact form' }); }
       form.reset();
       var s = document.getElementById('contact-success');
       s.style.display = 'block';
