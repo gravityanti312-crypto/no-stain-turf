@@ -2301,6 +2301,118 @@
   .tq-logo[src="logo-square.png"] { height: 56px; width: 56px; }
   .mobile-menu-logo img[src="logo-square.png"] { height: 110px; width: 110px; }
 </style>
+<style>
+  /* ── Services: Pick Your Clean — Turf Club card style; the rows are the what's-included comparison ── */
+  #services.pc { padding: 6rem 0 5.5rem; background: #ffffff; }
+  #services.pc .container { max-width: 1200px; }
+  .pc-head { text-align: center; max-width: 720px; margin: 0 auto; }
+  .pc-title { font-size: clamp(2.4rem, 5.5vw, 3.8rem); font-weight: 900; color: #0f2a1b; letter-spacing: -0.03em; line-height: 1.05; }
+  .pc-sub { color: #4a5f50; font-size: 1.08rem; line-height: 1.6; margin-top: 0.9rem; }
+  .pc-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.4rem; max-width: 1140px; margin: 3.6rem auto 0; align-items: stretch; }
+  .pc-card .tc-pill { margin-bottom: 1.4rem; }
+  .pc-ico { width: 56px; height: 56px; border-radius: 16px; background: #e6f4e8; color: #23804b; display: flex; align-items: center; justify-content: center; }
+  .pc-card--featured .pc-ico { background: #fde50a; color: #0f2a1b; box-shadow: 0 10px 24px rgba(253,229,10,0.3); }
+  .pc-name { font-size: clamp(1.6rem, 2.4vw, 1.95rem); font-weight: 900; color: #0f2a1b; letter-spacing: -0.02em; line-height: 1.1; margin-top: 1rem; }
+  .pc-line { font-size: 0.97rem; line-height: 1.55; color: #4a5f50; margin-top: 0.45rem; min-height: 3.1em; }
+  .pc-card--featured .pc-name { color: #ffffff; }
+  .pc-card--featured .pc-line { color: rgba(255,255,255,0.78); }
+  .pc-card .tc-rows li.pc-base { font-weight: 800; color: #0f2a1b; }
+  .pc-card--featured .tc-rows li.pc-base { color: #ffffff; }
+  .pc-base small { display: block; font-size: 0.8rem; font-weight: 600; color: #6b7c6b; margin-top: 0.15rem; }
+  .pc-card--featured .pc-base small { color: rgba(255,255,255,0.62); }
+  .pc-card--featured .tc-rows li.tc-no { color: rgba(255,255,255,0.42); }
+  .pc-card--featured .tc-rows li.tc-no::before { background: rgba(255,255,255,0.08) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-opacity='0.55' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 7l10 10M17 7L7 17'/%3E%3C/svg%3E") center / 11px no-repeat; }
+  .pc-note { margin-top: 1.2rem; font-size: 0.88rem; line-height: 1.45; color: #195c36; background: #f0f8f1; border: 1px solid #dcebdf; border-radius: 14px; padding: 0.75rem 0.9rem; }
+  .pc-note a { color: #23804b; font-weight: 800; }
+  .pc-help { margin-top: 2.2rem; background: #f7fbf8; }
+  @media (max-width: 980px) {
+    .pc-cards { grid-template-columns: 1fr; max-width: 560px; gap: 1.6rem; }
+    .pc-card--featured { order: -1; }
+    .pc-line { min-height: 0; }
+    .pc-help { max-width: 560px; }
+  }
+  @media (max-width: 640px) {
+    #services.pc { padding: 4rem 0; }
+    .pc-cards { margin-top: 2.6rem; }
+  }
+
+  /* ── Give $50 / Get $50: dark offer panel + white form card ── */
+  .referral-section.rf { padding: 5.5rem 24px; background: linear-gradient(180deg, #f5f9f5 0%, #eaf5ec 100%); }
+  .rf-panel {
+    position: relative; overflow: hidden; max-width: 1140px; margin: 0 auto; color: #ffffff;
+    display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: 3rem; align-items: center;
+    padding: 3.4rem; border-radius: 32px; box-shadow: 0 30px 70px rgba(15,42,27,0.25);
+    background:
+      radial-gradient(50% 60% at 0% 0%, rgba(253,229,10,0.16), transparent 70%),
+      radial-gradient(60% 70% at 100% 100%, rgba(133,204,126,0.22), transparent 70%),
+      linear-gradient(160deg, #0f2a1b 0%, #173f28 60%, #195c36 100%);
+  }
+  .rf-label { background: rgba(253,229,10,0.12); border-color: rgba(253,229,10,0.4); color: #fde50a; }
+  .rf-title { font-size: clamp(2.6rem, 5.4vw, 4.2rem); font-weight: 900; line-height: 1; letter-spacing: -0.03em; color: #ffffff; }
+  .rf-title span { color: #fde50a; }
+  .rf-lead { margin-top: 1rem; font-size: 1.08rem; line-height: 1.6; color: rgba(255,255,255,0.8); max-width: 30rem; }
+  .rf-credits { position: relative; height: 178px; max-width: 410px; margin: 2.2rem 0 1.8rem; }
+  .rf-credit {
+    position: absolute; width: 230px; height: 142px; border-radius: 16px; padding: 14px 16px;
+    display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 18px 36px rgba(0,0,0,0.35);
+  }
+  .rf-credit--them { left: 0; top: 24px; transform: rotate(-6deg); color: #0f2a1b; background: linear-gradient(135deg, #fff7b8 0%, #fde50a 38%, #f2b705 100%); }
+  .rf-credit--you { left: 172px; top: 4px; transform: rotate(5deg); color: #ffffff; background: linear-gradient(135deg, #2f9a5c 0%, #23804b 45%, #195c36 100%); border: 1px solid rgba(255,255,255,0.28); }
+  .rf-credit-top { display: flex; justify-content: space-between; align-items: center; font-weight: 900; font-size: 13px; }
+  .rf-credit-chip { width: 26px; height: 19px; border-radius: 5px; background: linear-gradient(135deg, #f3e39a, #b8952b); box-shadow: inset 0 0 0 1px rgba(0,0,0,0.18); }
+  .rf-credit-amt { font-size: 2.15rem; font-weight: 900; letter-spacing: -0.02em; line-height: 1; }
+  .rf-credit-for { font-size: 0.68rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.82; }
+  .rf-steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; }
+  .rf-steps li { display: flex; gap: 0.9rem; align-items: flex-start; }
+  .rf-num { flex: 0 0 36px; width: 36px; height: 36px; border-radius: 12px; background: #fde50a; color: #0f2a1b; font-weight: 900; display: flex; align-items: center; justify-content: center; }
+  .rf-steps strong { display: block; font-size: 1.02rem; color: #ffffff; }
+  .rf-steps li div span { display: block; font-size: 0.92rem; line-height: 1.5; color: rgba(255,255,255,0.72); margin-top: 0.1rem; }
+
+  .rf-form-card { background: #ffffff; color: #0f2a1b; border-radius: 26px; padding: 2rem 1.8rem 1.7rem; box-shadow: 0 24px 60px rgba(0,0,0,0.3); }
+  .rf-form-head h3 { font-size: 1.45rem; font-weight: 900; letter-spacing: -0.01em; color: #0f2a1b; }
+  .rf-form-head p { font-size: 0.92rem; color: #4a5f50; margin-top: 0.2rem; }
+  .rf .rm-section-label { font-size: 0.72rem; letter-spacing: 0.14em; color: #23804b; margin: 0.9rem 0 0; }
+  .rf #referral-form input { background: #f8fbf8; border: 1.5px solid #dcebdf; border-radius: 12px; padding: 13px 15px; }
+  .rf #referral-form input:focus { border-color: #23804b; background: #ffffff; box-shadow: 0 0 0 4px rgba(35,128,75,0.12); }
+  .rf .rm-person { background: #fbfdfb; border-color: #e2efe5; border-radius: 16px; padding: 14px; }
+  .rf .rm-person-num { background: #0f2a1b; color: #fde50a; border-radius: 7px; }
+  .rf .rm-add { margin-top: 0; border-radius: 14px; color: #23804b; }
+  .rf .rm-submit {
+    margin-top: 6px; color: #0f2a1b; background: linear-gradient(135deg, #fde50a 0%, #f5c518 100%); border-radius: 50px;
+    font-weight: 900; font-size: 1.05rem; letter-spacing: 0.02em; padding: 1rem 1.2rem; box-shadow: 0 12px 28px rgba(253,229,10,0.35);
+  }
+  .rf .rm-submit:hover { background: linear-gradient(135deg, #fde50a 0%, #f5c518 100%); transform: translateY(-2px); box-shadow: 0 16px 34px rgba(253,229,10,0.45); }
+  .rf .rm-submit:disabled { opacity: 0.7; cursor: wait; transform: none; }
+  .rf .rm-fineprint { color: #6b7c6b; font-size: 0.82rem; margin-top: 2px; }
+  .rf .rm-success { padding: 0.6rem 0 0.2rem; }
+  .rf .rm-success-icon { width: 64px; height: 64px; margin: 0 auto 0.9rem; border-radius: 50%; background: #fde50a; color: #0f2a1b; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px rgba(253,229,10,0.4); }
+  .rf .rm-success p { font-size: 0.95rem; }
+  .rf .rm-text-btn { display: flex; align-items: center; justify-content: center; gap: 8px; border-radius: 50px; background: #23804b; }
+  .rf .rm-text-btn:hover { background: #195c36; }
+  .rf .rm-reward-note { border-radius: 14px; background: #f3faf4; border-color: #dcebdf; }
+  .rf .rm-reward-note strong { color: #195c36; }
+  @media (max-width: 980px) {
+    .rf-panel { grid-template-columns: 1fr; gap: 2.4rem; padding: 2.8rem 2.2rem; max-width: 640px; }
+  }
+  @media (max-width: 640px) {
+    .referral-section.rf { padding: 3.5rem 14px; }
+    .rf-panel { padding: 2.2rem 1.25rem 1.3rem; border-radius: 26px; gap: 2rem; }
+    .rf-form-card { padding: 1.5rem 1.1rem 1.3rem; border-radius: 20px; }
+  }
+  @media (max-width: 480px) {
+    .rf-credits { height: 140px; margin: 1.8rem 0 1.5rem; }
+    .rf-credit { width: 172px; height: 108px; padding: 11px 13px; border-radius: 13px; }
+    .rf-credit--them { top: 20px; }
+    .rf-credit--you { left: 118px; }
+    .rf-credit-amt { font-size: 1.6rem; }
+    .rf-credit-top { font-size: 11px; }
+    .rf-credit-chip { width: 20px; height: 15px; }
+    .rf-credit-for { font-size: 0.58rem; }
+  }
+
+  /* FAQ heading: same heavy weight as the other section headings */
+  #faq .section-title { font-weight: 900; letter-spacing: -0.02em; font-size: clamp(2rem, 4vw, 3rem); }
+</style>
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -2357,7 +2469,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
   <a href="#membership" onclick="closeMobile()">Turf Club Pricing</a>
   <a href="#why" onclick="closeMobile()">Why TurfGlow</a>
   <a href="#reviews" onclick="closeMobile()">Reviews</a>
-  <a href="#ig-showroom" onclick="closeMobile()">Instagram</a>
+  <a href="#ig-showroom" onclick="closeMobile()">Follow Us</a>
   <a href="#footer" onclick="closeMobile()">Service Areas</a>
   <a href="#faq" onclick="closeMobile()">FAQ</a>
   <a href="#footer" onclick="closeMobile()">Contact</a>
@@ -2841,6 +2953,61 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
   </div>
 </section>
 
+<!-- ─── SERVICES: Pick Your Clean (the cards double as the what's-included comparison) ─── -->
+<section id="services" class="pc">
+  <div class="container">
+    <div class="pc-head">
+      <div class="section-label">Our Services</div>
+      <h2 class="pc-title">Pick Your <span class="tc-hl">Clean</span></h2>
+      <p class="pc-sub">Every visit starts with our 4-step clean. Pick how deep we go &mdash; not sure? We&rsquo;ll recommend one on your free quote call.</p>
+    </div>
+
+    <div class="pc-cards">
+      <article class="tc-card pc-card">
+        <span class="tc-pill">Light use &middot; No pets</span>
+        <span class="pc-ico" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.94 15.5A2 2 0 008.5 14.06l-6.14-1.58a.5.5 0 010-.96L8.5 9.94A2 2 0 009.94 8.5l1.58-6.14a.5.5 0 01.96 0l1.58 6.14a2 2 0 001.44 1.44l6.14 1.58a.5.5 0 010 .96l-6.14 1.58a2 2 0 00-1.44 1.44l-1.58 6.14a.5.5 0 01-.96 0z"/><path d="M20 3v4M22 5h-4M4 17v2M5 18H3"/></svg></span>
+        <h3 class="pc-name">Refresh Clean</h3>
+        <p class="pc-line">Brings flat, dusty turf back to fresh and fluffy.</p>
+        <div class="tc-rows-label">What&rsquo;s included</div>
+        <ul class="tc-rows"><li class="pc-base"><span>Our 4-step clean<small>Pre-spray, power broom, vacuum &amp; hot-water rinse</small></span></li><li class="tc-no"><span class="tc-sr">Not included: </span>Deep removal of trapped dirt &amp; buildup</li><li class="tc-no"><span class="tc-sr">Not included: </span>Sanitizing treatment</li><li class="tc-no"><span class="tc-sr">Not included: </span>Odor &amp; deodorizer treatment</li><li class="tc-no"><span class="tc-sr">Not included: </span>Detailed edges &amp; finishing</li><li class="tc-no"><span class="tc-sr">Not included: </span>Infill replenishment</li></ul>
+        <div class="tc-card-foot">
+          <button type="button" class="tc-btn tc-btn--green" onclick="openQuoteModal('refresh')">Get a Free Quote</button>
+        </div>
+      </article>
+
+      <article class="tc-card tc-card--featured pc-card pc-card--featured">
+        <span class="tc-pill tc-pill--gold">&#9733; Most popular &middot; Pet homes</span>
+        <span class="pc-ico" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 16.3c2.2 0 4-1.83 4-4.05 0-1.16-.57-2.26-1.71-3.19S7.29 6.75 7 5.3c-.29 1.45-1.14 2.84-2.29 3.76S3 11.1 3 12.25c0 2.22 1.8 4.05 4 4.05z"/><path d="M12.56 6.6A10.97 10.97 0 0014 3.02c.5 2.5 2 4.9 4 6.5s3 3.5 3 5.5a6.98 6.98 0 01-11.91 4.97"/></svg></span>
+        <h3 class="pc-name">Deep Clean</h3>
+        <p class="pc-line">Sanitizes and deodorizes &mdash; the go-to for dog yards and smelly turf.</p>
+        <div class="tc-rows-label">What&rsquo;s included</div>
+        <ul class="tc-rows"><li class="pc-base"><span>Our 4-step clean<small>Pre-spray, power broom, vacuum &amp; hot-water rinse</small></span></li><li>Deep removal of trapped dirt &amp; buildup</li><li>Sanitizing treatment</li><li>Odor &amp; deodorizer treatment</li><li class="tc-no"><span class="tc-sr">Not included: </span>Detailed edges &amp; finishing</li><li class="tc-no"><span class="tc-sr">Not included: </span>Infill replenishment</li></ul>
+        <div class="tc-card-foot">
+          <button type="button" class="tc-btn tc-btn--gold" onclick="openQuoteModal('deep')">Get a Free Quote &rarr;</button>
+        </div>
+      </article>
+
+      <article class="tc-card pc-card">
+        <span class="tc-pill">Never cleaned or matted</span>
+        <span class="pc-ico" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 00-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></svg></span>
+        <h3 class="pc-name">Full Restore</h3>
+        <p class="pc-line">A one-time reset for flat, matted, or never-cleaned turf.</p>
+        <div class="tc-rows-label">What&rsquo;s included</div>
+        <ul class="tc-rows"><li class="pc-base"><span>Our 4-step clean<small>Pre-spray, power broom, vacuum &amp; hot-water rinse</small></span></li><li>Deep removal of trapped dirt &amp; buildup</li><li>Sanitizing treatment</li><li>Odor &amp; deodorizer treatment</li><li>Detailed edges &amp; finishing</li><li>Infill replenishment</li></ul>
+        <p class="pc-note">One-time reset &mdash; then keep it fresh with a <a href="#membership">Turf Club plan</a>.</p>
+        <div class="tc-card-foot">
+          <button type="button" class="tc-btn tc-btn--green" onclick="openQuoteModal('restore')">Get a Free Quote</button>
+        </div>
+      </article>
+    </div>
+
+    <div class="tc-onetime pc-help">
+      <div><strong>Not sure which one you need?</strong> Tell us about your yard &mdash; we&rsquo;ll recommend the right clean on your free quote call.</div>
+      <button type="button" class="tc-onetime-btn" onclick="openQuoteModal()">Get my free quote &rsaquo;</button>
+    </div>
+  </div>
+</section>
+
 <section id="membership">
   <div class="container">
     <div class="tc-head">
@@ -2917,79 +3084,6 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
     <p class="tc-fine">Minimum $100 per visit. Your exact price is given on your free quote call.</p>
   </div>
 </section>
-
-<!-- ─── SERVICES ──────────────────────────────────────────────────── -->
-<section id="services">
-  <div class="container">
-    <div class="services-header">
-      <div class="section-label">Our Services</div>
-      <h2 class="section-title">Clean Turf. Zero Odor.</h2>
-      <p class="section-sub">Three levels of cleaning &mdash; refresh it, deep clean and sanitize it, or restore it. Not sure which you need? We'll recommend one on your free quote call.</p>
-    </div>
-    <div class="services-grid">
-
-      <div class="service-card" onclick="openQuoteModal('refresh')">
-        <div class="svc-card-tag">Light Use &middot; No Pets</div>
-        <div class="svc-card-title">Refresh Clean</div>
-        <img class="svc-card-img" src="svc-deepclean.jpg" alt="Technician power brooming artificial turf" loading="lazy" />
-        <ul class="svc-card-features">
-          <li>Debris &amp; Pet Hair Removal</li>
-          <li>Full Turf Rinse</li>
-          <li>Power Broom &mdash; Fibers Stand Back Up</li>
-          <li>Great for Yards Without Pets</li>
-        </ul>
-        <button class="svc-card-btn" onclick="event.stopPropagation(); openQuoteModal('refresh')">GET A FREE QUOTE</button>
-      </div>
-
-      <div class="service-card featured" onclick="openQuoteModal('deep')">
-        <div class="svc-card-tag">Most Popular &middot; Pet Homes</div>
-        <div class="svc-card-title">Deep Clean</div>
-        <img class="svc-card-img" src="svc-petodor.jpg" alt="Dog relaxing on clean turf" loading="lazy" />
-        <ul class="svc-card-features">
-          <li>Everything in Refresh Clean</li>
-          <li>Deep Removal of Trapped Dirt &amp; Buildup</li>
-          <li>Sanitizing Treatment</li>
-          <li>Odor &amp; Deodorizer Treatment</li>
-        </ul>
-        <button class="svc-card-btn" onclick="event.stopPropagation(); openQuoteModal('deep')">GET A FREE QUOTE</button>
-      </div>
-
-      <div class="service-card" onclick="openQuoteModal('restore')">
-        <div class="svc-card-tag">Never Cleaned or Matted</div>
-        <div class="svc-card-title">Full Restore</div>
-        <img class="svc-card-img" src="svc-restore.jpg" alt="Lush, restored turf" loading="lazy" />
-        <ul class="svc-card-features">
-          <li>Everything in Deep Clean</li>
-          <li>Detailed Edges &amp; Finishing</li>
-          <li>Infill Replenishment</li>
-          <li>Looks Refreshed &amp; Groomed</li>
-        </ul>
-        <button class="svc-card-btn" onclick="event.stopPropagation(); openQuoteModal('restore')">GET A FREE QUOTE</button>
-      </div>
-    </div>
-
-    <div class="svc-compare">
-      <h3 class="svc-compare-title">What&rsquo;s Included</h3>
-      <div class="svc-compare-scroll">
-        <table>
-          <thead><tr><th scope="col">Service</th><th scope="col">Refresh Clean</th><th scope="col" class="is-pop">Deep Clean</th><th scope="col">Full Restore</th></tr></thead>
-          <tbody>
-            <tr><td>Debris &amp; pet hair removal</td><td class="yes" aria-label="Included">&#10003;</td><td class="yes" aria-label="Included">&#10003;</td><td class="yes" aria-label="Included">&#10003;</td></tr>
-            <tr><td>Full turf rinse</td><td class="yes" aria-label="Included">&#10003;</td><td class="yes" aria-label="Included">&#10003;</td><td class="yes" aria-label="Included">&#10003;</td></tr>
-            <tr><td>Power broom &mdash; fibers stand upright</td><td class="yes" aria-label="Included">&#10003;</td><td class="yes" aria-label="Included">&#10003;</td><td class="yes" aria-label="Included">&#10003;</td></tr>
-            <tr><td>Deep removal of trapped dirt &amp; buildup</td><td class="no" aria-label="Not included">&mdash;</td><td class="yes" aria-label="Included">&#10003;</td><td class="yes" aria-label="Included">&#10003;</td></tr>
-            <tr><td>Sanitizing treatment</td><td class="no" aria-label="Not included">&mdash;</td><td class="yes" aria-label="Included">&#10003;</td><td class="yes" aria-label="Included">&#10003;</td></tr>
-            <tr><td>Odor &amp; deodorizer treatment</td><td class="no" aria-label="Not included">&mdash;</td><td class="yes" aria-label="Included">&#10003;</td><td class="yes" aria-label="Included">&#10003;</td></tr>
-            <tr><td>Detailed edges &amp; finishing</td><td class="no" aria-label="Not included">&mdash;</td><td class="no" aria-label="Not included">&mdash;</td><td class="yes" aria-label="Included">&#10003;</td></tr>
-            <tr><td>Infill replenishment</td><td class="no" aria-label="Not included">&mdash;</td><td class="no" aria-label="Not included">&mdash;</td><td class="yes" aria-label="Included">&#10003;</td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p class="svc-compare-note">Every yard is different &mdash; <a href="javascript:void(0)" onclick="openQuoteModal()" style="color:var(--teal);font-weight:700;">get a free quote</a> and we&rsquo;ll call you with your exact price.</p>
-    </div>
-  </div>
-</section>
-
 
 <!-- ─── BEYOND CLEANING ───────────────────────────────────────── -->
 <section id="beyond">
@@ -3080,31 +3174,42 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
   </div>
 </section>
 
-<section id="referral" class="referral-section">
-  <div class="rm-wrap">
-    <div class="rm-body">
-      <h2 id="rm-title" class="rm-offer">Give $50. <span>Get $50.</span></h2>
-      <p class="rm-lead" style="text-align:center;">Know a neighbor whose turf could use it? Send them our way &mdash; they get <strong>$50 off</strong> their first cleaning, and you get rewarded once they book.</p>
+<section id="referral" class="referral-section rf">
+  <div class="rf-panel">
+    <div class="rf-offer">
+      <div class="section-label rf-label">Refer &amp; Earn</div>
+      <h2 id="rm-title" class="rf-title">Give $50.<br /><span>Get $50.</span></h2>
+      <p class="rf-lead">Know a neighbor whose turf could use a clean? Send them our way &mdash; they save $50 on their first cleaning, and you save $50 on your next one.</p>
 
-      <div class="rm-rewards">
-        <div class="rm-reward">
-          <div class="rm-reward-icon">🎁</div>
-          <div class="rm-reward-label">They get</div>
-          <div class="rm-reward-amt">$50 off</div>
-          <div class="rm-reward-sub">their first cleaning</div>
+      <div class="rf-credits">
+        <div class="rf-credit rf-credit--them">
+          <div class="rf-credit-top"><span>TurfGlow</span><span class="rf-credit-chip" aria-hidden="true"></span></div>
+          <div class="rf-credit-amt">$50 OFF</div>
+          <div class="rf-credit-for">For your friend</div>
         </div>
-        <div class="rm-reward">
-          <div class="rm-reward-icon">🏷️</div>
-          <div class="rm-reward-label">You get</div>
-          <div class="rm-reward-amt">$50 off</div>
-          <div class="rm-reward-sub">on your next cleaning</div>
+        <div class="rf-credit rf-credit--you">
+          <div class="rf-credit-top"><span>TurfGlow</span><span class="rf-credit-chip" aria-hidden="true"></span></div>
+          <div class="rf-credit-amt">$50 OFF</div>
+          <div class="rf-credit-for">For you</div>
         </div>
       </div>
 
+      <ol class="rf-steps">
+        <li><span class="rf-num">1</span><div><strong>Send us their info</strong><span>Fill out the form, then text them a heads-up right from your phone.</span></div></li>
+        <li><span class="rf-num">2</span><div><strong>They save $50</strong><span>We reach out and take $50 off their first cleaning.</span></div></li>
+        <li><span class="rf-num">3</span><div><strong>You save $50</strong><span>Once their first cleaning is done, $50 comes off your next one.</span></div></li>
+      </ol>
+    </div>
+
+    <div class="rf-form-card">
       <form id="referral-form" onsubmit="submitReferralForm(event)">
+        <div class="rf-form-head">
+          <h3>Send a referral</h3>
+          <p>We&rsquo;ll reach out and take good care of them.</p>
+        </div>
         <div class="rm-section-label">Your info</div>
         <div class="rm-row">
-          <input type="text" name="referrer_name" required placeholder="Your name *" />
+          <input type="text" name="referrer_name" required placeholder="Your name *" autocomplete="name" />
           <input type="text" name="referrer_contact" required placeholder="Your phone or email *" />
         </div>
 
@@ -3114,16 +3219,16 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
 
         <input type="hidden" name="_subject" value="New TurfGlow Referral" />
         <input type="hidden" name="_captcha" value="false" />
-        <button type="submit" class="rm-submit">SEND REFERRAL</button>
-        <p class="rm-fineprint">We'll take good care of them — and your reward unlocks once their first service is done.</p>
+        <button type="submit" class="rm-submit">Send Referral &rarr;</button>
+        <p class="rm-fineprint">Your $50 unlocks once their first cleaning is done.</p>
       </form>
 
       <div id="referral-success" class="rm-success">
-        <div class="rm-success-icon">🎉</div>
+        <div class="rm-success-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
         <div class="rm-success-title">Thanks, <span id="rm-success-name">friend</span>!</div>
-        <p>Give them a heads-up with a one-tap text — it comes from you, so they'll actually open it. 👇</p>
+        <p>Give them a heads-up with a one-tap text &mdash; it comes from you, so they&rsquo;ll actually open it.</p>
         <div id="rm-text-buttons"></div>
-        <div class="rm-reward-note"><strong>Your reward:</strong> once their first service is complete, your $50 off unlocks — use it on your next cleaning.</div>
+        <div class="rm-reward-note"><strong>Your reward:</strong> once their first cleaning is done, your $50 off unlocks &mdash; use it on your next cleaning.</div>
         <button type="button" class="rm-again" onclick="rmReferAgain()">Refer someone else</button>
       </div>
     </div>
@@ -3203,49 +3308,53 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
   }
 </style>
 
-<section class="ig-showroom" id="ig-showroom">
+<section class="sc" id="ig-showroom">
   <div class="container">
-    <div class="ig-showroom-inner">
-      <div class="ig-showroom-eyebrow">@turfglowcleaning</div>
-      <h2 class="ig-showroom-title">Check Out the Instagram</h2>
-      <p class="ig-showroom-sub">Before-and-afters from around the Valley. See the latest jobs on Instagram.</p>
-      <a href="https://www.instagram.com/turfglowcleaning/" target="_blank" rel="noopener" class="btn-cyan ig-showroom-btn">Follow on Instagram</a>
+    <div class="sc-grid">
+      <div class="sc-copy">
+        <div class="section-label">Follow TurfGlow</div>
+        <h2 class="sc-title">See Our <span class="tc-hl">Latest Work</span></h2>
+        <p class="sc-sub">Before-and-after results from yards across the Phoenix Valley. Follow TurfGlow for our newest projects and turf care tips.</p>
+        <div class="sc-links">
+          <a class="sc-btn" data-social="instagram" href="https://www.instagram.com/turfglowcleaning/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 01-1.38-.9 3.72 3.72 0 01-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.88 5.88 0 00-2.13 1.38A5.88 5.88 0 00.63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13a5.88 5.88 0 002.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.88 5.88 0 002.13-1.38 5.88 5.88 0 001.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.88 5.88 0 00-1.38-2.13A5.88 5.88 0 0019.86.63C19.1.33 18.22.13 16.95.07 15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 100 12.32 6.16 6.16 0 000-12.32zM12 16a4 4 0 110-8 4 4 0 010 8zm6.4-11.85a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/></svg>Instagram</a>
+          <a class="sc-btn" data-social="tiktok" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>TikTok</a>
+          <a class="sc-btn" data-social="facebook" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.1 23.69v-7.98H6.63v-3.67H9.1v-1.58c0-4.09 1.85-5.98 5.86-5.98.4 0 .96.04 1.47.1.38.04.76.11 1.14.2v3.32a8.6 8.6 0 00-.65-.04 26.8 26.8 0 00-.73-.01c-.71 0-1.26.1-1.68.31-.28.14-.52.36-.68.62-.26.42-.37 1-.37 1.75v1.3h3.92l-.39 2.1-.29 1.57h-3.24v8.24C19.4 23.24 24 18.18 24 12.04 24 5.42 18.63.04 12 .04S0 5.42 0 12.04c0 5.63 3.87 10.35 9.1 11.65z"/></svg>Facebook</a>
+        </div>
+      </div>
+      <div class="sc-media">
+        <div class="media-frame" data-type="image" data-src="" data-alt="TurfGlow before-and-after turf cleaning results"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="media-slot-title">Social Photo</span><span class="media-slot-note">Your best before &amp; after or the crew on the job &mdash; a tall photo fits best</span></div></div>
+      </div>
     </div>
   </div>
 </section>
 <style>
-  .ig-showroom {
-    padding: 80px 0;
-    background:
-      linear-gradient(135deg, rgba(15,42,27,0.78) 0%, rgba(20,60,30,0.72) 100%),
-      url('ig-bg.jpg') center/cover no-repeat;
-    background-attachment: scroll, fixed;
-    border-top: 1px solid rgba(255,255,255,0.06);
-    position: relative;
+  /* ── Follow TurfGlow: copy + social buttons beside a photo slot (bottom padding clears the footer card) ── */
+  .sc { padding: 6rem 0 calc(56px + 4.5rem); background: #ffffff; }
+  .sc-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 420px); gap: 4rem; align-items: center; max-width: 1080px; margin: 0 auto; }
+  .sc-title { font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 900; color: #0f2a1b; letter-spacing: -0.03em; line-height: 1.05; }
+  .sc-sub { color: #4a5f50; font-size: 1.08rem; line-height: 1.65; margin-top: 1rem; max-width: 32rem; }
+  .sc-links { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+  .sc-btn {
+    display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.9rem 1.35rem; border-radius: 50px;
+    background: #0f2a1b; color: #ffffff; font-weight: 800; font-size: 0.98rem; text-decoration: none;
+    box-shadow: 0 10px 24px rgba(15,42,27,0.18); transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
   }
-  .ig-showroom::after {
-    content: "";
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.35) 100%);
-    pointer-events: none;
+  .sc-btn svg { width: 20px; height: 20px; flex: 0 0 20px; }
+  .sc-btn:hover { background: #23804b; transform: translateY(-2px); box-shadow: 0 14px 30px rgba(35,128,75,0.3); }
+  .sc-media { position: relative; aspect-ratio: 4 / 5; border-radius: 26px; padding: 10px; background: #dff0e2; box-shadow: 0 24px 60px rgba(15,42,27,0.18); }
+  .sc-media > .media-frame { border-radius: 18px; }
+  @media (max-width: 900px) {
+    .sc-grid { grid-template-columns: 1fr; gap: 2.6rem; max-width: 560px; text-align: center; }
+    .sc-sub { margin-left: auto; margin-right: auto; }
+    .sc-links { justify-content: center; }
+    .sc-media { width: 100%; max-width: 420px; margin: 0 auto; aspect-ratio: 1 / 1; }
   }
-  .ig-showroom .container { position: relative; z-index: 1; }
-  .ig-showroom-inner { text-align: center; max-width: 720px; margin: 0 auto; padding: 0 20px; }
-  .ig-showroom-eyebrow { color: #ffffff; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; font-size: 16px; margin-bottom: 16px; }
-  .ig-showroom-title { color: #fff; font-size: clamp(40px, 6vw, 62px); font-weight: 800; margin: 0 0 16px; letter-spacing: -0.5px; line-height: 1.08; }
-  .ig-showroom-sub { color: #e0ece0; font-size: clamp(18px, 2.4vw, 23px); margin: 0 0 30px; line-height: 1.5; }
-  .ig-showroom-btn { font-size: 16px; padding: 16px 36px; }
   @media (max-width: 768px) {
-    .ig-showroom {
-      padding: 56px 0;
-      background:
-        linear-gradient(135deg, rgba(15,42,27,0.78) 0%, rgba(20,60,30,0.72) 100%),
-        url('ig-bg.jpg') center/cover no-repeat;
-      background-attachment: scroll;
-    }
-    .ig-showroom-title { font-size: 30px; }
-    .ig-showroom-sub { font-size: 16px; }
-    .ig-showroom-btn { font-size: 15px; padding: 14px 28px; }
+    .sc { padding: 4rem 0 calc(40px + 3rem); }
+  }
+  @media (max-width: 480px) {
+    .sc-links { flex-direction: column; align-items: stretch; }
+    .sc-btn { justify-content: center; }
   }
 </style>
 
@@ -3308,6 +3417,8 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
         </div>
         <div class="footer-social-row">
           <a href="https://www.instagram.com/turfglowcleaning/" target="_blank" rel="noopener" title="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.71 3.71 0 0 1-1.38-.9 3.71 3.71 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.85 5.85 0 0 0-2.13 1.38A5.85 5.85 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.73 1.47 1.38 2.13.66.66 1.34 1.07 2.13 1.38.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.85 5.85 0 0 0 2.13-1.38 5.85 5.85 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.85 5.85 0 0 0-1.38-2.13A5.85 5.85 0 0 0 19.86.63C19.1.33 18.22.13 16.95.07 15.67.01 15.26 0 12 0Zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84Zm0 10.16A4 4 0 1 1 16 12a4 4 0 0 1-4 4Zm6.41-10.41a1.44 1.44 0 1 1-1.44-1.44 1.44 1.44 0 0 1 1.44 1.44Z"/></svg></a>
+          <a href="#" data-social="tiktok" target="_blank" rel="noopener" title="TikTok" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a>
+          <a href="#" data-social="facebook" target="_blank" rel="noopener" title="Facebook" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.1 23.69v-7.98H6.63v-3.67H9.1v-1.58c0-4.09 1.85-5.98 5.86-5.98.4 0 .96.04 1.47.1.38.04.76.11 1.14.2v3.32a8.6 8.6 0 00-.65-.04 26.8 26.8 0 00-.73-.01c-.71 0-1.26.1-1.68.31-.28.14-.52.36-.68.62-.26.42-.37 1-.37 1.75v1.3h3.92l-.39 2.1-.29 1.57h-3.24v8.24C19.4 23.24 24 18.18 24 12.04 24 5.42 18.63.04 12 .04S0 5.42 0 12.04c0 5.63 3.87 10.35 9.1 11.65z"/></svg></a>
         </div>
       </div>
     </div>
@@ -3864,6 +3975,9 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
     }
     if (!people.length) { alert('Please add at least one person to refer (first name + phone).'); return; }
 
+    var btn = form.querySelector('.rm-submit'), btnLabel = btn ? btn.innerHTML : '';
+    if (btn) { btn.disabled = true; btn.textContent = 'Sending\u2026'; }
+
     function showRefSuccess() {
       document.getElementById('rm-success-name').textContent = (referrerName.split(' ')[0] || 'friend');
       // Build one-tap "Text them" buttons — opens the referrer's own Messages app,
@@ -3877,16 +3991,21 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
                 : ((digits.length === 11 && digits.charAt(0) === '1') ? ('+' + digits) : digits);
         var first = p.first || 'there';
         var body = 'Hey ' + first + '! I use TurfGlow and thought of you — '
-                 + "here's $50 off your first turf cleaning 👉 https://turfglowcleaning.com";
+                 + "here's $50 off your first turf cleaning 👉 https://turfglow.vercel.app";
         var a = document.createElement('a');
         a.className = 'rm-text-btn';
         a.href = 'sms:' + num + '?&body=' + encodeURIComponent(body);
-        a.textContent = '📱 Text ' + first;
+        a.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 01-11.6 7.1L4 20.5l1.4-5A8 8 0 1121 12z"/></svg>';
+        a.appendChild(document.createTextNode('Text ' + first));
         btnWrap.appendChild(a);
       });
       form.style.display = 'none';
       document.getElementById('referral-success').style.display = 'block';
-      document.getElementById('referral-modal').scrollTop = 0;
+      if (btn) { btn.disabled = false; btn.innerHTML = btnLabel; }
+      var card = document.querySelector('.rf-form-card');
+      if (card && card.getBoundingClientRect().top < 90) {
+        window.scrollTo({ top: card.getBoundingClientRect().top + window.pageYOffset - 110, behavior: 'smooth' });
+      }
     }
     function referralFallback() {
       var fd = new FormData();
@@ -3911,11 +4030,11 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
       body: JSON.stringify({ referrer_name: referrerName, referrer_contact: referrerContact, people: people })
     })
     .then(function(res) { if (!res.ok) throw new Error('api ' + res.status); return res.json(); })
-    .then(showRefSuccess)
-    .catch(function() {
-      referralFallback().then(showRefSuccess).catch(function() {
-        alert('Something went wrong. Please email TurfGlowAZ@gmail.com or call (480) 294-1408.');
-      });
+    // Only a failed send falls back to formsubmit, so a referral is never emailed twice.
+    .catch(referralFallback)
+    .then(showRefSuccess, function() {
+      if (btn) { btn.disabled = false; btn.innerHTML = btnLabel; }
+      alert('Something went wrong. Please email TurfGlowAZ@gmail.com or call (480) 294-1408.');
     });
   }
 
@@ -4558,6 +4677,21 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
   }, { threshold: 0.25 });
   videos.forEach(function(v){ io.observe(v); });
 })();
+</script>
+<script>
+  // Social links: paste the TikTok and Facebook page URLs here when they're ready.
+  // Until then those buttons show but don't go anywhere.
+  var TG_SOCIAL = {
+    instagram: 'https://www.instagram.com/turfglowcleaning/',
+    tiktok: '',
+    facebook: ''
+  };
+  document.querySelectorAll('[data-social]').forEach(function (a) {
+    var url = TG_SOCIAL[a.getAttribute('data-social')];
+    if (url) { a.href = url; return; }
+    a.removeAttribute('target');
+    a.addEventListener('click', function (e) { e.preventDefault(); });
+  });
 </script>
 </body>
 </html>
