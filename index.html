@@ -1898,6 +1898,53 @@
   @media (max-width: 768px) and (max-height: 740px) { .hero-bg .hero-slot-chip { display: none; } }
   /* Very short screens: drop the line so the headline and buttons still fit */
   @media (max-width: 768px) and (max-height: 600px) { #hero .hero-sub { display: none; } }
+
+  /* ── Phones: glass nav over the hero, left-aligned copy, stars pill + Google G, one big quote button ── */
+  .he-g { display: none; }
+  @media (max-width: 768px) {
+    #nav .nav-inner { transition: background 0.25s, border-color 0.25s, box-shadow 0.25s; }
+    #nav.nav-over-hero .nav-inner {
+      background: rgba(12,32,20,0.38); border-color: rgba(255,255,255,0.16);
+      -webkit-backdrop-filter: blur(16px) saturate(140%); backdrop-filter: blur(16px) saturate(140%);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.28);
+    }
+    #nav.nav-over-hero .hamburger { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.22); border-radius: 12px; }
+    #nav.nav-over-hero .hamburger span { background: #ffffff; }
+
+    #hero .hero-content { text-align: left; }
+    #hero .hero-eyebrow {
+      background: none; border: 0; padding: 0; -webkit-backdrop-filter: none; backdrop-filter: none;
+      gap: 10px; font-size: 1rem; font-weight: 500; margin-bottom: 1.1rem;
+    }
+    #hero .hero-eyebrow .he-stars {
+      letter-spacing: 3px !important; font-size: 1.05rem; padding: 7px 14px; border-radius: 50px;
+      background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.22);
+      -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    }
+    #hero .hero-eyebrow .he-text { color: #ffffff; letter-spacing: 0 !important; }
+    #hero .he-g { display: inline-block; }
+    #hero .hero-sub { margin: 0 0 1.5rem; max-width: 24rem; }
+    #hero .hero-buttons { align-items: flex-start; justify-content: flex-start; }
+    #hero .hero-buttons .btn-cyan {
+      width: auto; display: inline-flex; border-radius: 50px; padding: 17px 30px;
+      font-size: 1rem; letter-spacing: 0.08em; box-shadow: 0 12px 30px rgba(35,128,75,0.45);
+    }
+    #hero .hero-buttons .btn-ghost { display: none !important; }
+    .hero-bg .media-slot--hero { align-items: flex-start; padding-left: 24px; padding-right: 24px; }
+  }
+  @media (max-width: 380px) {
+    #hero .hero-eyebrow { gap: 8px; font-size: 0.92rem; }
+    #hero .hero-eyebrow .he-stars { letter-spacing: 1px !important; padding: 6px 10px; font-size: 0.95rem; }
+  }
+  @media (max-width: 340px) {
+    #hero .hero-eyebrow { font-size: 0.84rem; gap: 6px; }
+    #hero .hero-eyebrow .he-stars { font-size: 0.86rem; padding: 5px 9px; }
+    #hero .he-g { width: 18px; height: 18px; flex-basis: 18px; background-size: contain; }
+  }
+  /* Computers: the photo-slot tag only shows on big screens where it can't touch the headline (stripes still mark the spot) */
+  @media (min-width: 769px) and (max-width: 1099px), (min-width: 769px) and (max-height: 819px) {
+    .hero-bg .hero-slot-chip { display: none; }
+  }
   @media (min-width: 769px) {
     #hero .container { padding-bottom: 1.75rem; }
     #hero .hero-eyebrow { margin-bottom: 1rem; }
@@ -2552,7 +2599,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
 <body>
 
 <!-- ─── NAV ──────────────────────────────────────────────────────── -->
-<nav id="nav">
+<nav id="nav" class="nav-over-hero">
   <div class="nav-inner">
     <a href="#hero" class="nav-logo">
       <img src="logo-wide.png" alt="TurfGlow — Arizona Turf Cleaning" />
@@ -2603,7 +2650,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
   <div class="container">
     <div class="hero-content">
       <a href="https://maps.google.com/?cid=3468386511023497696" target="_blank" rel="noopener" class="hero-eyebrow" style="text-decoration:none;cursor:pointer;">
-        <span style="color:#fbbf24;letter-spacing:2px;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>&nbsp; 5.0 Stars on Google
+        <span class="he-stars" style="color:#fbbf24;letter-spacing:2px;">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="he-text">&nbsp; 5.0 Stars on Google</span><span class="rw-g he-g" aria-hidden="true"></span>
       </a>
       <h1 class="hero-h1">Dirty Turf?<br />We Can <span class="accent">Fix</span> That.</h1>
       <p class="hero-sub"><span class="hero-sub-full">Deep cleaning, pet odor elimination, and full restoration for artificial turf across the Phoenix Valley. Pet-safe, kid-safe, and guaranteed &mdash; or we come back free.</span><span class="hero-sub-short">Pet-safe deep cleaning and odor removal across the Phoenix Valley &mdash; guaranteed.</span></p>
@@ -4820,6 +4867,20 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
     a.removeAttribute('target');
     a.addEventListener('click', function (e) { e.preventDefault(); });
   });
+</script>
+<script>
+  // Phones: the nav is glass while it sits over the hero, solid white once you scroll past it
+  (function () {
+    var nav = document.getElementById('nav'), hero = document.getElementById('hero'), ticking = false;
+    if (!nav || !hero) return;
+    function update() {
+      ticking = false;
+      nav.classList.toggle('nav-over-hero', hero.getBoundingClientRect().bottom > nav.getBoundingClientRect().bottom + 10);
+    }
+    window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  })();
 </script>
 </body>
 </html>
