@@ -1941,6 +1941,18 @@
     #hero .hero-eyebrow .he-stars { font-size: 0.86rem; padding: 5px 9px; }
     #hero .he-g { width: 18px; height: 18px; flex-basis: 18px; background-size: contain; }
   }
+  /* Phones: the bottom bar is one full-width Call Us button */
+  #mobile-sticky.ms-call {
+    background: rgba(255,255,255,0.96); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+    border-top: 1px solid #dcebdf; box-shadow: 0 -6px 20px rgba(15,42,27,0.08);
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+  }
+  #mobile-sticky.ms-call .sticky-call {
+    flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 15px 16px;
+    border: 0; border-radius: 50px; color: #ffffff; font-size: 1.02rem; font-weight: 800; letter-spacing: 0.02em;
+    background: linear-gradient(135deg, #195c36 0%, #23804b 60%, #2f9a5c 100%); box-shadow: 0 10px 24px rgba(35,128,75,0.35);
+  }
+  #mobile-sticky.ms-call .sticky-call svg { width: 20px; height: 20px; flex: 0 0 20px; }
   /* Computers: the photo-slot tag only shows on big screens where it can't touch the headline (stripes still mark the spot) */
   @media (min-width: 769px) and (max-width: 1099px), (min-width: 769px) and (max-height: 819px) {
     .hero-bg .hero-slot-chip { display: none; }
@@ -3608,9 +3620,8 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
 </footer>
 
 <!-- ─── MOBILE STICKY BAR ─────────────────────────────────────────── -->
-<div id="mobile-sticky">
-  <a href="tel:4802941408" class="sticky-call">📞 Call Us</a>
-  <a href="javascript:void(0)" class="sticky-book" onclick="openQuoteModal()">GET FREE QUOTE</a>
+<div id="mobile-sticky" class="ms-call">
+  <a href="tel:4802941408" class="sticky-call"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>Call Us</a>
 </div>
 
 <!-- ─── SERVICE MODAL ───────────────────────────────────────────────── -->
