@@ -381,10 +381,23 @@
       position: absolute; inset: 70px 0 0 0;
       -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 90px);
       mask-image: linear-gradient(to bottom, transparent 0, #000 90px);
-      background-image: url('hero-team.jpg');
-      background-size: cover;
-      background-position: 50% 5%;
     }
+    .hero-bg .media-frame { position: absolute; inset: 0; border-radius: 0; }
+    .hero-bg .media-el { object-position: 50% 15%; }
+    /* Empty hero photo slot: dark stripes keep the white headline readable; the label sits up top, clear of the text */
+    .hero-bg .media-slot--hero {
+      border: 0; border-radius: 0; padding: 100px 28px 0; align-items: flex-end; justify-content: flex-start;
+      background: repeating-linear-gradient(135deg, #1a3823 0 22px, #1f4129 22px 44px);
+    }
+    .hero-slot-chip {
+      display: flex; align-items: center; gap: 12px; text-align: left; color: #ffffff;
+      padding: 10px 18px 10px 10px; border: 1.5px dashed rgba(255,255,255,0.45); border-radius: 18px; background: rgba(8,24,14,0.35);
+    }
+    .hero-bg .media-slot--hero .media-slot-icon { width: 44px; height: 44px; flex: 0 0 44px; background: rgba(255,255,255,0.12); box-shadow: none; }
+    .hero-slot-text { display: flex; flex-direction: column; gap: 2px; }
+    .hero-bg .media-slot--hero .media-slot-title { font-size: 0.82rem; }
+    .hero-bg .media-slot--hero .media-slot-note { color: rgba(255,255,255,0.65); font-size: 0.78rem; max-width: 240px; }
+    @media (max-width: 768px) { .hero-bg .media-slot--hero { align-items: center; padding: 100px 16px 0; } }
     .hero-overlay {
       position: absolute; inset: 0;
       background: linear-gradient(to right, rgba(8,24,14,0.85) 0%, rgba(8,24,14,0.5) 42%, rgba(8,24,14,0.12) 72%, rgba(8,24,14,0) 100%);
@@ -1557,7 +1570,6 @@
       /* Mobile hero: photo shows the tech up top, text anchored to the bottom over a
          scrim — so the headline never lands on his face regardless of screen height. */
       #hero { align-items: flex-end; }
-      .hero-bg { background-position: 55% 5%; }
       .hero-overlay {
         background: linear-gradient(to bottom,
           rgba(8,24,14,0.45) 0%,
@@ -2375,7 +2387,7 @@
   }
 
   /* ── Give $50 / Get $50: dark offer panel + white form card ── */
-  .referral-section.rf { padding: 5.5rem 24px; background: linear-gradient(180deg, #f5f9f5 0%, #eaf5ec 100%); }
+  .referral-section.rf { padding: 5.5rem 24px; background: linear-gradient(180deg, #f4faf5 0%, #eaf5ec 50%, #ffffff 100%); }
   .rf-panel {
     position: relative; overflow: hidden; max-width: 1140px; margin: 0 auto; color: #ffffff;
     display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: 3rem; align-items: center;
@@ -2450,6 +2462,9 @@
 
   /* FAQ heading: same heavy weight as the other section headings */
   #faq .section-title { font-weight: 900; letter-spacing: -0.02em; font-size: clamp(2rem, 4vw, 3rem); }
+  /* FAQ is the last section now — extra bottom room for the footer card that overlaps it */
+  #faq { padding-bottom: calc(56px + 4rem); }
+  @media (max-width: 768px) { #faq { padding-bottom: calc(40px + 3rem); } }
 </style>
 <!-- Meta Pixel Code -->
 <script>
@@ -2517,7 +2532,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
 
 <!-- ─── HERO ──────────────────────────────────────────────────────── -->
 <section id="hero">
-  <div class="hero-bg"></div>
+  <div class="hero-bg"><div class="media-frame" data-type="image" data-src="" data-alt="TurfGlow crew on a freshly cleaned artificial turf yard"><div class="media-slot media-slot--hero"><span class="hero-slot-chip"><span class="media-slot-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="hero-slot-text"><span class="media-slot-title">Hero photo goes here</span><span class="media-slot-note">Wide landscape photo of your crew or a freshly cleaned yard</span></span></span></div></div></div>
   <div class="hero-overlay"></div>
 
   <div class="container">
@@ -3164,54 +3179,6 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
   </div>
 </section>
 
-<!-- ─── FAQ ───────────────────────────────────────────────────── -->
-<section id="faq">
-  <div class="container">
-    <div style="text-align:center;">
-      <div class="section-label">Questions</div>
-      <h2 class="section-title">Frequently Asked Questions</h2>
-    </div>
-    <div class="faq-list">
-      <details class="faq-item">
-        <summary>How much does turf cleaning cost?</summary>
-        <p>Every yard is different &mdash; the price depends on how much turf you have, whether you have pets, and what shape it&rsquo;s in. <a href="javascript:void(0)" onclick="openQuoteModal()" style="color:var(--teal);font-weight:700;">Get a free quote</a> in about 30 seconds and we&rsquo;ll call you with your exact price in minutes.</p>
-      </details>
-      <details class="faq-item">
-        <summary>How do you know how big my yard is?</summary>
-        <p>Just pick the closest size &mdash; no measuring needed. We look at your yard on satellite before we call, and we confirm the size with you before any work starts.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Which cleaning do I need?</summary>
-        <p><strong>Refresh Clean</strong> is for turf with light use and no pets. <strong>Deep Clean</strong> is for pet homes and turf that smells. <strong>Full Restore</strong> brings flat, matted, or never-cleaned turf back to life. Not sure? We&rsquo;ll recommend one on your call.</p>
-      </details>
-      <details class="faq-item">
-        <summary>How do Turf Club plans work?</summary>
-        <p>Pick Monthly, Every Other Month, or Quarterly and save $150, $100, or $50 on every cleaning. Monthly and Every Other Month also come with three free bonuses: a photo report after every visit, our 7-Day Fresh Guarantee, and free pet waste pickup. Every plan is auto-scheduled with reminder texts, and your price is locked for 12 months. Savings start after your first cleaning, with a $100 minimum per visit. One-time cleanings are always available too.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Is there a contract? Can I cancel?</summary>
-        <p>Plans are a simple 12-month agreement so we can hold your spot on our schedule and lock in your price. There are no cancellation fees &mdash; if you cancel before your 12 months are up, we just ask you to pay back one visit&rsquo;s discount. Moving out of the Valley? You can cancel free. After 12 months, your plan keeps going until you cancel.</p>
-      </details>
-      <details class="faq-item">
-        <summary>When will I be charged?</summary>
-        <p>We keep a card on file so you never have to deal with invoices. Your first cleaning is charged after it&rsquo;s done. After that, you&rsquo;re charged on the 1st of each month you have a visit, and we text you 2 weeks and 2 days before every visit.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Do I need to be home?</summary>
-        <p>No &mdash; as long as we can get into your backyard. Monthly and Every Other Month members get before-and-after photos texted when we&rsquo;re done, so you know it&rsquo;s taken care of.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Is it safe for my pets and kids?</summary>
-        <p>Yes. Every product we use is non-toxic and pet-safe, so your dogs and kids can be back on the turf as soon as it dries.</p>
-      </details>
-      <details class="faq-item">
-        <summary>What areas do you serve?</summary>
-        <p>The Phoenix Valley, including Phoenix, Scottsdale, Tempe, Mesa, Gilbert, Chandler, Queen Creek, Glendale, Surprise, and Paradise Valley.</p>
-      </details>
-    </div>
-  </div>
-</section>
-
 <section id="referral" class="referral-section rf">
   <div class="rf-panel">
     <div class="rf-offer">
@@ -3272,6 +3239,105 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
     </div>
   </div>
 </section>
+
+<section class="sc" id="ig-showroom">
+  <div class="container">
+    <div class="sc-grid">
+      <div class="sc-copy">
+        <div class="section-label">Follow TurfGlow</div>
+        <h2 class="sc-title">See Our <span class="tc-hl">Latest Work</span></h2>
+        <p class="sc-sub">Before-and-after results from yards across the Phoenix Valley. Follow TurfGlow for our newest projects and turf care tips.</p>
+        <div class="sc-links">
+          <a class="sc-btn" data-social="instagram" href="https://www.instagram.com/turfglowcleaning/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 01-1.38-.9 3.72 3.72 0 01-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.88 5.88 0 00-2.13 1.38A5.88 5.88 0 00.63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13a5.88 5.88 0 002.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.88 5.88 0 002.13-1.38 5.88 5.88 0 001.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.88 5.88 0 00-1.38-2.13A5.88 5.88 0 0019.86.63C19.1.33 18.22.13 16.95.07 15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 100 12.32 6.16 6.16 0 000-12.32zM12 16a4 4 0 110-8 4 4 0 010 8zm6.4-11.85a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/></svg>Instagram</a>
+          <a class="sc-btn" data-social="tiktok" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>TikTok</a>
+          <a class="sc-btn" data-social="facebook" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.1 23.69v-7.98H6.63v-3.67H9.1v-1.58c0-4.09 1.85-5.98 5.86-5.98.4 0 .96.04 1.47.1.38.04.76.11 1.14.2v3.32a8.6 8.6 0 00-.65-.04 26.8 26.8 0 00-.73-.01c-.71 0-1.26.1-1.68.31-.28.14-.52.36-.68.62-.26.42-.37 1-.37 1.75v1.3h3.92l-.39 2.1-.29 1.57h-3.24v8.24C19.4 23.24 24 18.18 24 12.04 24 5.42 18.63.04 12 .04S0 5.42 0 12.04c0 5.63 3.87 10.35 9.1 11.65z"/></svg>Facebook</a>
+        </div>
+      </div>
+      <div class="sc-media">
+        <div class="media-frame" data-type="image" data-src="" data-alt="TurfGlow before-and-after turf cleaning results"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="media-slot-title">Social Photo</span><span class="media-slot-note">Your best before &amp; after or the crew on the job &mdash; a tall photo fits best</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+  /* ── Follow TurfGlow: copy + social buttons beside a photo slot ── */
+  .sc { padding: 6rem 0; background: #ffffff; }
+  .sc-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 420px); gap: 4rem; align-items: center; max-width: 1080px; margin: 0 auto; }
+  .sc-title { font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 900; color: #0f2a1b; letter-spacing: -0.03em; line-height: 1.05; }
+  .sc-sub { color: #4a5f50; font-size: 1.08rem; line-height: 1.65; margin-top: 1rem; max-width: 32rem; }
+  .sc-links { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+  .sc-btn {
+    display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.9rem 1.35rem; border-radius: 50px;
+    background: #0f2a1b; color: #ffffff; font-weight: 800; font-size: 0.98rem; text-decoration: none;
+    box-shadow: 0 10px 24px rgba(15,42,27,0.18); transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+  }
+  .sc-btn svg { width: 20px; height: 20px; flex: 0 0 20px; }
+  .sc-btn:hover { background: #23804b; transform: translateY(-2px); box-shadow: 0 14px 30px rgba(35,128,75,0.3); }
+  .sc-media { position: relative; aspect-ratio: 4 / 5; border-radius: 26px; padding: 10px; background: #dff0e2; box-shadow: 0 24px 60px rgba(15,42,27,0.18); }
+  .sc-media > .media-frame { border-radius: 18px; }
+  @media (max-width: 900px) {
+    .sc-grid { grid-template-columns: 1fr; gap: 2.6rem; max-width: 560px; text-align: center; }
+    .sc-sub { margin-left: auto; margin-right: auto; }
+    .sc-links { justify-content: center; }
+    .sc-media { width: 100%; max-width: 420px; margin: 0 auto; aspect-ratio: 1 / 1; }
+  }
+  @media (max-width: 768px) {
+    .sc { padding: 4rem 0; }
+  }
+  @media (max-width: 480px) {
+    .sc-links { flex-direction: column; align-items: stretch; }
+    .sc-btn { justify-content: center; }
+  }
+</style>
+
+<!-- ─── FAQ ───────────────────────────────────────────────────── -->
+<section id="faq">
+  <div class="container">
+    <div style="text-align:center;">
+      <div class="section-label">Questions</div>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>How much does turf cleaning cost?</summary>
+        <p>Every yard is different &mdash; the price depends on how much turf you have, whether you have pets, and what shape it&rsquo;s in. <a href="javascript:void(0)" onclick="openQuoteModal()" style="color:var(--teal);font-weight:700;">Get a free quote</a> in about 30 seconds and we&rsquo;ll call you with your exact price in minutes.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How do you know how big my yard is?</summary>
+        <p>Just pick the closest size &mdash; no measuring needed. We look at your yard on satellite before we call, and we confirm the size with you before any work starts.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Which cleaning do I need?</summary>
+        <p><strong>Refresh Clean</strong> is for turf with light use and no pets. <strong>Deep Clean</strong> is for pet homes and turf that smells. <strong>Full Restore</strong> brings flat, matted, or never-cleaned turf back to life. Not sure? We&rsquo;ll recommend one on your call.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How do Turf Club plans work?</summary>
+        <p>Pick Monthly, Every Other Month, or Quarterly and save $150, $100, or $50 on every cleaning. Monthly and Every Other Month also come with three free bonuses: a photo report after every visit, our 7-Day Fresh Guarantee, and free pet waste pickup. Every plan is auto-scheduled with reminder texts, and your price is locked for 12 months. Savings start after your first cleaning, with a $100 minimum per visit. One-time cleanings are always available too.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Is there a contract? Can I cancel?</summary>
+        <p>Plans are a simple 12-month agreement so we can hold your spot on our schedule and lock in your price. There are no cancellation fees &mdash; if you cancel before your 12 months are up, we just ask you to pay back one visit&rsquo;s discount. Moving out of the Valley? You can cancel free. After 12 months, your plan keeps going until you cancel.</p>
+      </details>
+      <details class="faq-item">
+        <summary>When will I be charged?</summary>
+        <p>We keep a card on file so you never have to deal with invoices. Your first cleaning is charged after it&rsquo;s done. After that, you&rsquo;re charged on the 1st of each month you have a visit, and we text you 2 weeks and 2 days before every visit.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Do I need to be home?</summary>
+        <p>No &mdash; as long as we can get into your backyard. Monthly and Every Other Month members get before-and-after photos texted when we&rsquo;re done, so you know it&rsquo;s taken care of.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Is it safe for my pets and kids?</summary>
+        <p>Yes. Every product we use is non-toxic and pet-safe, so your dogs and kids can be back on the turf as soon as it dries.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What areas do you serve?</summary>
+        <p>The Phoenix Valley, including Phoenix, Scottsdale, Tempe, Mesa, Gilbert, Chandler, Queen Creek, Glendale, Surprise, and Paradise Valley.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
 <style>
   .clean-guarantee-banner {
     position: relative;
@@ -3345,58 +3411,6 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
     .cgb-btn { width: 100%; justify-content: center; }
   }
 </style>
-
-<section class="sc" id="ig-showroom">
-  <div class="container">
-    <div class="sc-grid">
-      <div class="sc-copy">
-        <div class="section-label">Follow TurfGlow</div>
-        <h2 class="sc-title">See Our <span class="tc-hl">Latest Work</span></h2>
-        <p class="sc-sub">Before-and-after results from yards across the Phoenix Valley. Follow TurfGlow for our newest projects and turf care tips.</p>
-        <div class="sc-links">
-          <a class="sc-btn" data-social="instagram" href="https://www.instagram.com/turfglowcleaning/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 01-1.38-.9 3.72 3.72 0 01-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.88 5.88 0 00-2.13 1.38A5.88 5.88 0 00.63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13a5.88 5.88 0 002.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.88 5.88 0 002.13-1.38 5.88 5.88 0 001.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.88 5.88 0 00-1.38-2.13A5.88 5.88 0 0019.86.63C19.1.33 18.22.13 16.95.07 15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 100 12.32 6.16 6.16 0 000-12.32zM12 16a4 4 0 110-8 4 4 0 010 8zm6.4-11.85a1.44 1.44 0 100 2.88 1.44 1.44 0 000-2.88z"/></svg>Instagram</a>
-          <a class="sc-btn" data-social="tiktok" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.53.02C13.84 0 15.14.01 16.44 0c.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>TikTok</a>
-          <a class="sc-btn" data-social="facebook" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.1 23.69v-7.98H6.63v-3.67H9.1v-1.58c0-4.09 1.85-5.98 5.86-5.98.4 0 .96.04 1.47.1.38.04.76.11 1.14.2v3.32a8.6 8.6 0 00-.65-.04 26.8 26.8 0 00-.73-.01c-.71 0-1.26.1-1.68.31-.28.14-.52.36-.68.62-.26.42-.37 1-.37 1.75v1.3h3.92l-.39 2.1-.29 1.57h-3.24v8.24C19.4 23.24 24 18.18 24 12.04 24 5.42 18.63.04 12 .04S0 5.42 0 12.04c0 5.63 3.87 10.35 9.1 11.65z"/></svg>Facebook</a>
-        </div>
-      </div>
-      <div class="sc-media">
-        <div class="media-frame" data-type="image" data-src="" data-alt="TurfGlow before-and-after turf cleaning results"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="media-slot-title">Social Photo</span><span class="media-slot-note">Your best before &amp; after or the crew on the job &mdash; a tall photo fits best</span></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-<style>
-  /* ── Follow TurfGlow: copy + social buttons beside a photo slot (bottom padding clears the footer card) ── */
-  .sc { padding: 6rem 0 calc(56px + 4.5rem); background: #ffffff; }
-  .sc-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 420px); gap: 4rem; align-items: center; max-width: 1080px; margin: 0 auto; }
-  .sc-title { font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 900; color: #0f2a1b; letter-spacing: -0.03em; line-height: 1.05; }
-  .sc-sub { color: #4a5f50; font-size: 1.08rem; line-height: 1.65; margin-top: 1rem; max-width: 32rem; }
-  .sc-links { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
-  .sc-btn {
-    display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.9rem 1.35rem; border-radius: 50px;
-    background: #0f2a1b; color: #ffffff; font-weight: 800; font-size: 0.98rem; text-decoration: none;
-    box-shadow: 0 10px 24px rgba(15,42,27,0.18); transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
-  }
-  .sc-btn svg { width: 20px; height: 20px; flex: 0 0 20px; }
-  .sc-btn:hover { background: #23804b; transform: translateY(-2px); box-shadow: 0 14px 30px rgba(35,128,75,0.3); }
-  .sc-media { position: relative; aspect-ratio: 4 / 5; border-radius: 26px; padding: 10px; background: #dff0e2; box-shadow: 0 24px 60px rgba(15,42,27,0.18); }
-  .sc-media > .media-frame { border-radius: 18px; }
-  @media (max-width: 900px) {
-    .sc-grid { grid-template-columns: 1fr; gap: 2.6rem; max-width: 560px; text-align: center; }
-    .sc-sub { margin-left: auto; margin-right: auto; }
-    .sc-links { justify-content: center; }
-    .sc-media { width: 100%; max-width: 420px; margin: 0 auto; aspect-ratio: 1 / 1; }
-  }
-  @media (max-width: 768px) {
-    .sc { padding: 4rem 0 calc(40px + 3rem); }
-  }
-  @media (max-width: 480px) {
-    .sc-links { flex-direction: column; align-items: stretch; }
-    .sc-btn { justify-content: center; }
-  }
-</style>
-
-
 
 <footer id="footer">
   <div class="container">
