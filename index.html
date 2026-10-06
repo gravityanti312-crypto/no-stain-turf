@@ -2465,6 +2465,62 @@
   /* FAQ is the last section now — extra bottom room for the footer card that overlaps it */
   #faq { padding-bottom: calc(56px + 4rem); }
   @media (max-width: 768px) { #faq { padding-bottom: calc(40px + 3rem); } }
+
+  /* ── FAQ: numbered questions, round +/× toggles, soft glow background, call card at the bottom ── */
+  #faq {
+    background:
+      radial-gradient(40% 50% at 0% 0%, rgba(253,229,10,0.12), transparent 70%),
+      radial-gradient(45% 55% at 100% 35%, rgba(133,204,126,0.24), transparent 70%),
+      #f5f9f5;
+  }
+  .fq-head { text-align: center; max-width: 720px; margin: 0 auto; }
+  .fq-sub { color: #4a5f50; font-size: 1.05rem; line-height: 1.6; margin-top: -0.2rem; }
+  #faq .faq-list { max-width: 860px; margin-top: 2.6rem; gap: 14px; counter-reset: faq; }
+  #faq .faq-item { border: 1px solid #dcebdf; border-radius: 18px; box-shadow: 0 6px 18px rgba(15,42,27,0.04); transition: border-color 0.2s, box-shadow 0.2s; }
+  #faq .faq-item:hover { border-color: rgba(35,128,75,0.35); }
+  #faq .faq-item[open] { border-color: rgba(35,128,75,0.45); box-shadow: 0 16px 38px rgba(15,42,27,0.09); }
+  #faq .faq-item summary { align-items: center; justify-content: flex-start; gap: 14px; padding: 18px 20px; font-size: 1.05rem; transition: color 0.2s; }
+  #faq .faq-item summary:hover { color: #195c36; }
+  #faq .faq-item summary::before {
+    counter-increment: faq; content: counter(faq, decimal-leading-zero);
+    flex: 0 0 38px; width: 38px; height: 38px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
+    background: #e6f4e8; color: #195c36; font-size: 0.82rem; font-weight: 900; letter-spacing: 0.02em; transition: background 0.2s, color 0.2s;
+  }
+  #faq .faq-item[open] summary::before { background: #0f2a1b; color: #fde50a; }
+  #faq .faq-item summary::after {
+    content: ""; margin-left: auto; flex: 0 0 34px; width: 34px; height: 34px; border-radius: 50%;
+    background: #e6f4e8 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2323804b' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M12 5v14M5 12h14'/%3E%3C/svg%3E") center / 14px no-repeat; transition: transform 0.25s, background-color 0.2s;
+  }
+  #faq .faq-item[open] summary::after { content: ""; transform: rotate(45deg); background: #0f2a1b url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fde50a' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M12 5v14M5 12h14'/%3E%3C/svg%3E") center / 14px no-repeat; }
+  #faq .faq-item p { padding: 0 64px 20px 72px; font-size: 0.98rem; color: #4a5f50; line-height: 1.7; }
+
+  .fq-call {
+    max-width: 860px; margin: 2.2rem auto 0; display: flex; align-items: center; gap: 1.1rem;
+    background: #ffffff; border: 1px solid #dcebdf; border-radius: 22px; padding: 1.3rem 1.4rem 1.3rem 1.3rem;
+    box-shadow: 0 16px 40px rgba(15,42,27,0.08);
+  }
+  .fq-call-ico { flex: 0 0 52px; width: 52px; height: 52px; border-radius: 16px; background: #fde50a; color: #0f2a1b; display: flex; align-items: center; justify-content: center; }
+  .fq-call-text { flex: 1; min-width: 0; }
+  .fq-call-text strong { display: block; font-size: 1.2rem; font-weight: 900; color: #0f2a1b; letter-spacing: -0.01em; }
+  .fq-call-text span { display: block; font-size: 0.95rem; color: #4a5f50; margin-top: 0.15rem; line-height: 1.5; }
+  .fq-call-action { display: flex; flex-direction: column; align-items: center; gap: 0.35rem; flex: 0 0 auto; }
+  .fq-call-btn {
+    display: inline-flex; align-items: center; gap: 0.55rem; padding: 0.85rem 1.4rem; border-radius: 50px; white-space: nowrap;
+    background: #0f2a1b; color: #ffffff; font-weight: 900; font-size: 1.02rem; text-decoration: none;
+    box-shadow: 0 10px 24px rgba(15,42,27,0.2); transition: transform 0.2s, background 0.2s;
+  }
+  .fq-call-btn svg { width: 18px; height: 18px; color: #fde50a; }
+  .fq-call-btn:hover { background: #23804b; transform: translateY(-2px); }
+  .fq-call-hours { font-size: 0.78rem; font-weight: 700; color: #6b7c6b; letter-spacing: 0.02em; }
+  @media (max-width: 640px) {
+    #faq .faq-item summary { padding: 15px 14px; gap: 11px; font-size: 0.98rem; }
+    #faq .faq-item summary::before { flex-basis: 32px; width: 32px; height: 32px; border-radius: 10px; font-size: 0.74rem; }
+    #faq .faq-item summary::after { flex-basis: 30px; width: 30px; height: 30px; }
+    #faq .faq-item p { padding: 0 16px 18px 57px; font-size: 0.95rem; }
+    .fq-call { flex-direction: column; text-align: center; padding: 1.5rem 1.2rem; }
+    .fq-call-action { width: 100%; }
+    .fq-call-btn { width: 100%; justify-content: center; }
+  }
 </style>
 <!-- Meta Pixel Code -->
 <script>
@@ -3293,9 +3349,10 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
 <!-- ─── FAQ ───────────────────────────────────────────────────── -->
 <section id="faq">
   <div class="container">
-    <div style="text-align:center;">
+    <div class="fq-head">
       <div class="section-label">Questions</div>
-      <h2 class="section-title">Frequently Asked Questions</h2>
+      <h2 class="section-title">Frequently Asked <span class="tc-hl">Questions</span></h2>
+      <p class="fq-sub">Straight answers about pricing, plans, and what to expect on cleaning day.</p>
     </div>
     <div class="faq-list">
       <details class="faq-item">
@@ -3334,6 +3391,18 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
         <summary>What areas do you serve?</summary>
         <p>The Phoenix Valley, including Phoenix, Scottsdale, Tempe, Mesa, Gilbert, Chandler, Queen Creek, Glendale, Surprise, and Paradise Valley.</p>
       </details>
+    </div>
+
+    <div class="fq-call">
+      <span class="fq-call-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg></span>
+      <div class="fq-call-text">
+        <strong>Still have questions?</strong>
+        <span>Give us a call &mdash; we&rsquo;re happy to answer anything about your turf.</span>
+      </div>
+      <div class="fq-call-action">
+        <a class="fq-call-btn" href="tel:4802941408"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.8 19.8 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.36 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0122 16.92z"/></svg>(480) 294-1408</a>
+        <span class="fq-call-hours">Mon&ndash;Sat &middot; 8am&ndash;7pm</span>
+      </div>
     </div>
   </div>
 </section>
