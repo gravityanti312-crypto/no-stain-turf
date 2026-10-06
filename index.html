@@ -20,10 +20,6 @@
   <meta property="og:image:alt" content="TurfGlow — Arizona Turf Cleaning" />
   <meta name="twitter:card" content="summary_large_image" />
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LocalBusiness", "name": "TurfGlow Cleaning", "description": "Artificial turf cleaning, pet odor removal and turf restoration across the Phoenix Valley.", "url": "https://turfglow.vercel.app/", "telephone": "+1-480-294-1408", "email": "TurfGlowAZ@gmail.com", "image": "https://turfglow.vercel.app/og-image.jpg", "logo": "https://turfglow.vercel.app/logo-square.png", "address": {"@type": "PostalAddress", "addressLocality": "Phoenix", "addressRegion": "AZ", "addressCountry": "US"}, "areaServed": [{"@type": "City", "name": "Phoenix, AZ"}, {"@type": "City", "name": "Scottsdale, AZ"}, {"@type": "City", "name": "Tempe, AZ"}, {"@type": "City", "name": "Mesa, AZ"}, {"@type": "City", "name": "Gilbert, AZ"}, {"@type": "City", "name": "Chandler, AZ"}, {"@type": "City", "name": "Queen Creek, AZ"}, {"@type": "City", "name": "Glendale, AZ"}, {"@type": "City", "name": "Surprise, AZ"}, {"@type": "City", "name": "Paradise Valley, AZ"}], "sameAs": ["https://www.instagram.com/turfglowcleaning/", "https://maps.google.com/?cid=3468386511023497696"]}</script>
-  <script>
-    // Photo/video slot instructions only show for you: add ?edit to the address (or preview it locally)
-    if (/[?&]edit(=|&|$)/.test(location.search) || /^(localhost|127\.0\.0\.1)$/.test(location.hostname)) document.documentElement.classList.add('tg-edit');
-  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -1974,6 +1970,22 @@
   h2, h3 { text-wrap: balance; }
   p { text-wrap: pretty; }
 
+  /* What We Do: benefits as small cards with clean line icons */
+  .dc-benefits { gap: 14px; margin: 36px 0 34px; }
+  .dc-benefit {
+    background: #ffffff; border: 1px solid #dcebdf; border-radius: 18px; padding: 20px 14px 18px;
+    box-shadow: 0 8px 22px rgba(15,42,27,0.05); transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+  }
+  .dc-benefit:hover { transform: translateY(-3px); border-color: rgba(35,128,75,0.35); box-shadow: 0 14px 30px rgba(15,42,27,0.09); }
+  .dc-benefit-ico { width: 52px; height: 52px; margin: 0 auto 14px; border-radius: 16px; background: #e6f4e8; color: #23804b; display: flex; align-items: center; justify-content: center; }
+  .dc-benefit-ico svg { width: 26px; height: 26px; margin: 0; }
+  .dc-benefit-text { font-size: 14.5px; text-wrap: balance; }
+  @media (max-width: 560px) {
+    .dc-benefits { gap: 10px; margin: 26px 0; }
+    .dc-benefit { display: flex; align-items: center; gap: 14px; text-align: left; padding: 14px 16px; }
+    .dc-benefit-ico { margin: 0; flex: 0 0 48px; width: 48px; height: 48px; }
+  }
+
   /* Reviews: the real Google rating (the scrolling wall returns once the real reviews are pasted in) */
   .rv-google {
     display: flex; align-items: center; gap: 1.1rem; flex-wrap: wrap; justify-content: center; text-align: left;
@@ -1988,29 +2000,12 @@
   .rv-google-text { color: #4a5f50; font-size: 1rem; line-height: 1.45; text-wrap: balance; }
   .rv-google-btn { flex: 0 0 auto; background: #0f2a1b; color: #ffffff; font-weight: 800; font-size: 0.95rem; padding: 0.85rem 1.35rem; border-radius: 50px; transition: background 0.2s; }
   .rv-google:hover .rv-google-btn { background: #23804b; }
+  .rv-google + .rw-stage { margin-top: 2.2rem; }
   @media (max-width: 640px) {
     .rv-google { flex-direction: column; text-align: center; padding: 1.5rem 1.2rem; gap: 0.8rem; }
     .rv-google-mid { align-items: center; flex-basis: auto; }
     .rv-google-btn { width: 100%; text-align: center; }
   }
-
-  /* Visitors never see the "photo goes here" notes — empty slots show a clean branded tile instead.
-     Add ?edit to the address to see the notes. */
-  html:not(.tg-edit) .media-frame:not(.has-media) .media-slot { border: 0; background: linear-gradient(145deg, #eef7f0 0%, #dcefe0 100%); }
-  html:not(.tg-edit) .media-frame:not(.has-media) .media-slot > * { display: none; }
-  html:not(.tg-edit) .media-frame:not(.has-media) .media-slot::after {
-    content: ""; width: 64px; height: 64px; border-radius: 16px; background: url('logo-square.png') center / cover no-repeat;
-    box-shadow: 0 10px 24px rgba(15,42,27,0.18);
-  }
-  html:not(.tg-edit) .hero-bg .media-frame:not(.has-media) .media-slot { background: repeating-linear-gradient(135deg, #1a3823 0 22px, #1f4129 22px 44px); }
-  html:not(.tg-edit) .hero-bg .media-frame:not(.has-media) .media-slot::after { display: none; }
-  /* Before/after slider: until real photos are in, visitors see one branded tile (no labels, divider or drag hint) */
-  html:not(.tg-edit) .ba-slider:not(:has(.has-media)) .ba-tag,
-  html:not(.tg-edit) .ba-slider:not(:has(.has-media)) .ba-line,
-  html:not(.tg-edit) .ba-slider:not(:has(.has-media)) .ba-hint,
-  html:not(.tg-edit) .ba-slider:not(:has(.has-media)) .ba-range,
-  html:not(.tg-edit) .dc-media:not(:has(.has-media)) .ba-caption { display: none; }
-  html:not(.tg-edit) .ba-slider .media-frame:not(.has-media) .media-slot { padding: 0; }
 
   /* Phones: comfortable tap targets for the small text links, and 16px form fields so iPhones don't zoom in */
   @media (max-width: 768px) {
@@ -2819,6 +2814,58 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
       </span>
       <span class="rv-google-btn">Read our reviews &rarr;</span>
     </a>
+    <div class="rw-stage">
+    <div class="rw-wall" id="rw-wall">
+      <article class="rw-card">
+        <div class="rw-card-top"><div class="rw-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><span class="rw-g" aria-label="Google review"></span></div>
+        <h3 class="rw-title">Dog smell completely gone</h3>
+        <p class="rw-text">I have two large dogs and the smell in my backyard was unbearable. TurfGlow came out and the dog smell is completely gone &mdash; I mean completely. Worth every single penny.</p>
+        <div class="rw-author"><div class="rw-avatar">JM</div><div><div class="rw-name">Jennifer M.</div><div class="rw-date">August 2026</div></div></div>
+      </article>
+      <article class="rw-card">
+        <div class="rw-card-top"><div class="rw-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><span class="rw-g" aria-label="Google review"></span></div>
+        <h3 class="rw-title">Looks brand new</h3>
+        <p class="rw-text">800 square feet done in under 2 hours and it looks absolutely brand new. Professional, on time, explained everything. I&#39;ve already booked them for quarterly maintenance.</p>
+        <div class="rw-author"><div class="rw-avatar">TR</div><div><div class="rw-name">Tyler R.</div><div class="rw-date">July 2026</div></div></div>
+      </article>
+      <article class="rw-card">
+        <div class="rw-card-top"><div class="rw-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><span class="rw-g" aria-label="Google review"></span></div>
+        <h3 class="rw-title">Better than the day it was installed</h3>
+        <p class="rw-text">3 kids and 2 dogs &mdash; our turf needed serious help. After TurfGlow it looks better than when it was first installed. My kids play on it every day. This company is the real deal.</p>
+        <div class="rw-author"><div class="rw-avatar">LK</div><div><div class="rw-name">Lisa K.</div><div class="rw-date">July 2026</div></div></div>
+      </article>
+      <article class="rw-card">
+        <div class="rw-card-top"><div class="rw-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><span class="rw-g" aria-label="Google review"></span></div>
+        <h3 class="rw-title">Safe for the kids again</h3>
+        <p class="rw-text">My turf looks incredible. They sanitized everything and used pet-safe products. I feel totally comfortable letting my kids play on it now. Will absolutely be using them again.</p>
+        <div class="rw-author"><div class="rw-avatar">MS</div><div><div class="rw-name">Maria S.</div><div class="rw-date">June 2026</div></div></div>
+      </article>
+      <article class="rw-card">
+        <div class="rw-card-top"><div class="rw-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><span class="rw-g" aria-label="Google review"></span></div>
+        <h3 class="rw-title">Every stain removed</h3>
+        <p class="rw-text">Fast, professional, and the results speak for themselves. Our turf had stains from years of use and they removed every single one. TurfGlow is by far the best.</p>
+        <div class="rw-author"><div class="rw-avatar">DK</div><div><div class="rw-name">David K.</div><div class="rw-date">June 2026</div></div></div>
+      </article>
+      <article class="rw-card">
+        <div class="rw-card-top"><div class="rw-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><span class="rw-g" aria-label="Google review"></span></div>
+        <h3 class="rw-title">Totally transformed</h3>
+        <p class="rw-text">Outstanding work. They completely transformed our turf. The infill renewal made it feel brand new. We&#39;re on the monthly plan now and couldn&#39;t be happier.</p>
+        <div class="rw-author"><div class="rw-avatar">AR</div><div><div class="rw-name">Ashley R.</div><div class="rw-date">May 2026</div></div></div>
+      </article>
+      <article class="rw-card">
+        <div class="rw-card-top"><div class="rw-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><span class="rw-g" aria-label="Google review"></span></div>
+        <h3 class="rw-title">Quick, easy, no complaints</h3>
+        <p class="rw-text">Booked online in about a minute and they were out two days later. The enzyme treatment knocked out the ammonia smell by the dog run. No complaints at all.</p>
+        <div class="rw-author"><div class="rw-avatar">BC</div><div><div class="rw-name">Brian C.</div><div class="rw-date">May 2026</div></div></div>
+      </article>
+      <article class="rw-card">
+        <div class="rw-card-top"><div class="rw-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><span class="rw-g" aria-label="Google review"></span></div>
+        <h3 class="rw-title">Blades standing tall again</h3>
+        <p class="rw-text">We host a lot in the backyard and the turf was looking flat and dingy. The power broom and grooming brought the blades right back up. Looks like new turf.</p>
+        <div class="rw-author"><div class="rw-avatar">NP</div><div><div class="rw-name">Nicole P.</div><div class="rw-date">April 2026</div></div></div>
+      </article>
+    </div>
+    </div>
   </div>
 </section>
 <script>
@@ -2993,36 +3040,16 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
 
         <div class="dc-benefits">
           <div class="dc-benefit">
-            <svg width="68" height="68" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <path d="M15 31c-3-6-2-12 2-15" stroke="#23804b" stroke-width="6" stroke-linecap="round" fill="none"/>
-  <rect x="13" y="28" width="30" height="15" rx="7" fill="#23804b"/>
-  <rect x="35" y="19" width="13" height="22" rx="6.5" fill="#23804b"/>
-  <circle cx="45" cy="22" r="9.5" fill="#23804b"/>
-  <rect x="49" y="19" width="12" height="8.5" rx="4.25" fill="#23804b"/>
-  <path d="M38 14.5l7-5 2.5 9.5z" fill="#23804b"/>
-  <rect x="16" y="41" width="6" height="13" rx="3" fill="#23804b"/>
-  <rect x="26" y="41" width="6" height="13" rx="3" fill="#23804b"/>
-  <rect x="37" y="41" width="6" height="13" rx="3" fill="#23804b"/>
-  <circle cx="48" cy="20" r="1.9" fill="#ffffff"/>
-</svg>
-            <div class="dc-benefit-text">Eliminates pet odors,<br />bacteria, and debris</div>
+            <span class="dc-benefit-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="20" cy="16" r="2"/><path d="M9 10a5 5 0 015 5v3.5a3.5 3.5 0 01-6.84 1.05Q6.52 17.48 4.46 16.84A3.5 3.5 0 015.5 10z"/></svg></span>
+            <div class="dc-benefit-text">Eliminates pet odors, bacteria, and debris</div>
           </div>
           <div class="dc-benefit">
-            <svg width="68" height="68" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <path d="M13 32a19 19 0 0130-15.5" stroke="#23804b" stroke-width="7.5" stroke-linecap="round" fill="none"/>
-  <path d="M51 32a19 19 0 01-30 15.5" stroke="#23804b" stroke-width="7.5" stroke-linecap="round" fill="none"/>
-  <path d="M32 8l12 8-12 8z" fill="#23804b"/>
-  <path d="M32 56l-12-8 12-8z" fill="#23804b"/>
-</svg>
-            <div class="dc-benefit-text">Restores your turf&rsquo;s<br />look and feel</div>
+            <span class="dc-benefit-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.94 15.5A2 2 0 008.5 14.06l-6.14-1.58a.5.5 0 010-.96L8.5 9.94A2 2 0 009.94 8.5l1.58-6.14a.5.5 0 01.96 0l1.58 6.14a2 2 0 001.44 1.44l6.14 1.58a.5.5 0 010 .96l-6.14 1.58a2 2 0 00-1.44 1.44l-1.58 6.14a.5.5 0 01-.96 0z"/><path d="M20 3v4M22 5h-4M4 17v2M5 18H3"/></svg></span>
+            <div class="dc-benefit-text">Restores your turf&rsquo;s look and feel</div>
           </div>
           <div class="dc-benefit">
-            <svg width="68" height="68" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-  <path d="M32 9c13.8 0 25 8.8 25 19.6 0 10.9-11.2 19.7-25 19.7-2.8 0-5.4-.4-7.9-1.1L11 54l3.7-10.6C10.6 39.6 7 34.5 7 28.6 7 17.8 18.2 9 32 9z" fill="#23804b"/>
-  <path d="M32 15.5v25" stroke="#ffffff" stroke-width="3.6" stroke-linecap="round"/>
-  <path d="M39 22.5c0-3.1-3.1-5.2-7-5.2s-7 2.1-7 5.2 3.1 5.2 7 5.2 7 2.1 7 5.2-3.1 5.2-7 5.2-7-2.1-7-5.2" stroke="#ffffff" stroke-width="3.6" stroke-linecap="round" fill="none"/>
-</svg>
-            <div class="dc-benefit-text">Helps extend the life of<br />your investment</div>
+            <span class="dc-benefit-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 01-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 011-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 011.52 0C14.51 3.81 17 5 19 5a1 1 0 011 1z"/><path d="M9 12l2 2 4-4"/></svg></span>
+            <div class="dc-benefit-text">Helps extend the life of your investment</div>
           </div>
         </div>
 
@@ -3092,7 +3119,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
   <div class="container">
     <div class="hwc-head">
       <div class="section-label">Our Process</div>
-      <h2>4 Steps. Every Yard. Every Visit.</h2>
+      <h2>4 Steps. Every&nbsp;Yard. Every&nbsp;Visit.</h2>
       <p>The same pro-grade clean on every job &mdash; here&rsquo;s exactly what our crew does in your backyard.</p>
     </div>
     <div class="hwc-grid">
