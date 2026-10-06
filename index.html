@@ -1887,6 +1887,17 @@
   }
   #hero .hero-sub { margin-left: auto; margin-right: auto; max-width: 860px; }
   #hero .hero-buttons, #hero .hero-stats { justify-content: center; }
+  /* Hero line: full sentence on computers, shorter one on phones */
+  .hero-sub-short { display: none; }
+  @media (max-width: 768px) {
+    #hero .hero-sub { display: block; font-size: 15px; line-height: 1.55; color: rgba(255,255,255,0.82); max-width: 22rem; margin: 0 auto 1.15rem; }
+    #hero .hero-sub-full { display: none; }
+    #hero .hero-sub-short { display: inline; }
+  }
+  /* Short phones (SE-size): hide the photo-slot tag so it can't sit on the headline; the stripes still mark the spot */
+  @media (max-width: 768px) and (max-height: 740px) { .hero-bg .hero-slot-chip { display: none; } }
+  /* Very short screens: drop the line so the headline and buttons still fit */
+  @media (max-width: 768px) and (max-height: 600px) { #hero .hero-sub { display: none; } }
   @media (min-width: 769px) {
     #hero .container { padding-bottom: 1.75rem; }
     #hero .hero-eyebrow { margin-bottom: 1rem; }
@@ -2595,7 +2606,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
         <span style="color:#fbbf24;letter-spacing:2px;">&#9733;&#9733;&#9733;&#9733;&#9733;</span>&nbsp; 5.0 Stars on Google
       </a>
       <h1 class="hero-h1">Dirty Turf?<br />We Can <span class="accent">Fix</span> That.</h1>
-      <p class="hero-sub">Deep cleaning, pet odor elimination, and full restoration for artificial turf across the Phoenix Valley. Pet-safe, kid-safe, and guaranteed &mdash; or we come back free.</p>
+      <p class="hero-sub"><span class="hero-sub-full">Deep cleaning, pet odor elimination, and full restoration for artificial turf across the Phoenix Valley. Pet-safe, kid-safe, and guaranteed &mdash; or we come back free.</span><span class="hero-sub-short">Pet-safe deep cleaning and odor removal across the Phoenix Valley &mdash; guaranteed.</span></p>
       <div class="hero-buttons">
         <a href="javascript:void(0)" class="btn-cyan" onclick="openQuoteModal()">Get My Free Quote &rarr;</a>
         <a href="tel:4802941408" class="btn-ghost">&#128222; (480) 294-1408</a>
