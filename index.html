@@ -398,6 +398,13 @@
     .hero-bg .media-frame { position: absolute; inset: 0; border-radius: 0; }
     .hero-bg .media-el { object-position: 30% 60%; }
     .media-el[src="img/equipment-sprayer.jpg"] { object-position: 50% 30%; }
+    /* Before/after: until a real "before" photo is added, the after photo shows full-frame with no slider controls */
+    .ba-slider:not(:has(.ba-before-layer .has-media)) .ba-before-layer,
+    .ba-slider:not(:has(.ba-before-layer .has-media)) .ba-tag,
+    .ba-slider:not(:has(.ba-before-layer .has-media)) .ba-line,
+    .ba-slider:not(:has(.ba-before-layer .has-media)) .ba-hint,
+    .ba-slider:not(:has(.ba-before-layer .has-media)) .ba-range,
+    .dc-media:not(:has(.ba-before-layer .has-media)) .ba-caption { display: none; }
     /* Empty hero photo slot: dark stripes keep the white headline readable; the label sits up top, clear of the text */
     .hero-bg .media-slot--hero {
       border: 0; border-radius: 0; padding: 100px 28px 0; align-items: flex-end; justify-content: flex-start;
@@ -3061,7 +3068,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
 
       <div class="dc-media">
         <div class="ba-slider" id="ba-slider" style="--pos:50%;">
-          <div class="media-frame" data-type="image" data-src="" data-alt="Clean, restored artificial turf after a TurfGlow cleaning"><div class="media-slot media-slot--after"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="media-slot-title">After photo</span><span class="media-slot-note">Same spot &amp; angle, after the clean</span></div></div>
+          <div class="media-frame" data-type="image" data-src="img/pool-turf.jpg" data-alt="Fresh artificial turf beside a pool with lounge chairs"><div class="media-slot media-slot--after"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="media-slot-title">After photo</span><span class="media-slot-note">Same spot &amp; angle, after the clean</span></div></div>
           <div class="ba-before-layer">
             <div class="media-frame" data-type="image" data-src="" data-alt="Matted, dirty artificial turf before cleaning"><div class="media-slot media-slot--before"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="media-slot-title">Before photo</span><span class="media-slot-note">Your dirtiest, most matted turf</span></div></div>
           </div>
@@ -3126,7 +3133,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
     <div class="hwc-grid">
       <div class="hwc-card">
         <div class="hwc-media">
-          <div class="media-frame" data-type="video" data-src=""><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Step 1 video</span><span class="media-slot-note">Tech spraying the turf &middot; 5&ndash;10 sec</span></div></div>
+          <div class="media-frame" data-type="video" data-src="video/step1.mp4" data-poster="video/step1-poster.jpg"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Step 1 video</span><span class="media-slot-note">Tech spraying the turf &middot; 5&ndash;10 sec</span></div></div>
           <span class="hwc-tag">Pre-Spray</span>
         </div>
         <div class="hwc-body">
@@ -3137,7 +3144,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
       </div>
       <div class="hwc-card">
         <div class="hwc-media">
-          <div class="media-frame" data-type="video" data-src=""><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Step 2 video</span><span class="media-slot-note">Power broom running &middot; 5&ndash;10 sec</span></div></div>
+          <div class="media-frame" data-type="video" data-src="video/step2.mp4" data-poster="video/step2-poster.jpg"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Step 2 video</span><span class="media-slot-note">Power broom running &middot; 5&ndash;10 sec</span></div></div>
           <span class="hwc-tag">Power Broom</span>
         </div>
         <div class="hwc-body">
@@ -3148,7 +3155,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
       </div>
       <div class="hwc-card">
         <div class="hwc-media">
-          <div class="media-frame" data-type="video" data-src=""><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Step 3 video</span><span class="media-slot-note">Vacuum pass &middot; 5&ndash;10 sec</span></div></div>
+          <div class="media-frame" data-type="video" data-src="video/step3.mp4" data-poster="video/step3-poster.jpg"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Step 3 video</span><span class="media-slot-note">Vacuum pass &middot; 5&ndash;10 sec</span></div></div>
           <span class="hwc-tag">Vacuum</span>
         </div>
         <div class="hwc-body">
@@ -3159,7 +3166,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
       </div>
       <div class="hwc-card">
         <div class="hwc-media">
-          <div class="media-frame" data-type="video" data-src=""><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Step 4 video</span><span class="media-slot-note">Pressure washer / rinse &middot; 5&ndash;10 sec</span></div></div>
+          <div class="media-frame" data-type="video" data-src="video/step4.mp4" data-poster="video/step4-poster.jpg"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Step 4 video</span><span class="media-slot-note">Pressure washer / rinse &middot; 5&ndash;10 sec</span></div></div>
           <span class="hwc-tag">Hot-Water Rinse</span>
         </div>
         <div class="hwc-body">
@@ -3293,7 +3300,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
     </div>
 
     <div class="tc-how">
-      <div class="tc-vsl"><div class="media-frame" data-type="video" data-mode="vsl" data-src=""><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Turf Club video goes here</span><span class="media-slot-note">60&ndash;90 sec of you explaining how the Turf Club works. Film it vertical, with captions.</span></div></div></div>
+      <div class="tc-vsl"><div class="media-frame" data-type="video" data-mode="vsl" data-src="video/turf-club.mp4" data-poster="video/turf-club-poster.jpg"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Turf Club video goes here</span><span class="media-slot-note">60&ndash;90 sec of you explaining how the Turf Club works. Film it vertical, with captions.</span></div></div></div>
       <div class="tc-how-body">
         <h3 class="tc-how-title">How the Turf Club Works</h3>
         <p class="tc-how-sub">No surprises &mdash; here&rsquo;s exactly what you&rsquo;re signing up for.</p>
@@ -3420,7 +3427,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
         </div>
       </div>
       <div class="sc-media">
-        <div class="media-frame" data-type="image" data-src="" data-alt="TurfGlow before-and-after turf cleaning results"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="media-slot-title">Social Photo</span><span class="media-slot-note">Your best before &amp; after or the crew on the job &mdash; a tall photo fits best</span></div></div>
+        <div class="media-frame" data-type="image" data-src="img/social-card.jpg" data-alt="Follow TurfGlow @turfglowcleaning on Instagram, TikTok and Facebook"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="media-slot-title">Social Photo</span><span class="media-slot-note">Your best before &amp; after or the crew on the job &mdash; a tall photo fits best</span></div></div>
       </div>
     </div>
   </div>
@@ -3797,7 +3804,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
           <div class="tq-done-video" id="tq-done-video" hidden>
             <h3>While you wait for our call</h3>
             <p>See how the Turf Club works.</p>
-            <div class="tq-done-video-frame"><div class="media-frame" data-type="video" data-mode="vsl" data-src=""><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Turf Club video goes here</span><span class="media-slot-note">Same Turf Club video as on the page.</span></div></div></div>
+            <div class="tq-done-video-frame"><div class="media-frame" data-type="video" data-mode="vsl" data-src="video/turf-club.mp4" data-poster="video/turf-club-poster.jpg"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Turf Club video goes here</span><span class="media-slot-note">Same Turf Club video as on the page.</span></div></div></div>
           </div>
           <div class="tq-callout">&#11088; See why neighbors rate us 5.0 &mdash; <a href="https://maps.google.com/?cid=3468386511023497696" target="_blank" rel="noopener">read our Google reviews</a></div>
           <div class="tq-next-row tq-done-btn"><button type="button" class="tq-next" onclick="closeQuoteModal()">Done</button></div>
