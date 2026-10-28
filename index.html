@@ -20,9 +20,17 @@
   <meta property="og:image:alt" content="TurfGlow — Arizona Turf Cleaning" />
   <meta name="twitter:card" content="summary_large_image" />
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LocalBusiness", "name": "TurfGlow Cleaning", "description": "Artificial turf cleaning, pet odor removal and turf restoration across the Phoenix Valley.", "url": "https://turfglow.vercel.app/", "telephone": "+1-480-294-1408", "email": "TurfGlowAZ@gmail.com", "image": "https://turfglow.vercel.app/og-image.jpg", "logo": "https://turfglow.vercel.app/logo-square.png", "address": {"@type": "PostalAddress", "addressLocality": "Phoenix", "addressRegion": "AZ", "addressCountry": "US"}, "areaServed": [{"@type": "City", "name": "Phoenix, AZ"}, {"@type": "City", "name": "Scottsdale, AZ"}, {"@type": "City", "name": "Tempe, AZ"}, {"@type": "City", "name": "Mesa, AZ"}, {"@type": "City", "name": "Gilbert, AZ"}, {"@type": "City", "name": "Chandler, AZ"}, {"@type": "City", "name": "Queen Creek, AZ"}, {"@type": "City", "name": "Glendale, AZ"}, {"@type": "City", "name": "Surprise, AZ"}, {"@type": "City", "name": "Paradise Valley, AZ"}], "sameAs": ["https://www.instagram.com/turfglowcleaning/", "https://maps.google.com/?cid=3468386511023497696"]}</script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="img/hero-turf-home.webp" imagesrcset="img/hero-turf-home-1200.webp 1200w, img/hero-turf-home-1600.webp 1600w, img/hero-turf-home.webp 2000w" imagesizes="(max-aspect-ratio: 3/2) calc(150vh - 105px), 100vw" fetchpriority="high" />
+  <link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <style>
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 300 900; font-display: swap; src: url(fonts/inter-cyrillic-ext.woff2) format('woff2'); unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 300 900; font-display: swap; src: url(fonts/inter-cyrillic.woff2) format('woff2'); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 300 900; font-display: swap; src: url(fonts/inter-greek-ext.woff2) format('woff2'); unicode-range: U+1F00-1FFF; }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 300 900; font-display: swap; src: url(fonts/inter-greek.woff2) format('woff2'); unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF; }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 300 900; font-display: swap; src: url(fonts/inter-vietnamese.woff2) format('woff2'); unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB; }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 300 900; font-display: swap; src: url(fonts/inter-latin-ext.woff2) format('woff2'); unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF; }
+    @font-face { font-family: 'Inter'; font-style: normal; font-weight: 300 900; font-display: swap; src: url(fonts/inter-latin.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  </style>
   <style>
     :root {
       --black:      #122c1e;
@@ -397,7 +405,7 @@
     }
     .hero-bg .media-frame { position: absolute; inset: 0; border-radius: 0; }
     .hero-bg .media-el { object-position: 30% 60%; }
-    .media-el[src="img/equipment-sprayer.jpg"] { object-position: 50% 30%; }
+    .media-el[src="img/equipment-sprayer.webp"] { object-position: 50% 30%; }
     /* Before/after: until a real "before" photo is added, the after photo shows full-frame with no slider controls */
     .ba-slider:not(:has(.ba-before-layer .has-media)) .ba-before-layer,
     .ba-slider:not(:has(.ba-before-layer .has-media)) .ba-tag,
@@ -2444,7 +2452,7 @@
 </style>
 <style>
   /* New TurfGlow wordmark has its own green background — round its corners */
-  img[src="logo-wide.png"], img[src="logo-square.png"] { border-radius: 10px; }
+  img[src="logo-wide.webp"], img[src="logo-square.webp"] { border-radius: 10px; }
   /* Menu links land just below the fixed nav instead of under it */
   html { scroll-padding-top: 112px; }
   .referral-section.rf { scroll-margin-top: 0; }
@@ -2484,9 +2492,9 @@
     #trust-strip .trust-inner { flex-wrap: wrap; row-gap: 2px; }
     #trust-strip .trust-item { padding: 0.35rem 1.1rem; border-left: none; border-right: none; }
   }
-  .footer-brand-logo img[src="logo-square.png"] { height: 96px !important; width: 96px; padding: 0; background: none; }
-  .tq-logo[src="logo-square.png"] { height: 56px; width: 56px; }
-  .mobile-menu-logo img[src="logo-square.png"] { height: 110px; width: 110px; }
+  .footer-brand-logo img[src="logo-square.webp"] { height: 96px !important; width: 96px; padding: 0; background: none; }
+  .tq-logo[src="logo-square.webp"] { height: 56px; width: 56px; }
+  .mobile-menu-logo img[src="logo-square.webp"] { height: 110px; width: 110px; }
 </style>
 <style>
   /* ── Services: Pick Your Clean — Turf Club card style; the rows are the what's-included comparison ── */
@@ -2659,6 +2667,587 @@
     .fq-call-btn { width: 100%; justify-content: center; }
   }
 </style>
+<style>
+  /* ── Follow TurfGlow: copy + social buttons beside a photo slot ── */
+  .sc { padding: 6rem 0; background: #ffffff; }
+  .sc-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 420px); gap: 4rem; align-items: center; max-width: 1080px; margin: 0 auto; }
+  .sc-title { font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 900; color: #0f2a1b; letter-spacing: -0.03em; line-height: 1.05; }
+  .sc-sub { color: #4a5f50; font-size: 1.08rem; line-height: 1.65; margin-top: 1rem; max-width: 32rem; }
+  .sc-links { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+  .sc-btn {
+    display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.9rem 1.35rem; border-radius: 50px;
+    background: #0f2a1b; color: #ffffff; font-weight: 800; font-size: 0.98rem; text-decoration: none;
+    box-shadow: 0 10px 24px rgba(15,42,27,0.18); transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+  }
+  .sc-btn svg { width: 20px; height: 20px; flex: 0 0 20px; }
+  .sc-btn:hover { background: #23804b; transform: translateY(-2px); box-shadow: 0 14px 30px rgba(35,128,75,0.3); }
+  .sc-media { position: relative; aspect-ratio: 4 / 5; border-radius: 26px; padding: 10px; background: #dff0e2; box-shadow: 0 24px 60px rgba(15,42,27,0.18); }
+  .sc-media > .media-frame { border-radius: 18px; }
+  @media (max-width: 900px) {
+    .sc-grid { grid-template-columns: 1fr; gap: 2.6rem; max-width: 560px; text-align: center; }
+    .sc-sub { margin-left: auto; margin-right: auto; }
+    .sc-links { justify-content: center; }
+    .sc-media { width: 100%; max-width: 420px; margin: 0 auto; aspect-ratio: 1 / 1; }
+  }
+  @media (max-width: 768px) {
+    .sc { padding: 4rem 0; }
+  }
+  @media (max-width: 480px) {
+    .sc-links { flex-direction: column; align-items: stretch; }
+    .sc-btn { justify-content: center; }
+  }
+</style>
+
+<style>
+  .clean-guarantee-banner {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #0f2a1b 0%, #195c36 45%, #23804b 100%);
+    padding: 80px 0;
+  }
+  .cgb-glow {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(600px circle at 85% 50%, rgba(35,128,75,0.45), transparent 60%),
+      radial-gradient(500px circle at 10% 100%, rgba(123,193,66,0.28), transparent 60%);
+    pointer-events: none;
+  }
+  .cgb-inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 48px;
+  }
+  .cgb-text { flex: 1; min-width: 0; }
+  .cgb-chip {
+    display: inline-block;
+    color: #a3e635;
+    background: rgba(35,128,75,0.12);
+    border: 1px solid rgba(125,211,252,0.35);
+    font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 7px 14px; border-radius: 999px;
+    margin-bottom: 18px;
+  }
+  .cgb-title {
+    color: #fff;
+    font-size: clamp(2rem, 4.2vw, 3.4rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.5px;
+    margin: 0 0 14px;
+  }
+  .cgb-accent {
+    background: linear-gradient(135deg, #a3e635 0%, #23804b 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .cgb-sub {
+    color: rgba(226,232,240,0.85);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin: 0 0 26px;
+    max-width: 520px;
+  }
+  .cgb-btn { font-size: 1rem; padding: 16px 34px; }
+  .cgb-visual {
+    position: relative;
+    flex: 0 0 auto;
+    width: 260px; height: 260px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cgb-shine {
+    position: absolute; inset: -20px;
+    background: radial-gradient(circle, rgba(35,128,75,0.55) 0%, transparent 65%);
+    filter: blur(20px);
+  }
+  .cgb-visual svg { position: relative; width: 100%; height: 100%; filter: drop-shadow(0 10px 30px rgba(35,128,75,0.5)); }
+  @media (max-width: 768px) {
+    .clean-guarantee-banner { padding: 56px 0; }
+    .cgb-inner { flex-direction: column; text-align: center; gap: 28px; }
+    .cgb-sub { margin-left: auto; margin-right: auto; }
+    .cgb-visual { width: 150px; height: 150px; order: -1; }
+    .cgb-btn { width: 100%; justify-content: center; }
+  }
+</style>
+
+<style>
+  /* ── Service picker (step 1b) ───────────────────────────── */
+  @media (max-width:560px){ .qb-service-picker { grid-template-columns:1fr; max-width:460px; } .qbsp-img { aspect-ratio:16/10; } }
+
+  /* ── Turf area picker (step 1a) ─────────────────────────── */
+  @media (max-width:900px){
+  }
+  @media (max-width:560px){
+  }
+
+  /* ── Instant price screen (step 2) ──────────────────────── */
+  @media (max-width:560px){ .qb-price-wrap { padding:2rem 1.4rem; } .qb-price-amount { font-size:3.4rem; } }
+  @media (max-width:760px){ .qb-plans-mc { grid-template-columns:1fr; max-width:420px; } }
+</style>
+
+<style>
+@media (max-width: 768px) {
+
+  /* ── Base ── */
+  body { font-size: 15px; }
+
+  .container { padding: 0 18px; }
+
+  /* ── NAV ── */
+  #nav { padding: 10px 16px; }
+
+  .nav-inner {
+    height: 84px;
+    padding: 0 16px;
+    border-radius: 16px;
+    gap: 0;
+    justify-content: space-between;
+  }
+
+  .nav-logo img { height: 74px; }
+
+  .nav-right { margin-left: auto; }
+
+  .hamburger {
+    display: flex;
+    padding: 10px;
+    gap: 6px;
+  }
+
+  .hamburger span {
+    width: 25px;
+    height: 2.5px;
+    background: #1c3a24;
+    border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  /* (Old full-screen dark mobile menu rules removed — the right-side
+     drawer styles defined at the top of the file now apply on all
+     viewports, so the menu is fully off-screen until opened.) */
+
+  /* ── HERO ── */
+  /* Use svh (small viewport height) on mobile so the hero matches the ACTUAL
+     visible area — fixes Instagram/in-app browsers where vh measures the taller
+     chrome-hidden viewport and pushes the content up onto the tech. */
+  #hero { height: 100svh; min-height: 100svh; }
+
+  #hero .container {
+    padding-top: 88px;
+    padding-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 100svh;
+  }
+
+  .hero-ig-badge {
+    top: 80px;
+    left: 18px;
+    font-size: 12px;
+    padding: 8px 14px;
+    gap: 8px;
+  }
+
+  .hero-ig-badge img { width: 28px; height: 28px; }
+
+  .hero-h1 {
+    font-size: clamp(2.8rem, 12.5vw, 3.9rem);
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    margin-bottom: 14px;
+  }
+
+  .hero-sub {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 28px;
+    max-width: 100%;
+    color: rgba(255,255,255,0.8);
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .hero-buttons .btn-cyan,
+  .hero-buttons .btn-ghost {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    font-size: 16px;
+    padding: 15px 24px;
+    border-radius: 12px;
+  }
+
+  .hero-buttons .btn-ghost {
+    display: flex !important;
+    border-color: rgba(255,255,255,0.3);
+  }
+
+  .hero-stats { display: none !important; }
+
+  /* ── TRUST STRIP (hidden on mobile) ── */
+  #trust-strip { display: none !important; }
+
+  .trust-inner {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    padding: 0 18px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .trust-inner::-webkit-scrollbar { display: none; }
+
+  .trust-item {
+    font-size: 12px;
+    padding: 0.4rem 1rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* ── SERVICES ── */
+  #services { padding: 48px 0 0; }
+
+  .services-header { margin-bottom: 28px; }
+
+  .services-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+
+  .service-card {
+    padding: 28px 22px;
+    border-radius: 16px;
+    flex-direction: row;
+    text-align: left;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  .svc-card-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 12px;
+    margin-bottom: 0;
+    flex-shrink: 0;
+    object-fit: cover;
+  }
+
+  .svc-card-content { flex: 1; }
+
+  .svc-card-tag { font-size: 0.65rem; margin-bottom: 2px; }
+
+  .svc-card-title {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+  }
+
+  .svc-card-features li { font-size: 0.9rem; margin-bottom: 4px; }
+
+  .svc-card-btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.82rem;
+    border-radius: 50px;
+    width: 100%;
+    text-align: center;
+    margin-top: 14px;
+    display: block;
+  }
+
+  /* ── PROCESS ── */
+  #process { padding: 56px 0; }
+
+  .process-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px;
+  }
+
+  .process-card {
+    padding: 24px 20px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 16px;
+    text-align: left;
+  }
+
+  .process-step-num {
+    width: 48px;
+    height: 48px;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    margin: 0;
+  }
+
+  .process-title { margin-bottom: 6px; font-size: 0.9rem; }
+
+  .process-desc { font-size: 14px; color: rgba(255,255,255,0.65); }
+
+  /* ── WHY GLASS ── */
+  #why { padding: 56px 0; }
+
+  .why-grid {
+    grid-template-columns: 1fr !important;
+    gap: 36px;
+  }
+
+  .why-image-wrap {
+    order: -1;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .why-image-wrap img {
+    height: 240px !important;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+  }
+
+  .why-badge {
+    bottom: 12px;
+    right: 12px;
+    padding: 12px 16px;
+  }
+
+  .why-badge-num { font-size: 28px; }
+  .why-badge-label { font-size: 11px; }
+
+  .why-list { gap: 10px; margin-top: 20px; }
+
+  .why-item {
+    padding: 14px 16px;
+    border-radius: 12px;
+    gap: 12px;
+  }
+
+  .why-item-title { font-size: 14px; }
+  .why-item-desc { font-size: 12px; }
+
+  /* ── REVIEWS ── */
+  #reviews { padding: 40px 0 48px !important; }
+
+  .nas-card { flex: 0 0 85vw !important; padding: 20px; border-radius: 16px; }
+
+  .nas-card-text { font-size: 0.85rem; }
+
+  .nas-title { font-size: clamp(1.6rem,8vw,2.2rem) !important; }
+
+  /* ── QUICK BOOK ── */
+
+
+
+
+
+  /* ── INSTAGRAM ── */
+  #instagram { padding: 48px 0; }
+
+  .ig-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 3px;
+  }
+
+  /* ── CONTACT ── */
+  .contact-grid { grid-template-columns: 1fr !important; gap: 36px; }
+  .form-row { grid-template-columns: 1fr !important; }
+
+  /* ── MEMBERSHIP ── */
+  .glass-save-big { font-size: 2.4rem; }
+  .glass-mc { border-radius: 18px; padding: 22px 18px; }
+
+  /* ── SERVICE MODAL on mobile ── */
+  .svc-hero-wrap { height: 260px; }
+  .svc-hero-content { padding: 1.5rem; }
+  .svc-hero-content h1 { font-size: 1.7rem; }
+  .svc-body { padding: 1.5rem 1rem 6rem; }
+  .svc-includes { grid-template-columns: 1fr !important; }
+  .svc-section h2 { font-size: 1.2rem; }
+
+  /* ── FOOTER ── */
+  .footer-grid { grid-template-columns: 1fr !important; gap: 28px; }
+
+  footer { padding: 48px 0 100px; }
+
+  /* ── MOBILE STICKY BAR ── */
+  #mobile-sticky {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 800;
+    background: #122c1e;
+    border-top: 1px solid rgba(35,128,75,0.25);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    padding-bottom: calc(10px + env(safe-area-inset-bottom));
+  }
+
+  #mobile-sticky a {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 13px 12px;
+    border-radius: 10px;
+    text-decoration: none;
+  }
+
+  /* ── DM GRID (service photo grid) ── */
+  .dm-grid { grid-template-columns: 1fr !important; gap: 10px; }
+  .dm-card-large, .dm-card-wide { grid-column: span 1 !important; height: 260px !important; }
+  .dm-card { border-radius: 16px; }
+  .dm-card-title { font-size: 1.3rem !important; }
+
+  /* ── SECTION TITLES ── */
+  .section-title { font-size: clamp(24px, 7vw, 34px) !important; }
+  .section-sub { font-size: 15px !important; }
+
+  /* ── GENERAL SPACING ── */
+  section { padding-top: 56px; padding-bottom: 56px; }
+}
+
+/* Hero: drop the text/buttons low so the turf work is front & center on phones
+   (sub-paragraph hidden on mobile to free the room; it shows on desktop) */
+@media (max-width: 768px) {
+  .hero-sub { display: none; }
+  .hero-eyebrow { margin-bottom: 0.8rem; }
+  .hero-h1 { margin-bottom: 1.2rem; }
+  .hero-buttons { margin-bottom: 1.1rem; }
+  #hero .container { padding-bottom: 34px; }
+}
+
+/* Short phones: keep hero content high enough that the buttons clear the sticky bar */
+@media (max-width: 768px) and (max-height: 740px) {
+  #hero .container { padding-bottom: 66px; }
+}
+
+/* Phones: bigger Google stars badge that stays on one line */
+@media (max-width: 768px) {
+  .hero-eyebrow { font-size: 1rem; padding: 0.55rem 1.15rem; white-space: nowrap; gap: 6px; }
+  .hero-eyebrow span { letter-spacing: 1px !important; }
+}
+
+/* Very small phones */
+@media (max-width: 390px) {
+  .hero-h1 { font-size: 2.55rem; }
+  .nav-inner { height: 58px; }
+  .nav-logo img { height: 40px; }
+  .svc-card-img { width: 66px; height: 66px; }
+}
+</style>
+
+<style>
+/* ── MOBILE FIXES: service card images + Why Choose Glass grid ── */
+@media (max-width: 768px) {
+
+  /* Vertical centered service cards on mobile (matches screenshot) */
+  .service-card {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    padding: 36px 24px !important;
+    gap: 0 !important;
+    border-radius: 18px !important;
+  }
+
+  .svc-card-tag {
+    font-size: 0.78rem !important;
+    letter-spacing: 0.18em !important;
+    color: #6b7c6b !important;
+    margin-bottom: 8px !important;
+    grid-column: auto !important; grid-row: auto !important;
+  }
+
+  .svc-card-title {
+    font-size: 1.75rem !important;
+    line-height: 1.05 !important;
+    margin-bottom: 22px !important;
+    grid-column: auto !important; grid-row: auto !important;
+  }
+
+  .svc-card-img {
+    width: 180px !important;
+    height: 180px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    margin: 0 0 24px !important;
+    align-self: center !important;
+    grid-column: auto !important; grid-row: auto !important;
+  }
+
+  .svc-card-features {
+    display: inline-block !important;
+    text-align: left !important;
+    width: auto !important;
+    margin: 0 auto 26px !important;
+    grid-column: auto !important; grid-row: auto !important;
+  }
+  .svc-card-features li {
+    font-size: 1.05rem !important;
+    margin-bottom: 10px !important;
+    justify-content: flex-start !important;
+  }
+
+  .svc-card-btn {
+    display: inline-block !important;
+    background: var(--teal) !important;
+    color: #fff !important;
+    padding: 16px 48px !important;
+    font-size: 0.95rem !important;
+    border-radius: 999px !important;
+    margin-top: 4px !important;
+  }
+
+  /* Fix Why Choose Glass — override inline style grid */
+  #why > .container > div[style*="grid-template-columns"] {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+    overflow: visible !important;
+  }
+
+  #why > .container > div[style*="grid-template-columns"] > div {
+    padding: 16px 12px !important;
+    border-radius: 12px !important;
+  }
+
+  #why > .container > div[style*="grid-template-columns"] > div svg {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  #why > .container > div[style*="grid-template-columns"] > div > div:first-child {
+    margin-bottom: 8px !important;
+  }
+
+  #why > .container > div[style*="grid-template-columns"] > div > div:nth-child(2) {
+    font-size: 0.82rem !important;
+    margin-bottom: 6px !important;
+  }
+
+  #why > .container > div[style*="grid-template-columns"] > div > p {
+    font-size: 0.73rem !important;
+    line-height: 1.5 !important;
+  }
+
+  #why > .container > div:first-child h2 {
+    font-size: clamp(1.5rem, 6vw, 2rem) !important;
+  }
+}
+</style>
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -2683,7 +3272,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
 <nav id="nav" class="nav-over-hero">
   <div class="nav-inner">
     <a href="#hero" class="nav-logo">
-      <img src="logo-wide.png" alt="TurfGlow — Arizona Turf Cleaning" />
+      <img src="logo-wide.webp" width="1000" height="242" alt="TurfGlow — Arizona Turf Cleaning" />
     </a>
     <div class="nav-links">
       <a href="#services">Services</a>
@@ -2691,13 +3280,13 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
       <a href="#why">Why Us</a>
       <a href="#service-areas">Service Areas</a>
       <a href="#contact">Contact</a>
-      <a href="javascript:void(0)" onclick="openReferralModal()">Refer &amp; Earn $50</a>
+      <a href="#referral" onclick="openReferralModal(); return false;">Refer &amp; Earn $50</a>
     </div>
     <div class="nav-right">
       <a href="tel:4802941408" class="nav-ig-btn">
         &#128222; (480) 294-1408
       </a>
-      <a href="javascript:void(0)" class="nav-book" onclick="openQuoteModal()">Get My Free Quote</a>
+      <a href="#quote" class="nav-book" onclick="openQuoteModal(); return false;">Get My Free Quote</a>
       <button class="hamburger" onclick="toggleMobile()" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
@@ -2709,7 +3298,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
 <div id="mobile-menu">
   <button class="mobile-menu-close" onclick="closeMobile()">&#215;</button>
   <div class="mobile-menu-logo">
-    <img src="logo-square.png" alt="TurfGlow — Arizona Turf Cleaning" />
+    <img src="logo-square.webp" width="384" height="384" alt="TurfGlow — Arizona Turf Cleaning" />
   </div>
   <a href="#services" onclick="closeMobile()">Services</a>
   <a href="#membership" onclick="closeMobile()">Turf Club Pricing</a>
@@ -2719,13 +3308,13 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
   <a href="#service-areas" onclick="closeMobile()">Service Areas</a>
   <a href="#faq" onclick="closeMobile()">FAQ</a>
   <a href="#contact" onclick="closeMobile()">Contact</a>
-  <a href="javascript:void(0)" onclick="closeMobile(); openReferralModal();">Refer &amp; Earn $50</a>
-  <a href="javascript:void(0)" class="mobile-book" onclick="closeMobile(); openQuoteModal()">Get My Free Quote</a>
+  <a href="#referral" onclick="closeMobile(); openReferralModal(); return false;">Refer &amp; Earn $50</a>
+  <a href="#quote" class="mobile-book" onclick="closeMobile(); openQuoteModal(); return false;">Get My Free Quote</a>
 </div>
 
 <!-- ─── HERO ──────────────────────────────────────────────────────── -->
 <section id="hero">
-  <div class="hero-bg"><div class="media-frame" data-type="image" data-src="img/hero-turf-home.jpg" data-alt="Modern Arizona backyard with bright artificial turf and a pool"><div class="media-slot media-slot--hero"><span class="hero-slot-chip"><span class="media-slot-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="hero-slot-text"><span class="media-slot-title">Hero photo goes here</span><span class="media-slot-note">Wide landscape photo of your crew or a freshly cleaned yard</span></span></span></div></div></div>
+  <div class="hero-bg"><div class="media-frame has-media" data-type="image" data-src="img/hero-turf-home.webp" data-alt="Modern Arizona backyard with bright artificial turf and a pool"><img class="media-el" src="img/hero-turf-home.webp" srcset="img/hero-turf-home-1200.webp 1200w, img/hero-turf-home-1600.webp 1600w, img/hero-turf-home.webp 2000w" sizes="(max-aspect-ratio: 3/2) calc(150vh - 105px), 100vw" alt="Modern Arizona backyard with bright artificial turf and a pool" fetchpriority="high" draggable="false" /><div class="media-slot media-slot--hero"><span class="hero-slot-chip"><span class="media-slot-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="hero-slot-text"><span class="media-slot-title">Hero photo goes here</span><span class="media-slot-note">Wide landscape photo of your crew or a freshly cleaned yard</span></span></span></div></div></div>
   <div class="hero-overlay"></div>
 
   <div class="container">
@@ -2736,7 +3325,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
       <h1 class="hero-h1">Dirty Turf?<br />We Can <span class="accent">Fix</span> That.</h1>
       <p class="hero-sub"><span class="hero-sub-full">Deep cleaning, pet odor elimination, and full restoration for artificial turf across the Phoenix Valley. Pet-safe, kid-safe, and guaranteed &mdash; or we come back free.</span><span class="hero-sub-short">Pet-safe deep cleaning and odor removal across the Phoenix Valley &mdash; guaranteed.</span></p>
       <div class="hero-buttons">
-        <a href="javascript:void(0)" class="btn-cyan" onclick="openQuoteModal()">Get My Free Quote &rarr;</a>
+        <a href="#quote" class="btn-cyan" onclick="openQuoteModal(); return false;">Get My Free Quote &rarr;</a>
         <a href="tel:4802941408" class="btn-ghost">&#128222; (480) 294-1408</a>
       </div>
       <div class="hero-stats">
@@ -2779,7 +3368,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
     </div>
     <div class="watch-media">
       <div class="watch-card">
-        <div class="media-frame" data-type="video" data-src="video/turfglow-intro.mp4" data-poster="video/turfglow-intro-poster.jpg"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Main video goes here</span><span class="media-slot-note">Wordless TurfGlow video &mdash; logo, crew, the work, the finished yard. 30&ndash;60 sec, filmed on your phone.</span></div></div>
+        <div class="media-frame" data-type="video" data-src="video/turfglow-intro.mp4" data-poster="video/turfglow-intro-poster.webp"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Main video goes here</span><span class="media-slot-note">Wordless TurfGlow video &mdash; logo, crew, the work, the finished yard. 30&ndash;60 sec, filmed on your phone.</span></div></div>
         <div class="watch-badge">
           <span class="watch-badge-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span>
           <span><strong>TurfGlow Guarantee</strong><br />Smell not gone? We re-treat free.</span>
@@ -2946,7 +3535,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
     <div class="why-bento">
 
       <div class="wb-card wb-safe">
-        <div class="wb-photo"><div class="media-frame" data-type="image" data-src="img/dog-on-turf.jpg" data-alt="A happy dog running with a ball across a sunny backyard lawn"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="media-slot-title">Kids &amp; Pets Photo</span><span class="media-slot-note">Kids or a dog playing on freshly cleaned turf</span></div></div></div>
+        <div class="wb-photo"><div class="media-frame" data-type="image" data-src="img/dog-on-turf.webp" data-alt="A happy dog running with a ball across a sunny backyard lawn"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="media-slot-title">Kids &amp; Pets Photo</span><span class="media-slot-note">Kids or a dog playing on freshly cleaned turf</span></div></div></div>
         <div class="wb-body">
           <div class="wb-icon"><svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect width="64" height="64" rx="16" fill="#e8f0e8"/>
@@ -2963,7 +3552,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
       </div>
 
       <div class="wb-card wb-gear">
-        <div class="wb-photo"><div class="media-frame" data-type="image" data-src="img/equipment-sprayer.jpg" data-alt="Professional pump sprayer used to pre-treat turf"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="media-slot-title">Equipment Photo</span><span class="media-slot-note">Your power broom, vacuum or hot-water rig on a job</span></div></div></div>
+        <div class="wb-photo"><div class="media-frame" data-type="image" data-src="img/equipment-sprayer.webp" data-alt="Professional pump sprayer used to pre-treat turf"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="media-slot-title">Equipment Photo</span><span class="media-slot-note">Your power broom, vacuum or hot-water rig on a job</span></div></div></div>
         <div class="wb-body">
           <div class="wb-icon"><svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect width="64" height="64" rx="16" fill="#e8f0e8"/>
@@ -2995,7 +3584,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
       </div>
 
       <div class="wb-card wb-promise">
-        <div class="wb-photo"><div class="media-frame" data-type="image" data-src="img/boy-and-dog.jpg" data-alt="A boy and his dog relaxing together on soft green grass"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="media-slot-title">Crew Photo</span><span class="media-slot-note">Your crew or truck at a finished yard</span></div></div></div>
+        <div class="wb-photo"><div class="media-frame" data-type="image" data-src="img/boy-and-dog.webp" data-alt="A boy and his dog relaxing together on soft green grass"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="media-slot-title">Crew Photo</span><span class="media-slot-note">Your crew or truck at a finished yard</span></div></div></div>
         <div class="wb-body">
           <div class="wb-icon"><svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect width="64" height="64" rx="16" fill="#e8f0e8"/>
@@ -3044,7 +3633,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
       <div class="dc-copy">
         <div class="section-label">What We Do</div>
         <h2 class="dc-title">Deep Turf Cleaning Across the Phoenix Valley</h2>
-        <p class="dc-lead">Artificial turf needs more than just a rinse &mdash; especially in high-traffic, pet-friendly, or sun-exposed areas. Without regular cleaning, bacteria, odors, and buildup can damage your turf and affect your home&rsquo;s appearance. We specialize in <a href="javascript:void(0)" onclick="openQuoteModal('deep')">deep cleaning</a> that not only removes grime but extends the life of your turf.</p>
+        <p class="dc-lead">Artificial turf needs more than just a rinse &mdash; especially in high-traffic, pet-friendly, or sun-exposed areas. Without regular cleaning, bacteria, odors, and buildup can damage your turf and affect your home&rsquo;s appearance. We specialize in <a href="#quote" onclick="openQuoteModal('deep'); return false;">deep cleaning</a> that not only removes grime but extends the life of your turf.</p>
 
         <div class="dc-benefits">
           <div class="dc-benefit">
@@ -3068,7 +3657,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
 
       <div class="dc-media">
         <div class="ba-slider" id="ba-slider" style="--pos:50%;">
-          <div class="media-frame" data-type="image" data-src="img/pool-turf.jpg" data-alt="Fresh artificial turf beside a pool with lounge chairs"><div class="media-slot media-slot--after"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="media-slot-title">After photo</span><span class="media-slot-note">Same spot &amp; angle, after the clean</span></div></div>
+          <div class="media-frame" data-type="image" data-src="img/pool-turf.webp" data-alt="Fresh artificial turf beside a pool with lounge chairs"><div class="media-slot media-slot--after"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="media-slot-title">After photo</span><span class="media-slot-note">Same spot &amp; angle, after the clean</span></div></div>
           <div class="ba-before-layer">
             <div class="media-frame" data-type="image" data-src="" data-alt="Matted, dirty artificial turf before cleaning"><div class="media-slot media-slot--before"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="media-slot-title">Before photo</span><span class="media-slot-note">Your dirtiest, most matted turf</span></div></div>
           </div>
@@ -3133,7 +3722,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
     <div class="hwc-grid">
       <div class="hwc-card">
         <div class="hwc-media">
-          <div class="media-frame" data-type="video" data-src="video/step1.mp4" data-poster="video/step1-poster.jpg"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Step 1 video</span><span class="media-slot-note">Tech spraying the turf &middot; 5&ndash;10 sec</span></div></div>
+          <div class="media-frame" data-type="video" data-src="video/step1.mp4" data-poster="video/step1-poster.webp"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Step 1 video</span><span class="media-slot-note">Tech spraying the turf &middot; 5&ndash;10 sec</span></div></div>
           <span class="hwc-tag">Pre-Spray</span>
         </div>
         <div class="hwc-body">
@@ -3144,7 +3733,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
       </div>
       <div class="hwc-card">
         <div class="hwc-media">
-          <div class="media-frame" data-type="video" data-src="video/step2.mp4" data-poster="video/step2-poster.jpg"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Step 2 video</span><span class="media-slot-note">Power broom running &middot; 5&ndash;10 sec</span></div></div>
+          <div class="media-frame" data-type="video" data-src="video/step2.mp4" data-poster="video/step2-poster.webp"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Step 2 video</span><span class="media-slot-note">Power broom running &middot; 5&ndash;10 sec</span></div></div>
           <span class="hwc-tag">Power Broom</span>
         </div>
         <div class="hwc-body">
@@ -3155,7 +3744,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
       </div>
       <div class="hwc-card">
         <div class="hwc-media">
-          <div class="media-frame" data-type="video" data-src="video/step3.mp4" data-poster="video/step3-poster.jpg"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Step 3 video</span><span class="media-slot-note">Vacuum pass &middot; 5&ndash;10 sec</span></div></div>
+          <div class="media-frame" data-type="video" data-src="video/step3.mp4" data-poster="video/step3-poster.webp"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Step 3 video</span><span class="media-slot-note">Vacuum pass &middot; 5&ndash;10 sec</span></div></div>
           <span class="hwc-tag">Vacuum</span>
         </div>
         <div class="hwc-body">
@@ -3166,7 +3755,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
       </div>
       <div class="hwc-card">
         <div class="hwc-media">
-          <div class="media-frame" data-type="video" data-src="video/step4.mp4" data-poster="video/step4-poster.jpg"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Step 4 video</span><span class="media-slot-note">Pressure washer / rinse &middot; 5&ndash;10 sec</span></div></div>
+          <div class="media-frame" data-type="video" data-src="video/step4.mp4" data-poster="video/step4-poster.webp"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Step 4 video</span><span class="media-slot-note">Pressure washer / rinse &middot; 5&ndash;10 sec</span></div></div>
           <span class="hwc-tag">Hot-Water Rinse</span>
         </div>
         <div class="hwc-body">
@@ -3300,7 +3889,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
     </div>
 
     <div class="tc-how">
-      <div class="tc-vsl"><div class="media-frame" data-type="video" data-mode="vsl" data-src="video/turf-club.mp4" data-poster="video/turf-club-poster.jpg"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Turf Club video goes here</span><span class="media-slot-note">60&ndash;90 sec of you explaining how the Turf Club works. Film it vertical, with captions.</span></div></div></div>
+      <div class="tc-vsl"><div class="media-frame" data-type="video" data-mode="vsl" data-src="video/turf-club.mp4" data-poster="video/turf-club-poster.webp"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Turf Club video goes here</span><span class="media-slot-note">60&ndash;90 sec of you explaining how the Turf Club works. Film it vertical, with captions.</span></div></div></div>
       <div class="tc-how-body">
         <h3 class="tc-how-title">How the Turf Club Works</h3>
         <p class="tc-how-sub">No surprises &mdash; here&rsquo;s exactly what you&rsquo;re signing up for.</p>
@@ -3321,7 +3910,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
     </div>
     <div class="bc-grid">
       <div class="bc-card">
-        <div class="bc-media"><div class="media-frame" data-type="image" data-src="img/turf-closeup.jpg"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="media-slot-title">Turf Repair photo</span><span class="media-slot-note">Photo of a repair you&rsquo;ve done</span></div></div></div>
+        <div class="bc-media"><div class="media-frame" data-type="image" data-src="img/turf-closeup.webp"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="media-slot-title">Turf Repair photo</span><span class="media-slot-note">Photo of a repair you&rsquo;ve done</span></div></div></div>
         <div class="bc-body">
           <span class="bc-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></span>
           <h3>Turf Repair</h3>
@@ -3329,7 +3918,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
         </div>
       </div>
       <div class="bc-card">
-        <div class="bc-media"><div class="media-frame" data-type="image" data-src="img/turf-install.jpg"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="media-slot-title">Turf Installation photo</span><span class="media-slot-note">Photo of a finished install</span></div></div></div>
+        <div class="bc-media"><div class="media-frame" data-type="image" data-src="img/turf-install.webp"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="media-slot-title">Turf Installation photo</span><span class="media-slot-note">Photo of a finished install</span></div></div></div>
         <div class="bc-body">
           <span class="bc-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 12l-8.4 8.4a2.1 2.1 0 01-3-3L12 9"/><path d="M17.6 6.4L14 3 9 3.5l1.9 1.7A6 6 0 0112 8.4V10l2 2h1.2a2 2 0 011.4.6l1.9 1.9 3.5-3.5-1.9-1.9A2 2 0 0119 7.7V7z"/></svg></span>
           <h3>Turf Installation</h3>
@@ -3337,7 +3926,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
         </div>
       </div>
       <div class="bc-card">
-        <div class="bc-media"><div class="media-frame" data-type="image" data-src="img/clean-pavers.jpg"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="media-slot-title">Hardscape Cleaning photo</span><span class="media-slot-note">Photo of clean pavers or a pool deck</span></div></div></div>
+        <div class="bc-media"><div class="media-frame" data-type="image" data-src="img/clean-pavers.webp"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="media-slot-title">Hardscape Cleaning photo</span><span class="media-slot-note">Photo of clean pavers or a pool deck</span></div></div></div>
         <div class="bc-body">
           <span class="bc-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="1.2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.2"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.2"/></svg></span>
           <h3>Hardscape Cleaning</h3>
@@ -3427,41 +4016,11 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
         </div>
       </div>
       <div class="sc-media">
-        <div class="media-frame" data-type="image" data-src="img/social-card.jpg" data-alt="Follow TurfGlow @turfglowcleaning on Instagram, TikTok and Facebook"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="media-slot-title">Social Photo</span><span class="media-slot-note">Your best before &amp; after or the crew on the job &mdash; a tall photo fits best</span></div></div>
+        <div class="media-frame" data-type="image" data-src="img/social-card.webp" data-alt="Follow TurfGlow @turfglowcleaning on Instagram, TikTok and Facebook"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="media-slot-title">Social Photo</span><span class="media-slot-note">Your best before &amp; after or the crew on the job &mdash; a tall photo fits best</span></div></div>
       </div>
     </div>
   </div>
 </section>
-<style>
-  /* ── Follow TurfGlow: copy + social buttons beside a photo slot ── */
-  .sc { padding: 6rem 0; background: #ffffff; }
-  .sc-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 420px); gap: 4rem; align-items: center; max-width: 1080px; margin: 0 auto; }
-  .sc-title { font-size: clamp(2.4rem, 5vw, 3.6rem); font-weight: 900; color: #0f2a1b; letter-spacing: -0.03em; line-height: 1.05; }
-  .sc-sub { color: #4a5f50; font-size: 1.08rem; line-height: 1.65; margin-top: 1rem; max-width: 32rem; }
-  .sc-links { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
-  .sc-btn {
-    display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.9rem 1.35rem; border-radius: 50px;
-    background: #0f2a1b; color: #ffffff; font-weight: 800; font-size: 0.98rem; text-decoration: none;
-    box-shadow: 0 10px 24px rgba(15,42,27,0.18); transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
-  }
-  .sc-btn svg { width: 20px; height: 20px; flex: 0 0 20px; }
-  .sc-btn:hover { background: #23804b; transform: translateY(-2px); box-shadow: 0 14px 30px rgba(35,128,75,0.3); }
-  .sc-media { position: relative; aspect-ratio: 4 / 5; border-radius: 26px; padding: 10px; background: #dff0e2; box-shadow: 0 24px 60px rgba(15,42,27,0.18); }
-  .sc-media > .media-frame { border-radius: 18px; }
-  @media (max-width: 900px) {
-    .sc-grid { grid-template-columns: 1fr; gap: 2.6rem; max-width: 560px; text-align: center; }
-    .sc-sub { margin-left: auto; margin-right: auto; }
-    .sc-links { justify-content: center; }
-    .sc-media { width: 100%; max-width: 420px; margin: 0 auto; aspect-ratio: 1 / 1; }
-  }
-  @media (max-width: 768px) {
-    .sc { padding: 4rem 0; }
-  }
-  @media (max-width: 480px) {
-    .sc-links { flex-direction: column; align-items: stretch; }
-    .sc-btn { justify-content: center; }
-  }
-</style>
 
 <!-- ─── FAQ ───────────────────────────────────────────────────── -->
 <section id="faq">
@@ -3474,7 +4033,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
     <div class="faq-list">
       <details class="faq-item">
         <summary>How much does turf cleaning cost?</summary>
-        <p>Every yard is different &mdash; the price depends on how much turf you have, whether you have pets, and what shape it&rsquo;s in. <a href="javascript:void(0)" onclick="openQuoteModal()" style="color:var(--teal);font-weight:700;">Get a free quote</a> in about 30 seconds and we&rsquo;ll call you with your exact price in minutes.</p>
+        <p>Every yard is different &mdash; the price depends on how much turf you have, whether you have pets, and what shape it&rsquo;s in. <a href="#quote" onclick="openQuoteModal(); return false;" style="color:var(--teal);font-weight:700;">Get a free quote</a> in about 30 seconds and we&rsquo;ll call you with your exact price in minutes.</p>
       </details>
       <details class="faq-item">
         <summary>How do you know how big my yard is?</summary>
@@ -3524,79 +4083,6 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
   </div>
 </section>
 
-<style>
-  .clean-guarantee-banner {
-    position: relative;
-    overflow: hidden;
-    background: linear-gradient(135deg, #0f2a1b 0%, #195c36 45%, #23804b 100%);
-    padding: 80px 0;
-  }
-  .cgb-glow {
-    position: absolute; inset: 0;
-    background:
-      radial-gradient(600px circle at 85% 50%, rgba(35,128,75,0.45), transparent 60%),
-      radial-gradient(500px circle at 10% 100%, rgba(123,193,66,0.28), transparent 60%);
-    pointer-events: none;
-  }
-  .cgb-inner {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 48px;
-  }
-  .cgb-text { flex: 1; min-width: 0; }
-  .cgb-chip {
-    display: inline-block;
-    color: #a3e635;
-    background: rgba(35,128,75,0.12);
-    border: 1px solid rgba(125,211,252,0.35);
-    font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 7px 14px; border-radius: 999px;
-    margin-bottom: 18px;
-  }
-  .cgb-title {
-    color: #fff;
-    font-size: clamp(2rem, 4.2vw, 3.4rem);
-    font-weight: 800;
-    line-height: 1.08;
-    letter-spacing: -0.5px;
-    margin: 0 0 14px;
-  }
-  .cgb-accent {
-    background: linear-gradient(135deg, #a3e635 0%, #23804b 100%);
-    -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .cgb-sub {
-    color: rgba(226,232,240,0.85);
-    font-size: 1.05rem;
-    line-height: 1.6;
-    margin: 0 0 26px;
-    max-width: 520px;
-  }
-  .cgb-btn { font-size: 1rem; padding: 16px 34px; }
-  .cgb-visual {
-    position: relative;
-    flex: 0 0 auto;
-    width: 260px; height: 260px;
-    display: flex; align-items: center; justify-content: center;
-  }
-  .cgb-shine {
-    position: absolute; inset: -20px;
-    background: radial-gradient(circle, rgba(35,128,75,0.55) 0%, transparent 65%);
-    filter: blur(20px);
-  }
-  .cgb-visual svg { position: relative; width: 100%; height: 100%; filter: drop-shadow(0 10px 30px rgba(35,128,75,0.5)); }
-  @media (max-width: 768px) {
-    .clean-guarantee-banner { padding: 56px 0; }
-    .cgb-inner { flex-direction: column; text-align: center; gap: 28px; }
-    .cgb-sub { margin-left: auto; margin-right: auto; }
-    .cgb-visual { width: 150px; height: 150px; order: -1; }
-    .cgb-btn { width: 100%; justify-content: center; }
-  }
-</style>
 
 <footer id="footer">
   <div class="container">
@@ -3606,8 +4092,8 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
         <div class="footer-cta-guarantee"><span class="footer-cta-check">✓</span> 100% TurfGlow Guarantee</div>
       </div>
       <div class="footer-cta-actions">
-        <a href="javascript:void(0)" onclick="openQuoteModal('monthly')" class="footer-cta-btn footer-cta-btn--gold">JOIN THE TURF CLUB</a>
-        <a href="javascript:void(0)" onclick="openQuoteModal()" class="footer-cta-btn">GET A FREE QUOTE</a>
+        <a href="#quote" onclick="openQuoteModal('monthly'); return false;" class="footer-cta-btn footer-cta-btn--gold">JOIN THE TURF CLUB</a>
+        <a href="#quote" onclick="openQuoteModal(); return false;" class="footer-cta-btn">GET A FREE QUOTE</a>
       </div>
     </div>
   </div>
@@ -3615,7 +4101,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
     <div class="footer-grid">
       <div>
         <div class="footer-brand-logo">
-          <img src="logo-square.png" alt="TurfGlow — Arizona Turf Cleaning" />
+          <img src="logo-square.webp" width="384" height="384" alt="TurfGlow — Arizona Turf Cleaning" />
         </div>
         <p class="footer-brand-desc">Artificial turf cleaning across the Phoenix Valley. We keep your turf clean, safe and fresh for your family and your pets.</p>
       </div>
@@ -3676,26 +4162,12 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
 </div>
 
 <!-- ─── SERVICE MODAL ───────────────────────────────────────────────── -->
-<style>
-  /* ── Service picker (step 1b) ───────────────────────────── */
-  @media (max-width:560px){ .qb-service-picker { grid-template-columns:1fr; max-width:460px; } .qbsp-img { aspect-ratio:16/10; } }
-
-  /* ── Turf area picker (step 1a) ─────────────────────────── */
-  @media (max-width:900px){
-  }
-  @media (max-width:560px){
-  }
-
-  /* ── Instant price screen (step 2) ──────────────────────── */
-  @media (max-width:560px){ .qb-price-wrap { padding:2rem 1.4rem; } .qb-price-amount { font-size:3.4rem; } }
-  @media (max-width:760px){ .qb-plans-mc { grid-template-columns:1fr; max-width:420px; } }
-</style>
 
 <div id="quote-modal" role="dialog" aria-modal="true" aria-labelledby="tq-h-1">
   <div class="tq-overlay" onclick="closeQuoteModal()"></div>
   <div class="tq-wrap">
     <div class="tq-head">
-      <img class="tq-logo" src="logo-square.png" alt="TurfGlow — Arizona Turf Cleaning" />
+      <img class="tq-logo" src="logo-square.webp" width="384" height="384" alt="TurfGlow — Arizona Turf Cleaning" />
       <a class="tq-google" href="https://maps.google.com/?cid=3468386511023497696" target="_blank" rel="noopener"><span>★★★★★</span> 5.0 on Google</a>
       <button type="button" class="tq-close" onclick="closeQuoteModal()" aria-label="Close">&#215;</button>
     </div>
@@ -3804,7 +4276,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
           <div class="tq-done-video" id="tq-done-video" hidden>
             <h3>While you wait for our call</h3>
             <p>See how the Turf Club works.</p>
-            <div class="tq-done-video-frame"><div class="media-frame" data-type="video" data-mode="vsl" data-src="video/turf-club.mp4" data-poster="video/turf-club-poster.jpg"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Turf Club video goes here</span><span class="media-slot-note">Same Turf Club video as on the page.</span></div></div></div>
+            <div class="tq-done-video-frame"><div class="media-frame" data-type="video" data-mode="vsl" data-src="video/turf-club.mp4" data-poster="video/turf-club-poster.webp"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Turf Club video goes here</span><span class="media-slot-note">Same Turf Club video as on the page.</span></div></div></div>
           </div>
           <div class="tq-callout">&#11088; See why neighbors rate us 5.0 &mdash; <a href="https://maps.google.com/?cid=3468386511023497696" target="_blank" rel="noopener">read our Google reviews</a></div>
           <div class="tq-next-row tq-done-btn"><button type="button" class="tq-next" onclick="closeQuoteModal()">Done</button></div>
@@ -3853,6 +4325,8 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
     tqGo(tq.step);
     if (tq.step === 1) setTimeout(function () { var f = document.getElementById('tq-first'); if (f && window.innerWidth > 640) f.focus(); }, 60);
   }
+
+  if (location.hash === '#quote') window.addEventListener('load', function () { openQuoteModal(); });
 
   function closeQuoteModal() {
     var m = document.getElementById('quote-modal');
@@ -4397,476 +4871,16 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
      MOBILE OVERRIDES — Only affects screens ≤ 768px
      Desktop styles are completely untouched
 ══════════════════════════════════════════════════ -->
-<style>
-@media (max-width: 768px) {
 
-  /* ── Base ── */
-  body { font-size: 15px; }
-
-  .container { padding: 0 18px; }
-
-  /* ── NAV ── */
-  #nav { padding: 10px 16px; }
-
-  .nav-inner {
-    height: 84px;
-    padding: 0 16px;
-    border-radius: 16px;
-    gap: 0;
-    justify-content: space-between;
-  }
-
-  .nav-logo img { height: 74px; }
-
-  .nav-right { margin-left: auto; }
-
-  .hamburger {
-    display: flex;
-    padding: 10px;
-    gap: 6px;
-  }
-
-  .hamburger span {
-    width: 25px;
-    height: 2.5px;
-    background: #1c3a24;
-    border-radius: 2px;
-    transition: all 0.3s;
-  }
-
-  /* (Old full-screen dark mobile menu rules removed — the right-side
-     drawer styles defined at the top of the file now apply on all
-     viewports, so the menu is fully off-screen until opened.) */
-
-  /* ── HERO ── */
-  /* Use svh (small viewport height) on mobile so the hero matches the ACTUAL
-     visible area — fixes Instagram/in-app browsers where vh measures the taller
-     chrome-hidden viewport and pushes the content up onto the tech. */
-  #hero { height: 100svh; min-height: 100svh; }
-
-  #hero .container {
-    padding-top: 88px;
-    padding-bottom: 18px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    min-height: 100svh;
-  }
-
-  .hero-ig-badge {
-    top: 80px;
-    left: 18px;
-    font-size: 12px;
-    padding: 8px 14px;
-    gap: 8px;
-  }
-
-  .hero-ig-badge img { width: 28px; height: 28px; }
-
-  .hero-h1 {
-    font-size: clamp(2.8rem, 12.5vw, 3.9rem);
-    line-height: 1.05;
-    letter-spacing: -1.5px;
-    margin-bottom: 14px;
-  }
-
-  .hero-sub {
-    font-size: 15px;
-    line-height: 1.6;
-    margin-bottom: 28px;
-    max-width: 100%;
-    color: rgba(255,255,255,0.8);
-  }
-
-  .hero-buttons {
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .hero-buttons .btn-cyan,
-  .hero-buttons .btn-ghost {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    font-size: 16px;
-    padding: 15px 24px;
-    border-radius: 12px;
-  }
-
-  .hero-buttons .btn-ghost {
-    display: flex !important;
-    border-color: rgba(255,255,255,0.3);
-  }
-
-  .hero-stats { display: none !important; }
-
-  /* ── TRUST STRIP (hidden on mobile) ── */
-  #trust-strip { display: none !important; }
-
-  .trust-inner {
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    padding: 0 18px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-  }
-
-  .trust-inner::-webkit-scrollbar { display: none; }
-
-  .trust-item {
-    font-size: 12px;
-    padding: 0.4rem 1rem;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-
-  /* ── SERVICES ── */
-  #services { padding: 48px 0 0; }
-
-  .services-header { margin-bottom: 28px; }
-
-  .services-grid {
-    grid-template-columns: 1fr !important;
-    gap: 16px;
-  }
-
-  .service-card {
-    padding: 28px 22px;
-    border-radius: 16px;
-    flex-direction: row;
-    text-align: left;
-    align-items: flex-start;
-    gap: 18px;
-  }
-
-  .svc-card-img {
-    width: 80px;
-    height: 80px;
-    border-radius: 12px;
-    margin-bottom: 0;
-    flex-shrink: 0;
-    object-fit: cover;
-  }
-
-  .svc-card-content { flex: 1; }
-
-  .svc-card-tag { font-size: 0.65rem; margin-bottom: 2px; }
-
-  .svc-card-title {
-    font-size: 1.25rem;
-    margin-bottom: 10px;
-  }
-
-  .svc-card-features li { font-size: 0.9rem; margin-bottom: 4px; }
-
-  .svc-card-btn {
-    padding: 0.75rem 1.5rem;
-    font-size: 0.82rem;
-    border-radius: 50px;
-    width: 100%;
-    text-align: center;
-    margin-top: 14px;
-    display: block;
-  }
-
-  /* ── PROCESS ── */
-  #process { padding: 56px 0; }
-
-  .process-grid {
-    grid-template-columns: 1fr !important;
-    gap: 14px;
-  }
-
-  .process-card {
-    padding: 24px 20px;
-    border-radius: 16px;
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    gap: 16px;
-    text-align: left;
-  }
-
-  .process-step-num {
-    width: 48px;
-    height: 48px;
-    font-size: 1.2rem;
-    flex-shrink: 0;
-    margin: 0;
-  }
-
-  .process-title { margin-bottom: 6px; font-size: 0.9rem; }
-
-  .process-desc { font-size: 14px; color: rgba(255,255,255,0.65); }
-
-  /* ── WHY GLASS ── */
-  #why { padding: 56px 0; }
-
-  .why-grid {
-    grid-template-columns: 1fr !important;
-    gap: 36px;
-  }
-
-  .why-image-wrap {
-    order: -1;
-    border-radius: 16px;
-    overflow: hidden;
-  }
-
-  .why-image-wrap img {
-    height: 240px !important;
-    width: 100%;
-    object-fit: cover;
-    border-radius: 16px;
-  }
-
-  .why-badge {
-    bottom: 12px;
-    right: 12px;
-    padding: 12px 16px;
-  }
-
-  .why-badge-num { font-size: 28px; }
-  .why-badge-label { font-size: 11px; }
-
-  .why-list { gap: 10px; margin-top: 20px; }
-
-  .why-item {
-    padding: 14px 16px;
-    border-radius: 12px;
-    gap: 12px;
-  }
-
-  .why-item-title { font-size: 14px; }
-  .why-item-desc { font-size: 12px; }
-
-  /* ── REVIEWS ── */
-  #reviews { padding: 40px 0 48px !important; }
-
-  .nas-card { flex: 0 0 85vw !important; padding: 20px; border-radius: 16px; }
-
-  .nas-card-text { font-size: 0.85rem; }
-
-  .nas-title { font-size: clamp(1.6rem,8vw,2.2rem) !important; }
-
-  /* ── QUICK BOOK ── */
-
-
-
-
-
-  /* ── INSTAGRAM ── */
-  #instagram { padding: 48px 0; }
-
-  .ig-grid {
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 3px;
-  }
-
-  /* ── CONTACT ── */
-  .contact-grid { grid-template-columns: 1fr !important; gap: 36px; }
-  .form-row { grid-template-columns: 1fr !important; }
-
-  /* ── MEMBERSHIP ── */
-  .glass-save-big { font-size: 2.4rem; }
-  .glass-mc { border-radius: 18px; padding: 22px 18px; }
-
-  /* ── SERVICE MODAL on mobile ── */
-  .svc-hero-wrap { height: 260px; }
-  .svc-hero-content { padding: 1.5rem; }
-  .svc-hero-content h1 { font-size: 1.7rem; }
-  .svc-body { padding: 1.5rem 1rem 6rem; }
-  .svc-includes { grid-template-columns: 1fr !important; }
-  .svc-section h2 { font-size: 1.2rem; }
-
-  /* ── FOOTER ── */
-  .footer-grid { grid-template-columns: 1fr !important; gap: 28px; }
-
-  footer { padding: 48px 0 100px; }
-
-  /* ── MOBILE STICKY BAR ── */
-  #mobile-sticky {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 800;
-    background: #122c1e;
-    border-top: 1px solid rgba(35,128,75,0.25);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 16px;
-    padding-bottom: calc(10px + env(safe-area-inset-bottom));
-  }
-
-  #mobile-sticky a {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    font-weight: 700;
-    font-size: 14px;
-    padding: 13px 12px;
-    border-radius: 10px;
-    text-decoration: none;
-  }
-
-  /* ── DM GRID (service photo grid) ── */
-  .dm-grid { grid-template-columns: 1fr !important; gap: 10px; }
-  .dm-card-large, .dm-card-wide { grid-column: span 1 !important; height: 260px !important; }
-  .dm-card { border-radius: 16px; }
-  .dm-card-title { font-size: 1.3rem !important; }
-
-  /* ── SECTION TITLES ── */
-  .section-title { font-size: clamp(24px, 7vw, 34px) !important; }
-  .section-sub { font-size: 15px !important; }
-
-  /* ── GENERAL SPACING ── */
-  section { padding-top: 56px; padding-bottom: 56px; }
-}
-
-/* Hero: drop the text/buttons low so the turf work is front & center on phones
-   (sub-paragraph hidden on mobile to free the room; it shows on desktop) */
-@media (max-width: 768px) {
-  .hero-sub { display: none; }
-  .hero-eyebrow { margin-bottom: 0.8rem; }
-  .hero-h1 { margin-bottom: 1.2rem; }
-  .hero-buttons { margin-bottom: 1.1rem; }
-  #hero .container { padding-bottom: 34px; }
-}
-
-/* Short phones: keep hero content high enough that the buttons clear the sticky bar */
-@media (max-width: 768px) and (max-height: 740px) {
-  #hero .container { padding-bottom: 66px; }
-}
-
-/* Phones: bigger Google stars badge that stays on one line */
-@media (max-width: 768px) {
-  .hero-eyebrow { font-size: 1rem; padding: 0.55rem 1.15rem; white-space: nowrap; gap: 6px; }
-  .hero-eyebrow span { letter-spacing: 1px !important; }
-}
-
-/* Very small phones */
-@media (max-width: 390px) {
-  .hero-h1 { font-size: 2.55rem; }
-  .nav-inner { height: 58px; }
-  .nav-logo img { height: 40px; }
-  .svc-card-img { width: 66px; height: 66px; }
-}
-</style>
-
-<style>
-/* ── MOBILE FIXES: service card images + Why Choose Glass grid ── */
-@media (max-width: 768px) {
-
-  /* Vertical centered service cards on mobile (matches screenshot) */
-  .service-card {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    text-align: center !important;
-    padding: 36px 24px !important;
-    gap: 0 !important;
-    border-radius: 18px !important;
-  }
-
-  .svc-card-tag {
-    font-size: 0.78rem !important;
-    letter-spacing: 0.18em !important;
-    color: #6b7c6b !important;
-    margin-bottom: 8px !important;
-    grid-column: auto !important; grid-row: auto !important;
-  }
-
-  .svc-card-title {
-    font-size: 1.75rem !important;
-    line-height: 1.05 !important;
-    margin-bottom: 22px !important;
-    grid-column: auto !important; grid-row: auto !important;
-  }
-
-  .svc-card-img {
-    width: 180px !important;
-    height: 180px !important;
-    border-radius: 50% !important;
-    object-fit: cover !important;
-    margin: 0 0 24px !important;
-    align-self: center !important;
-    grid-column: auto !important; grid-row: auto !important;
-  }
-
-  .svc-card-features {
-    display: inline-block !important;
-    text-align: left !important;
-    width: auto !important;
-    margin: 0 auto 26px !important;
-    grid-column: auto !important; grid-row: auto !important;
-  }
-  .svc-card-features li {
-    font-size: 1.05rem !important;
-    margin-bottom: 10px !important;
-    justify-content: flex-start !important;
-  }
-
-  .svc-card-btn {
-    display: inline-block !important;
-    background: var(--teal) !important;
-    color: #fff !important;
-    padding: 16px 48px !important;
-    font-size: 0.95rem !important;
-    border-radius: 999px !important;
-    margin-top: 4px !important;
-  }
-
-  /* Fix Why Choose Glass — override inline style grid */
-  #why > .container > div[style*="grid-template-columns"] {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important;
-    gap: 10px !important;
-    overflow: visible !important;
-  }
-
-  #why > .container > div[style*="grid-template-columns"] > div {
-    padding: 16px 12px !important;
-    border-radius: 12px !important;
-  }
-
-  #why > .container > div[style*="grid-template-columns"] > div svg {
-    width: 36px !important;
-    height: 36px !important;
-  }
-
-  #why > .container > div[style*="grid-template-columns"] > div > div:first-child {
-    margin-bottom: 8px !important;
-  }
-
-  #why > .container > div[style*="grid-template-columns"] > div > div:nth-child(2) {
-    font-size: 0.82rem !important;
-    margin-bottom: 6px !important;
-  }
-
-  #why > .container > div[style*="grid-template-columns"] > div > p {
-    font-size: 0.73rem !important;
-    line-height: 1.5 !important;
-  }
-
-  #why > .container > div:first-child h2 {
-    font-size: clamp(1.5rem, 6vw, 2rem) !important;
-  }
-}
-</style>
 
 <script>
-/* Photo/video slots: set data-src="file.mp4" (or .jpg) on a .media-frame and it replaces the placeholder. */
+/* Photo/video slots: set data-src="file.mp4" (or .jpg/.webp) on a .media-frame and it replaces the placeholder. */
 (function(){
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var videos = [];
   Array.prototype.forEach.call(document.querySelectorAll('.media-frame[data-src]'), function(f){
     var src = f.getAttribute('data-src');
-    if (!src) return;
+    if (!src || f.querySelector('.media-el')) return;
     var el;
     if (f.getAttribute('data-type') === 'video') {
       var vsl = f.getAttribute('data-mode') === 'vsl';
