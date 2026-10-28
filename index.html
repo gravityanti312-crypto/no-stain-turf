@@ -4878,6 +4878,8 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
 (function(){
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var videos = [];
+  // Video/photo files start downloading once the page has loaded, so they don't slow down the hero on phones
+  var later = [];
   Array.prototype.forEach.call(document.querySelectorAll('.media-frame[data-src]'), function(f){
     var src = f.getAttribute('data-src');
     if (!src || f.querySelector('.media-el')) return;
@@ -4894,7 +4896,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
         el.muted = true; el.loop = true; el.setAttribute('muted', '');
         if (reduce) el.controls = true; else videos.push(el);
       }
-      el.src = src;
+      later.push(function(){ el.src = src; });
       if (!vsl && f.getAttribute('data-sound')) {
         var btn = document.createElement('button');
         btn.type = 'button'; btn.className = 'media-sound'; btn.setAttribute('aria-label', 'Turn sound on');
@@ -4909,7 +4911,8 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
       }
     } else {
       el = document.createElement('img');
-      el.src = src; el.alt = f.getAttribute('data-alt') || ''; el.loading = 'lazy'; el.draggable = false;
+      el.alt = f.getAttribute('data-alt') || ''; el.loading = 'lazy'; el.draggable = false;
+      later.push(function(){ el.src = src; });
     }
     el.className = 'media-el';
     f.insertBefore(el, f.firstChild);
@@ -4917,11 +4920,17 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
   });
   var doneVideo = document.getElementById('tq-done-video');
   if (doneVideo && doneVideo.querySelector('.media-frame.has-media')) doneVideo.hidden = false;
+  function startMedia(){
+    later.forEach(function(go){ go(); });
+    videos.forEach(function(v){ if (v.onScreen) { var pr = v.play(); if (pr && pr.catch) pr.catch(function(){}); } });
+  }
+  if (document.readyState === 'complete') startMedia(); else window.addEventListener('load', startMedia);
   // Only play videos while they are on screen (saves phone data + battery)
   if (!videos.length) return;
   if (!('IntersectionObserver' in window)) { videos.forEach(function(v){ v.autoplay = true; v.play(); }); return; }
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
+      e.target.onScreen = e.isIntersecting;
       if (e.isIntersecting) { var pr = e.target.play(); if (pr && pr.catch) pr.catch(function(){}); }
       else e.target.pause();
     });
