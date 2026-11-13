@@ -2190,6 +2190,38 @@
   @media (max-width: 640px) { #beyond { padding: 4rem 0; } }
 </style>
 <style>
+  /* ── About Us: the two founders ── */
+  #about-us { padding: 5.5rem 0; background: #ffffff; }
+  .os-wrap { display: grid; grid-template-columns: 1fr 1.05fr; gap: 3.5rem; align-items: center; max-width: 1160px; margin: 0 auto; }
+  .os-photo { position: relative; aspect-ratio: 4 / 5; border-radius: 28px; overflow: hidden; box-shadow: 0 24px 60px rgba(15,42,27,0.18); }
+  .os-photo .media-frame { position: absolute; inset: 0; border-radius: 28px; }
+  .os-badge {
+    position: absolute; left: 18px; bottom: 18px; z-index: 2; background: #fde50a; color: #0f2a1b;
+    font-weight: 900; font-size: 0.95rem; padding: 0.6rem 1.1rem; border-radius: 50px; box-shadow: 0 10px 24px rgba(15,42,27,0.25);
+  }
+  .os-eyebrow { display: inline-block; font-size: 0.8rem; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; color: #23804b; margin-bottom: 0.9rem; }
+  .os-copy h2 { font-size: clamp(2.2rem, 4.6vw, 3.3rem); font-weight: 900; color: #0f2a1b; letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 1.25rem; }
+  .os-copy > p { font-size: 1.08rem; line-height: 1.75; color: #3d5245; margin-bottom: 1rem; }
+  .os-mission { margin: 1.6rem 0; padding: 1.4rem 1.6rem; border-radius: 20px; background: linear-gradient(165deg, #23804b 0%, #195c36 100%); color: #ffffff; }
+  .os-mission strong { display: block; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: #fde50a; margin-bottom: 0.45rem; }
+  .os-mission p { font-size: 1.15rem; line-height: 1.55; font-weight: 700; }
+  .os-values { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem 1.25rem; margin: 0 0 1.75rem; padding: 0; }
+  .os-values li { position: relative; padding-left: 1.9rem; font-size: 1rem; line-height: 1.5; color: #0f2a1b; font-weight: 700; }
+  .os-values li::before {
+    content: "\2713"; position: absolute; left: 0; top: 0.05em; width: 1.35rem; height: 1.35rem; border-radius: 50%;
+    background: #e3f3e5; color: #23804b; font-size: 0.8rem; display: flex; align-items: center; justify-content: center;
+  }
+  @media (max-width: 900px) {
+    .os-wrap { grid-template-columns: 1fr; gap: 2rem; }
+    .os-photo { max-width: 460px; width: 100%; margin: 0 auto; }
+  }
+  @media (max-width: 640px) {
+    #about-us { padding: 3.5rem 0; }
+    .os-photo { aspect-ratio: 4 / 4.6; border-radius: 24px; }
+    .os-values { grid-template-columns: 1fr; }
+  }
+</style>
+<style>
   /* ── Why Choose TurfGlow: color-blocked bento with photo slots ── */
   .why-head { text-align: center; margin-bottom: 2.75rem; }
   .why-head h2 { font-size: clamp(2.3rem, 5vw, 3.6rem); font-weight: 900; color: #0f2a1b; letter-spacing: -0.03em; line-height: 1.05; }
@@ -3278,6 +3310,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
       <a href="#services">Services</a>
       <a href="#membership">Turf Club</a>
       <a href="#why">Why Us</a>
+      <a href="#about-us">About Us</a>
       <a href="#service-areas">Service Areas</a>
       <a href="#contact">Contact</a>
       <a href="#referral" onclick="openReferralModal(); return false;">Refer &amp; Earn $50</a>
@@ -3303,6 +3336,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
   <a href="#services" onclick="closeMobile()">Services</a>
   <a href="#membership" onclick="closeMobile()">Turf Club Pricing</a>
   <a href="#why" onclick="closeMobile()">Why TurfGlow</a>
+  <a href="#about-us" onclick="closeMobile()">About Us</a>
   <a href="#reviews" onclick="closeMobile()">Reviews</a>
   <a href="#ig-showroom" onclick="closeMobile()">Follow Us</a>
   <a href="#service-areas" onclick="closeMobile()">Service Areas</a>
@@ -3624,6 +3658,36 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
 })();
 </script>
 </div>
+
+<!-- ─── ABOUT US: MEET THE FOUNDERS ──────────────────────────── -->
+<section id="about-us">
+  <div class="container">
+    <div class="os-wrap">
+      <div class="os-photo">
+        <!-- Drop your photo in img/ and set data-src, e.g. data-src="img/founders.webp" -->
+        <div class="media-frame" data-type="image" data-src="" data-alt="The two founders of TurfGlow Cleaning"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="media-slot-title">Founders Photo</span><span class="media-slot-note">A picture of the two of you &mdash; on a job or with the gear</span></div></div>
+        <span class="os-badge">Ages 18 &amp; 17</span>
+      </div>
+      <div class="os-copy">
+        <span class="os-eyebrow">About Us</span>
+        <h2>Two Young Guys <span class="why-hl">Building Something</span></h2>
+        <p>We&rsquo;re 18 and 17, and instead of waiting around for life to start, we decided to build something of our own. TurfGlow started with a simple idea: people spend a lot of money on artificial turf, and most of it never gets cleaned the right way.</p>
+        <p>So we learned the craft, got the pro-grade equipment, and started showing up for homeowners across the Valley. Every yard we clean is our name on the line &mdash; and we&rsquo;re working hard to become somebody our customers are proud to recommend.</p>
+        <div class="os-mission">
+          <strong>Our Mission</strong>
+          <p>Give every family a turf that&rsquo;s clean, fresh and safe to play on &mdash; and earn their trust with hard work, honesty and real results.</p>
+        </div>
+        <ul class="os-values">
+          <li>We show up on time</li>
+          <li>We treat your yard like ours</li>
+          <li>We answer our own phone</li>
+          <li>We don&rsquo;t leave until it&rsquo;s right</li>
+        </ul>
+        <button type="button" class="wb-btn" style="margin:0" onclick="openQuoteModal()">Get My Free Quote &rarr;</button>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ─── DEEP CLEAN EXPLAINER + BEFORE / AFTER ─────────────────── -->
 <section id="deepclean">
