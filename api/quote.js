@@ -4,12 +4,18 @@
 //   1. "Started the quote"  — as soon as contact info is in (the call-now alert)
 //   2. "Finished the quote" — with the yard details
 //
+// Every post is forwarded to Client Hub (TurfGlow's own customer app) when
+// WEBSITE_LEADS_KEY is set: the lead lands in its Leads inbox and the phones buzz.
+// Both posts carry the same quote_id, so they end up as one lead there.
+//
 // On a finished quote this creates ONE lead in Housecall Pro (Job Inbox → API Leads)
 // when HOUSECALL_PRO_API_KEY is set (Housecall Pro MAX plan). It also emails the
 // details through Resend when RESEND_API_KEY is set. The response always says
 // whether the email went out (email_sent); if not, the browser falls back to
 // formsubmit.co so a lead is never lost. Keys live only in Vercel env vars —
 // never in the public repo.
+
+const { sendToClientHub, fromOwnSite, readJson } = require('./_client-hub');
 
 const HCP_URL = 'https://api.housecallpro.com/leads';
 const TO_EMAIL = 'turfglowaz@gmail.com';
@@ -136,16 +142,9 @@ module.exports = async (req, res) => {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  // Only accept posts from this site's own pages.
-  const origin = req.headers.origin;
-  if (origin) {
-    let host = '';
-    try { host = new URL(origin).host; } catch (e) {}
-    if (host !== req.headers.host) return res.status(403).json({ error: 'Forbidden' });
-  }
+  if (!fromOwnSite(req)) return res.status(403).json({ error: 'Forbidden' });
 
-  let d = req.body;
-  if (!d || typeof d === 'string') { try { d = JSON.parse(d || '{}'); } catch (e) { d = {}; } }
+  const d = readJson(req);
   const digits = String(d.phone || '').replace(/\D/g, '');
   if (!String(d.name || '').trim() || digits.length < 10 || JSON.stringify(d).length > 20000) {
     return res.status(400).json({ error: 'Missing name or phone' });
@@ -155,15 +154,18 @@ module.exports = async (req, res) => {
   const hcpKey = process.env.HOUSECALL_PRO_API_KEY;
   const resendKey = process.env.RESEND_API_KEY;
 
-  const [hcp, emailSent] = await Promise.all([
+  const [hcp, emailSent, app] = await Promise.all([
     finished && hcpKey ? createHcpLead(d, hcpKey) : Promise.resolve(null),
-    !d.skip_email && resendKey ? sendEmail(d, resendKey) : Promise.resolve(false)
+    !d.skip_email && resendKey ? sendEmail(d, resendKey) : Promise.resolve(false),
+    sendToClientHub('/lead', d)
   ]);
 
   if (hcp && hcp.error) console.error('Housecall Pro lead failed:', hcp.error);
+  if (app && app.error) console.error('Client Hub lead failed:', app.error);
   return res.status(200).json({
     ok: true,
     email_sent: !!emailSent,
+    app_saved: !!(app && app.ok),
     housecall_pro: finished ? (hcpKey ? (hcp && hcp.id ? 'created' : 'failed') : 'not_configured') : 'skipped_until_finished',
     housecall_pro_lead_id: hcp && hcp.id ? hcp.id : null
   });

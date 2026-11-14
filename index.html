@@ -4377,7 +4377,13 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
   var TQ_STEPS = 4, TQ_DONE = 5;
   var TQ_SAVINGS = { 'Monthly': '$150 off per cleaning', 'Every other month': '$100 off per cleaning', 'Quarterly': '$50 off per cleaning', 'One-time': 'One-time cleaning (no plan)' };
   var TQ_PHOTO_LABELS = ['Whole turf area', 'Close-up of the turf', 'Stains or pet spots', 'Anything else'];
-  var tq = { step: 1, picks: { addons: [] }, contact: null, startSentFor: '', photos: [null, null, null, null], photosSent: false };
+  var tq = { step: 1, picks: { addons: [] }, contact: null, startSentFor: '', photos: [null, null, null, null], photosSent: false, quoteId: tqNewId() };
+
+  // One id per quote, so Client Hub puts "started" and "finished" on the same lead.
+  function tqNewId() {
+    try { if (window.crypto && crypto.randomUUID) return 'q_' + crypto.randomUUID().replace(/-/g, ''); } catch (e) {}
+    return 'q_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 12);
+  }
 
   function openQuoteModal(mode) {
     if (mode === true || mode === 'odor') mode = 'deep';
@@ -4411,7 +4417,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
 
   function tqReset() {
     tq.photos.forEach(function (p, i) { if (p) tqPhotoRemove(null, i); });
-    tq.step = 1; tq.picks = { addons: [] }; tq.contact = null; tq.startSentFor = ''; tq.photosSent = false;
+    tq.step = 1; tq.picks = { addons: [] }; tq.contact = null; tq.startSentFor = ''; tq.photosSent = false; tq.quoteId = tqNewId();
     var form = document.getElementById('tq-form');
     form.reset();
     form.querySelectorAll('.is-on').forEach(function (b) { b.classList.remove('is-on'); });
@@ -4528,8 +4534,20 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
     };
   }
 
-  // Vercel /api/quote creates the Housecall Pro lead (finished quotes) and emails via Resend when configured.
-  // If it isn't reachable (GitHub Pages) or didn't send the email, fall back to formsubmit.co.
+  // Extra boxes for Client Hub (TurfGlow's customer app): not in the email.
+  function tqAppFields(stage) {
+    var c = tq.contact || {}, done = stage === 'complete';
+    return {
+      quote_id: tq.quoteId, first_name: c.first_name || '', last_name: c.last_name || '',
+      street: done ? tqVal('tq-address') : '', city: done ? tqVal('tq-city') : '',
+      state: done ? (tqVal('tq-state') || 'AZ') : '', zip: done ? tqVal('tq-zip') : ''
+    };
+  }
+
+  // Vercel /api/quote sends the lead to Client Hub (TurfGlow's app: Leads inbox + phone alert),
+  // creates the Housecall Pro lead (finished quotes) and emails via Resend when configured.
+  // If it isn't reachable (GitHub Pages) or didn't send the email, fall back to formsubmit.co,
+  // so every lead still arrives by email too.
   function tqApi(data) {
     return fetch('/api/quote', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(data) })
       .then(function (r) { if (!r.ok) throw new Error('api ' + r.status); return r.json(); });
@@ -4546,7 +4564,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
       return fetch('https://formsubmit.co/ajax/' + TQ_EMAIL, { method: 'POST', headers: { 'Accept': 'application/json' }, body: fd })
         .then(function (r) { if (!r.ok) throw new Error('relay ' + r.status); return r.json(); });
     };
-    return tqApi(data)
+    return tqApi(Object.assign({}, data, tqAppFields(stage)))
       .then(function (j) { if (!j || !j.email_sent) return viaRelay(); return j; })
       .catch(viaRelay);
   }
@@ -4638,11 +4656,30 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
     tqPhotoButton();
   }
 
+  // Photos to Client Hub: ask for one-time upload links, then the phone sends each photo
+  // straight to the app's private photo storage. Resolves true when every photo made it.
+  function tqPhotosToApp() {
+    var list = tq.photos.filter(function (p) { return p && p.blob; });
+    if (!list.length || !tq.quoteId) return Promise.resolve(false);
+    return fetch('/api/quote-photos', {
+      method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ quote_id: tq.quoteId, types: list.map(function (p) { return p.blob.type || 'image/jpeg'; }) })
+    }).then(function (r) { if (!r.ok) throw new Error('photos ' + r.status); return r.json(); })
+      .then(function (j) {
+        var ups = (j && j.uploads) || [];
+        return Promise.all(ups.map(function (u, i) {
+          return fetch(u.url, { method: 'PUT', headers: { 'Content-Type': u.content_type || 'image/jpeg', 'x-upsert': 'false' }, body: list[i].blob })
+            .then(function (r) { return r.ok; }, function () { return false; });
+        })).then(function (oks) { return oks.length === list.length && oks.every(Boolean); });
+      }).catch(function () { return false; });
+  }
+
   // formsubmit only accepts attachments on a normal multipart POST, so post into a hidden iframe.
   function tqSendPhotos() {
     if (!tqPhotoCount() || !tq.contact) return;
     var btn = document.getElementById('tq-photo-send');
     btn.disabled = true; btn.textContent = 'Sending…';
+    var toApp = tqPhotosToApp();
     var c = tq.contact;
     var data = {
       _subject: '📷 PHOTOS: ' + (c.first_name + ' ' + c.last_name).trim() + ' · ' + tqVal('tq-city') + ' · ' + c.phone,
@@ -4666,8 +4703,11 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
       } catch (err) {}
     });
     if (!attached) {
-      btn.disabled = false; btn.textContent = 'Send my photos';
-      tqPhotoHelp('Your browser couldn’t attach photos here — please text them to ' + TQ_PHONE + '.', true);
+      toApp.then(function (ok) {
+        if (ok) { tq.photosSent = true; tqPhotoButton(); tqPhotoHelp('Thanks! Your photos were sent.'); return; }
+        btn.disabled = false; btn.textContent = 'Send my photos';
+        tqPhotoHelp('Your browser couldn’t attach photos here — please text them to ' + TQ_PHONE + '.', true);
+      });
       return;
     }
     var sink = document.getElementById('tq-sink'), finished = false;
