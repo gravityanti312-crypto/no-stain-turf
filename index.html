@@ -166,13 +166,11 @@
       .nav-links { gap: 14px; }
       .nav-links a { font-size: 12.5px; }
     }
-    @media (max-width: 1080px) {
-      .nav-links a:nth-child(n+6) { display: none; }
-    }
-    @media (max-width: 940px) {
-      .nav-links a:nth-child(n+4) { display: none; }
-    }
     .nav-right { display: flex; align-items: center; gap: 16px; }
+    /* Set by JS: .nav-trimmed = some links were dropped, so the menu button must show;
+       .nav-fold = not even one link fits, so the whole row becomes the menu button. */
+    #nav.nav-trimmed .hamburger, #nav.nav-fold .hamburger { display: flex; }
+    #nav.nav-fold .nav-links { display: none; }
 
     .nav-ig-btn {
       display: inline-flex; align-items: center; gap: 7px;
@@ -2506,9 +2504,6 @@
     #nav .nav-links { gap: 14px; }
     #nav .nav-links a { font-size: 12.5px; }
   }
-  @media (max-width: 1279px) {
-    #nav .nav-links a:nth-child(n+6) { display: none; }
-  }
   @media (max-width: 1180px) {
     #nav .nav-links { display: none; }
     #nav .nav-right { margin-left: auto; }
@@ -3315,13 +3310,13 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
       <img src="logo-wide.webp" width="1000" height="242" alt="TurfGlow — Arizona Turf Cleaning" />
     </a>
     <div class="nav-links">
-      <a href="#services">Services</a>
-      <a href="#membership">Turf Club</a>
-      <a href="#why">Why Us</a>
-      <a href="#about-us">About Us</a>
-      <a href="#service-areas">Service Areas</a>
-      <a href="#contact">Contact</a>
-      <a href="#referral" onclick="openReferralModal(); return false;">Refer &amp; Earn $50</a>
+      <a href="#services" data-drop="7">Services</a>
+      <a href="#membership" data-drop="6">Turf Club</a>
+      <a href="#why" data-drop="4">Why Us</a>
+      <a href="#about-us" data-drop="1">About Us</a>
+      <a href="#service-areas" data-drop="2">Service Areas</a>
+      <a href="#contact" data-drop="3">Contact</a>
+      <a href="#referral" onclick="openReferralModal(); return false;" data-drop="5">Refer &amp; Earn $50</a>
     </div>
     <div class="nav-right">
       <a href="tel:4802941408" class="nav-ig-btn">
@@ -5050,6 +5045,54 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
     var a = e.target.closest && e.target.closest('a[href^="tel:"]');
     if (a && window.fbq) fbq('track', 'Contact');
   });
+</script>
+<script>
+/* Nav fit — the top bar can never overlap itself.
+   Measures the real bar; if the phone button would collide with the links, it hides
+   links one at a time (least important first, per data-drop) and falls back to the
+   hamburger if even one won't fit. Re-runs on resize and once webfonts land. */
+(function () {
+  var nav = document.getElementById('nav');
+  if (!nav) return;
+  var inner = nav.querySelector('.nav-inner');
+  var links = nav.querySelector('.nav-links');
+  var right = nav.querySelector('.nav-right');
+  var logo = nav.querySelector('.nav-logo');
+  if (!inner || !links || !right || !logo) return;
+  var items = Array.prototype.slice.call(links.querySelectorAll('a'));
+  var order = items.slice().sort(function (a, b) {
+    return (+a.getAttribute('data-drop') || 0) - (+b.getAttribute('data-drop') || 0);
+  });
+  var GAP = 12;  // clear space the links must keep from the logo and the phone button
+  function visible() {
+    return items.filter(function (a) { return getComputedStyle(a).display !== 'none'; });
+  }
+  function overflows() {
+    var pad = parseFloat(getComputedStyle(inner).paddingRight) || 0;
+    var edge = inner.getBoundingClientRect().right - pad;
+    var rr = right.getBoundingClientRect();
+    if (rr.right > edge + 0.5) return true;                 // the row spills past the card itself
+    var vis = visible();
+    if (!vis.length) return false;
+    if (vis[vis.length - 1].getBoundingClientRect().right > rr.left - GAP) return true;   // crowding the phone button
+    return vis[0].getBoundingClientRect().left < logo.getBoundingClientRect().right + GAP; // crowding the logo
+  }
+  function fit() {
+    nav.classList.remove('nav-fold', 'nav-trimmed');
+    for (var i = 0; i < items.length; i++) items[i].style.display = '';
+    if (getComputedStyle(links).display === 'none') return;  // phones: CSS already shows the hamburger
+    if (!overflows()) return;                                // everything fits, leave the bar alone
+    nav.classList.add('nav-trimmed');   // show the menu button so dropped links stay reachable
+    for (var j = 0; j < order.length && overflows(); j++) order[j].style.display = 'none';
+    if (overflows()) nav.classList.add('nav-fold');
+  }
+  var raf;
+  function schedule() { if (raf) cancelAnimationFrame(raf); raf = requestAnimationFrame(fit); }
+  fit();
+  addEventListener('resize', schedule);
+  addEventListener('orientationchange', schedule);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(schedule);
+})();
 </script>
 </body>
 </html>
