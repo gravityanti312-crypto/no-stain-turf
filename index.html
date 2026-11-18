@@ -5112,5 +5112,162 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(schedule);
 })();
 </script>
+
+<style>
+/* ── Timed offer popup: once per visitor, 30s in ─────────────── */
+#tgo { position: fixed; inset: 0; z-index: 1200; display: none; align-items: center; justify-content: center;
+  padding: 20px; background: rgba(8,24,14,0.55); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
+#tgo.on { display: flex; }
+.tgo-box { position: relative; display: grid; grid-template-columns: 1fr 1fr; width: min(900px, 100%);
+  max-height: calc(100vh - 40px); overflow: auto; border-radius: 24px; background: #fff;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.38); animation: tgoIn .28s ease both; }
+@keyframes tgoIn { from { opacity: 0; transform: translateY(14px) scale(.98); } to { opacity: 1; transform: none; } }
+.tgo-left { background: linear-gradient(160deg,#0a5634,#05442b 60%,#042b1b); color: #fff; padding: 34px 30px; }
+.tgo-kicker { font-size: .72rem; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: #85cc7e; }
+.tgo-pill { display: inline-block; margin-top: 14px; background: linear-gradient(180deg,#ffe93d,#f2cf05); color: #11250f;
+  font-weight: 900; font-size: 1.15rem; padding: 10px 22px; border-radius: 50px; box-shadow: 0 8px 22px rgba(242,207,5,.35); }
+.tgo-left h3 { font-size: 1.85rem; font-weight: 900; letter-spacing: -.02em; line-height: 1.12; margin-top: 16px; }
+.tgo-left > p { color: #cfe3d6; font-size: .98rem; line-height: 1.55; margin-top: 10px; }
+.tgo-ul { list-style: none; margin: 20px 0 0; padding: 0; display: grid; gap: 12px; }
+.tgo-ul li { display: flex; gap: 11px; align-items: flex-start; font-weight: 700; font-size: .96rem; }
+.tgo-ul i { flex: none; width: 22px; height: 22px; border-radius: 50%; background: rgba(133,204,126,.22);
+  color: #85cc7e; font-style: normal; font-size: .78rem; display: flex; align-items: center; justify-content: center; }
+.tgo-proof { margin-top: 24px; border: 1px solid rgba(133,204,126,.35); border-radius: 14px; padding: 12px 14px;
+  display: flex; align-items: center; gap: 10px; font-size: .86rem; color: #cfe3d6; }
+.tgo-proof b { color: #fff; }
+.tgo-right { padding: 34px 30px; }
+.tgo-right h4 { font-size: 1.42rem; font-weight: 900; letter-spacing: -.01em; color: #0f2a1b; padding-right: 34px; }
+.tgo-right > p { color: #4a5f50; font-size: .95rem; line-height: 1.5; margin-top: 8px; }
+.tgo-f { margin-top: 18px; }
+.tgo-f label { display: block; font-size: .82rem; font-weight: 800; color: #0f2a1b; margin: 14px 0 6px; }
+.tgo-f input { width: 100%; font: inherit; font-size: 1rem; padding: 13px 15px; border: 1.5px solid #dbe7dd;
+  border-radius: 12px; background: #f7faf7; color: #0f2a1b; }
+.tgo-f input:focus { outline: none; border-color: #23804b; background: #fff; }
+.tgo-go { width: 100%; margin-top: 18px; border: 0; cursor: pointer; font: inherit; font-weight: 900; font-size: 1.05rem;
+  color: #fff; background: linear-gradient(180deg,#2a9158,#17683c); padding: 16px; border-radius: 12px;
+  box-shadow: 0 10px 24px rgba(23,104,60,.32); }
+.tgo-go:disabled { opacity: .6; cursor: default; }
+.tgo-fine { font-size: .76rem; color: #6a806f; line-height: 1.5; margin-top: 12px; }
+.tgo-fine a { color: #23804b; }
+.tgo-no { display: block; width: 100%; margin-top: 14px; background: none; border: 0; cursor: pointer;
+  font: inherit; font-size: .92rem; color: #4a5f50; text-decoration: underline; }
+.tgo-strip { margin-top: 16px; border-top: 1px solid #e7efe8; padding-top: 14px; text-align: center;
+  font-size: .82rem; font-weight: 700; color: #4a5f50; }
+.tgo-x { position: absolute; top: 14px; right: 14px; width: 40px; height: 40px; border-radius: 50%; border: 0;
+  background: #fff; color: #0f2a1b; font-size: 1.3rem; line-height: 1; cursor: pointer; box-shadow: 0 4px 14px rgba(0,0,0,.16); }
+.tgo-done { padding: 46px 30px; text-align: center; grid-column: 1 / -1; }
+.tgo-done .t { width: 64px; height: 64px; border-radius: 50%; background: #eaf7ec; color: #23804b; font-size: 2rem;
+  display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; }
+.tgo-done h4 { font-size: 1.4rem; font-weight: 900; color: #0f2a1b; }
+.tgo-done p { color: #4a5f50; margin-top: 8px; }
+@media (max-width: 820px) {
+  .tgo-box { grid-template-columns: 1fr; }
+  .tgo-left { padding: 24px 20px; }
+  .tgo-left h3 { font-size: 1.5rem; }
+  .tgo-ul, .tgo-proof { display: none; }
+  .tgo-right { padding: 22px 20px 26px; }
+}
+</style>
+<!-- ─── TIMED OFFER POPUP ─────────────────────────────────────── -->
+<div id="tgo" role="dialog" aria-modal="true" aria-labelledby="tgo-h" hidden>
+  <div class="tgo-box" id="tgo-box">
+    <button class="tgo-x" type="button" onclick="tgoClose()" aria-label="Close">&times;</button>
+    <div class="tgo-left">
+      <div class="tgo-kicker">TurfGlow</div>
+      <span class="tgo-pill">$50 OFF</span>
+      <h3 id="tgo-h">Get $50 off your first turf cleaning</h3>
+      <p>Free quote. No pressure. We take the $50 off when you book.</p>
+      <ul class="tgo-ul">
+        <li><i>&#10003;</i><span>Free quote &mdash; no obligation</span></li>
+        <li><i>&#10003;</i><span>Pet-safe enzyme treatment, not just a rinse</span></li>
+        <li><i>&#10003;</i><span>Power broom, vacuum and pressure wash on every visit</span></li>
+      </ul>
+      <div class="tgo-proof"><span style="color:#f2cf05">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <span><b>5.0 on Google</b> &middot; Gilbert &amp; the East Valley</span></div>
+    </div>
+    <div class="tgo-right" id="tgo-right">
+      <h4>Where should we send your quote?</h4>
+      <p>Takes about 10 seconds. We&rsquo;ll call or text you with your price &mdash; your $50 applies when you book.</p>
+      <form class="tgo-f" onsubmit="return tgoSend(event)">
+        <label for="tgo-n">First name *</label>
+        <input id="tgo-n" type="text" placeholder="First name" autocomplete="given-name" required />
+        <label for="tgo-p">Phone *</label>
+        <input id="tgo-p" type="tel" placeholder="(480) 555-0123" autocomplete="tel" required />
+        <label for="tgo-e">Email</label>
+        <input id="tgo-e" type="email" placeholder="you@email.com" autocomplete="email" />
+        <button class="tgo-go" id="tgo-go" type="submit">Get My Free Quote + $50 Off</button>
+        <p class="tgo-fine">By submitting, you agree to receive calls and texts from TurfGlow about your quote.
+          Msg &amp; data rates may apply. Reply STOP to opt out. <a href="privacy.html">Privacy Policy</a>.</p>
+        <button class="tgo-no" type="button" onclick="tgoClose()">No thanks</button>
+        <div class="tgo-strip">No obligation &middot; No spam &middot; Local crew</div>
+      </form>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  var KEY = 'tg_offer_v1', DELAY = 30000;
+  function seen() { try { return localStorage.getItem(KEY) === '1'; } catch (e) { return false; } }
+  function mark() { try { localStorage.setItem(KEY, '1'); } catch (e) {} }
+  window.tgoClose = function () {
+    var o = document.getElementById('tgo');
+    o.classList.remove('on'); o.hidden = true; document.body.style.overflow = '';
+    mark();
+  };
+  function open() {
+    if (seen()) return;
+    var q = document.getElementById('quote-modal');
+    if (q && !q.hidden && getComputedStyle(q).display !== 'none') return;  // never on top of the quote builder
+    var o = document.getElementById('tgo');
+    o.hidden = false; o.classList.add('on'); document.body.style.overflow = 'hidden';
+    mark();   // once per visitor, shown or not acted on
+    if (window.fbq) { fbq('trackCustom', 'OfferPopupShown'); }
+  }
+  if (!seen()) setTimeout(open, DELAY);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && document.getElementById('tgo').classList.contains('on')) tgoClose();
+  });
+  document.getElementById('tgo').addEventListener('click', function (e) { if (e.target === this) tgoClose(); });
+
+  window.tgoSend = function (e) {
+    e.preventDefault();
+    var name = document.getElementById('tgo-n').value.trim();
+    var phone = document.getElementById('tgo-p').value.trim();
+    var email = document.getElementById('tgo-e').value.trim();
+    if (phone.replace(/\D/g, '').length < 10) { alert('Please enter a 10-digit phone number.'); return false; }
+    var btn = document.getElementById('tgo-go');
+    btn.disabled = true; btn.textContent = 'Sending\u2026';
+    var data = { name: name, phone: phone, email: email, service: '$50 off first cleaning (popup)',
+                 heard_about_us: 'Website popup', lead_status: 'started',
+                 _subject: 'New lead \u2014 call now: ' + name + ' (popup $50 offer)',
+                 submitted: new Date().toLocaleString('en-US', { timeZone: 'America/Phoenix' }) };
+    function fallback() {
+      var fd = new FormData();
+      fd.append('_subject', data._subject); fd.append('_template', 'table'); fd.append('_captcha', 'false');
+      fd.append('Name', name); fd.append('Phone', phone); fd.append('Email', email || '—');
+      fd.append('Offer', '$50 off first cleaning (popup)'); fd.append('Submitted', data.submitted);
+      return fetch('https://formsubmit.co/ajax/turfglowaz@gmail.com', {
+        method: 'POST', headers: { 'Accept': 'application/json' }, body: fd
+      }).then(function (r) { return r.json(); });
+    }
+    fetch('/api/quote', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(data) })
+      .then(function (r) { if (!r.ok) throw new Error('api ' + r.status); return r.json(); })
+      .then(function (j) { if (!j || !j.email_sent) return fallback(); return j; })
+      .catch(fallback)
+      .then(function () {
+        if (window.fbq) { fbq('track', 'Lead', { content_name: 'Offer popup' }); }
+        document.getElementById('tgo-box').innerHTML =
+          '<button class="tgo-x" type="button" onclick="tgoClose()" aria-label="Close">&times;</button>' +
+          '<div class="tgo-done"><div class="t">&#10003;</div><h4>Got it &mdash; talk in a minute.</h4>' +
+          '<p>We\u2019ll call or text you with your price, and your $50 comes off when you book.</p></div>';
+      }, function () {
+        btn.disabled = false; btn.textContent = 'Get My Free Quote + $50 Off';
+        alert('Something went wrong. Please call or text (480) 294-1408.');
+      });
+    return false;
+  };
+})();
+</script>
 </body>
 </html>
