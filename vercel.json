@@ -1,5 +1,15 @@
 {
   "redirects": [
-    { "source": "/review", "destination": "https://g.page/r/CeDhT80nLyIwEAE/review", "permanent": false }
+    {
+      "source": "/review",
+      "destination": "https://g.page/r/CeDhT80nLyIwEAE/review",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/refer",
+      "destination": "/refer.html"
+    }
   ]
 }
