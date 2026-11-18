@@ -296,8 +296,8 @@
     /* ─── HERO ─────────────────────────────────────────── */
     #hero {
       position: relative;
-      height: 93vh;
-      min-height: 580px;
+      height: 84vh;
+      min-height: 560px;
       display: flex;
       align-items: center;
       overflow: hidden;
@@ -1911,7 +1911,7 @@
   }
   /* Hero: copy sits left over the green panel, crew stay clear on the right */
   #hero { align-items: flex-end; }
-  #hero .container { width: 100%; padding-left: clamp(24px, 4.5vw, 76px); padding-right: 24px; padding-bottom: 3.5rem; }
+  #hero .container { width: 100%; padding-left: clamp(24px, 4.5vw, 76px); padding-right: 24px; padding-bottom: 2.5rem; }
   #hero .hero-content { margin: 0; text-align: left; max-width: 660px; }
   @media (min-width: 769px) {
     #hero .hero-h1 { font-size: clamp(2.9rem, 4.8vw, 4.6rem); letter-spacing: 0.01em; line-height: 1.02; }
@@ -2871,15 +2871,17 @@
   /* Use svh (small viewport height) on mobile so the hero matches the ACTUAL
      visible area — fixes Instagram/in-app browsers where vh measures the taller
      chrome-hidden viewport and pushes the content up onto the tech. */
-  #hero { height: 100svh; min-height: 100svh; }
+  /* Size to the content instead of always filling the screen — that left a big empty
+     band under the quote button on tall phones. */
+  #hero { height: auto; min-height: 0; }
 
   #hero .container {
-    padding-top: 88px;
-    padding-bottom: 18px;
+    padding-top: 84px;
+    padding-bottom: 30px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    min-height: 100svh;
+    min-height: 72svh;
   }
 
   .hero-ig-badge {
@@ -3452,10 +3454,6 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
       </span>
       <span class="rv-google-btn">Read our reviews &rarr;</span>
     </a>
-    <div class="rv-leave">
-      <div class="rv-leave-text"><strong>Did we clean your turf?</strong> We&rsquo;d love to hear how it went. It takes 30 seconds and really helps a small local business.</div>
-      <a class="rv-leave-btn" href="https://g.page/r/CeDhT80nLyIwEAE/review" target="_blank" rel="noopener">&#9733; Leave us a review</a>
-    </div>
     <div class="rw-stage">
     <div class="rw-wall" id="rw-wall">
       <article class="rw-card">
@@ -3570,6 +3568,63 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
   window.addEventListener('resize', function(){ clearTimeout(t); t = setTimeout(build, 150); });
 })();
 </script>
+
+<!-- ─── OUR PROCESS: one looping video per step ───────────────── -->
+<section id="how-we-clean">
+  <div class="container">
+    <div class="hwc-head">
+      <div class="section-label">Our Process</div>
+      <h2>4 Steps. Every&nbsp;Yard. Every&nbsp;Visit.</h2>
+      <p>The same pro-grade clean on every job &mdash; here&rsquo;s exactly what our crew does in your backyard.</p>
+    </div>
+    <div class="hwc-grid">
+      <div class="hwc-card">
+        <div class="hwc-media">
+          <div class="media-frame" data-type="video" data-src="video/step1.mp4" data-poster="video/step1-poster.webp"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Step 1 video</span><span class="media-slot-note">Tech spraying the turf &middot; 5&ndash;10 sec</span></div></div>
+          <span class="hwc-tag">Pre-Spray</span>
+        </div>
+        <div class="hwc-body">
+          <div class="hwc-num">Step 1</div>
+          <h3>Pre-Spray</h3>
+          <p>A pet-safe enzyme pre-treatment soaks in and starts breaking down urine, odor, and bacteria.</p>
+        </div>
+      </div>
+      <div class="hwc-card">
+        <div class="hwc-media">
+          <div class="media-frame" data-type="video" data-src="video/step2.mp4" data-poster="video/step2-poster.webp"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Step 2 video</span><span class="media-slot-note">Power broom running &middot; 5&ndash;10 sec</span></div></div>
+          <span class="hwc-tag">Power Broom</span>
+        </div>
+        <div class="hwc-body">
+          <div class="hwc-num">Step 2</div>
+          <h3>Power Broom</h3>
+          <p>Our commercial power broom lifts matted blades and pulls up dirt, hair, and debris buried in the infill.</p>
+        </div>
+      </div>
+      <div class="hwc-card">
+        <div class="hwc-media">
+          <div class="media-frame" data-type="video" data-src="video/step3.mp4" data-poster="video/step3-poster.webp"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Step 3 video</span><span class="media-slot-note">Vacuum pass &middot; 5&ndash;10 sec</span></div></div>
+          <span class="hwc-tag">Vacuum</span>
+        </div>
+        <div class="hwc-body">
+          <div class="hwc-num">Step 3</div>
+          <h3>Vacuum</h3>
+          <p>An industrial vacuum pulls out everything the broom kicked loose &mdash; leaves, pet hair, and grime.</p>
+        </div>
+      </div>
+      <div class="hwc-card">
+        <div class="hwc-media">
+          <div class="media-frame" data-type="video" data-src="video/step4.mp4" data-poster="video/step4-poster.webp"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Step 4 video</span><span class="media-slot-note">Pressure washer / rinse &middot; 5&ndash;10 sec</span></div></div>
+          <span class="hwc-tag">Pressure Wash</span>
+        </div>
+        <div class="hwc-body">
+          <div class="hwc-num">Step 4</div>
+          <h3>Pressure Wash</h3>
+          <p>A high-pressure wash flushes the blades and the backing, rinsing out everything the broom and vacuum pulled loose &mdash; so your turf is fresh, clean, and safe to play on.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ─── WHY TURFGLOW ──────────────────────────────────── -->
 <section id="why">
@@ -3786,62 +3841,6 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
 })();
 </script>
 
-<!-- ─── OUR PROCESS: one looping video per step ───────────────── -->
-<section id="how-we-clean">
-  <div class="container">
-    <div class="hwc-head">
-      <div class="section-label">Our Process</div>
-      <h2>4 Steps. Every&nbsp;Yard. Every&nbsp;Visit.</h2>
-      <p>The same pro-grade clean on every job &mdash; here&rsquo;s exactly what our crew does in your backyard.</p>
-    </div>
-    <div class="hwc-grid">
-      <div class="hwc-card">
-        <div class="hwc-media">
-          <div class="media-frame" data-type="video" data-src="video/step1.mp4" data-poster="video/step1-poster.webp"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Step 1 video</span><span class="media-slot-note">Tech spraying the turf &middot; 5&ndash;10 sec</span></div></div>
-          <span class="hwc-tag">Pre-Spray</span>
-        </div>
-        <div class="hwc-body">
-          <div class="hwc-num">Step 1</div>
-          <h3>Pre-Spray</h3>
-          <p>A pet-safe enzyme pre-treatment soaks in and starts breaking down urine, odor, and bacteria.</p>
-        </div>
-      </div>
-      <div class="hwc-card">
-        <div class="hwc-media">
-          <div class="media-frame" data-type="video" data-src="video/step2.mp4" data-poster="video/step2-poster.webp"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Step 2 video</span><span class="media-slot-note">Power broom running &middot; 5&ndash;10 sec</span></div></div>
-          <span class="hwc-tag">Power Broom</span>
-        </div>
-        <div class="hwc-body">
-          <div class="hwc-num">Step 2</div>
-          <h3>Power Broom</h3>
-          <p>Our commercial power broom lifts matted blades and pulls up dirt, hair, and debris buried in the infill.</p>
-        </div>
-      </div>
-      <div class="hwc-card">
-        <div class="hwc-media">
-          <div class="media-frame" data-type="video" data-src="video/step3.mp4" data-poster="video/step3-poster.webp"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Step 3 video</span><span class="media-slot-note">Vacuum pass &middot; 5&ndash;10 sec</span></div></div>
-          <span class="hwc-tag">Vacuum</span>
-        </div>
-        <div class="hwc-body">
-          <div class="hwc-num">Step 3</div>
-          <h3>Vacuum</h3>
-          <p>An industrial vacuum pulls out everything the broom kicked loose &mdash; leaves, pet hair, and grime.</p>
-        </div>
-      </div>
-      <div class="hwc-card">
-        <div class="hwc-media">
-          <div class="media-frame" data-type="video" data-src="video/step4.mp4" data-poster="video/step4-poster.webp"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Step 4 video</span><span class="media-slot-note">Pressure washer / rinse &middot; 5&ndash;10 sec</span></div></div>
-          <span class="hwc-tag">Pressure Wash</span>
-        </div>
-        <div class="hwc-body">
-          <div class="hwc-num">Step 4</div>
-          <h3>Pressure Wash</h3>
-          <p>A high-pressure wash flushes the blades and the backing, rinsing out everything the broom and vacuum pulled loose &mdash; so your turf is fresh, clean, and safe to play on.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ─── SERVICES: Pick Your Clean (the cards double as the what's-included comparison) ─── -->
 <section id="services" class="pc">
@@ -4206,7 +4205,6 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
           <div class="frb-stars">★★★★★</div>
           <div class="frb-text">Read our reviews</div>
         </a>
-        <a href="https://g.page/r/CeDhT80nLyIwEAE/review" target="_blank" rel="noopener" class="footer-leave-review">&#9733; Leave us a review &rarr;</a>
       </div>
       <div id="contact">
         <div class="footer-col-title">Contact Us</div>
