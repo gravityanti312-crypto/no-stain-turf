@@ -20,7 +20,8 @@
   <meta property="og:image:alt" content="TurfGlow — Arizona Turf Cleaning" />
   <meta name="twitter:card" content="summary_large_image" />
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LocalBusiness", "name": "TurfGlow Cleaning", "description": "Artificial turf cleaning, pet odor removal and turf restoration across the Phoenix Valley.", "url": "https://turfglowcleaning.com/", "telephone": "+1-480-294-1408", "email": "TurfGlowAZ@gmail.com", "image": "https://turfglowcleaning.com/og-image.jpg", "logo": "https://turfglowcleaning.com/logo-square.png", "address": {"@type": "PostalAddress", "addressLocality": "Phoenix", "addressRegion": "AZ", "addressCountry": "US"}, "areaServed": [{"@type": "City", "name": "Phoenix, AZ"}, {"@type": "City", "name": "Scottsdale, AZ"}, {"@type": "City", "name": "Tempe, AZ"}, {"@type": "City", "name": "Mesa, AZ"}, {"@type": "City", "name": "Gilbert, AZ"}, {"@type": "City", "name": "Chandler, AZ"}, {"@type": "City", "name": "Queen Creek, AZ"}, {"@type": "City", "name": "Glendale, AZ"}, {"@type": "City", "name": "Surprise, AZ"}, {"@type": "City", "name": "Paradise Valley, AZ"}], "sameAs": ["https://www.instagram.com/turfglowcleaning/", "https://maps.google.com/?cid=3468386511023497696"]}</script>
-  <link rel="preload" as="image" type="image/avif" href="img/hero-crew.avif" imagesrcset="img/hero-crew-1200.avif 1200w, img/hero-crew.avif 1420w" imagesizes="(max-aspect-ratio: 3/2) calc(150vh - 105px), 100vw" fetchpriority="high" />
+  <link rel="preload" as="image" type="image/avif" media="(max-width: 768px)" href="img/hero-crew-mobile.avif" imagesrcset="img/hero-crew-mobile-760.avif 760w, img/hero-crew-mobile.avif 1100w" imagesizes="100vw" fetchpriority="high" />
+  <link rel="preload" as="image" type="image/avif" media="(min-width: 769px)" href="img/hero-crew.avif" imagesrcset="img/hero-crew-1200.avif 1200w, img/hero-crew.avif 1420w" imagesizes="(max-aspect-ratio: 3/2) calc(150vh - 105px), 100vw" fetchpriority="high" />
   <link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
   <style>
     @font-face { font-family: 'Inter'; font-style: normal; font-weight: 300 900; font-display: swap; src: url(fonts/inter-cyrillic-ext.woff2) format('woff2'); unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F; }
@@ -403,6 +404,8 @@
     }
     .hero-bg .media-frame { position: absolute; inset: 0; border-radius: 0; }
     .hero-bg .media-el { object-position: 72% 55%; }
+    /* Phones get the portrait crew shot, framed on their faces. */
+    @media (max-width: 768px) { .hero-bg .media-el { object-position: 50% 34%; } }
     .media-el[src="img/equipment-sprayer.webp"] { object-position: 50% 30%; }
     /* Before/after: until a real "before" photo is added, the after photo shows full-frame with no slider controls */
     .ba-slider:not(:has(.ba-before-layer .has-media)) .ba-before-layer,
@@ -2095,7 +2098,7 @@
   /* ── Main video ── */
   #watch { background: linear-gradient(180deg, #f4faf5 0%, #eef7f0 100%); padding: 2.25rem 0 0; }
   .watch-grid {
-    display: grid; grid-template-columns: 1fr 480px; column-gap: 64px; max-width: 1160px;
+    display: grid; grid-template-columns: 1fr 400px; column-gap: 64px; max-width: 1160px;
     grid-template-areas: "head media" "body media"; align-items: center;
   }
   .watch-head { grid-area: head; align-self: end; }
@@ -2110,7 +2113,7 @@
     background: #23804b; color: #ffffff; font-size: 0.75rem; display: flex; align-items: center; justify-content: center;
   }
   .watch-card {
-    position: relative; aspect-ratio: 4 / 5; border-radius: 26px; padding: 10px;
+    position: relative; aspect-ratio: 9 / 16; border-radius: 26px; padding: 10px;
     background: #dff0e2; box-shadow: 0 24px 60px rgba(15,42,27,0.18);
   }
   .watch-card > .media-frame { border-radius: 18px; }
@@ -2134,7 +2137,8 @@
     .watch-grid { grid-template-columns: 1fr; grid-template-areas: "head" "media" "body"; row-gap: 1.75rem; }
     .watch-head { text-align: center; }
     .watch-media { max-width: 520px; width: 100%; margin: 0 auto; }
-    .watch-card { aspect-ratio: 1 / 1; }
+    .watch-card { aspect-ratio: 9 / 16; }
+    .watch-media { max-width: 340px; }
     .watch-body { max-width: 520px; margin: 0 auto; }
     .watch-steps { margin-top: 1.5rem; }
     .watch-steps-inner { grid-template-columns: 1fr; gap: 1rem; }
@@ -3357,7 +3361,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
 
 <!-- ─── HERO ──────────────────────────────────────────────────────── -->
 <section id="hero">
-  <div class="hero-bg"><div class="media-frame has-media" data-type="image" data-src="img/hero-crew.webp" data-alt="The TurfGlow crew with their truck and equipment at the end of a job"><picture><source type="image/avif" srcset="img/hero-crew-1200.avif 1200w, img/hero-crew.avif 1420w" sizes="(max-aspect-ratio: 3/2) calc(150vh - 105px), 100vw" /><img class="media-el" src="img/hero-crew.webp" srcset="img/hero-crew-1200.webp 1200w, img/hero-crew.webp 1420w" sizes="(max-aspect-ratio: 3/2) calc(150vh - 105px), 100vw" alt="The TurfGlow crew with their truck and equipment at the end of a job" fetchpriority="high" draggable="false" /></picture><div class="media-slot media-slot--hero"><span class="hero-slot-chip"><span class="media-slot-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="hero-slot-text"><span class="media-slot-title">Hero photo goes here</span><span class="media-slot-note">Wide landscape photo of your crew or a freshly cleaned yard</span></span></span></div></div></div>
+  <div class="hero-bg"><div class="media-frame has-media" data-type="image" data-src="img/hero-crew.webp" data-alt="The TurfGlow crew with their truck and equipment at the end of a job"><picture><source type="image/avif" media="(max-width: 768px)" srcset="img/hero-crew-mobile-760.avif 760w, img/hero-crew-mobile.avif 1100w" sizes="100vw" /><source type="image/webp" media="(max-width: 768px)" srcset="img/hero-crew-mobile-760.webp 760w, img/hero-crew-mobile.webp 1100w" sizes="100vw" /><source type="image/avif" srcset="img/hero-crew-1200.avif 1200w, img/hero-crew.avif 1420w" sizes="(max-aspect-ratio: 3/2) calc(150vh - 105px), 100vw" /><img class="media-el" src="img/hero-crew.webp" srcset="img/hero-crew-1200.webp 1200w, img/hero-crew.webp 1420w" sizes="(max-aspect-ratio: 3/2) calc(150vh - 105px), 100vw" alt="The TurfGlow crew with their truck and equipment at the end of a job" fetchpriority="high" draggable="false" /></picture><div class="media-slot media-slot--hero"><span class="hero-slot-chip"><span class="media-slot-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 011 1v10a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13.5" r="3.8"/></svg></span><span class="hero-slot-text"><span class="media-slot-title">Hero photo goes here</span><span class="media-slot-note">Wide landscape photo of your crew or a freshly cleaned yard</span></span></span></div></div></div>
   <div class="hero-overlay"></div>
 
   <div class="container">
