@@ -3354,6 +3354,201 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
+<style>
+/* ── Quote builder (Nov 2026 makeover): one focused card, each step its own color ──
+   cream (you) → mint (where) → sky (turf check) → sun (Turf Club) → night (photos) → cream glow (done).
+   The glowing dot on the progress bar is the TurfGlow sparkle. */
+#quote-modal .qb {
+  --qb-night: #0f2a1b; --qb-forest: #195c36; --qb-green: #23804b; --qb-mint: #85cc7e; --qb-mint-soft: #e3f4df;
+  --qb-sun: #fde50a; --qb-sun-deep: #c9b400; --qb-cream: #f7f2e1; --qb-paper: #ffffff; --qb-line: #d6e6d4; --qb-muted: #56695a;
+  width: min(560px, calc(100% - 32px)); margin: 28px auto; border-radius: 30px; overflow: hidden;
+  background: var(--qb-cream); color: var(--qb-night); font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  box-shadow: 0 30px 80px rgba(8,24,14,.45); transition: background-color .35s ease;
+}
+#quote-modal [hidden] { display: none !important; }
+#quote-modal .qb[data-tone="cream"], #quote-modal .qb[data-tone="done"] { background: var(--qb-cream); }
+#quote-modal .qb[data-tone="mint"] { background: linear-gradient(180deg, var(--qb-mint-soft), #f6fbf4 60%); }
+#quote-modal .qb[data-tone="sky"] { background: linear-gradient(180deg, #dcf0fa, #f5fbfe 55%); }
+#quote-modal .qb[data-tone="sun"] { background: linear-gradient(180deg, #fff7c4, #fffdf0 55%); }
+#quote-modal .qb[data-tone="night"] { background: radial-gradient(120% 70% at 80% 0%, #1f5a37 0%, var(--qb-night) 60%); color: #f2f7f0; }
+#quote-modal .qb[data-tone="done"] { background: radial-gradient(90% 40% at 50% 0%, rgba(253,229,10,.28), rgba(253,229,10,0) 70%), var(--qb-cream); }
+
+/* header: logo · progress · 1 of 4 · close */
+.qb-head { display: flex; align-items: center; gap: 12px; padding: 16px 18px 6px 18px; }
+.qb-logo { width: 40px; height: 40px; border-radius: 10px; flex: none; }
+.qb-bar { flex: 1; height: 10px; border-radius: 99px; background: rgba(15,42,27,.1); position: relative; }
+.qb-bar i { position: absolute; inset: 0 auto 0 0; width: 20%; border-radius: 99px; background: linear-gradient(90deg, var(--qb-green), var(--qb-mint)); transition: width .4s cubic-bezier(.3,.7,.3,1); }
+.qb-bar i::after { content: ""; position: absolute; right: -3px; top: 50%; width: 14px; height: 14px; transform: translateY(-50%); border-radius: 50%; background: var(--qb-sun); box-shadow: 0 0 10px 3px rgba(253,229,10,.85); }
+.qb-count { font-size: 12.5px; font-weight: 800; color: var(--qb-muted); white-space: nowrap; min-width: 3.2em; text-align: right; }
+.qb-close { flex: none; width: 40px; height: 40px; border-radius: 50%; font-size: 26px; line-height: 1; color: var(--qb-muted); display: grid; place-items: center; }
+.qb-close:hover { background: rgba(15,42,27,.07); color: var(--qb-night); }
+.qb.is-after .qb-bar, .qb.is-after .qb-count { visibility: hidden; }
+.qb[data-tone="night"] .qb-close { color: #b9cfbd; }
+.qb[data-tone="night"] .qb-close:hover { background: rgba(255,255,255,.1); color: #fff; }
+
+.qb-body { padding: 10px 26px 30px; }
+.qb .tq-step.is-active { display: flex; flex-direction: column; gap: 14px; animation: tqIn .28s ease; }
+
+/* type */
+.qb-h { font-weight: 900; font-size: clamp(30px, 7.4vw, 40px); line-height: .98; letter-spacing: -.015em; text-transform: uppercase; margin: 6px 0 0; color: inherit; text-wrap: balance; }
+.qb-h em { font-style: normal; color: var(--qb-green); }
+.qb[data-tone="night"] .qb-h em { color: var(--qb-sun); }
+.qb-sub { font-size: 16px; color: var(--qb-muted); margin: -4px 0 2px; line-height: 1.45; }
+.qb[data-tone="night"] .qb-sub { color: #b9cfbd; }
+.qb-sub strong { color: var(--qb-night); }
+.qb-center { text-align: center; }
+.qb-q { font-size: 15px; font-weight: 800; margin: 4px 0 -4px; }
+.qb-q span { font-weight: 600; color: var(--qb-muted); }
+.qb-back { align-self: flex-start; font-size: 15px; font-weight: 700; color: var(--qb-muted); padding: 4px 2px; margin-bottom: -6px; }
+.qb-back:hover { color: var(--qb-night); }
+
+/* fields: label on top, big text, white card */
+.qb-field { position: relative; display: grid; gap: 2px; background: var(--qb-paper); border: 2px solid var(--qb-line); border-radius: 16px; padding: 10px 16px 9px; cursor: text; transition: border-color .15s, box-shadow .15s; }
+.qb-field small { font-size: 11px; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; color: var(--qb-muted); }
+.qb-field input { border: 0; outline: 0; padding: 0; background: transparent; font-family: inherit; font-size: 18px; font-weight: 600; line-height: 1.3; color: var(--qb-night); width: 100%; min-width: 0; }
+.qb-field input::placeholder { color: #a9b5aa; font-weight: 500; }
+.qb-field:focus-within { border-color: var(--qb-green); box-shadow: 0 0 0 4px rgba(35,128,75,.16); }
+.qb-field.is-invalid { border-color: #dc2626; box-shadow: 0 0 0 4px rgba(220,38,38,.12); }
+.qb-field--ico { padding-left: 48px; }
+.qb-fico { position: absolute; left: 15px; top: 50%; width: 22px; height: 22px; transform: translateY(-50%); color: var(--qb-green); }
+.qb-row { display: grid; grid-template-columns: 1fr 120px; gap: 12px; }
+.qb-check { display: flex; gap: 10px; align-items: center; font-size: 15px; color: var(--qb-night); cursor: pointer; }
+.qb-check input { width: 20px; height: 20px; accent-color: var(--qb-green); flex: none; margin: 0; }
+.qb-check b { font-weight: 600; color: var(--qb-muted); }
+
+/* buttons: sunshine pill with a pressable edge */
+.qb-btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; margin-top: 6px; padding: 17px 20px; border-radius: 999px; background: var(--qb-sun); color: var(--qb-night); font-family: inherit; font-size: 17px; font-weight: 900; line-height: 1.1; letter-spacing: .03em; text-transform: uppercase; text-decoration: none; text-align: center; box-shadow: 0 6px 0 -1px var(--qb-sun-deep), 0 14px 24px -12px rgba(15,42,27,.55); transition: transform .08s, box-shadow .08s, filter .15s; }
+.qb-btn:hover { filter: brightness(1.04); }
+.qb-btn:active { transform: translateY(4px); box-shadow: 0 2px 0 -1px var(--qb-sun-deep), 0 6px 12px -8px rgba(15,42,27,.5); }
+.qb-btn[disabled] { opacity: .65; cursor: wait; transform: none; }
+.qb-btn--green { background: var(--qb-green); color: #fff; box-shadow: 0 6px 0 -1px var(--qb-forest), 0 14px 24px -12px rgba(15,42,27,.55); margin-top: 0; }
+.qb-btn--green:active { box-shadow: 0 2px 0 -1px var(--qb-forest); }
+.qb-btn--ghost { background: transparent; color: #f2f7f0; border: 2px solid rgba(255,255,255,.45); box-shadow: none; margin-top: 0; }
+.qb-btn--ghost:active { box-shadow: none; }
+.qb-btn svg { width: 20px; height: 20px; }
+.qb-link { align-self: center; font-size: 14.5px; font-weight: 700; color: var(--qb-green); text-decoration: underline; text-underline-offset: 3px; padding: 4px; }
+.qb-link--light { color: var(--qb-mint); }
+.qb-trust { text-align: center; font-size: 13px; font-weight: 600; color: var(--qb-muted); margin-top: -2px; }
+.qb-trust b { color: #e0a800; letter-spacing: 1px; }
+.qb-fine { font-size: 11.5px; line-height: 1.5; color: #6c7d6e; }
+.qb-fine a { color: var(--qb-green); font-weight: 700; }
+.qb-fine--center { text-align: center; }
+.qb .tq-err { text-align: center; font-size: 14.5px; color: #c81e1e; font-weight: 700; margin: 0; }
+.qb .tq-err:empty { display: none; }
+
+/* chips (multi or single pick) */
+.qb-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.qb-chip { font-size: 15px; font-weight: 700; padding: 10px 16px; border-radius: 999px; background: var(--qb-paper); border: 2px solid var(--qb-line); color: var(--qb-night); transition: background .15s, border-color .15s, transform .08s; }
+.qb-chip:hover { border-color: #b4ccb3; }
+.qb-chip:active { transform: scale(.97); }
+.qb-chip.is-on { background: var(--qb-forest); border-color: var(--qb-forest); color: #fff; }
+.qb-chip.is-on::before { content: "✓ "; color: var(--qb-sun); font-weight: 900; }
+
+/* turf check: 3 picture options per question */
+.qb-qblock { display: grid; gap: 10px; }
+.qb-opts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.qb-opt { display: grid; justify-items: center; gap: 4px; padding: 12px 6px 10px; border-radius: 16px; background: var(--qb-paper); border: 2px solid var(--qb-line); font-size: 14px; font-weight: 700; color: var(--qb-night); transition: background .15s, border-color .15s, transform .08s; }
+.qb-opt svg { width: 32px; height: 32px; color: var(--qb-green); }
+.qb-opt:hover { border-color: #b4ccb3; }
+.qb-opt:active { transform: scale(.97); }
+.qb-opt.is-on { background: var(--qb-sun); border-color: #e0c800; box-shadow: 0 4px 0 -1px var(--qb-sun-deep); }
+.qb-opt.is-on svg { color: var(--qb-night); }
+
+/* our pick */
+.qb-rec { position: relative; display: grid; gap: 2px; background: var(--qb-forest); color: #fff; border-radius: 18px; padding: 14px 16px; animation: tqIn .3s ease; }
+.qb-rec small { font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--qb-mint); }
+.qb-rec b { font-size: 22px; font-weight: 900; text-transform: uppercase; letter-spacing: .01em; }
+.qb-rec span { font-size: 14px; color: #cfe5d2; }
+.qb-rec-change { position: absolute; right: 12px; top: 12px; font-size: 13px; font-weight: 800; color: var(--qb-sun); text-decoration: underline; text-underline-offset: 3px; padding: 4px; }
+.qb-svc { display: grid; gap: 8px; }
+.qb-svc-opt { color: var(--qb-night); display: grid; gap: 2px; text-align: left; padding: 12px 14px; border-radius: 14px; background: var(--qb-paper); border: 2px solid var(--qb-line); }
+.qb-svc-opt b { font-size: 15px; font-weight: 900; text-transform: uppercase; }
+.qb-svc-opt span { font-size: 13.5px; color: var(--qb-muted); }
+.qb-svc-opt.is-on { border-color: var(--qb-forest); box-shadow: 0 0 0 3px rgba(25,92,54,.15); }
+
+/* Turf Club plans */
+.qb-note { font-size: 14px; font-weight: 600; background: rgba(35,128,75,.1); border-radius: 12px; padding: 10px 12px; }
+.qb-plans { display: grid; gap: 12px; margin-top: 6px; }
+.qb-plan { position: relative; display: grid; grid-template-columns: 1fr auto; gap: 6px 10px; align-items: center; text-align: left; padding: 14px 16px; border-radius: 18px; background: var(--qb-paper); border: 2px solid var(--qb-line); color: var(--qb-night); transition: background .15s, border-color .15s; }
+.qb-plan:hover { border-color: #b4ccb3; }
+.qb-plan-nm { font-size: 16.5px; font-weight: 900; text-transform: uppercase; line-height: 1.15; }
+.qb-plan-nm small { display: block; font-size: 12.5px; font-weight: 600; text-transform: none; color: var(--qb-muted); margin-top: 2px; }
+.qb-plan-amt { grid-row: span 2; font-size: 32px; font-weight: 900; line-height: .95; text-align: right; }
+.qb-plan-amt small { display: block; font-size: 10.5px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; opacity: .75; margin-top: 4px; }
+.qb-bon { display: flex; align-items: center; gap: 5px; font-size: 12.5px; font-weight: 700; color: var(--qb-muted); }
+.qb-bon svg { width: 22px; height: 22px; padding: 3px; border-radius: 7px; background: var(--qb-mint-soft); color: var(--qb-forest); }
+.qb-bon--none { font-weight: 600; }
+.qb-pick { display: none; position: absolute; top: -11px; left: 14px; font-size: 10.5px; font-weight: 900; letter-spacing: .06em; text-transform: uppercase; background: var(--qb-sun); color: var(--qb-night); padding: 3px 9px; border-radius: 99px; box-shadow: 0 2px 0 var(--qb-sun-deep); }
+.qb-plan.is-pick .qb-pick { display: block; }
+.qb-plan.is-on { background: var(--qb-forest); border-color: var(--qb-sun); color: #fff; box-shadow: 0 0 0 4px rgba(253,229,10,.35); }
+.qb-plan.is-on .qb-plan-amt { color: var(--qb-sun); }
+.qb-plan.is-on .qb-plan-nm small, .qb-plan.is-on .qb-bon { color: #cfe5d2; }
+.qb-plan.is-on .qb-bon svg { background: rgba(255,255,255,.14); color: var(--qb-sun); }
+.qb-one { display: flex; justify-content: space-between; align-items: center; font-size: 15px; font-weight: 700; color: var(--qb-muted); padding: 12px 16px; border-radius: 14px; border: 2px dashed var(--qb-line); }
+.qb-one.is-on { border-style: solid; border-color: var(--qb-forest); color: var(--qb-night); background: var(--qb-paper); }
+.qb-legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12.5px; font-weight: 700; color: var(--qb-muted); }
+.qb-legend span { display: inline-flex; align-items: center; gap: 5px; }
+.qb-legend svg { width: 18px; height: 18px; color: var(--qb-forest); }
+
+/* photos (night) */
+.qb-sent { align-self: flex-start; font-size: 13px; font-weight: 800; background: rgba(133,204,126,.18); color: var(--qb-mint); padding: 6px 12px; border-radius: 99px; }
+.qb-guides { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.qb-shot { position: relative; display: grid; justify-items: center; align-content: center; gap: 8px; min-height: 150px; padding: 12px 10px; border-radius: 18px; border: 2px dashed rgba(133,204,126,.6); background: rgba(255,255,255,.05); text-align: center; cursor: pointer; overflow: hidden; transition: background .15s, border-color .15s; }
+.qb-shot:hover { background: rgba(255,255,255,.09); border-color: var(--qb-mint); }
+.qb-shot input { position: absolute; inset: 0; opacity: 0; width: 100%; height: 100%; cursor: pointer; }
+.qb-shot-art { width: 100%; max-width: 110px; height: auto; }
+.qb-shot-txt { font-size: 13.5px; font-weight: 700; line-height: 1.3; color: #f2f7f0; }
+.qb-shot-txt em { font-style: normal; color: var(--qb-sun); font-weight: 900; }
+.qb-shot-plus { font-size: 30px; font-weight: 300; line-height: 1; color: var(--qb-mint); }
+.qb-shot--extra { min-height: 96px; }
+.qb-shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.qb-shot.has-img { border-style: solid; border-color: var(--qb-sun); }
+.qb-shot.has-img .qb-shot-txt { position: absolute; left: 6px; right: 6px; bottom: 6px; z-index: 2; font-size: 11.5px; background: rgba(15,42,27,.82); border-radius: 8px; padding: 4px 6px; }
+.qb-shot-x { display: none; position: absolute; top: 6px; right: 6px; z-index: 3; width: 30px; height: 30px; border-radius: 50%; background: rgba(15,42,27,.85); color: #fff; font-size: 20px; line-height: 1; place-items: center; }
+.qb-shot.has-img .qb-shot-x { display: grid; }
+.qb-shot.is-busy::after { content: "Adding…"; position: absolute; inset: 0; z-index: 4; display: grid; place-items: center; background: rgba(15,42,27,.75); font-weight: 800; font-size: 14px; color: #fff; }
+.qb-photo-help { font-size: 13.5px; color: #b9cfbd; text-align: center; margin: -4px 0 0; }
+.qb-photo-help:empty { display: none; }
+.qb-photo-help.is-error { color: #ffb4b4; font-weight: 700; }
+.qb-or { text-align: center; font-size: 13.5px; color: #b9cfbd; }
+.qb-or a { color: #fff; font-weight: 800; }
+
+/* done */
+.qb-done-check { width: 76px; height: 76px; margin: 8px auto 0; border-radius: 50%; display: grid; place-items: center; background: var(--qb-green); color: #fff; font-size: 38px; font-weight: 900; box-shadow: 0 0 0 9px rgba(253,229,10,.45), 0 0 34px 10px rgba(253,229,10,.55); animation: qbPop .5s cubic-bezier(.3,1.6,.5,1); }
+@keyframes qbPop { from { transform: scale(.4); opacity: 0; } to { transform: none; opacity: 1; } }
+.qb-ticket { position: relative; display: grid; gap: 6px; background: var(--qb-paper); border: 2px solid var(--qb-line); border-radius: 18px; padding: 14px 16px; }
+.qb-ticket::before, .qb-ticket::after { content: ""; position: absolute; top: 50%; width: 18px; height: 18px; border-radius: 50%; background: var(--qb-cream); border: 2px solid var(--qb-line); transform: translateY(-50%) rotate(45deg); }
+.qb-ticket::before { left: -11px; border-left-color: transparent; border-bottom-color: transparent; }
+.qb-ticket::after { right: -11px; border-right-color: transparent; border-top-color: transparent; }
+.qb-tr { display: flex; justify-content: space-between; gap: 12px; font-size: 14.5px; }
+.qb-tr span { color: var(--qb-muted); white-space: nowrap; }
+.qb-tr b { text-align: right; font-weight: 700; }
+.qb-tr--big b { color: var(--qb-green); font-weight: 900; text-transform: uppercase; }
+.qb-inline { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: stretch; }
+.qb-add { padding: 0 20px; border-radius: 16px; background: var(--qb-forest); color: #fff; font-weight: 800; font-size: 15px; }
+.qb-add[disabled] { background: var(--qb-mint-soft); color: var(--qb-forest); cursor: default; }
+.qb .tq-done-video { margin: 4px 0 0; }
+.qb .tq-done-video-frame { max-width: 240px; }
+
+@media (max-width: 640px) {
+  #quote-modal .qb { width: 100%; margin: 0; min-height: 100%; border-radius: 0; box-shadow: none; }
+  .qb-head { padding: 12px 12px 4px 14px; gap: 10px; }
+  .qb-body { padding: 8px 18px 28px; }
+  .qb .tq-step.is-active { gap: 12px; }
+  .qb-opt { font-size: 13px; padding: 10px 4px 9px; }
+  .qb-opt svg { width: 28px; height: 28px; }
+  .qb-plan-amt { font-size: 28px; }
+  .qb-shot { min-height: 136px; }
+}
+@media (max-width: 360px) {
+  .qb-row { grid-template-columns: 1fr 100px; }
+  .qb-chip { font-size: 14px; padding: 9px 13px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .qb-bar i::after { animation: qbGlow 2.4s ease-in-out infinite; }
+  @keyframes qbGlow { 50% { box-shadow: 0 0 16px 5px rgba(253,229,10,.95); } }
+}
+</style>
 </head>
 <body>
 
@@ -4208,122 +4403,226 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
 
 <div id="quote-modal" role="dialog" aria-modal="true" aria-labelledby="tq-h-1">
   <div class="tq-overlay" onclick="closeQuoteModal()"></div>
-  <div class="tq-wrap">
-    <div class="tq-head">
-      <img class="tq-logo" src="logo-square.webp" width="384" height="384" alt="TurfGlow — Arizona Turf Cleaning" />
-      <a class="tq-google" href="https://maps.google.com/?cid=3468386511023497696" target="_blank" rel="noopener"><span>★★★★★</span> 5.0 on Google</a>
-      <button type="button" class="tq-close" onclick="closeQuoteModal()" aria-label="Close">&#215;</button>
-    </div>
-    <div class="tq-progress"><div class="tq-progress-fill" id="tq-progress"></div></div>
+  <div class="tq-wrap qb" id="qb" data-tone="cream">
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+      <defs>
+        <symbol id="qb-i-paw" viewBox="0 0 24 24"><g fill="currentColor"><circle cx="6.5" cy="9.5" r="2.2"/><circle cx="10" cy="5.8" r="2.2"/><circle cx="14" cy="5.8" r="2.2"/><circle cx="17.5" cy="9.5" r="2.2"/><path d="M12 11c-3 0-6 3.7-6 6.3 0 1.8 1.4 2.7 3 2.7 1.2 0 2-.6 3-.6s1.8.6 3 .6c1.6 0 3-.9 3-2.7C18 14.7 15 11 12 11z"/></g></symbol>
+        <symbol id="qb-i-paws" viewBox="0 0 24 24"><g fill="currentColor"><circle cx="3.6" cy="6" r="1.4"/><circle cx="5.8" cy="3.6" r="1.4"/><circle cx="8.4" cy="3.6" r="1.4"/><circle cx="10.6" cy="6" r="1.4"/><path d="M7.1 7.2c-1.9 0-3.8 2.3-3.8 4 0 1.1.9 1.7 1.9 1.7.8 0 1.3-.4 1.9-.4s1.1.4 1.9.4c1 0 1.9-.6 1.9-1.7 0-1.7-1.9-4-3.8-4z"/><circle cx="13.6" cy="13" r="1.4"/><circle cx="15.8" cy="10.6" r="1.4"/><circle cx="18.4" cy="10.6" r="1.4"/><circle cx="20.6" cy="13" r="1.4"/><path d="M17.1 14.2c-1.9 0-3.8 2.3-3.8 4 0 1.1.9 1.7 1.9 1.7.8 0 1.3-.4 1.9-.4s1.1.4 1.9.4c1 0 1.9-.6 1.9-1.7 0-1.7-1.9-4-3.8-4z"/></g></symbol>
+        <symbol id="qb-i-sun" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></g></symbol>
+        <symbol id="qb-i-spark" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.5l2.2 6.6 6.8 2.4-6.8 2.4L12 20.5l-2.2-6.6L3 11.5l6.8-2.4z"/></symbol>
+        <symbol id="qb-i-wave1" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" d="M12 21c-3-3 3-5 0-8.5s3-5.5 0-9"/></symbol>
+        <symbol id="qb-i-wave3" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 21c-3-3 3-5 0-8.5s3-5.5 0-9"/><path d="M12 21c-3-3 3-5 0-8.5s3-5.5 0-9"/><path d="M18 21c-3-3 3-5 0-8.5s3-5.5 0-9"/></g></symbol>
+        <symbol id="qb-i-tall" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 21h18"/><path d="M5 21l1-12M9 21l.5-16M13 21l1-14M17 21l1.5-11M20 21l.5-7"/></g></symbol>
+        <symbol id="qb-i-bent" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 21h18"/><path d="M5 21q0-6 5-8M10 21q1-5 7-6M15 21q1-3 6-3"/></g></symbol>
+        <symbol id="qb-i-flat" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 21h18"/><path d="M4 17.5q7-2.5 16 0M5 14q6-2 13 .5"/></g></symbol>
+        <symbol id="qb-i-cam" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></g></symbol>
+        <symbol id="qb-i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></g></symbol>
+        <symbol id="qb-i-bag" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9h12l-1.2 11H7.2z"/><path d="M9 9l3-5 3 5"/></g></symbol>
+        <symbol id="qb-i-msg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/></g></symbol>
+        <symbol id="qb-i-pin" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></symbol>
+      </defs>
+    </svg>
 
-    <form class="tq-body" id="tq-form" novalidate onsubmit="return false;">
+    <div class="qb-head">
+      <img class="qb-logo" src="logo-square.webp" width="384" height="384" alt="TurfGlow" />
+      <div class="qb-bar" aria-hidden="true"><i id="tq-progress"></i></div>
+      <span class="qb-count" id="qb-count">1 of 4</span>
+      <button type="button" class="qb-close" onclick="closeQuoteModal()" aria-label="Close">&#215;</button>
+    </div>
+
+    <form class="qb-body" id="tq-form" novalidate onsubmit="return false;">
       <div class="tq-hp" aria-hidden="true"><label>Leave this empty <input type="text" name="_honey" id="tq-honey" tabindex="-1" autocomplete="off" /></label></div>
 
-      <!-- Step 1: Let's get to know you (a "call now" email goes out as soon as this is valid) -->
+      <!-- 1 · Cream: just a name and a cell number (the call-now alert goes out when they tap Next) -->
       <div class="tq-step is-active" data-step="1">
-        <div class="tq-backspace"></div>
-        <h2 class="tq-h" id="tq-h-1">Let&rsquo;s get to know you!</h2>
-        <div class="tq-grid">
-          <div class="tq-field has-ico"><svg class="tq-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="7.5" r="4.5"/><path d="M3 21c0-5 4-8 9-8s9 3 9 8z"/></svg><input id="tq-first" type="text" placeholder="First name" aria-label="First name" autocomplete="given-name"/></div>
-          <div class="tq-field has-ico"><svg class="tq-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="7.5" r="4.5"/><path d="M3 21c0-5 4-8 9-8s9 3 9 8z"/></svg><input id="tq-last" type="text" placeholder="Last name" aria-label="Last name" autocomplete="family-name"/></div>
-          <div class="tq-field has-ico full"><svg class="tq-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 5h20v14H2z"/><path d="M2 5l10 8 10-8" fill="none" stroke="#fff" stroke-width="2"/></svg><input id="tq-email" type="email" placeholder="Email" aria-label="Email" autocomplete="email"/></div>
-          <div class="tq-field has-ico full"><svg class="tq-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.6a1 1 0 0 1-.25 1z"/></svg><input id="tq-phone" type="tel" placeholder="Mobile phone" aria-label="Mobile phone" inputmode="tel" autocomplete="tel"/></div>
-          <div class="tq-field has-ico full"><svg class="tq-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 10v4a1 1 0 0 0 1 1h2l5 4V5L6 9H4a1 1 0 0 0-1 1zM14 8.5v7a4 4 0 0 0 0-7zM17 4.5v2a6 6 0 0 1 0 11v2a8 8 0 0 0 0-15z"/></svg><select id="tq-hear" class="is-empty" aria-label="How you heard about us" onchange="this.classList.toggle('is-empty', !this.value)">
-            <option value="">How you heard about us</option><option>Google search</option><option>Google Maps / reviews</option><option>Instagram</option><option>Facebook</option><option>Nextdoor</option><option>Friend or neighbor</option><option>Saw the truck</option><option>Returning customer</option><option>Other</option>
-          </select></div>
-          <div class="tq-field has-ico full"><svg class="tq-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M2 7a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v3a2 2 0 0 0 0 4v3a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-3a2 2 0 0 0 0-4z"/><rect x="7" y="9" width="10" height="6" rx="1" fill="#fff"/></svg><input id="tq-code" type="text" placeholder="Promo or referral code (optional)" aria-label="Promo or referral code (optional)" autocomplete="off"/></div>
-        </div>
-        <div class="tq-consent">
-          <label class="tq-check"><input type="checkbox" id="tq-texts" /> <span>I agree to receive marketing text messages from TurfGlow Cleaning about promotions, seasonal offers, and special deals.</span></label>
-          <p class="tq-fine">By checking this box, you agree to receive marketing texts from TurfGlow Cleaning at the number provided (about 2&ndash;4 per month). Not required to book. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. By tapping Next, you agree TurfGlow may call or text you about your quote. See our <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a> and <a href="terms.html" target="_blank" rel="noopener">Terms</a>.</p>
-        </div>
+        <h2 class="qb-h" id="tq-h-1">Hi! Who are we <em>cleaning&nbsp;for?</em></h2>
+        <p class="qb-sub">We&rsquo;ll call you with your exact price. No spam, ever.</p>
+        <label class="qb-field"><small>Your name</small><input id="tq-name" type="text" autocomplete="name" placeholder="First name" /></label>
+        <label class="qb-field"><small>Mobile number</small><input id="tq-phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(480) 555-0142" /></label>
+        <label class="qb-check"><input type="checkbox" id="tq-texts" /><span>Text me TurfGlow deals <b>(optional)</b></span></label>
         <div class="tq-err" id="tq-err-1" role="alert"></div>
-        <div class="tq-next-row"><button type="button" class="tq-next" onclick="tqNext1()">Next &rarr;</button></div>
+        <button type="button" class="qb-btn" onclick="tqNext1()">Next &rarr;</button>
+        <p class="qb-trust"><b>&#9733;&#9733;&#9733;&#9733;&#9733;</b> 5.0 on Google &middot; Local Phoenix Valley crew</p>
+        <p class="qb-fine">Deal texts: about 2&ndash;4 a month, not required to book. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. By tapping Next, you agree TurfGlow may call or text you about your quote. <a href="privacy.html" target="_blank" rel="noopener">Privacy</a> &middot; <a href="terms.html" target="_blank" rel="noopener">Terms</a></p>
       </div>
 
-      <!-- Step 2: What services? -->
+      <!-- 2 · Mint: where's the turf -->
       <div class="tq-step" data-step="2">
-        <button type="button" class="tq-backlink" onclick="tqGo(1)">&larr; Back</button>
-        <h2 class="tq-h">What services?</h2>
-        <div class="tq-group-label">Pick your cleaning</div>
-        <div class="tq-cards">
-          <button type="button" class="tq-card" data-group="service" data-value="Refresh Clean" onclick="tqPick(this)"><svg class="tq-card-ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M44 6 30 34"/><rect x="12" y="34" width="34" height="9" rx="2.5"/><path d="M16 43v12M22 43v12M28 43v12M34 43v12M40 43v12"/><path d="M52 16v8M48 20h8"/></svg><span class="tq-card-title">Refresh clean</span><span class="tq-card-sub">Debris &amp; pet hair removal, rinse, power broom</span></button>
-          <button type="button" class="tq-card" data-group="service" data-value="Deep Clean" onclick="tqPick(this)"><span class="tq-card-tag">Most popular</span><svg class="tq-card-ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M22 28h16v26a4 4 0 0 1-4 4H26a4 4 0 0 1-4-4z"/><path d="M25 28v-7h9v7"/><path d="M34 21h9l-3 6"/><path d="M48 15l6-3M49 21h7M48 27l6 3"/><path d="M26 40c2-3 6-3 8 0M26 47c2-3 6-3 8 0"/></svg><span class="tq-card-title">Deep clean</span><span class="tq-card-sub">Sanitize + odor treatment &mdash; best for pet homes</span></button>
-          <button type="button" class="tq-card" data-group="service" data-value="Full Restore" onclick="tqPick(this)"><svg class="tq-card-ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 56h48"/><path d="M12 56l3-20 3 20M20 56l3-26 3 26M28 56l3-18 3 18"/><path d="M47 46V14M39 22l8-8 8 8"/></svg><span class="tq-card-title">Full restore</span><span class="tq-card-sub">One-time reset for flat, matted, or neglected turf</span></button>
+        <button type="button" class="qb-back" onclick="tqGo(1)">&larr; Back</button>
+        <h2 class="qb-h">Where&rsquo;s your <em id="qb-h-2">turf?</em></h2>
+        <label class="qb-field qb-field--ico"><svg class="qb-fico" aria-hidden="true"><use href="#qb-i-pin"/></svg><small>Street address</small><input id="tq-address" type="text" autocomplete="street-address" placeholder="123 Sunny Ln" /></label>
+        <div class="qb-row">
+          <label class="qb-field"><small>City</small><input id="tq-city" type="text" autocomplete="address-level2" placeholder="Gilbert" /></label>
+          <label class="qb-field qb-field--zip"><small>Zip</small><input id="tq-zip" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="5" placeholder="85234" /></label>
         </div>
-        <div class="tq-group-label">Add-ons <span>(optional &mdash; pick any)</span></div>
-        <div class="tq-cards addons">
-          <button type="button" class="tq-card" data-group="addons" data-value="Pet odor treatment" onclick="tqPick(this)"><svg class="tq-card-ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><ellipse cx="24" cy="44" rx="10" ry="8"/><circle cx="12" cy="31" r="4"/><circle cx="19" cy="23" r="4"/><circle cx="29" cy="23" r="4"/><circle cx="36" cy="31" r="4"/><path d="M47 50q5-6 0-12t0-12M55 50q5-6 0-12t0-12"/></svg><span class="tq-card-title">Pet odor treatment</span></button>
-          <button type="button" class="tq-card" data-group="addons" data-value="Pet waste pickup" onclick="tqPick(this)"><svg class="tq-card-ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 26h24l-3 30H23z"/><path d="M27 26l5-9 5 9"/><path d="M28 17h8"/><circle cx="29" cy="42" r="2.5"/><circle cx="35" cy="42" r="2.5"/><circle cx="32" cy="48" r="3.5"/></svg><span class="tq-card-title">Pet waste pickup</span></button>
-          <button type="button" class="tq-card" data-group="addons" data-value="Extra infill top-up" onclick="tqPick(this)"><svg class="tq-card-ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 24q16-7 32 0l-3 30H17z"/><path d="M22 19q10-4 16 0"/><path d="M20 34h20"/><path d="M40 58q7-10 16 0z"/><circle cx="47" cy="52" r=".8"/><circle cx="51" cy="54" r=".8"/></svg><span class="tq-card-title">Extra infill top-up</span></button>
+        <p class="qb-q">Tap where your turf is <span>(pick all that apply)</span></p>
+        <div class="qb-chips" role="group" aria-label="Where your turf is">
+          <button type="button" class="qb-chip" data-area="Backyard" aria-pressed="false" onclick="tqArea(this)">Backyard</button>
+          <button type="button" class="qb-chip" data-area="Front yard" aria-pressed="false" onclick="tqArea(this)">Front yard</button>
+          <button type="button" class="qb-chip" data-area="Side yard" aria-pressed="false" onclick="tqArea(this)">Side yard</button>
+          <button type="button" class="qb-chip" data-area="Dog run" aria-pressed="false" onclick="tqArea(this)">Dog run</button>
+          <button type="button" class="qb-chip" data-area="Putting green" aria-pressed="false" onclick="tqArea(this)">Putting green</button>
         </div>
         <div class="tq-err" id="tq-err-2" role="alert"></div>
-        <div class="tq-next-row"><button type="button" class="tq-next" onclick="tqNext2()">Next &rarr;</button></div>
+        <button type="button" class="qb-btn" onclick="tqNext2()">Next &rarr;</button>
       </div>
 
-      <!-- Step 3: Pick your frequency -->
+      <!-- 3 · Sky: turf check (the answers pick the cleaning) -->
       <div class="tq-step" data-step="3">
-        <button type="button" class="tq-backlink" onclick="tqGo(2)">&larr; Back</button>
-        <h2 class="tq-h">Pick your frequency</h2>
-        <div class="tq-freq-note" id="tq-freq-note" hidden>Full Restore is a one-time reset. Pick how often we&rsquo;ll keep it looking new with Deep Cleans afterward.</div>
-        <div class="tq-cards tq-freq">
-          <button type="button" class="tq-card" data-group="frequency" data-value="Monthly" onclick="tqPick(this)"><span class="tq-card-tag tq-card-tag--gold">Recommended</span><svg class="tq-card-ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="10" y="14" width="44" height="42" rx="6"/><path d="M10 26h44"/><path d="M21 8v10M43 8v10"/><text x="32" y="47" text-anchor="middle" font-size="15" font-weight="800" fill="currentColor" stroke="none" font-family="Inter,Arial,sans-serif">1 mo</text></svg><span class="tq-card-title">Monthly</span><span class="tq-freq-amt">$150 off</span><span class="tq-freq-per">Per cleaning</span><span class="tq-perks"><span class="tq-perk">12 cleanings a year</span><span class="tq-perk">Auto-scheduled + reminder texts</span><span class="tq-perk">Price locked for 12 months</span><span class="tq-perk tq-perk--bonus">Photo report after every visit</span><span class="tq-perk tq-perk--bonus">7-Day Fresh Guarantee</span><span class="tq-perk tq-perk--bonus">Free pet waste pickup</span></span></button>
-          <button type="button" class="tq-card" data-group="frequency" data-value="Every other month" onclick="tqPick(this)"><span class="tq-card-tag">Light pet use</span><svg class="tq-card-ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="10" y="14" width="44" height="42" rx="6"/><path d="M10 26h44"/><path d="M21 8v10M43 8v10"/><text x="32" y="47" text-anchor="middle" font-size="15" font-weight="800" fill="currentColor" stroke="none" font-family="Inter,Arial,sans-serif">2 mo</text></svg><span class="tq-card-title">Every other month</span><span class="tq-freq-amt">$100 off</span><span class="tq-freq-per">Per cleaning</span><span class="tq-perks"><span class="tq-perk">6 cleanings a year</span><span class="tq-perk">Auto-scheduled + reminder texts</span><span class="tq-perk">Price locked for 12 months</span><span class="tq-perk tq-perk--bonus">Photo report after every visit</span><span class="tq-perk tq-perk--bonus">7-Day Fresh Guarantee</span><span class="tq-perk tq-perk--bonus">Free pet waste pickup</span></span></button>
-          <button type="button" class="tq-card" data-group="frequency" data-value="Quarterly" onclick="tqPick(this)"><span class="tq-card-tag">No pets</span><svg class="tq-card-ico" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="10" y="14" width="44" height="42" rx="6"/><path d="M10 26h44"/><path d="M21 8v10M43 8v10"/><text x="32" y="47" text-anchor="middle" font-size="15" font-weight="800" fill="currentColor" stroke="none" font-family="Inter,Arial,sans-serif">3 mo</text></svg><span class="tq-card-title">Quarterly</span><span class="tq-freq-amt">$50 off</span><span class="tq-freq-per">Per cleaning</span><span class="tq-perks"><span class="tq-perk">4 cleanings a year</span><span class="tq-perk">Auto-scheduled + reminder texts</span><span class="tq-perk">Price locked for 12 months</span></span></button>
+        <button type="button" class="qb-back" onclick="tqGo(2)">&larr; Back</button>
+        <h2 class="qb-h">Quick <em>turf check</em></h2>
+        <div class="qb-qblock">
+          <p class="qb-q">Any dogs?</p>
+          <div class="qb-opts" role="group" aria-label="Any dogs?">
+            <button type="button" class="qb-opt" data-q="dogs" data-v="No pets" aria-pressed="false" onclick="tqAnswer(this)"><svg aria-hidden="true"><use href="#qb-i-sun"/></svg>No pets</button>
+            <button type="button" class="qb-opt" data-q="dogs" data-v="1 dog" aria-pressed="false" onclick="tqAnswer(this)"><svg aria-hidden="true"><use href="#qb-i-paw"/></svg>1 dog</button>
+            <button type="button" class="qb-opt" data-q="dogs" data-v="2+ dogs" aria-pressed="false" onclick="tqAnswer(this)"><svg aria-hidden="true"><use href="#qb-i-paws"/></svg>2+ dogs</button>
+          </div>
         </div>
-        <button type="button" class="tq-onetime" data-group="frequency" data-value="One-time" onclick="tqPick(this)">
-          <span><strong>Just a one-time cleaning</strong><span>Full price &mdash; no discount or bonuses.</span></span><span aria-hidden="true">&rsaquo;</span>
-        </button>
-        <p class="tq-freq-fine">Plans are 12 months, auto-scheduled, with a card on file &mdash; no cancellation fees. Plan savings start after your first cleaning. Minimum $100 per visit. Exact price confirmed on your call.</p>
+        <div class="qb-qblock">
+          <p class="qb-q">Any smell?</p>
+          <div class="qb-opts" role="group" aria-label="Any smell?">
+            <button type="button" class="qb-opt" data-q="smell" data-v="None" aria-pressed="false" onclick="tqAnswer(this)"><svg aria-hidden="true"><use href="#qb-i-spark"/></svg>None</button>
+            <button type="button" class="qb-opt" data-q="smell" data-v="A little" aria-pressed="false" onclick="tqAnswer(this)"><svg aria-hidden="true"><use href="#qb-i-wave1"/></svg>A little</button>
+            <button type="button" class="qb-opt" data-q="smell" data-v="Strong" aria-pressed="false" onclick="tqAnswer(this)"><svg aria-hidden="true"><use href="#qb-i-wave3"/></svg>Strong</button>
+          </div>
+        </div>
+        <div class="qb-qblock">
+          <p class="qb-q">How does it look?</p>
+          <div class="qb-opts" role="group" aria-label="How does it look?">
+            <button type="button" class="qb-opt" data-q="look" data-v="Fluffy" aria-pressed="false" onclick="tqAnswer(this)"><svg aria-hidden="true"><use href="#qb-i-tall"/></svg>Fluffy</button>
+            <button type="button" class="qb-opt" data-q="look" data-v="A bit flat" aria-pressed="false" onclick="tqAnswer(this)"><svg aria-hidden="true"><use href="#qb-i-bent"/></svg>A bit flat</button>
+            <button type="button" class="qb-opt" data-q="look" data-v="Matted" aria-pressed="false" onclick="tqAnswer(this)"><svg aria-hidden="true"><use href="#qb-i-flat"/></svg>Matted</button>
+          </div>
+        </div>
+        <div class="qb-rec" id="qb-rec" hidden>
+          <button type="button" class="qb-rec-change" onclick="tqChangeService()">Change</button>
+          <small id="qb-rec-kicker">Our pick for you</small>
+          <b id="qb-rec-name">Deep Clean</b>
+          <span id="qb-rec-note"></span>
+        </div>
+        <div class="qb-svc" id="qb-svc" hidden role="group" aria-label="Pick a cleaning">
+          <button type="button" class="qb-svc-opt" data-service="Refresh Clean" onclick="tqPickService(this)"><b>Refresh Clean</b><span>Debris &amp; pet hair removal, power broom and rinse</span></button>
+          <button type="button" class="qb-svc-opt" data-service="Deep Clean" onclick="tqPickService(this)"><b>Deep Clean</b><span>Sanitize + odor treatment, made for dog yards</span></button>
+          <button type="button" class="qb-svc-opt" data-service="Full Restore" onclick="tqPickService(this)"><b>Full Restore</b><span>A one-time reset for flat, matted turf</span></button>
+        </div>
         <div class="tq-err" id="tq-err-3" role="alert"></div>
-        <div class="tq-next-row"><button type="button" class="tq-next" onclick="tqNext3()">Next &rarr;</button></div>
+        <button type="button" class="qb-btn" onclick="tqNext3()">Looks good &rarr;</button>
       </div>
 
-      <!-- Step 4: You're almost there! -->
+      <!-- 4 · Sunshine: Turf Club, pre-picked from the dog answer -->
       <div class="tq-step" data-step="4">
-        <button type="button" class="tq-backlink" onclick="tqGo(3)">&larr; Back</button>
-        <h2 class="tq-h">You&rsquo;re almost there!</h2>
-        <div class="tq-stack">
-          <div class="tq-field has-ico"><svg class="tq-ico" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg><input id="tq-address" type="text" placeholder="Street address" aria-label="Street address" autocomplete="street-address"/></div>
-          <div class="tq-field"><input id="tq-city" type="text" placeholder="City" aria-label="City" autocomplete="address-level2"/></div>
-          <div class="tq-field"><select id="tq-state" aria-label="State"><option value="AZ" selected>AZ</option></select></div>
-          <div class="tq-field"><input id="tq-zip" type="text" placeholder="Zip code" aria-label="Zip code" inputmode="numeric" autocomplete="postal-code" maxlength="5"/></div>
-          <div class="tq-field"><select id="tq-size" class="is-empty" aria-label="About how much turf (optional)" onchange="this.classList.toggle('is-empty', !this.value)">
-            <option value="">About how much turf? (optional)</option>
-            <option>Small patch &mdash; up to 300 sq ft</option>
-            <option>Small backyard &mdash; 300&ndash;500 sq ft</option>
-            <option>Typical backyard &mdash; 500&ndash;1,000 sq ft</option>
-            <option>Big yard or front + back &mdash; 1,000&ndash;2,000 sq ft</option>
-            <option>Large property &mdash; 2,000+ sq ft</option>
-            <option>Not sure &mdash; measure it for me</option>
-          </select></div>
+        <button type="button" class="qb-back" onclick="tqGo(3)">&larr; Back</button>
+        <h2 class="qb-h">Join the <em>Turf Club?</em></h2>
+        <p class="qb-note" id="qb-restore-note" hidden>Full Restore is a one-time reset. Pick how often we&rsquo;ll keep it looking new with Deep Cleans afterward.</p>
+        <div class="qb-plans" role="group" aria-label="Pick a plan">
+          <button type="button" class="qb-plan" data-plan="Monthly" aria-pressed="false" onclick="tqPickPlan(this)">
+            <span class="qb-pick">Our pick for you</span>
+            <span class="qb-plan-nm">Monthly<small>12 cleanings a year</small></span>
+            <span class="qb-plan-amt">$150<small>off every clean</small></span>
+            <span class="qb-bon"><svg aria-hidden="true"><use href="#qb-i-cam"/></svg><svg aria-hidden="true"><use href="#qb-i-shield"/></svg><svg aria-hidden="true"><use href="#qb-i-bag"/></svg>3 bonuses</span>
+          </button>
+          <button type="button" class="qb-plan" data-plan="Every other month" aria-pressed="false" onclick="tqPickPlan(this)">
+            <span class="qb-pick">Our pick for you</span>
+            <span class="qb-plan-nm">Every other month<small>6 cleanings a year</small></span>
+            <span class="qb-plan-amt">$100<small>off every clean</small></span>
+            <span class="qb-bon"><svg aria-hidden="true"><use href="#qb-i-cam"/></svg><svg aria-hidden="true"><use href="#qb-i-shield"/></svg><svg aria-hidden="true"><use href="#qb-i-bag"/></svg>3 bonuses</span>
+          </button>
+          <button type="button" class="qb-plan" data-plan="Quarterly" aria-pressed="false" onclick="tqPickPlan(this)">
+            <span class="qb-pick">Our pick for you</span>
+            <span class="qb-plan-nm">Quarterly<small>4 cleanings a year</small></span>
+            <span class="qb-plan-amt">$50<small>off every clean</small></span>
+            <span class="qb-bon qb-bon--none">No bonuses</span>
+          </button>
         </div>
+        <button type="button" class="qb-one" data-plan="One-time" aria-pressed="false" onclick="tqPickPlan(this)"><span>Just one cleaning &middot; full price</span><span aria-hidden="true">&rsaquo;</span></button>
+        <div class="qb-legend">
+          <span><svg aria-hidden="true"><use href="#qb-i-cam"/></svg>Photo report after every visit</span>
+          <span><svg aria-hidden="true"><use href="#qb-i-shield"/></svg>7-Day Fresh Guarantee</span>
+          <span><svg aria-hidden="true"><use href="#qb-i-bag"/></svg>Free pet waste pickup</span>
+        </div>
+        <p class="qb-q">Add-ons <span>(optional)</span></p>
+        <div class="qb-chips" role="group" aria-label="Add-ons">
+          <button type="button" class="qb-chip" data-addon="Pet odor treatment" aria-pressed="false" onclick="tqAddon(this)">Pet odor treatment</button>
+          <button type="button" class="qb-chip" data-addon="Pet waste pickup" aria-pressed="false" onclick="tqAddon(this)">Pet waste pickup</button>
+          <button type="button" class="qb-chip" data-addon="Extra infill top-up" aria-pressed="false" onclick="tqAddon(this)">Extra infill top-up</button>
+        </div>
+        <button type="button" class="qb-link" id="qb-code-link" onclick="tqShowCode()">Have a promo or referral code?</button>
+        <label class="qb-field" id="qb-code-field" hidden><small>Promo or referral code</small><input id="tq-code" type="text" autocomplete="off" /></label>
+        <p class="qb-fine qb-fine--center">Plans are 12 months, auto-scheduled, with a card on file &mdash; no cancellation fees. Savings start after your first cleaning. Minimum $100 a visit. Exact price confirmed on your call.</p>
         <div class="tq-err" id="tq-err-4" role="alert"></div>
-        <div class="tq-next-row"><button type="button" class="tq-next" id="tq-submit" onclick="tqSubmit()"><span id="tq-submit-label">Submit</span> &rarr;</button></div>
+        <button type="button" class="qb-btn" id="tq-submit" onclick="tqSubmit()"><span id="tq-submit-label">Send my quote</span> &rarr;</button>
       </div>
 
-      <!-- Done -->
+      <!-- 5 · Night: photos get their own screen (the quote is already sent) -->
       <div class="tq-step" data-step="5">
-        <div class="tq-done">
-          <div class="tq-done-icon">&#10003;</div>
-          <h2 class="tq-h" id="tq-done-title">You&rsquo;re all set!</h2>
-          <p class="tq-done-msg" id="tq-done-msg">We&rsquo;re building your custom quote now.</p>
-          <div class="tq-callout">&#128222; Save our number so you know it&rsquo;s us: <a href="tel:4802941408">(480) 294-1408</a></div>
-          <div class="tq-photo-box">
-            <h3>Want a faster, more exact price?</h3>
-            <p>Add a few photos of your turf (optional).</p>
-            <div class="tq-photos"><label class="tq-photo" data-slot="0"><input type="file" accept="image/*" onchange="tqPhoto(this,0)" aria-label="Add photo: Whole turf area" /><span class="tq-photo-plus"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg></span><span class="tq-photo-label">Whole turf area</span><img alt="" hidden /><span class="tq-photo-tag" hidden>Whole turf area</span><button type="button" class="tq-photo-x" onclick="tqPhotoRemove(event,0)" aria-label="Remove photo">&#215;</button></label><label class="tq-photo" data-slot="1"><input type="file" accept="image/*" onchange="tqPhoto(this,1)" aria-label="Add photo: Close-up of the turf" /><span class="tq-photo-plus"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg></span><span class="tq-photo-label">Close-up of the turf</span><img alt="" hidden /><span class="tq-photo-tag" hidden>Close-up of the turf</span><button type="button" class="tq-photo-x" onclick="tqPhotoRemove(event,1)" aria-label="Remove photo">&#215;</button></label><label class="tq-photo" data-slot="2"><input type="file" accept="image/*" onchange="tqPhoto(this,2)" aria-label="Add photo: Stains or pet spots" /><span class="tq-photo-plus"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg></span><span class="tq-photo-label">Stains or pet spots</span><img alt="" hidden /><span class="tq-photo-tag" hidden>Stains or pet spots</span><button type="button" class="tq-photo-x" onclick="tqPhotoRemove(event,2)" aria-label="Remove photo">&#215;</button></label><label class="tq-photo" data-slot="3"><input type="file" accept="image/*" onchange="tqPhoto(this,3)" aria-label="Add photo: Anything else" /><span class="tq-photo-plus"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg></span><span class="tq-photo-label">Anything else</span><img alt="" hidden /><span class="tq-photo-tag" hidden>Anything else</span><button type="button" class="tq-photo-x" onclick="tqPhotoRemove(event,3)" aria-label="Remove photo">&#215;</button></label></div>
-            <div class="tq-photo-help" id="tq-photo-help">Tap a box to take a photo or choose one from your phone.</div>
-            <button type="button" class="tq-photo-send" id="tq-photo-send" onclick="tqSendPhotos()" hidden>Send my photos</button>
-          </div>
-          <div class="tq-done-video" id="tq-done-video" hidden>
-            <h3>While you wait for our call</h3>
-            <p>See how the Turf Club works.</p>
-            <div class="tq-done-video-frame"><div class="media-frame" data-type="video" data-mode="vsl" data-src="video/turf-club.mp4" data-poster="video/turf-club-poster.webp"><div class="media-slot"><span class="media-slot-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M16 10.5l6-3.5v10l-6-3.5z"/></svg></span><span class="media-slot-title">Turf Club video goes here</span><span class="media-slot-note">Same Turf Club video as on the page.</span></div></div></div>
-          </div>
-          <div class="tq-callout">&#11088; See why neighbors rate us 5.0 &mdash; <a href="https://maps.google.com/?cid=3468386511023497696" target="_blank" rel="noopener">read our Google reviews</a></div>
-          <div class="tq-next-row tq-done-btn"><button type="button" class="tq-next" onclick="closeQuoteModal()">Done</button></div>
+        <span class="qb-sent">&#10003; Quote sent</span>
+        <h2 class="qb-h">Want your price <em>even faster?</em></h2>
+        <p class="qb-sub">2 photos and we can price it on the first call.</p>
+        <div class="qb-guides">
+          <label class="qb-shot" data-slot="0">
+            <input type="file" accept="image/*" onchange="tqPhoto(this,0)" aria-label="Add photo 1: whole yard from your back door" />
+            <svg class="qb-shot-art" viewBox="0 0 96 64" aria-hidden="true"><rect x="2" y="2" width="92" height="60" rx="6" fill="none" stroke="#85cc7e" stroke-width="2" stroke-dasharray="4 3"/><path d="M6 44h84v14H6z" fill="#4f9a45"/><path d="M8 44V20h14v24" fill="none" stroke="#f2f7f0" stroke-width="2"/><path d="M70 44c0-10 8-14 16-14" fill="none" stroke="#85cc7e" stroke-width="2"/></svg>
+            <span class="qb-shot-txt"><em>1</em> Whole yard from your back door</span>
+            <img alt="" hidden />
+            <button type="button" class="qb-shot-x" onclick="tqPhotoRemove(event,0)" aria-label="Remove photo">&#215;</button>
+          </label>
+          <label class="qb-shot" data-slot="1">
+            <input type="file" accept="image/*" onchange="tqPhoto(this,1)" aria-label="Add photo 2: close-up of the worst spot" />
+            <svg class="qb-shot-art" viewBox="0 0 96 64" aria-hidden="true"><rect x="2" y="2" width="92" height="60" rx="6" fill="none" stroke="#85cc7e" stroke-width="2" stroke-dasharray="4 3"/><path d="M14 58l3-26M24 58l1-34M34 58l3-28M44 58l2-22M54 58l1-32M64 58l3-26M74 58l1-30M84 58l2-20" stroke="#5aa94e" stroke-width="3" stroke-linecap="round"/><circle cx="48" cy="40" r="11" fill="none" stroke="#fde50a" stroke-width="2.5"/></svg>
+            <span class="qb-shot-txt"><em>2</em> Close-up of the worst spot</span>
+            <img alt="" hidden />
+            <button type="button" class="qb-shot-x" onclick="tqPhotoRemove(event,1)" aria-label="Remove photo">&#215;</button>
+          </label>
+          <label class="qb-shot qb-shot--extra" data-slot="2" hidden>
+            <input type="file" accept="image/*" onchange="tqPhoto(this,2)" aria-label="Add another photo" />
+            <span class="qb-shot-plus" aria-hidden="true">+</span><span class="qb-shot-txt">Another photo</span>
+            <img alt="" hidden />
+            <button type="button" class="qb-shot-x" onclick="tqPhotoRemove(event,2)" aria-label="Remove photo">&#215;</button>
+          </label>
+          <label class="qb-shot qb-shot--extra" data-slot="3" hidden>
+            <input type="file" accept="image/*" onchange="tqPhoto(this,3)" aria-label="Add another photo" />
+            <span class="qb-shot-plus" aria-hidden="true">+</span><span class="qb-shot-txt">Another photo</span>
+            <img alt="" hidden />
+            <button type="button" class="qb-shot-x" onclick="tqPhotoRemove(event,3)" aria-label="Remove photo">&#215;</button>
+          </label>
         </div>
+        <p class="qb-photo-help" id="tq-photo-help" aria-live="polite"></p>
+        <button type="button" class="qb-btn" id="tq-photo-send" onclick="tqPhotoMain()">I&rsquo;m by my turf &middot; add photos</button>
+        <button type="button" class="qb-btn qb-btn--ghost" id="qb-textlink" onclick="tqTextLink()"><svg aria-hidden="true"><use href="#qb-i-msg"/></svg>Not home &middot; text me a link</button>
+        <button type="button" class="qb-link qb-link--light" onclick="tqSkipPhotos()">Skip &mdash; we&rsquo;ll measure it from the satellite</button>
+        <p class="qb-or">Or text photos anytime to <a href="sms:+14802941408">(480) 294-1408</a></p>
+      </div>
+
+      <!-- 6 · Done: a receipt for their yard -->
+      <div class="tq-step" data-step="6">
+        <div class="qb-done-check" aria-hidden="true">&#10003;</div>
+        <h2 class="qb-h qb-center">You&rsquo;re on <em id="tq-done-title">the list!</em></h2>
+        <p class="qb-sub qb-center" id="tq-done-msg"></p>
+        <a class="qb-btn qb-btn--green" href="turfglow.vcf">Save TurfGlow to my contacts</a>
+        <div class="qb-ticket" id="qb-ticket"></div>
+        <p class="qb-q">One last tap: how&rsquo;d you find us?</p>
+        <div class="qb-chips" role="group" aria-label="How you found us">
+          <button type="button" class="qb-chip" data-heard="Google" aria-pressed="false" onclick="tqHeard(this)">Google</button>
+          <button type="button" class="qb-chip" data-heard="Instagram" aria-pressed="false" onclick="tqHeard(this)">Instagram</button>
+          <button type="button" class="qb-chip" data-heard="Facebook" aria-pressed="false" onclick="tqHeard(this)">Facebook</button>
+          <button type="button" class="qb-chip" data-heard="Nextdoor" aria-pressed="false" onclick="tqHeard(this)">Nextdoor</button>
+          <button type="button" class="qb-chip" data-heard="Friend or neighbor" aria-pressed="false" onclick="tqHeard(this)">A friend</button>
+          <button type="button" class="qb-chip" data-heard="Saw the truck" aria-pressed="false" onclick="tqHeard(this)">Saw the truck</button>
+          <button type="button" class="qb-chip" data-heard="Door hanger" aria-pressed="false" onclick="tqHeard(this)">Door hanger</button>
+          <button type="button" class="qb-chip" data-heard="Returning customer" aria-pressed="false" onclick="tqHeard(this)">Used you before</button>
+        </div>
+        <p class="qb-q">Want your quote by email too? <span>(optional)</span></p>
+        <div class="qb-inline">
+          <label class="qb-field"><small>Email</small><input id="tq-email" type="email" autocomplete="email" placeholder="you@email.com" /></label>
+          <button type="button" class="qb-add" id="qb-email-add" onclick="tqEmailAdd()">Add</button>
+        </div>
+        <div class="tq-err" id="tq-err-6" role="alert"></div>
+        <div class="tq-done-video" id="tq-done-video" hidden>
+          <p class="qb-q qb-center">While you wait: how the Turf Club works</p>
+          <div class="tq-done-video-frame"><div class="media-frame" data-type="video" data-mode="vsl" data-src="video/turf-club.mp4" data-poster="video/turf-club-poster.webp"><div class="media-slot"><span class="media-slot-title">Turf Club video</span></div></div></div>
+        </div>
+        <button type="button" class="qb-btn" onclick="closeQuoteModal()">Done</button>
       </div>
     </form>
     <iframe name="tq-sink" id="tq-sink" title="Photo upload" tabindex="-1" aria-hidden="true" style="display:none;"></iframe>
@@ -4342,127 +4641,210 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
     document.body.style.overflow = '';
   }
 
-  /* ── Quote Builder: know you → services → frequency → address. No prices online; TurfGlow calls every lead. ── */
+  /* ── Quote Builder (Nov 2026 makeover) ───────────────────────────────────
+     1 name + mobile (the call-now alert goes out here) → 2 where's the turf →
+     3 turf check (picks the cleaning) → 4 Turf Club (pre-picked from the dog
+     answer) → quote SENT → 5 photos (now / text me a link / skip) → 6 receipt.
+     No prices online; TurfGlow calls every lead. Follow-up posts (photo link,
+     how they found us, email) carry the same quote_id, so Client Hub merges
+     them into the one lead and never blanks anything already saved. ── */
   var TQ_EMAIL = 'turfglowaz@gmail.com';
   var TQ_PHONE = '(480) 294-1408';
-  var TQ_STEPS = 4, TQ_DONE = 5;
+  var TQ_STEPS = 4, TQ_PHOTOS = 5, TQ_DONE = 6;
+  var TQ_TONES = { 1: 'cream', 2: 'mint', 3: 'sky', 4: 'sun', 5: 'night', 6: 'done' };
+  var TQ_BAR = { 1: 20, 2: 45, 3: 70, 4: 92 };
   var TQ_SAVINGS = { 'Monthly': '$150 off per cleaning', 'Every other month': '$100 off per cleaning', 'Quarterly': '$50 off per cleaning', 'One-time': 'One-time cleaning (no plan)' };
-  var TQ_PHOTO_LABELS = ['Whole turf area', 'Close-up of the turf', 'Stains or pet spots', 'Anything else'];
-  var tq = { step: 1, picks: { addons: [] }, contact: null, startSentFor: '', photos: [null, null, null, null], photosSent: false, quoteId: tqNewId() };
+  var TQ_SERVICE_NOTES = {
+    'Refresh Clean': 'Debris & pet hair removal, power broom and rinse',
+    'Deep Clean': 'Sanitize + odor treatment, made for dog yards',
+    'Full Restore': 'A one-time reset for flat, matted turf'
+  };
+  var TQ_PHOTO_LABELS = ['Whole yard from the back door', 'Close-up of the worst spot', 'Extra photo', 'Extra photo'];
+  var tq = tqFresh();
 
-  // One id per quote, so Client Hub puts "started" and "finished" on the same lead.
+  function tqFresh() {
+    return { step: 1, contact: null, startSentFor: '', areas: [], check: {}, service: '', serviceChosen: false,
+             plan: '', planChosen: false, addons: [], photos: [null, null, null, null], photosSent: false,
+             photoStatus: '', heard: '', email: '', extrasSent: '', extrasTimer: null, quoteId: tqNewId() };
+  }
+
+  // One id per quote, so Client Hub puts every post for this quote on the same lead.
   function tqNewId() {
     try { if (window.crypto && crypto.randomUUID) return 'q_' + crypto.randomUUID().replace(/-/g, ''); } catch (e) {}
     return 'q_' + Date.now().toString(36) + Math.random().toString(36).slice(2, 12);
   }
+  function tqEl(id) { return document.getElementById(id); }
+  function tqAll(sel) { return Array.prototype.slice.call(document.querySelectorAll(sel)); }
 
   function openQuoteModal(mode) {
     if (mode === true || mode === 'odor') mode = 'deep';
     if (tq.step === TQ_DONE) tqReset();
-    var names = { refresh: 'Refresh Clean', deep: 'Deep Clean', restore: 'Full Restore' };
-    if (names[mode] && !tq.picks.service) {
-      var b = document.querySelector('#tq-form .tq-card[data-group="service"][data-value="' + names[mode] + '"]');
-      if (b) tqPick(b, true);
-    }
+    var services = { refresh: 'Refresh Clean', deep: 'Deep Clean', restore: 'Full Restore' };
+    if (services[mode] && !tq.serviceChosen) { tq.service = services[mode]; tq.serviceChosen = true; }
     var plans = { monthly: 'Monthly', eom: 'Every other month', quarterly: 'Quarterly', onetime: 'One-time' };
-    if (plans[mode]) {
-      var pb = document.querySelector('#tq-form [data-group="frequency"][data-value="' + plans[mode] + '"]');
-      if (pb) tqPick(pb, true);
-    }
-    document.getElementById('quote-modal').classList.add('open');
+    if (plans[mode] && tq.step <= TQ_STEPS) { tq.plan = plans[mode]; tq.planChosen = true; }
+    tqEl('quote-modal').classList.add('open');
     document.body.style.overflow = 'hidden';
     tqGo(tq.step);
-    if (tq.step === 1) setTimeout(function () { var f = document.getElementById('tq-first'); if (f && window.innerWidth > 640) f.focus(); }, 60);
+    if (tq.step === 1) setTimeout(function () { var f = tqEl('tq-name'); if (f && window.innerWidth > 640) f.focus(); }, 60);
   }
 
   if (location.hash === '#quote') window.addEventListener('load', function () { openQuoteModal(); });
 
   function closeQuoteModal() {
-    var m = document.getElementById('quote-modal');
+    var m = tqEl('quote-modal');
     if (!m || !m.classList.contains('open')) return;
+    tqExtrasFlush();
     m.classList.remove('open');
-    Array.prototype.forEach.call(m.querySelectorAll('video'), function (v) { v.pause(); });
+    tqAll('#quote-modal video').forEach(function (v) { v.pause(); });
     document.body.style.overflow = '';
     if (tq.step === TQ_DONE) tqReset();
   }
 
   function tqReset() {
     tq.photos.forEach(function (p, i) { if (p) tqPhotoRemove(null, i); });
-    tq.step = 1; tq.picks = { addons: [] }; tq.contact = null; tq.startSentFor = ''; tq.photosSent = false; tq.quoteId = tqNewId();
-    var form = document.getElementById('tq-form');
+    clearTimeout(tq.extrasTimer);
+    tq = tqFresh();
+    var form = tqEl('tq-form');
     form.reset();
-    form.querySelectorAll('.is-on').forEach(function (b) { b.classList.remove('is-on'); });
-    form.querySelectorAll('.is-invalid').forEach(function (f) { f.classList.remove('is-invalid'); });
-    ['tq-hear', 'tq-size'].forEach(function (id) { document.getElementById(id).classList.add('is-empty'); });
-    for (var i = 1; i <= TQ_STEPS; i++) tqErr(i, '');
-    var btn = document.getElementById('tq-submit'); btn.disabled = false; document.getElementById('tq-submit-label').textContent = 'Submit';
-    var ps = document.getElementById('tq-photo-send'); ps.hidden = true; ps.disabled = false; ps.textContent = 'Send my photos';
-    tqPhotoHelp();
+    tqAll('#tq-form [aria-pressed="true"]').forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+    tqAll('#tq-form .is-on, #tq-form .is-invalid, #tq-form .is-pick').forEach(function (b) { b.classList.remove('is-on', 'is-invalid', 'is-pick'); });
+    for (var i = 1; i <= TQ_DONE; i++) tqErr(i, '');
+    tqEl('qb-rec').hidden = true; tqEl('qb-svc').hidden = true;
+    tqEl('qb-code-field').hidden = true; tqEl('qb-code-link').hidden = false;
+    var btn = tqEl('tq-submit'); btn.disabled = false; tqEl('tq-submit-label').textContent = 'Send my quote';
+    var add = tqEl('qb-email-add'); add.disabled = false; add.textContent = 'Add';
+    tqPhotoUI();
   }
 
   function tqGo(n) {
     tq.step = n;
-    document.querySelectorAll('#tq-form .tq-step').forEach(function (s) {
-      s.classList.toggle('is-active', +s.getAttribute('data-step') === n);
-    });
-    document.getElementById('tq-progress').style.width = (Math.min(n, TQ_STEPS) / TQ_STEPS * 100) + '%';
-    if (n === 3) document.getElementById('tq-freq-note').hidden = tq.picks.service !== 'Full Restore';
-    var m = document.getElementById('quote-modal'); if (m) m.scrollTop = 0;
+    tqAll('#tq-form .tq-step').forEach(function (s) { s.classList.toggle('is-active', +s.getAttribute('data-step') === n); });
+    var wrap = tqEl('qb');
+    wrap.setAttribute('data-tone', TQ_TONES[n] || 'cream');
+    wrap.classList.toggle('is-after', n > TQ_STEPS);
+    tqEl('tq-progress').style.width = (TQ_BAR[n] || 100) + '%';
+    tqEl('qb-count').textContent = n <= TQ_STEPS ? n + ' of ' + TQ_STEPS : '';
+    if (n === 2) tqEl('qb-h-2').textContent = tq.contact && tq.contact.first_name ? 'turf, ' + tq.contact.first_name + '?' : 'turf?';
+    if (n === 3) tqRecommend();
+    if (n === 4) tqPrepPlans();
+    if (n === TQ_PHOTOS) tqPhotoUI();
+    var m = tqEl('quote-modal'); if (m) m.scrollTop = 0;
   }
 
-  function tqErr(step, msg) { var e = document.getElementById('tq-err-' + step); if (e) e.textContent = msg; }
-
-  function tqPick(btn, quiet) {
-    var group = btn.getAttribute('data-group'), value = btn.getAttribute('data-value');
-    var all = document.querySelectorAll('#tq-form [data-group="' + group + '"]');
-    if (group === 'addons') {
-      btn.classList.toggle('is-on');
-      tq.picks.addons = Array.prototype.filter.call(all, function (b) { return b.classList.contains('is-on'); })
-        .map(function (b) { return b.getAttribute('data-value'); });
-    } else {
-      all.forEach(function (b) { b.classList.toggle('is-on', b === btn); });
-      tq.picks[group] = value;
-    }
-    if (!quiet) tqErr(tq.step, '');
-  }
-
-  function tqVal(id) { return (document.getElementById(id).value || '').trim(); }
+  function tqErr(step, msg) { var e = tqEl('tq-err-' + step); if (e) e.textContent = msg; }
+  function tqVal(id) { return (tqEl(id).value || '').trim(); }
   function tqDigits(s) { var d = String(s).replace(/\D/g, ''); return (d.length === 11 && d.charAt(0) === '1') ? d.slice(1) : d; }
   function tqFmtPhone(d) { return '(' + d.slice(0, 3) + ') ' + d.slice(3, 6) + '-' + d.slice(6); }
+  // Checks fields in order; marks each bad one red and focuses the first.
   function tqCheck(list, step) {
     var bad = null;
     list.forEach(function (c) {
       var ok = c[1](tqVal(c[0]));
-      document.getElementById(c[0]).parentNode.classList.toggle('is-invalid', !ok);
+      tqEl(c[0]).closest('.qb-field').classList.toggle('is-invalid', !ok);
       if (!ok && !bad) bad = c;
     });
-    if (bad) { tqErr(step, bad[2]); document.getElementById(bad[0]).focus(); return false; }
+    if (bad) { tqErr(step, bad[2]); tqEl(bad[0]).focus(); return false; }
     tqErr(step, ''); return true;
   }
+  function tqPress(btn, on) { btn.classList.toggle('is-on', on); btn.setAttribute('aria-pressed', on ? 'true' : 'false'); }
 
+  /* 1 · name + mobile */
   function tqNext1() {
     if (!tqCheck([
-      ['tq-first', function (v) { return v.length > 0; }, 'Enter your first name.'],
-      ['tq-last', function (v) { return v.length > 0; }, 'Enter your last name.'],
-      ['tq-email', function (v) { return !v || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }, 'That email doesn’t look right — fix it or leave it blank.'],
+      ['tq-name', function (v) { return v.length > 0; }, 'What should we call you?'],
       ['tq-phone', function (v) { return tqDigits(v).length === 10; }, 'Enter a 10-digit mobile number.']
     ], 1)) return;
     var d = tqDigits(tqVal('tq-phone'));
-    tq.contact = { first_name: tqVal('tq-first'), last_name: tqVal('tq-last'), phone: tqFmtPhone(d), email: tqVal('tq-email'),
-                   texts_ok: document.getElementById('tq-texts').checked ? 'Yes' : 'No' };
-    if (tq.startSentFor !== d) { tq.startSentFor = d; tqSend('started').catch(function () {}); if (window.fbq) { fbq('track', 'Lead', { content_name: 'Turf quote started' }); } }
+    var parts = tqVal('tq-name').split(/\s+/);
+    tq.contact = { first_name: parts.shift(), last_name: parts.join(' '), phone: tqFmtPhone(d), email: tq.email || '',
+                   texts_ok: tqEl('tq-texts').checked ? 'Yes' : 'No' };
+    if (tq.startSentFor !== d) {
+      tq.startSentFor = d;
+      tqSend('started').catch(function () {});
+      if (window.fbq) { fbq('track', 'Lead', { content_name: 'Turf quote started' }); }
+    }
     tqGo(2);
   }
 
+  /* 2 · where's the turf */
+  function tqArea(btn) {
+    tqPress(btn, !btn.classList.contains('is-on'));
+    tq.areas = tqAll('#tq-form [data-area].is-on').map(function (b) { return b.getAttribute('data-area'); });
+    if (tq.areas.length) tqErr(2, '');
+  }
   function tqNext2() {
-    if (!tq.picks.service) { tqErr(2, 'Pick the cleaning you need — add-ons are optional.'); return; }
+    if (!tqCheck([
+      ['tq-address', function (v) { return v.length > 3; }, 'Enter the street address for the turf.'],
+      ['tq-city', function (v) { return v.length > 1; }, 'Enter your city.'],
+      ['tq-zip', function (v) { return /^\d{5}$/.test(v); }, 'Enter a 5-digit zip code.']
+    ], 2)) return;
+    if (!tq.areas.length) { tqErr(2, 'Tap where your turf is — pick all that apply.'); return; }
     tqGo(3);
   }
 
+  /* 3 · turf check → our pick */
+  function tqAnswer(btn) {
+    var q = btn.getAttribute('data-q');
+    tqAll('#tq-form [data-q="' + q + '"]').forEach(function (b) { tqPress(b, b === btn); });
+    tq.check[q] = btn.getAttribute('data-v');
+    tqErr(3, '');
+    tqRecommend();
+  }
+  // Matted → Full Restore. Any dog or any smell → Deep Clean. Otherwise → Refresh.
+  function tqSuggested() {
+    var c = tq.check;
+    if (c.look === 'Matted') return 'Full Restore';
+    if ((c.dogs && c.dogs !== 'No pets') || (c.smell && c.smell !== 'None')) return 'Deep Clean';
+    return 'Refresh Clean';
+  }
+  function tqRecommend() {
+    var c = tq.check, all = c.dogs && c.smell && c.look;
+    if (!tq.serviceChosen) tq.service = all ? tqSuggested() : '';
+    var rec = tqEl('qb-rec');
+    rec.hidden = !tq.service;
+    if (!tq.service) return;
+    tqEl('qb-rec-kicker').textContent = tq.serviceChosen && (!all || tq.service !== tqSuggested()) ? 'Your pick' : 'Our pick for you';
+    tqEl('qb-rec-name').textContent = tq.service;
+    tqEl('qb-rec-note').textContent = TQ_SERVICE_NOTES[tq.service] || '';
+    tqAll('#tq-form [data-service]').forEach(function (b) { b.classList.toggle('is-on', b.getAttribute('data-service') === tq.service); });
+  }
+  function tqChangeService() { var s = tqEl('qb-svc'); s.hidden = !s.hidden; }
+  function tqPickService(btn) {
+    tq.service = btn.getAttribute('data-service'); tq.serviceChosen = true;
+    tqEl('qb-svc').hidden = true;
+    tqRecommend();
+  }
   function tqNext3() {
-    if (!tq.picks.frequency) { tqErr(3, 'Pick a plan, or choose a one-time cleaning.'); return; }
+    var c = tq.check, miss = !c.dogs ? 'Any dogs?' : !c.smell ? 'Any smell?' : !c.look ? 'How does it look?' : '';
+    if (miss) { tqErr(3, 'One more tap: “' + miss + '”'); return; }
+    if (!tq.service) tq.service = tqSuggested();
     tqGo(4);
   }
+
+  /* 4 · Turf Club: 2+ dogs or strong smell → Monthly, 1 dog → Every other month, no pets → Quarterly */
+  function tqPlanFor() {
+    var c = tq.check;
+    if (c.dogs === '2+ dogs' || c.smell === 'Strong') return 'Monthly';
+    if (c.dogs === '1 dog') return 'Every other month';
+    return 'Quarterly';
+  }
+  function tqPrepPlans() {
+    var pick = tqPlanFor();
+    if (!tq.planChosen) tq.plan = pick;
+    tqAll('#tq-form [data-plan]').forEach(function (b) {
+      var p = b.getAttribute('data-plan');
+      tqPress(b, p === tq.plan);
+      b.classList.toggle('is-pick', p === pick);
+    });
+    tqEl('qb-restore-note').hidden = tq.service !== 'Full Restore';
+  }
+  function tqPickPlan(btn) { tq.plan = btn.getAttribute('data-plan'); tq.planChosen = true; tqErr(4, ''); tqPrepPlans(); }
+  function tqAddon(btn) {
+    tqPress(btn, !btn.classList.contains('is-on'));
+    tq.addons = tqAll('#tq-form [data-addon].is-on').map(function (b) { return b.getAttribute('data-addon'); });
+  }
+  function tqShowCode() { tqEl('qb-code-link').hidden = true; tqEl('qb-code-field').hidden = false; tqEl('tq-code').focus(); }
 
   // Phoenix time (no daylight saving). Hours match the footer: Mon–Sat 8am–7pm.
   function tqPhoenixNow() {
@@ -4471,105 +4853,117 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
       .formatToParts(new Date()).forEach(function (x) { parts[x.type] = x.value; });
     return { day: parts.weekday, hour: parseInt(parts.hour, 10) };
   }
-
   function tqDoneMessage() {
     var now = tqPhoenixNow(), day = now.day, h = now.hour;
     var open = day !== 'Sun' && h >= 8 && h < 19;
     var nextMorning = (day === 'Sat' && h >= 19) || day === 'Sun' ? 'Monday morning' : (h < 8 ? 'this morning after 8am' : 'first thing tomorrow morning');
-    if (open) return 'We’re building your custom quote now. <strong>Expect a call from ' + TQ_PHONE + ' in the next few minutes.</strong>';
+    if (open) return 'We’ll call from <strong>' + TQ_PHONE + '</strong> in the next few minutes with your exact price.';
     return 'We’re closed right now, so we’ll call you from <strong>' + TQ_PHONE + '</strong> ' + nextMorning + ' with your exact price.';
   }
 
-  function tqAddress() {
-    return [tqVal('tq-address'), tqVal('tq-city'), tqVal('tq-state') || 'AZ', tqVal('tq-zip')].filter(Boolean).join(', ');
-  }
+  function tqAddress() { return [tqVal('tq-address'), tqVal('tq-city'), 'AZ', tqVal('tq-zip')].filter(Boolean).join(', '); }
+  function tqName() { var c = tq.contact || {}; return ((c.first_name || '') + ' ' + (c.last_name || '')).trim(); }
+  // Private link for this one quote: they can add photos later and they land on the same lead.
+  function tqPhotoLink() { return location.origin + '/photos?q=' + tq.quoteId; }
+  function tqStamp() { return new Date().toLocaleString('en-US', { timeZone: 'America/Phoenix' }) + ' (Phoenix)'; }
 
   function tqPayload(stage) {
-    var c = tq.contact || {}, p = tq.picks, done = stage === 'complete';
-    var name = (c.first_name + ' ' + c.last_name).trim();
+    var c = tq.contact || {}, done = stage === 'complete', name = tqName();
     var full = done ? tqAddress() : '';
-    var city = done ? tqVal('tq-city') : '';
     var subject = !done
       ? '🔥 NEW LEAD — call now: ' + name + ' · ' + c.phone
-      : '✅ QUOTE DETAILS: ' + name + ' · ' + city + ' · ' + (p.service || '') + ' · ' + (p.frequency || '') + (p.frequency && p.frequency !== 'One-time' ? ' (' + TQ_SAVINGS[p.frequency].replace(' per cleaning', '') + ')' : '');
-    return {
+      : '✅ QUOTE DETAILS: ' + name + ' · ' + tqVal('tq-city') + ' · ' + tq.service + ' · ' + tq.plan + (tq.plan !== 'One-time' ? ' (' + TQ_SAVINGS[tq.plan].replace(' per cleaning', '') + ')' : '');
+    var d = {
       _subject: subject,
       lead_status: done ? 'Finished the quote' : 'Started the quote (details to follow)',
-      name: name, phone: c.phone, email: c.email || '', address: full,
-      google_earth: full ? 'https://earth.google.com/web/search/' + encodeURIComponent(full) : '',
-      service: p.service || '', add_ons: (p.addons || []).join(', ') || (done ? 'None' : ''),
-      frequency: p.frequency ? p.frequency + ' — ' + TQ_SAVINGS[p.frequency] : '',
-      turf_size: done ? (tqVal('tq-size') || 'Not given') : '',
-      referral_or_promo_code: tqVal('tq-code'), heard_about_us: tqVal('tq-hear'), texts_ok: c.texts_ok || '',
-      submitted: new Date().toLocaleString('en-US', { timeZone: 'America/Phoenix' }) + ' (Phoenix)'
+      name: name, phone: c.phone, email: c.email || '', texts_ok: c.texts_ok || '',
+      submitted: tqStamp()
     };
+    if (done) {
+      Object.assign(d, {
+        address: full,
+        google_earth: 'https://earth.google.com/web/search/' + encodeURIComponent(full),
+        turf_areas: tq.areas.join(', '),
+        dogs: tq.check.dogs, smell: tq.check.smell, turf_look: tq.check.look,
+        service: tq.service,
+        suggested_cleaning: tqSuggested() + (tq.service !== tqSuggested() ? ' (they picked ' + tq.service + ')' : ''),
+        frequency: tq.plan + ' — ' + TQ_SAVINGS[tq.plan],
+        add_ons: tq.addons.join(', ') || 'None',
+        referral_or_promo_code: tqVal('tq-code'),
+        photo_link: tqPhotoLink()
+      });
+    }
+    return d;
   }
 
   // Extra boxes for Client Hub (TurfGlow's customer app): not in the email.
   function tqAppFields(stage) {
     var c = tq.contact || {}, done = stage === 'complete';
-    return {
-      quote_id: tq.quoteId, first_name: c.first_name || '', last_name: c.last_name || '',
-      street: done ? tqVal('tq-address') : '', city: done ? tqVal('tq-city') : '',
-      state: done ? (tqVal('tq-state') || 'AZ') : '', zip: done ? tqVal('tq-zip') : ''
-    };
+    var f = { quote_id: tq.quoteId, first_name: c.first_name || '', last_name: c.last_name || '' };
+    if (done) Object.assign(f, { street: tqVal('tq-address'), city: tqVal('tq-city'), state: 'AZ', zip: tqVal('tq-zip') });
+    return f;
   }
 
-  // Vercel /api/quote sends the lead to Client Hub (TurfGlow's app: Leads inbox + phone alert),
-  // creates the Housecall Pro lead (finished quotes) and emails via Resend when configured.
-  // If it isn't reachable (GitHub Pages) or didn't send the email, fall back to formsubmit.co,
-  // so every lead still arrives by email too.
+  // Vercel /api/quote sends the lead to Client Hub (Leads inbox + phone alert),
+  // creates the Housecall Pro lead (finished quotes only) and emails via Resend when
+  // configured. If it isn't reachable or didn't send the email, fall back to
+  // formsubmit.co, so every lead still arrives by email too.
   function tqApi(data) {
-    return fetch('/api/quote', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(data) })
+    return fetch('/api/quote', { method: 'POST', keepalive: true, headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(data) })
       .then(function (r) { if (!r.ok) throw new Error('api ' + r.status); return r.json(); });
   }
-
-  function tqSend(stage) {
-    if (document.getElementById('tq-honey').value) return Promise.resolve();
-    var data = tqPayload(stage);
-    var viaRelay = function () {
-      var fd = new FormData();
-      Object.keys(data).forEach(function (k) { if (data[k] !== '') fd.append(k, data[k]); });
-      fd.append('_template', 'table');
-      fd.append('_captcha', 'false');
-      return fetch('https://formsubmit.co/ajax/' + TQ_EMAIL, { method: 'POST', headers: { 'Accept': 'application/json' }, body: fd })
-        .then(function (r) { if (!r.ok) throw new Error('relay ' + r.status); return r.json(); });
-    };
-    return tqApi(Object.assign({}, data, tqAppFields(stage)))
-      .then(function (j) { if (!j || !j.email_sent) return viaRelay(); return j; })
-      .catch(viaRelay);
+  function tqRelay(data) {
+    var fd = new FormData();
+    Object.keys(data).forEach(function (k) { if (data[k] !== '' && data[k] != null) fd.append(k, data[k]); });
+    fd.append('_template', 'table');
+    fd.append('_captcha', 'false');
+    return fetch('https://formsubmit.co/ajax/' + TQ_EMAIL, { method: 'POST', keepalive: true, headers: { 'Accept': 'application/json' }, body: fd })
+      .then(function (r) { if (!r.ok) throw new Error('relay ' + r.status); return r.json(); });
+  }
+  function tqPost(data, appFields) {
+    if (tqEl('tq-honey').value) return Promise.resolve();
+    return tqApi(Object.assign({}, data, appFields))
+      .then(function (j) { if (!j || !j.email_sent) return tqRelay(data); return j; })
+      .catch(function () { return tqRelay(data); });
+  }
+  function tqSend(stage) { return tqPost(tqPayload(stage), tqAppFields(stage)); }
+  // A follow-up on the same quote. Never says "finished", so it can't make a second Housecall Pro lead.
+  function tqUpdate(kind, subject, fields) {
+    var c = tq.contact || {};
+    var data = Object.assign({ _subject: subject, lead_status: 'Update: ' + kind, name: tqName(), phone: c.phone, submitted: tqStamp() }, fields);
+    return tqPost(data, { quote_id: tq.quoteId, first_name: c.first_name || '', last_name: c.last_name || '' });
   }
 
   function tqSubmit() {
-    if (!tqCheck([
-      ['tq-address', function (v) { return v.length > 3; }, 'Enter the street address for the turf.'],
-      ['tq-city', function (v) { return v.length > 1; }, 'Enter your city.'],
-      ['tq-zip', function (v) { return /^\d{5}$/.test(v); }, 'Enter a 5-digit zip code.']
-    ], 4)) return;
-    var btn = document.getElementById('tq-submit'), label = document.getElementById('tq-submit-label');
+    if (!tq.plan) { tqErr(4, 'Pick a plan, or choose just one cleaning.'); return; }
+    var btn = tqEl('tq-submit'), label = tqEl('tq-submit-label');
     btn.disabled = true; label.textContent = 'Sending…';
     tqSend('complete').then(function () {
-      if (window.fbq) { fbq('trackCustom', 'QuoteCompleted', { service: (tq.picks && tq.picks.service) || '', frequency: (tq.picks && tq.picks.frequency) || '' }); }
-      document.getElementById('tq-done-title').textContent = 'You’re all set, ' + tq.contact.first_name + '!';
-      document.getElementById('tq-done-msg').innerHTML = tqDoneMessage();
-      tqGo(TQ_DONE);
+      if (window.fbq) { fbq('trackCustom', 'QuoteCompleted', { service: tq.service, frequency: tq.plan }); }
+      tqGo(TQ_PHOTOS);
     }).catch(function () {
-      btn.disabled = false; label.textContent = 'Submit';
+      btn.disabled = false; label.textContent = 'Send my quote';
       tqErr(4, 'We couldn’t send your request. Please call or text us at ' + TQ_PHONE + '.');
     });
   }
 
-  /* ── Optional photos on the confirmation screen: shrunk on the phone (max 1600px JPEG, strips location data) ── */
+  /* 5 · photos: shrunk on the phone (max 1600px JPEG, strips location data) */
   function tqPhotoHelp(msg, isError) {
-    var h = document.getElementById('tq-photo-help');
-    h.textContent = msg || 'Tap a box to take a photo or choose one from your phone.';
+    var h = tqEl('tq-photo-help');
+    h.textContent = msg || '';
     h.classList.toggle('is-error', !!isError);
   }
   function tqPhotoCount() { return tq.photos.filter(function (p) { return p && p.blob; }).length; }
-  function tqPhotoButton() {
-    var b = document.getElementById('tq-photo-send'), n = tqPhotoCount();
-    b.hidden = n === 0 || tq.photosSent;
-    b.textContent = 'Send my ' + (n === 1 ? 'photo' : n + ' photos');
+  function tqPhotoUI() {
+    var n = tqPhotoCount(), b = tqEl('tq-photo-send');
+    b.textContent = n ? 'Send my ' + (n === 1 ? 'photo' : n + ' photos') + ' →' : 'I’m by my turf · add photos';
+    var guidesDone = tq.photos[0] && tq.photos[1];
+    tqAll('#tq-form .qb-shot--extra').forEach(function (s, i) { s.hidden = !guidesDone && !tq.photos[i + 2]; });
+  }
+  function tqPhotoMain() {
+    if (tqPhotoCount()) { tqSendPhotos(); return; }
+    var empty = tqAll('#tq-form .qb-shot:not(.has-img):not([hidden]) input')[0];
+    if (empty) empty.click();
   }
 
   function tqShrink(file) {
@@ -4592,8 +4986,8 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
     input.value = '';
     if (!file) return;
     if (!/^image\//.test(file.type) && !/\.(heic|heif|jpe?g|png|webp)$/i.test(file.name)) { tqPhotoHelp('That file isn’t a photo — try a picture from your camera roll.', true); return; }
-    if (tq.photosSent) { tq.photosSent = false; }
-    var box = document.querySelector('.tq-photo[data-slot="' + i + '"]');
+    tq.photosSent = false;
+    var box = document.querySelector('#tq-form .qb-shot[data-slot="' + i + '"]');
     box.classList.add('is-busy'); tq.photos[i] = { busy: true };
     tqShrink(file).catch(function () {
       if (file.size <= 3 * 1024 * 1024) return file;
@@ -4604,27 +4998,22 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
       var total = tq.photos.reduce(function (s, p) { return s + (p && p.blob ? p.blob.size : 0); }, 0);
       if (total > 9.5 * 1024 * 1024) { tqPhotoRemove(null, i); tqPhotoHelp('Those photos are too large together — try removing one.', true); return; }
       var im = box.querySelector('img'); im.src = url; im.hidden = false;
-      box.querySelector('.tq-photo-tag').hidden = false;
       box.classList.add('has-img');
-      tqPhotoHelp('Photo added. Add more, or tap Send.');
+      tqPhotoHelp(tq.photos[0] && tq.photos[1] ? 'Looks great. Add more, or tap Send.' : 'Got it. Add the other one, or tap Send.');
     }).catch(function () {
       tq.photos[i] = null;
       tqPhotoHelp('We couldn’t read that photo — try a different one.', true);
-    }).then(function () { box.classList.remove('is-busy'); tqPhotoButton(); });
+    }).then(function () { box.classList.remove('is-busy'); tqPhotoUI(); });
   }
 
   function tqPhotoRemove(e, i) {
     if (e) { e.preventDefault(); e.stopPropagation(); }
     var p = tq.photos[i]; if (p && p.url) URL.revokeObjectURL(p.url);
     tq.photos[i] = null;
-    var box = document.querySelector('.tq-photo[data-slot="' + i + '"]');
-    if (box) {
-      var im = box.querySelector('img'); im.hidden = true; im.removeAttribute('src');
-      box.querySelector('.tq-photo-tag').hidden = true;
-      box.classList.remove('has-img');
-    }
-    if (e) tqPhotoHelp();
-    tqPhotoButton();
+    var box = document.querySelector('#tq-form .qb-shot[data-slot="' + i + '"]');
+    if (box) { var im = box.querySelector('img'); im.hidden = true; im.removeAttribute('src'); box.classList.remove('has-img'); }
+    if (e) tqPhotoHelp('');
+    tqPhotoUI();
   }
 
   // Photos to Client Hub: ask for one-time upload links, then the phone sends each photo
@@ -4647,14 +5036,14 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
 
   // formsubmit only accepts attachments on a normal multipart POST, so post into a hidden iframe.
   function tqSendPhotos() {
-    if (!tqPhotoCount() || !tq.contact) return;
-    var btn = document.getElementById('tq-photo-send');
+    if (!tqPhotoCount() || !tq.contact || tq.photosSent) return;
+    var btn = tqEl('tq-photo-send'), n = tqPhotoCount();
     btn.disabled = true; btn.textContent = 'Sending…';
     var toApp = tqPhotosToApp();
     var c = tq.contact;
     var data = {
-      _subject: '📷 PHOTOS: ' + (c.first_name + ' ' + c.last_name).trim() + ' · ' + tqVal('tq-city') + ' · ' + c.phone,
-      name: (c.first_name + ' ' + c.last_name).trim(), phone: c.phone, address: tqAddress(),
+      _subject: '📷 PHOTOS: ' + tqName() + ' · ' + tqVal('tq-city') + ' · ' + c.phone,
+      name: tqName(), phone: c.phone, address: tqAddress(), quote_id: tq.quoteId,
       photos: tq.photos.map(function (ph, i) { return ph && ph.blob ? TQ_PHOTO_LABELS[i] : null; }).filter(Boolean).join(', ')
     };
     var f = document.createElement('form');
@@ -4673,26 +5062,96 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
         f.appendChild(fi); attached++;
       } catch (err) {}
     });
+    var sent = function () {
+      tq.photosSent = true; btn.disabled = false;
+      tq.photoStatus = n === 1 ? '1 photo sent' : n + ' photos sent';
+      tqFinish();
+    };
     if (!attached) {
       toApp.then(function (ok) {
-        if (ok) { tq.photosSent = true; tqPhotoButton(); tqPhotoHelp('Thanks! Your photos were sent.'); return; }
-        btn.disabled = false; btn.textContent = 'Send my photos';
+        if (ok) { sent(); return; }
+        btn.disabled = false; tqPhotoUI();
         tqPhotoHelp('Your browser couldn’t attach photos here — please text them to ' + TQ_PHONE + '.', true);
       });
       return;
     }
-    var sink = document.getElementById('tq-sink'), finished = false;
+    var sink = tqEl('tq-sink'), finished = false;
     var finish = function () {
       if (finished) return; finished = true;
       setTimeout(function () { f.remove(); }, 1000);
-      tq.photosSent = true; tqPhotoButton();
-      tqPhotoHelp('Thanks! Your photos were sent.');
+      sent();
     };
     sink.onload = finish;
     setTimeout(finish, 20000);
     document.body.appendChild(f);
     f.submit();
   }
+
+  function tqTextLink() {
+    tq.photoStatus = 'Link on its way by text';
+    tqUpdate('text them the photo link', '📲 TEXT THE PHOTO LINK: ' + tqName() + ' · ' + (tq.contact ? tq.contact.phone : ''),
+      { photo_link_requested: 'Yes — not home, text them this link', photo_link: tqPhotoLink() }).catch(function () {});
+    tqFinish();
+  }
+  function tqSkipPhotos() { tq.photoStatus = 'None — we’ll measure from the satellite'; tqFinish(); }
+
+  /* 6 · receipt */
+  function tqFinish() {
+    tqEl('tq-done-title').textContent = 'the list, ' + tq.contact.first_name + '!';
+    tqEl('tq-done-msg').innerHTML = tqDoneMessage();
+    var rows = [
+      ['Cleaning', tq.service, true],
+      ['Plan', tq.plan === 'One-time' ? 'One cleaning · full price' : tq.plan + ' · ' + TQ_SAVINGS[tq.plan].replace(' per cleaning', '')],
+      ['Turf', tq.areas.join(', ') + ' · ' + tqVal('tq-address')],
+      ['Photos', tq.photoStatus || 'None yet']
+    ];
+    var t = tqEl('qb-ticket'); t.innerHTML = '';
+    rows.forEach(function (r) {
+      var row = document.createElement('div'); row.className = 'qb-tr' + (r[2] ? ' qb-tr--big' : '');
+      var k = document.createElement('span'); k.textContent = r[0];
+      var v = document.createElement('b'); v.textContent = r[1];
+      row.appendChild(k); row.appendChild(v); t.appendChild(row);
+    });
+    tqGo(TQ_DONE);
+  }
+
+  function tqHeard(btn) {
+    var on = !btn.classList.contains('is-on');
+    tqAll('#tq-form [data-heard]').forEach(function (b) { tqPress(b, on && b === btn); });
+    tq.heard = on ? btn.getAttribute('data-heard') : '';
+    tqExtrasSoon();
+  }
+  function tqEmailAdd() {
+    var v = tqVal('tq-email');
+    var ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+    tqEl('tq-email').closest('.qb-field').classList.toggle('is-invalid', !ok);
+    if (!ok) { tqErr(6, 'That email doesn’t look right.'); return; }
+    tqErr(6, '');
+    tq.email = v; if (tq.contact) tq.contact.email = v;
+    var add = tqEl('qb-email-add'); add.textContent = '✓ Added'; add.disabled = true;
+    tqExtrasSoon(0);
+  }
+  // "How'd you find us" and the email go out as ONE follow-up, a moment after the last tap
+  // (or right away when they close the quote).
+  function tqExtrasSoon(delay) {
+    clearTimeout(tq.extrasTimer);
+    tq.extrasTimer = setTimeout(tqExtrasFlush, delay == null ? 2500 : delay);
+  }
+  function tqExtrasFlush() {
+    clearTimeout(tq.extrasTimer);
+    if (tq.step !== TQ_DONE || !tq.contact) return;
+    var key = tq.heard + '|' + tq.email;
+    if ((!tq.heard && !tq.email) || key === tq.extrasSent) return;
+    tq.extrasSent = key;
+    var bits = [tq.heard ? 'found us via ' + tq.heard : '', tq.email ? 'email ' + tq.email : ''].filter(Boolean).join(' · ');
+    tqUpdate('how they found us', 'ℹ️ More from ' + tqName() + ': ' + bits, { heard_about_us: tq.heard, email: tq.email }).catch(function () {});
+  }
+  window.addEventListener('pagehide', tqExtrasFlush);
+  // Typing in a red box clears its red outline right away.
+  document.getElementById('tq-form').addEventListener('input', function (e) {
+    var f = e.target.closest && e.target.closest('.qb-field');
+    if (f) f.classList.remove('is-invalid');
+  });
 
   function rmPersonHtml() {
     return '<div class="rm-person">' +

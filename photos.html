@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Add Your Turf Photos | TurfGlow Cleaning</title>
+<meta name="description" content="Snap two quick photos of your turf so TurfGlow can price your cleaning on the first call." />
+<meta name="robots" content="noindex" />
+<meta name="theme-color" content="#0f2a1b" />
+<link rel="icon" type="image/png" href="favicon.png?v=2" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png?v=2" />
+<link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+<style>
+@font-face { font-family:'Inter'; font-style:normal; font-weight:300 900; font-display:swap; src:url(fonts/inter-latin.woff2) format('woff2'); }
+:root { --night:#0f2a1b; --forest:#195c36; --green:#23804b; --mint:#85cc7e; --sun:#fde50a; --sun-deep:#c9b400; --on:#f2f7f0; --on-muted:#b9cfbd; }
+* { box-sizing:border-box; margin:0; padding:0; }
+html { -webkit-text-size-adjust:100%; }
+body { min-height:100vh; font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; color:var(--on);
+  background:radial-gradient(120% 60% at 80% 0%, #1f5a37 0%, var(--night) 60%) fixed, var(--night); line-height:1.45; }
+button { font-family:inherit; cursor:pointer; border:0; background:none; color:inherit; }
+a { color:#fff; }
+.wrap { max-width:520px; margin:0 auto; padding:max(18px, env(safe-area-inset-top)) 18px max(32px, env(safe-area-inset-bottom)); display:flex; flex-direction:column; gap:16px; }
+.top { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.top img { width:44px; height:44px; border-radius:11px; display:block; }
+.top a { font-size:14px; font-weight:800; text-decoration:none; background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.18); padding:9px 14px; border-radius:99px; }
+.pill { align-self:flex-start; font-size:13px; font-weight:800; background:rgba(133,204,126,.18); color:var(--mint); padding:6px 12px; border-radius:99px; }
+h1 { font-weight:900; font-size:clamp(32px, 9vw, 44px); line-height:.98; letter-spacing:-.015em; text-transform:uppercase; }
+h1 em { font-style:normal; color:var(--sun); }
+.sub { font-size:16px; color:var(--on-muted); }
+.guides { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.shot { position:relative; display:grid; justify-items:center; align-content:center; gap:8px; min-height:160px; padding:12px 10px; border-radius:18px;
+  border:2px dashed rgba(133,204,126,.6); background:rgba(255,255,255,.05); text-align:center; cursor:pointer; overflow:hidden; }
+.shot input { position:absolute; inset:0; opacity:0; width:100%; height:100%; cursor:pointer; }
+.shot svg { width:100%; max-width:110px; height:auto; }
+.shot .t { font-size:13.5px; font-weight:700; line-height:1.3; }
+.shot .t em { font-style:normal; color:var(--sun); font-weight:900; }
+.shot .plus { font-size:30px; font-weight:300; line-height:1; color:var(--mint); }
+.shot.extra { min-height:100px; }
+.shot img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.shot.has-img { border-style:solid; border-color:var(--sun); }
+.shot.has-img .t { position:absolute; left:6px; right:6px; bottom:6px; z-index:2; font-size:11.5px; background:rgba(15,42,27,.82); border-radius:8px; padding:4px 6px; }
+.shot .x { display:none; position:absolute; top:6px; right:6px; z-index:3; width:30px; height:30px; border-radius:50%; background:rgba(15,42,27,.85); color:#fff; font-size:20px; line-height:1; place-items:center; }
+.shot.has-img .x { display:grid; }
+.shot.busy::after { content:"Adding…"; position:absolute; inset:0; z-index:4; display:grid; place-items:center; background:rgba(15,42,27,.75); font-weight:800; font-size:14px; }
+.help { font-size:13.5px; color:var(--on-muted); text-align:center; }
+.help:empty { display:none; }
+.help.err { color:#ffb4b4; font-weight:700; }
+.btn { display:flex; align-items:center; justify-content:center; width:100%; padding:17px 20px; border-radius:999px; background:var(--sun); color:var(--night);
+  font-size:17px; font-weight:900; letter-spacing:.03em; text-transform:uppercase; text-decoration:none;
+  box-shadow:0 6px 0 -1px var(--sun-deep), 0 14px 24px -12px rgba(0,0,0,.55); transition:transform .08s, box-shadow .08s; }
+.btn:active { transform:translateY(4px); box-shadow:0 2px 0 -1px var(--sun-deep); }
+.btn[disabled] { opacity:.65; cursor:wait; transform:none; }
+.or { text-align:center; font-size:13.5px; color:var(--on-muted); }
+.or a { font-weight:800; }
+.done { display:grid; justify-items:center; gap:14px; text-align:center; padding-top:20px; }
+.check { width:76px; height:76px; border-radius:50%; display:grid; place-items:center; background:var(--green); color:#fff; font-size:38px; font-weight:900;
+  box-shadow:0 0 0 9px rgba(253,229,10,.45), 0 0 34px 10px rgba(253,229,10,.5); }
+[hidden] { display:none !important; }
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="top">
+    <a href="/" aria-label="TurfGlow Cleaning home" style="padding:0;background:none;border:0"><img src="logo-square.webp" width="384" height="384" alt="TurfGlow" /></a>
+    <a href="tel:4802941408">(480) 294-1408</a>
+  </div>
+
+  <section id="add" hidden>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <span class="pill">Your quote is in</span>
+      <h1>Snap your <em>turf</em></h1>
+      <p class="sub">Two quick photos and we can price your cleaning on the first call.</p>
+      <div class="guides">
+        <label class="shot" data-slot="0">
+          <input type="file" accept="image/*" aria-label="Add photo 1: whole yard from your back door" />
+          <svg viewBox="0 0 96 64" aria-hidden="true"><rect x="2" y="2" width="92" height="60" rx="6" fill="none" stroke="#85cc7e" stroke-width="2" stroke-dasharray="4 3"/><path d="M6 44h84v14H6z" fill="#4f9a45"/><path d="M8 44V20h14v24" fill="none" stroke="#f2f7f0" stroke-width="2"/><path d="M70 44c0-10 8-14 16-14" fill="none" stroke="#85cc7e" stroke-width="2"/></svg>
+          <span class="t"><em>1</em> Whole yard from your back door</span>
+          <img alt="" hidden /><button type="button" class="x" aria-label="Remove photo">&#215;</button>
+        </label>
+        <label class="shot" data-slot="1">
+          <input type="file" accept="image/*" aria-label="Add photo 2: close-up of the worst spot" />
+          <svg viewBox="0 0 96 64" aria-hidden="true"><rect x="2" y="2" width="92" height="60" rx="6" fill="none" stroke="#85cc7e" stroke-width="2" stroke-dasharray="4 3"/><path d="M14 58l3-26M24 58l1-34M34 58l3-28M44 58l2-22M54 58l1-32M64 58l3-26M74 58l1-30M84 58l2-20" stroke="#5aa94e" stroke-width="3" stroke-linecap="round"/><circle cx="48" cy="40" r="11" fill="none" stroke="#fde50a" stroke-width="2.5"/></svg>
+          <span class="t"><em>2</em> Close-up of the worst spot</span>
+          <img alt="" hidden /><button type="button" class="x" aria-label="Remove photo">&#215;</button>
+        </label>
+        <label class="shot extra" data-slot="2" hidden>
+          <input type="file" accept="image/*" aria-label="Add another photo" />
+          <span class="plus" aria-hidden="true">+</span><span class="t">Another photo</span>
+          <img alt="" hidden /><button type="button" class="x" aria-label="Remove photo">&#215;</button>
+        </label>
+        <label class="shot extra" data-slot="3" hidden>
+          <input type="file" accept="image/*" aria-label="Add another photo" />
+          <span class="plus" aria-hidden="true">+</span><span class="t">Another photo</span>
+          <img alt="" hidden /><button type="button" class="x" aria-label="Remove photo">&#215;</button>
+        </label>
+      </div>
+      <p class="help" id="help" aria-live="polite"></p>
+      <button type="button" class="btn" id="main">Add my photos</button>
+      <p class="or">Easier by text? Send them to <a href="sms:+14802941408">(480) 294-1408</a></p>
+    </div>
+  </section>
+
+  <section id="sent" class="done" hidden>
+    <div class="check" aria-hidden="true">&#10003;</div>
+    <h1>Got <em>them!</em></h1>
+    <p class="sub">Thanks. Your photos are on your quote, so we can give you an exact price on the call.</p>
+    <a class="btn" href="/">Back to TurfGlow</a>
+  </section>
+
+  <section id="nolink" class="done" hidden>
+    <h1>Text us <em>your photos</em></h1>
+    <p class="sub">This link is missing its quote code. No problem: text your turf photos to us and we&rsquo;ll match them to your quote.</p>
+    <a class="btn" href="sms:+14802941408">Text (480) 294-1408</a>
+  </section>
+</main>
+<iframe name="sink" id="sink" title="Photo upload" tabindex="-1" aria-hidden="true" style="display:none"></iframe>
+<script>
+(function () {
+  /* Private photo link for one quote: turfglowcleaning.com/photos?q=<quote id>.
+     Photos go to Client Hub on that same lead (via /api/quote-photos), and by
+     email through formsubmit as the backup — same as the quote's own photo screen. */
+  var EMAIL = 'turfglowaz@gmail.com', PHONE = '(480) 294-1408';
+  var LABELS = ['Whole yard from the back door', 'Close-up of the worst spot', 'Extra photo', 'Extra photo'];
+  var q = new URLSearchParams(location.search).get('q') || '';
+  var ok = /^[A-Za-z0-9_-]{8,100}$/.test(q);
+  document.getElementById(ok ? 'add' : 'nolink').hidden = false;
+  if (!ok) return;
+
+  var photos = [null, null, null, null], sending = false;
+  var shots = Array.prototype.slice.call(document.querySelectorAll('.shot'));
+  var main = document.getElementById('main'), help = document.getElementById('help');
+
+  function say(msg, err) { help.textContent = msg || ''; help.classList.toggle('err', !!err); }
+  function count() { return photos.filter(function (p) { return p && p.blob; }).length; }
+  function ui() {
+    var n = count();
+    main.textContent = n ? 'Send my ' + (n === 1 ? 'photo' : n + ' photos') + ' →' : 'Add my photos';
+    var both = photos[0] && photos[1];
+    shots.slice(2).forEach(function (s, i) { s.hidden = !both && !photos[i + 2]; });
+  }
+
+  function shrink(file) {
+    return new Promise(function (resolve, reject) {
+      var url = URL.createObjectURL(file), img = new Image();
+      img.onload = function () {
+        var max = 1600, w = img.naturalWidth, h = img.naturalHeight, k = Math.min(1, max / Math.max(w, h));
+        var c = document.createElement('canvas'); c.width = Math.round(w * k); c.height = Math.round(h * k);
+        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+        URL.revokeObjectURL(url);
+        c.toBlob(function (b) { b ? resolve(b) : reject(new Error('encode')); }, 'image/jpeg', 0.82);
+      };
+      img.onerror = function () { URL.revokeObjectURL(url); reject(new Error('decode')); };
+      img.src = url;
+    });
+  }
+
+  function remove(i) {
+    var p = photos[i]; if (p && p.url) URL.revokeObjectURL(p.url);
+    photos[i] = null;
+    var im = shots[i].querySelector('img'); im.hidden = true; im.removeAttribute('src');
+    shots[i].classList.remove('has-img');
+    ui();
+  }
+
+  shots.forEach(function (box, i) {
+    var input = box.querySelector('input');
+    input.addEventListener('change', function () {
+      var file = input.files && input.files[0];
+      input.value = '';
+      if (!file) return;
+      if (!/^image\//.test(file.type) && !/\.(heic|heif|jpe?g|png|webp)$/i.test(file.name)) { say('That file isn’t a photo — try one from your camera roll.', true); return; }
+      box.classList.add('busy');
+      shrink(file).catch(function () { if (file.size <= 3 * 1024 * 1024) return file; throw new Error('unreadable'); })
+        .then(function (blob) {
+          if (photos[i]) remove(i);
+          var url = URL.createObjectURL(blob);
+          photos[i] = { blob: blob, url: url, name: 'turf-photo-' + (i + 1) + '.jpg' };
+          var total = photos.reduce(function (s, p) { return s + (p && p.blob ? p.blob.size : 0); }, 0);
+          if (total > 9.5 * 1024 * 1024) { remove(i); say('Those photos are too large together — try removing one.', true); return; }
+          var im = box.querySelector('img'); im.src = url; im.hidden = false;
+          box.classList.add('has-img');
+          say(photos[0] && photos[1] ? 'Looks great. Add more, or tap Send.' : 'Got it. Add the other one, or tap Send.');
+        })
+        .catch(function () { say('We couldn’t read that photo — try a different one.', true); })
+        .then(function () { box.classList.remove('busy'); ui(); });
+    });
+    box.querySelector('.x').addEventListener('click', function (e) { e.preventDefault(); e.stopPropagation(); remove(i); say(''); });
+  });
+
+  function toApp(list) {
+    return fetch('/api/quote-photos', {
+      method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ quote_id: q, types: list.map(function (p) { return p.blob.type || 'image/jpeg'; }) })
+    }).then(function (r) { if (!r.ok) throw new Error('photos ' + r.status); return r.json(); })
+      .then(function (j) {
+        var ups = (j && j.uploads) || [];
+        return Promise.all(ups.map(function (u, i) {
+          return fetch(u.url, { method: 'PUT', headers: { 'Content-Type': u.content_type || 'image/jpeg', 'x-upsert': 'false' }, body: list[i].blob })
+            .then(function (r) { return r.ok; }, function () { return false; });
+        })).then(function (oks) { return oks.length === list.length && oks.every(Boolean); });
+      }).catch(function () { return false; });
+  }
+
+  function done() {
+    document.getElementById('add').hidden = true;
+    document.getElementById('sent').hidden = false;
+    window.scrollTo(0, 0);
+  }
+
+  function send() {
+    var list = photos.filter(function (p) { return p && p.blob; });
+    if (!list.length || sending) return;
+    sending = true; main.disabled = true; main.textContent = 'Sending…';
+    var app = toApp(list);
+    var f = document.createElement('form');
+    f.method = 'POST'; f.enctype = 'multipart/form-data'; f.target = 'sink';
+    f.action = 'https://formsubmit.co/' + EMAIL; f.style.display = 'none';
+    var add = function (k, v) { var inp = document.createElement('input'); inp.type = 'hidden'; inp.name = k; inp.value = v; f.appendChild(inp); };
+    add('_subject', '📷 PHOTOS (from the text link) · quote ' + q);
+    add('quote_id', q);
+    add('photo_link', location.origin + '/photos?q=' + q);
+    add('photos', photos.map(function (p, i) { return p && p.blob ? LABELS[i] : null; }).filter(Boolean).join(', '));
+    add('note', 'Match this to the quote email with the same photo link.');
+    add('_template', 'table'); add('_captcha', 'false');
+    var attached = 0;
+    photos.forEach(function (p, idx) {
+      if (!p || !p.blob) return;
+      try {
+        var dt = new DataTransfer();
+        dt.items.add(new File([p.blob], p.name, { type: 'image/jpeg' }));
+        var fi = document.createElement('input'); fi.type = 'file'; fi.name = 'attachment_' + (idx + 1); fi.files = dt.files;
+        f.appendChild(fi); attached++;
+      } catch (e) {}
+    });
+    if (!attached) {
+      app.then(function (ok) {
+        if (ok) { done(); return; }
+        sending = false; main.disabled = false; ui();
+        say('Your browser couldn’t attach photos here — please text them to ' + PHONE + '.', true);
+      });
+      return;
+    }
+    var sink = document.getElementById('sink'), fin = false;
+    var finish = function () { if (fin) return; fin = true; setTimeout(function () { f.remove(); }, 1000); done(); };
+    sink.onload = finish;
+    setTimeout(finish, 20000);
+    document.body.appendChild(f);
+    f.submit();
+  }
+
+  main.addEventListener('click', function () {
+    if (count()) { send(); return; }
+    var empty = shots.filter(function (s) { return !s.hidden && !s.classList.contains('has-img'); })[0];
+    if (empty) empty.querySelector('input').click();
+  });
+  ui();
+})();
+</script>
+</body>
+</html>

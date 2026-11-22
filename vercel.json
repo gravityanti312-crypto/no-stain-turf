@@ -10,6 +10,26 @@
     {
       "source": "/refer",
       "destination": "/refer.html"
+    },
+    {
+      "source": "/photos",
+      "destination": "/photos.html"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/turfglow.vcf",
+      "headers": [
+        { "key": "Content-Type", "value": "text/vcard; charset=utf-8" },
+        { "key": "Content-Disposition", "value": "inline; filename=\"TurfGlow Cleaning.vcf\"" }
+      ]
+    },
+    {
+      "source": "/photos",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "noindex" },
+        { "key": "Referrer-Policy", "value": "no-referrer" }
+      ]
     }
   ]
 }

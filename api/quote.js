@@ -39,12 +39,15 @@ function leadNote(d) {
     'Service: ' + (d.service || '—'),
     'Add-ons: ' + (d.add_ons || 'None'),
     'Plan: ' + (d.frequency || '—'),
+    'Turf areas: ' + (d.turf_areas || '—'),
+    'Dogs: ' + (d.dogs || '—') + ' · Smell: ' + (d.smell || '—') + ' · Looks: ' + (d.turf_look || '—'),
     'Turf size (customer guess): ' + (d.turf_size || '—'),
     'Referral/promo code: ' + (d.referral_or_promo_code || '—'),
     'Heard about us: ' + (d.heard_about_us || '—'),
     'OK to send marketing texts: ' + (d.texts_ok || '—'),
     '',
     'Measure the yard: ' + (d.google_earth || '—'),
+    'Photo link to text them: ' + (d.photo_link || '—'),
     'Submitted: ' + (d.submitted || '—')
   ];
   return lines.join('\n').slice(0, 5000);
@@ -116,7 +119,9 @@ async function sendEmail(d, key) {
     '<div style="font:600 15px/1.4 -apple-system,Segoe UI,Roboto,sans-serif;color:#cfdccf;margin-top:4px;">' + esc([d.service, d.frequency].filter(Boolean).join(' · ') || 'Details to follow') + '</div></div>' +
     '<table style="width:100%;border-collapse:collapse;">' +
     row('Phone', phoneCell) + row('Address', val(d.address)) + row('Measure', earthCell) + row('Email', val(d.email)) +
-    row('Service', val(d.service)) + row('Add-ons', val(d.add_ons)) + row('Plan', val(d.frequency)) + row('Turf size', val(d.turf_size)) +
+    row('Service', val(d.service)) + row('Add-ons', val(d.add_ons)) + row('Plan', val(d.frequency)) +
+    row('Turf areas', val(d.turf_areas)) + row('Dogs', val(d.dogs)) + row('Smell', val(d.smell)) + row('Looks', val(d.turf_look)) +
+    row('Photo link', d.photo_link ? '<a href="' + esc(d.photo_link) + '" style="color:#23804b;font-weight:700;">' + esc(d.photo_link) + '</a>' : '—') +
     row('Code', val(d.referral_or_promo_code)) + row('Heard via', val(d.heard_about_us)) + row('Marketing texts', val(d.texts_ok)) + row('Submitted', val(d.submitted)) +
     '</table></div></div>';
   const payload = {
