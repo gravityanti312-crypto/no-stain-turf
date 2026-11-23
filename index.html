@@ -4346,30 +4346,9 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
         <p class="qb-fine">Deal texts: about 2&ndash;4 a month, not required to book. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. By tapping Next, you agree TurfGlow may call or text you about your quote. <a href="privacy.html" target="_blank" rel="noopener">Privacy</a> &middot; <a href="terms.html" target="_blank" rel="noopener">Terms</a></p>
       </div>
 
-      <!-- 2 · Mint: where's the turf -->
+      <!-- 2 · Sky: turf check (the answers pick the cleaning) + add-ons -->
       <div class="tq-step" data-step="2">
         <button type="button" class="qb-back" onclick="tqGo(1)">&larr; Back</button>
-        <h2 class="qb-h">Where&rsquo;s your <em id="qb-h-2">turf?</em></h2>
-        <label class="qb-field qb-field--ico"><svg class="qb-fico" aria-hidden="true"><use href="#qb-i-pin"/></svg><small>Street address</small><input id="tq-address" type="text" autocomplete="street-address" placeholder="123 Sunny Ln" /></label>
-        <div class="qb-row">
-          <label class="qb-field"><small>City</small><input id="tq-city" type="text" autocomplete="address-level2" placeholder="Gilbert" /></label>
-          <label class="qb-field qb-field--zip"><small>Zip</small><input id="tq-zip" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="5" placeholder="85234" /></label>
-        </div>
-        <p class="qb-q">Tap where your turf is <span>(pick all that apply)</span></p>
-        <div class="qb-chips" role="group" aria-label="Where your turf is">
-          <button type="button" class="qb-chip" data-area="Backyard" aria-pressed="false" onclick="tqArea(this)">Backyard</button>
-          <button type="button" class="qb-chip" data-area="Front yard" aria-pressed="false" onclick="tqArea(this)">Front yard</button>
-          <button type="button" class="qb-chip" data-area="Side yard" aria-pressed="false" onclick="tqArea(this)">Side yard</button>
-          <button type="button" class="qb-chip" data-area="Dog run" aria-pressed="false" onclick="tqArea(this)">Dog run</button>
-          <button type="button" class="qb-chip" data-area="Putting green" aria-pressed="false" onclick="tqArea(this)">Putting green</button>
-        </div>
-        <div class="tq-err" id="tq-err-2" role="alert"></div>
-        <button type="button" class="qb-btn" onclick="tqNext2()">Next &rarr;</button>
-      </div>
-
-      <!-- 3 · Sky: turf check (the answers pick the cleaning) + add-ons; the quote is sent from here -->
-      <div class="tq-step" data-step="3">
-        <button type="button" class="qb-back" onclick="tqGo(2)">&larr; Back</button>
         <h2 class="qb-h">Quick <em>turf check</em></h2>
         <div class="qb-qblock">
           <p class="qb-q">Any dogs?</p>
@@ -4414,6 +4393,27 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
         </div>
         <button type="button" class="qb-link" id="qb-code-link" onclick="tqShowCode()">Have a promo or referral code?</button>
         <label class="qb-field" id="qb-code-field" hidden><small>Promo or referral code</small><input id="tq-code" type="text" autocomplete="off" /></label>
+        <div class="tq-err" id="tq-err-2" role="alert"></div>
+        <button type="button" class="qb-btn" onclick="tqNext2()">Next &rarr;</button>
+      </div>
+
+      <!-- 3 · Mint: where's the turf; the quote is sent from here -->
+      <div class="tq-step" data-step="3">
+        <button type="button" class="qb-back" onclick="tqGo(2)">&larr; Back</button>
+        <h2 class="qb-h">Where&rsquo;s your <em id="qb-h-3">turf?</em></h2>
+        <label class="qb-field qb-field--ico"><svg class="qb-fico" aria-hidden="true"><use href="#qb-i-pin"/></svg><small>Street address</small><input id="tq-address" type="text" autocomplete="street-address" placeholder="123 Sunny Ln" /></label>
+        <div class="qb-row">
+          <label class="qb-field"><small>City</small><input id="tq-city" type="text" autocomplete="address-level2" placeholder="Gilbert" /></label>
+          <label class="qb-field qb-field--zip"><small>Zip</small><input id="tq-zip" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="5" placeholder="85234" /></label>
+        </div>
+        <p class="qb-q">Tap where your turf is <span>(pick all that apply)</span></p>
+        <div class="qb-chips" role="group" aria-label="Where your turf is">
+          <button type="button" class="qb-chip" data-area="Backyard" aria-pressed="false" onclick="tqArea(this)">Backyard</button>
+          <button type="button" class="qb-chip" data-area="Front yard" aria-pressed="false" onclick="tqArea(this)">Front yard</button>
+          <button type="button" class="qb-chip" data-area="Side yard" aria-pressed="false" onclick="tqArea(this)">Side yard</button>
+          <button type="button" class="qb-chip" data-area="Dog run" aria-pressed="false" onclick="tqArea(this)">Dog run</button>
+          <button type="button" class="qb-chip" data-area="Putting green" aria-pressed="false" onclick="tqArea(this)">Putting green</button>
+        </div>
         <div class="tq-err" id="tq-err-3" role="alert"></div>
         <button type="button" class="qb-btn" id="tq-submit" onclick="tqSubmit()"><span id="tq-submit-label">Send my quote</span> &rarr;</button>
         <p class="qb-fine qb-fine--center">No prices online &mdash; we&rsquo;ll call you with your exact price.</p>
@@ -4518,7 +4518,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
   var TQ_EMAIL = 'turfglowaz@gmail.com';
   var TQ_PHONE = '(480) 294-1408';
   var TQ_STEPS = 3, TQ_PHOTOS = 5, TQ_DONE = 6;
-  var TQ_TONES = { 1: 'cream', 2: 'mint', 3: 'sky', 5: 'night', 6: 'done' };
+  var TQ_TONES = { 1: 'cream', 2: 'sky', 3: 'mint', 5: 'night', 6: 'done' };
   var TQ_BAR = { 1: 25, 2: 55, 3: 88 };
   var TQ_SAVINGS = { 'Monthly': '$150 off per cleaning', 'Every other month': '$100 off per cleaning', 'Quarterly': '$50 off per cleaning', 'One-time': 'One-time cleaning (no plan)' };
   var TQ_SERVICE_NOTES = {
@@ -4592,7 +4592,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
     wrap.classList.toggle('is-after', n > TQ_STEPS);
     tqEl('tq-progress').style.width = (TQ_BAR[n] || 100) + '%';
     tqEl('qb-count').textContent = n <= TQ_STEPS ? n + ' of ' + TQ_STEPS : '';
-    if (n === 2) tqEl('qb-h-2').textContent = tq.contact && tq.contact.first_name ? 'turf, ' + tq.contact.first_name + '?' : 'turf?';
+    if (n === 3) tqEl('qb-h-3').textContent = tq.contact && tq.contact.first_name ? 'turf, ' + tq.contact.first_name + '?' : 'turf?';
     if (n === 3) tqRecommend();
     if (n === TQ_PHOTOS) tqPhotoUI();
     var m = tqEl('quote-modal'); if (m) m.scrollTop = 0;
@@ -4633,28 +4633,29 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
     tqGo(2);
   }
 
-  /* 2 · where's the turf */
+  /* 3 · where's the turf (last step — sends the quote) */
   function tqArea(btn) {
     tqPress(btn, !btn.classList.contains('is-on'));
     tq.areas = tqAll('#tq-form [data-area].is-on').map(function (b) { return b.getAttribute('data-area'); });
-    if (tq.areas.length) tqErr(2, '');
+    if (tq.areas.length) tqErr(3, '');
   }
-  function tqNext2() {
+  function tqAddressOk() {
     if (!tqCheck([
       ['tq-address', function (v) { return v.length > 3; }, 'Enter the street address for the turf.'],
       ['tq-city', function (v) { return v.length > 1; }, 'Enter your city.'],
       ['tq-zip', function (v) { return /^\d{5}$/.test(v); }, 'Enter a 5-digit zip code.']
-    ], 2)) return;
-    if (!tq.areas.length) { tqErr(2, 'Tap where your turf is — pick all that apply.'); return; }
-    tqGo(3);
+    ], 3)) return false;
+    if (!tq.areas.length) { tqErr(3, 'Tap where your turf is — pick all that apply.'); return false; }
+    return true;
   }
 
-  /* 3 · turf check → our pick */
+  /* 2 · turf check → our pick */
+  function tqNext2() { if (tqCheckDone()) tqGo(3); }
   function tqAnswer(btn) {
     var q = btn.getAttribute('data-q');
     tqAll('#tq-form [data-q="' + q + '"]').forEach(function (b) { tqPress(b, b === btn); });
     tq.check[q] = btn.getAttribute('data-v');
-    tqErr(3, '');
+    tqErr(2, '');
     tqRecommend();
   }
   // Matted → Full Restore. Any dog or any smell → Deep Clean. Otherwise → Refresh.
@@ -4683,7 +4684,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
   }
   function tqCheckDone() {
     var c = tq.check, miss = !c.dogs ? 'Any dogs?' : !c.smell ? 'Any smell?' : !c.look ? 'How does it look?' : '';
-    if (miss) { tqErr(3, 'One more tap: “' + miss + '”'); return false; }
+    if (miss) { tqErr(2, 'One more tap: “' + miss + '”'); return false; }
     if (!tq.service) tq.service = tqSuggested();
     return true;
   }
@@ -4783,7 +4784,8 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
   }
 
   function tqSubmit() {
-    if (!tqCheckDone()) return;
+    if (!tqCheckDone()) { tqGo(2); return; }
+    if (!tqAddressOk()) return;
     var btn = tqEl('tq-submit'), label = tqEl('tq-submit-label');
     btn.disabled = true; label.textContent = 'Sending…';
     tqSend('complete').then(function () {
