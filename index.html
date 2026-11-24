@@ -3435,6 +3435,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
 .qb-fine--center { text-align: center; }
 .qb .tq-err { text-align: center; font-size: 14.5px; color: #c81e1e; font-weight: 700; margin: 0; }
 .qb .tq-err:empty { display: none; }
+.qb[data-tone="night"] .tq-err { color: #ffb3b3; }
 
 /* chips (multi or single pick) */
 .qb-chips { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -4422,6 +4423,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
       <!-- 5 · Night: photos get their own screen (the quote is already sent) -->
       <div class="tq-step" data-step="5">
         <span class="qb-sent">&#10003; Quote sent</span>
+        <div class="tq-err" id="tq-err-5" role="alert"></div>
         <h2 class="qb-h">Want your price <em>even faster?</em></h2>
         <p class="qb-sub">2 photos and we can price it on the first call.</p>
         <div class="qb-guides">
@@ -4578,6 +4580,7 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
     tqAll('#tq-form .is-on, #tq-form .is-invalid, #tq-form .is-pick').forEach(function (b) { b.classList.remove('is-on', 'is-invalid', 'is-pick'); });
     for (var i = 1; i <= TQ_DONE; i++) tqErr(i, '');
     tqEl('qb-rec').hidden = true; tqEl('qb-svc').hidden = true;
+    tqAll('#tq-form .qb-sent').forEach(function (b) { b.hidden = false; });
     tqEl('qb-code-field').hidden = true; tqEl('qb-code-link').hidden = false;
     var btn = tqEl('tq-submit'); btn.disabled = false; tqEl('tq-submit-label').textContent = 'Send my quote';
     var add = tqEl('qb-email-add'); add.disabled = false; add.textContent = 'Add';
@@ -4783,18 +4786,32 @@ src="https://www.facebook.com/tr?id=1586140553244175&ev=PageView&noscript=1"
     return tqPost(data, { quote_id: tq.quoteId, first_name: c.first_name || '', last_name: c.last_name || '' });
   }
 
+  // The customer never waits on the email services (formsubmit can take several
+  // seconds). The send keeps going in the background (keepalive) and they move on
+  // after a short beat. Only a fast failure (e.g. offline) keeps them on this step;
+  // a late failure shows a call/text note on whatever screen they're on.
   function tqSubmit() {
     if (!tqCheckDone()) { tqGo(2); return; }
     if (!tqAddressOk()) return;
     var btn = tqEl('tq-submit'), label = tqEl('tq-submit-label');
+    var failMsg = 'We couldn’t send your request. Please call or text us at ' + TQ_PHONE + '.';
+    var state = 'pending', moved = false, me = tq;
     btn.disabled = true; label.textContent = 'Sending…';
     tqSend('complete').then(function () {
+      state = 'ok';
       if (window.fbq) { fbq('trackCustom', 'QuoteCompleted', { service: tq.service, frequency: tq.plan || 'none' }); }
-      tqGo(TQ_PHOTOS);
     }).catch(function () {
-      btn.disabled = false; label.textContent = 'Send my quote';
-      tqErr(3, 'We couldn’t send your request. Please call or text us at ' + TQ_PHONE + '.');
+      state = 'fail';
+      if (!moved || tq !== me) return;
+      tqAll('#tq-form .qb-sent').forEach(function (b) { b.hidden = true; });
+      tqErr(TQ_PHOTOS, failMsg); tqErr(TQ_DONE, failMsg);
     });
+    setTimeout(function () {
+      btn.disabled = false; label.textContent = 'Send my quote';
+      if (state === 'fail') { tqErr(3, failMsg); return; }
+      moved = true;
+      tqGo(TQ_PHOTOS);
+    }, 450);
   }
 
   /* 5 · photos: shrunk on the phone (max 1600px JPEG, strips location data) */
